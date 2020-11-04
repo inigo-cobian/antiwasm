@@ -11,5 +11,5 @@ namespace antiwasm {
     typedef unsigned char uint8;
 
     const char INDEX_VERSION = 4;
-
+    const char INDEX_SECTIONS = 8;
 }

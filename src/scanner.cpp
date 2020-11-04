@@ -1,6 +1,7 @@
 #include "scanner.hpp"
 #include "lexems.hpp"
 #include "header.hpp"
+#include "module.hpp"
 
 int main(int argc, char **argv) {
     if(argc != 2) {
@@ -43,6 +44,13 @@ namespace antiwasm {
         if(antiwasm::checkVersion(uBuffer) == false) {
             exit(0);
         }
+
+        inputFile.seekg(INDEX_SECTIONS, std::ios::beg); 
+        inputFile.read(buffer, 2);  //TODO check if size can be more than 0xFF
+        uBuffer = (unsigned char*)buffer;
+
+        //Sections
+        pointer = parseSections(uBuffer);
 
 
         inputFile.close();
