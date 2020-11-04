@@ -1,13 +1,21 @@
-#include <iostream>
-#include <fstream>
-#include <cstring>
-#include <cstddef>
+enum section_index_set : unsigned char
+{
+    Custom = 0x00,
+    Type = 0x01,
+    Import = 0x02,
+    Function = 0x03,
+    Table = 0x04,
+    Memory = 0x05,
+    Global = 0x06,
+    Export = 0x07,
+    Start = 0x08,
+    Element = 0x09,
+    Code = 0x10,
+    Data = 0x11
+}sec;
 
-typedef unsigned char uint8;
 
-const char INDEX_VERSION = 4;
-
-enum lexems : unsigned char
+enum instruction_set : unsigned char
 {
     Unreachable = 0x00,
     Nop = 0x01,
@@ -214,57 +222,5 @@ enum lexems : unsigned char
     i64_reinterpret_f64 = 0xBD,
     f32_reinterpret_i32 = 0xBE,
     f64_reinterpret_i64 = 0xBF
-};
+}instr;
 
-int parse(const char* classFile);
-
-int main(int argc, char **argv) {
-    if(argc != 2) {
-        std::cout << "Enter a filename" << std::endl;
-        return -1;
-    }
-
-    char* classFile = argv[1];
-    std::cout << "Filename: " << classFile << std::endl;
-
-    parse(classFile);
-}
-
-int parse(const char* classFile) {
-    size_t size = 0;
-    size_t pointer = 0;
-    char *buffer = new char[4];  //TODO which size?
-    unsigned char *uBuffer; //pointer to the reading buffer
-
-    std::ifstream inputFile(classFile);
-	inputFile.seekg(0, std::ios::end); // set the pointer to the end
-	size = inputFile.tellg() ; // get the length of the file
-	std::cout << "Size of file: " << size << std::endl;
-	inputFile.seekg(0, std::ios::beg); // set the pointer to the beginning
-
-    //Magic header
-    inputFile.read(buffer, 4);
-    uBuffer = (unsigned char*)buffer;
-    if(uBuffer[0] == 0x00 && uBuffer[1] == 0x61 && uBuffer[2] == 0x73 && uBuffer[3] == 0x6D)
-        std::cout << "Magic header found" << std::endl;
-    else {
-        std::cout << "This file has no magic header." << std::endl << "Compilation failed." << std::endl;
-        exit(1);
-    }
-
-    //Version number
-    inputFile.seekg(INDEX_VERSION, std::ios::beg); 
-    inputFile.read(buffer, 4);
-    uBuffer = (unsigned char*)buffer;
-    //printf("Module version: %02x %02x %02x%02x\n", uBuffer[0], uBuffer[1], uBuffer[2], uBuffer[3]);
-
-    if(uBuffer[0] == 0x01 && uBuffer[1] == 0x00 && uBuffer[2] == 0x00 && uBuffer[3] == 0x00)
-        std::cout << "Version 1.0" << std::endl;
-    else
-        std::cout << "Unknown version. Some functionalities might not be supported." << std::endl;
-
-
-    inputFile.close();
-
-    return 0;
-}
