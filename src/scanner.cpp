@@ -1,7 +1,4 @@
 #include "scanner.hpp"
-#include "lexems.hpp"
-#include "header.hpp"
-#include "module.hpp"
 
 int main(int argc, char **argv) {
     if(argc != 2) {
@@ -17,43 +14,32 @@ int main(int argc, char **argv) {
 
 namespace antiwasm {
     int parse(const char* classFile) {
-        size_t size = 0;
-        size_t pointer = 0;
-        char *buffer = new char[4];  //TODO which size?
-        unsigned char *uBuffer; //pointer to the reading buffer
-
-        std::ifstream inputFile(classFile);
-	    inputFile.seekg(0, std::ios::end); // set the pointer to the end
-	    size = inputFile.tellg() ; // get the length of the file
-	    std::cout << "Size of file: " << size << std::endl;
-	    inputFile.seekg(0, std::ios::beg); // set the pointer to the beginning
+        Driver *driver = driver->GetInstance(classFile);
+        unsigned char *uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 5);
 
         //Magic header
-        inputFile.read(buffer, 4);
-        uBuffer = (unsigned char*)buffer;
-
+        uBuffer = driver->GetNextBytes(4);
         if(antiwasm::checkMagicNumber(uBuffer) == false) {
             exit(0);
         }
 
-        //Version number
-        inputFile.seekg(INDEX_VERSION, std::ios::beg); 
-        inputFile.read(buffer, 4);
-        uBuffer = (unsigned char*)buffer;
+        free(uBuffer);
+        uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 5);
 
+        //Version number
+        uBuffer = driver->GetNextBytes(4);
         if(antiwasm::checkVersion(uBuffer) == false) {
             exit(0);
         }
 
-        inputFile.seekg(INDEX_SECTIONS, std::ios::beg); 
-        inputFile.read(buffer, 2);  //TODO check if size can be more than 0xFF
-        uBuffer = (unsigned char*)buffer;
+        free(uBuffer);
+        uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 5);
 
         //Sections
-        pointer = parseSections(uBuffer);
+        uBuffer = driver->GetNextBytes(1);
+        parseSections(uBuffer);
 
-
-        inputFile.close();
+        driver->CloseFile();
 
         return 0;
     }

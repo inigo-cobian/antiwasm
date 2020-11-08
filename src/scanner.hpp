@@ -2,6 +2,10 @@
 #include <fstream>
 #include <cstring>
 #include <cstddef>
+#include "lexems.hpp"
+#include "header.hpp"
+#include "module.hpp"
+#include "driver.hpp"
 
 namespace antiwasm {
 

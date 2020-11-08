@@ -8,6 +8,7 @@ namespace antiwasm {
         }
         else {
             std::cout << "This file has no magic header." << std::endl << "Compilation failed." << std::endl;
+            printf("%02x %02x %02x %02x\n", header[0], header[1], header[2], header[3]);
             return false;
         }
     }
