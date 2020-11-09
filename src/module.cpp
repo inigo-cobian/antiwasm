@@ -11,44 +11,49 @@ namespace antiwasm {
         if(buffer[0] == Section::Custom) {
             std::cout << "Custom Section" << std::endl;
         }
-        else if(buffer[0] == Section::Type) {
+        if(buffer[0] == Section::Type) {
             std::cout << "Type Section of size " << (unsigned int)buffer[1] << std::endl;
-            parseTypeSection(buffer[1]);
+            unsigned char sectionSize = buffer[1];
+            free(buffer);
+            buffer = parseTypeSection(sectionSize);
         }
-        else if(buffer[0] == Section::Import) {
+        if(buffer[0] == Section::Import) {
             std::cout << "Import Section of size " << (unsigned int)buffer[1] << std::endl;
         }
-        else if(buffer[0] == Section::Function) {
+        if(buffer[0] == Section::Function) {
             std::cout << "Function Section of size " << (unsigned int)buffer[1] << std::endl;
+            unsigned char sectionSize = buffer[1];
+            free(buffer);
+            buffer = parseFunctionSection(sectionSize);
         }
-        else if(buffer[0] == Section::Table) {
+        if(buffer[0] == Section::Table) {
             std::cout << "Table Section of size " << (unsigned int)buffer[1] << std::endl;
         }
-        else if(buffer[0] == Section::Memory) {
+        if(buffer[0] == Section::Memory) {
             std::cout << "Memory Section of size " << (unsigned int)buffer[1] << std::endl;
         }
-        else if(buffer[0] == Section::Global) {
+        if(buffer[0] == Section::Global) {
             std::cout << "Global Section of size " << (unsigned int)buffer[1] << std::endl;
         }
-        else if(buffer[0] == Section::Export) {
+        if(buffer[0] == Section::Export) {
             std::cout << "Export Section of size " << (unsigned int)buffer[1] << std::endl;
         }
-        else if(buffer[0] == Section::Start) {
+        if(buffer[0] == Section::Start) {
             std::cout << "Start Section" << std::endl;
         }
-        else if(buffer[0] == Section::Element) {
+        if(buffer[0] == Section::Element) {
             std::cout << "Element Section" << std::endl;
         }
-        else if(buffer[0] == Section::Code) {
+        if(buffer[0] == Section::Code) {
             std::cout << "Code Section" << std::endl;
         }
-        else if(buffer[0] == Section::Data) {
+        if(buffer[0] == Section::Data) {
             std::cout << "Data Section" << std::endl;
         }
         return 0;
     }
     
-    void parseTypeSection(unsigned char sizeOfSection)
+    unsigned char* parseTypeSection(unsigned char sizeOfSection)
     {
         unsigned char* typeSectionBuffer = getSection(sizeOfSection);
         unsigned char* vectorBuffer;
@@ -65,8 +70,23 @@ namespace antiwasm {
             //TODO
             
         }
-        parseSections(driver->GetNextBytes(2));
+        free(typeSectionBuffer);
+        return driver->GetNextBytes(2);
+    }
 
+    unsigned char* parseFunctionSection(unsigned char sizeOfSection)
+    {
+        unsigned char* functionSectionBuffer = getSection(sizeOfSection);
+        unsigned char* vectorBuffer;
+
+        int pointer = 1;
+        int numberOfFunctionsAtSection = functionSectionBuffer[0];
+        std::cout << "Number of functions at section: " << numberOfFunctionsAtSection << std::endl;
+
+        //TODO
+
+        free(functionSectionBuffer);
+        return driver->GetNextBytes(2);
     }
 
     /* Gets the whole section */

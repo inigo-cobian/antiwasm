@@ -10,8 +10,8 @@ namespace antiwasm {
     size_t parseSections(unsigned char* buffer);
     unsigned char* getSection(unsigned char sizeOfSection);
 
-    void parseTypeSection(unsigned char sizeOfSection);
-
+    unsigned char* parseTypeSection(unsigned char sizeOfSection);
+    unsigned char* parseFunctionSection(unsigned char sizeOfSection);
 }
 
 #endif
