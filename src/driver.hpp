@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <thread>
 #include <mutex>
+#include <string>
 
 #ifndef DRIVER_H
 #define DRIVER_H
@@ -30,6 +31,7 @@ class Driver {
         Driver(Driver &driver) = delete;
         Driver *GetInstance(const char* fileName);
         unsigned char* GetNextBytes(size_t nBytes);
+        unsigned char* GetUTF8String();
         void CloseFile();
 };
 
@@ -72,6 +74,19 @@ unsigned char* Driver::GetNextBytes(size_t nBytes)
     printf("\n");
 
     return (unsigned char*)buffer;
+}
+
+unsigned char* Driver::GetUTF8String() //TODO not ready to be used
+{
+    std::cout << "GetUTF8String: " << std::endl;
+    unsigned char delimiter = 0x03;
+    std::string temp = "";
+    
+    instance_->wasmFile_.seekg(instance_->pointer_, std::ios::beg);
+    std::istream& stream = instance_->wasmFile_;
+    getline(stream, temp);
+
+    return nullptr;
 }
 
 void Driver::CloseFile()
