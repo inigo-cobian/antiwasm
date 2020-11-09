@@ -1,5 +1,8 @@
+#ifndef SECTION_INDEX_HPP
+#define SECTION_INDEX_HPP
+
 namespace antiwasm {
-    enum Section
+    inline enum Section
     {
         Custom = 0x00,
         Type = 0x01,
@@ -15,3 +18,5 @@ namespace antiwasm {
         Data = 0x11
     }Section;
 }
+
+#endif

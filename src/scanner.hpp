@@ -1,3 +1,6 @@
+#ifndef SCANNER_HPP
+#define SCANNER_HPP
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -17,3 +20,5 @@ namespace antiwasm {
     const char INDEX_VERSION = 4;
     const char INDEX_SECTIONS = 8;
 }
+
+#endif
