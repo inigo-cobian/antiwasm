@@ -4,7 +4,6 @@ namespace antiwasm {
 
     Driver *driver;
 
-
     //TODO create parsers for the different sections
     size_t parseSections(unsigned char* buffer) { //Size of the buffer -> 2
         driver = driver->GetInstance();
@@ -94,10 +93,10 @@ namespace antiwasm {
         unsigned char* vectorBuffer;
 
         int pointer = 1;
-        int numberOfTypesAtSection = typeSectionBuffer[0];
-        std::cout << "Number of types at section: " << numberOfTypesAtSection << std::endl;
+        int numberOfTypes = typeSectionBuffer[0];
+        std::cout << "Number of types at section: " << numberOfTypes << std::endl;
 
-        for(int i = 0; i < numberOfTypesAtSection; i++) {
+        for(int i = 0; i < numberOfTypes; i++) {
             if(typeSectionBuffer[pointer] != 0x60) {
                 std::cout << "Error. Not a function type" << std::endl;
                 exit (-1);
@@ -111,7 +110,17 @@ namespace antiwasm {
 
     unsigned char* parseImportSection(unsigned char sizeOfSection)
     {
-        return nullptr;
+        unsigned char* importSectionBuffer = getSection(sizeOfSection);
+        unsigned char* vectorBuffer;
+
+        int pointer = 1;
+        int numberOfImports = importSectionBuffer[0];
+        std::cout << "Number of imports at section: " << numberOfImports << std::endl;
+
+        //TODO
+
+        free(importSectionBuffer);
+        return driver->GetNextBytes(2);
     }
 
     unsigned char* parseFunctionSection(unsigned char sizeOfSection)
@@ -120,8 +129,8 @@ namespace antiwasm {
         unsigned char* vectorBuffer;
 
         int pointer = 1;
-        int numberOfFunctionsAtSection = functionSectionBuffer[0];
-        std::cout << "Number of functions at section: " << numberOfFunctionsAtSection << std::endl;
+        int numberOfFunctions = functionSectionBuffer[0];
+        std::cout << "Number of functions at section: " << numberOfFunctions << std::endl;
 
         //TODO
 
@@ -131,22 +140,62 @@ namespace antiwasm {
 
     unsigned char* parseTableSection(unsigned char sizeOfSection)
     {
-        return nullptr; //TODO
+        unsigned char* tableSectionBuffer = getSection(sizeOfSection);
+        unsigned char* vectorBuffer;
+
+        int pointer = 1;
+        int numberOfTables = tableSectionBuffer[0];
+        std::cout << "Number of tables at section: " << numberOfTables << std::endl;
+
+        //TODO
+
+        free(tableSectionBuffer);
+        return driver->GetNextBytes(2);
     }
 
     unsigned char* parseMemorySection(unsigned char sizeOfSection)
     {
-        return nullptr; //TODO
+        unsigned char* memorySectionBuffer = getSection(sizeOfSection);
+        unsigned char* vectorBuffer;
+
+        int pointer = 1;
+        int numberOfMemories = memorySectionBuffer[0];
+        std::cout << "Number of memories at section: " << numberOfMemories << std::endl;
+
+        //TODO
+
+        free(memorySectionBuffer);
+        return driver->GetNextBytes(2);
     }
 
     unsigned char* parseGlobalSection(unsigned char sizeOfSection)
     {
-        return nullptr; //TODO
+        unsigned char* globalSectionBuffer = getSection(sizeOfSection);
+        unsigned char* vectorBuffer;
+
+        int pointer = 1;
+        int numberOfGlobals = globalSectionBuffer[0];
+        std::cout << "Number of globals at section: " << numberOfGlobals << std::endl;
+
+        //TODO
+
+        free(globalSectionBuffer);
+        return driver->GetNextBytes(2);
     }
 
     unsigned char* parseExportSection(unsigned char sizeOfSection)
     {
-        return nullptr; //TODO
+        unsigned char* exportSectionBuffer = getSection(sizeOfSection);
+        unsigned char* vectorBuffer;
+
+        int pointer = 1;
+        int numberOfExports = exportSectionBuffer[0];
+        std::cout << "Number of exports at section: " << numberOfExports << std::endl;
+
+        //TODO
+
+        free(exportSectionBuffer);
+        return driver->GetNextBytes(2);
     }
 
     unsigned char* parseStartSection(unsigned char sizeOfSection)
@@ -156,17 +205,47 @@ namespace antiwasm {
 
     unsigned char* parseElementSection(unsigned char sizeOfSection)
     {
-        return nullptr; //TODO
+        unsigned char* elementSectionBuffer = getSection(sizeOfSection);
+        unsigned char* vectorBuffer;
+
+        int pointer = 1;
+        int numberOfElements = elementSectionBuffer[0];
+        std::cout << "Number of elements at section: " << numberOfElements << std::endl;
+
+        //TODO
+
+        free(elementSectionBuffer);
+        return driver->GetNextBytes(2);
     }
 
     unsigned char* parseCodeSection(unsigned char sizeOfSection)
     {
-        return nullptr; //TODO
+        unsigned char* codeSectionBuffer = getSection(sizeOfSection);
+        unsigned char* vectorBuffer;
+
+        int pointer = 1;
+        int numberOfCodes = codeSectionBuffer[0];
+        std::cout << "Number of codes at section: " << numberOfCodes << std::endl;
+
+        //TODO
+
+        free(codeSectionBuffer);
+        return driver->GetNextBytes(2);
     }
 
     unsigned char* parseDataSection(unsigned char sizeOfSection)
     {
-        return nullptr; //TODO
+        unsigned char* dataSectionBuffer = getSection(sizeOfSection);
+        unsigned char* vectorBuffer;
+
+        int pointer = 1;
+        int numberOfDatas = dataSectionBuffer[0];
+        std::cout << "Number of data at section: " << numberOfDatas << std::endl;
+
+        //TODO
+
+        free(dataSectionBuffer);
+        return driver->GetNextBytes(2);
     }
 
     /* Gets the whole section */
