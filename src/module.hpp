@@ -5,6 +5,7 @@
 #include "section_index.hpp"
 #include "driver.hpp"
 #include "val_type.hpp"
+#include "limits.hpp"
 
 namespace antiwasm {
     size_t parseSections(unsigned char* buffer);

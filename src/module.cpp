@@ -143,11 +143,29 @@ namespace antiwasm {
         unsigned char* tableSectionBuffer = getSection(sizeOfSection);
         unsigned char* vectorBuffer;
 
-        int pointer = 1;
         int numberOfTables = tableSectionBuffer[0];
+        int pointer = 1; //Pointer for the tableSectionBuffer
         std::cout << "Number of tables at section: " << numberOfTables << std::endl;
 
-        //TODO
+        int* currentLimits;
+        for(int i = 0; i < numberOfTables; i++)
+        {
+            if(tableSectionBuffer[pointer++] == 0x70)
+            {
+                currentLimits = antiwasm::getLimits(&tableSectionBuffer[pointer]);
+                if(currentLimits[1] != -1) //TODO analyze the limits
+                {
+                    pointer += 2;
+                } else {
+                    pointer++;
+                }
+            }
+            else
+            {
+                std::cout << "Error. Not a table" << std::endl;
+                return nullptr;
+            }
+        }
 
         free(tableSectionBuffer);
         return driver->GetNextBytes(2);
