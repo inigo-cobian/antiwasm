@@ -19,7 +19,7 @@ namespace antiwasm {
             limitsToReturn[0] = limitSection[1];
             limitsToReturn[1] = limitSection[2];
 
-            std::cout << "Limit[" << limitsToReturn[0] << "]-[" << limitsToReturn[0] << "]" << std::endl;
+            std::cout << "Limit[" << limitsToReturn[0] << "]-[" << limitsToReturn[1] << "]" << std::endl;
 
             return limitsToReturn;
         }
