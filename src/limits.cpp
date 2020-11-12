@@ -1,30 +1,41 @@
 #include "limits.hpp"
 
 namespace antiwasm {
-    int* getLimits(unsigned char* limitSection)
+    void parseLimitVec(unsigned char* limitVec)
+    {
+        int nLimits = limitVec[0];
+        int pointer = 1;
+
+        for(int i = 0; i < nLimits; i++)
+        {
+            pointer += getLimits(&limitVec[pointer]);
+        }
+    }
+
+    int getLimits(unsigned char* limitSection)
     {
         if(limitSection[0] == LIMIT_MIN)
         {
-            int *limitsToReturn = (int*)malloc(sizeof(int) * 2);
-            limitsToReturn[0] = limitSection[1];
-            limitsToReturn[1] = -1;
+            int *limits = (int*)malloc(sizeof(int) * 2);
+            limits[0] = limitSection[1];
+            limits[1] = -1;
 
-            std::cout << "Limit[" << limitsToReturn[0] << "]-[MAX]" << std::endl;
+            std::cout << "Limit[" << limits[0] << "]-[MAX]" << std::endl;
 
-            return limitsToReturn;
+            return 2;
         }
         if(limitSection[0] == LIMIT_MIN_MAX)
         {
-            int *limitsToReturn = (int*)malloc(sizeof(int) * 2);
-            limitsToReturn[0] = limitSection[1];
-            limitsToReturn[1] = limitSection[2];
+            int *limits = (int*)malloc(sizeof(int) * 2);
+            limits[0] = limitSection[1];
+            limits[1] = limitSection[2];
 
-            std::cout << "Limit[" << limitsToReturn[0] << "]-[" << limitsToReturn[1] << "]" << std::endl;
+            std::cout << "Limit[" << limits[0] << "]-[" << limits[1] << "]" << std::endl;
 
-            return limitsToReturn;
+            return 3;
         }
         std::cout << "Error. This byte is not a limit" << std::endl;
-        return nullptr;
+        return 1;   //TODO throw an exception
     }
 
 }

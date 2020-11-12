@@ -138,13 +138,7 @@ namespace antiwasm {
         {
             if(tableSectionBuffer[pointer++] == 0x70)
             {
-                currentLimits = antiwasm::getLimits(&tableSectionBuffer[pointer]);
-                if(currentLimits[1] != -1) //TODO analyze the limits
-                {
-                    pointer += 2;
-                } else {
-                    pointer++;
-                }
+                pointer += getLimits(&tableSectionBuffer[pointer]);
             }
             else
             {
@@ -161,8 +155,10 @@ namespace antiwasm {
     {
         unsigned char* memorySectionBuffer = getSection(sizeOfSection);
 
+        std::cout << "Number of memories at section: " << memorySectionBuffer[1] << std::endl;
+
         //Memory is composed by a limit
-        getLimits(memorySectionBuffer);
+        parseLimitVec(memorySectionBuffer);
 
         free(memorySectionBuffer);
         return driver->GetNextBytes(2);
