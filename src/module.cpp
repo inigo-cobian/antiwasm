@@ -100,7 +100,6 @@ namespace antiwasm {
     unsigned char* parseImportSection(unsigned char sizeOfSection)
     {
         unsigned char* importSectionBuffer = getSection(sizeOfSection);
-        unsigned char* vectorBuffer;
 
         int pointer = 1;
         int numberOfImports = importSectionBuffer[0];
@@ -162,11 +161,8 @@ namespace antiwasm {
     {
         unsigned char* memorySectionBuffer = getSection(sizeOfSection);
 
-        int pointer = 1;
-        int numberOfMemories = memorySectionBuffer[0];
-        std::cout << "Number of memories at section: " << numberOfMemories << std::endl;
-
-        //TODO
+        //Memory is composed by a limit
+        getLimits(memorySectionBuffer);
 
         free(memorySectionBuffer);
         return driver->GetNextBytes(2);
