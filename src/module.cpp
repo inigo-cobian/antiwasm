@@ -115,7 +115,6 @@ namespace antiwasm {
     unsigned char* parseFunctionSection(unsigned char sizeOfSection)
     {
         unsigned char* functionSectionBuffer = getSection(sizeOfSection);
-        unsigned char* vectorBuffer;
 
         int pointer = 1;
         int numberOfFunctions = functionSectionBuffer[0];
@@ -130,7 +129,6 @@ namespace antiwasm {
     unsigned char* parseTableSection(unsigned char sizeOfSection)
     {
         unsigned char* tableSectionBuffer = getSection(sizeOfSection);
-        unsigned char* vectorBuffer;
 
         int numberOfTables = tableSectionBuffer[0];
         int pointer = 1; //Pointer for the tableSectionBuffer
@@ -163,7 +161,6 @@ namespace antiwasm {
     unsigned char* parseMemorySection(unsigned char sizeOfSection)
     {
         unsigned char* memorySectionBuffer = getSection(sizeOfSection);
-        unsigned char* vectorBuffer;
 
         int pointer = 1;
         int numberOfMemories = memorySectionBuffer[0];
@@ -178,7 +175,6 @@ namespace antiwasm {
     unsigned char* parseGlobalSection(unsigned char sizeOfSection)
     {
         unsigned char* globalSectionBuffer = getSection(sizeOfSection);
-        unsigned char* vectorBuffer;
 
         int pointer = 1;
         int numberOfGlobals = globalSectionBuffer[0];
@@ -193,7 +189,6 @@ namespace antiwasm {
     unsigned char* parseExportSection(unsigned char sizeOfSection)
     {
         unsigned char* exportSectionBuffer = getSection(sizeOfSection);
-        unsigned char* vectorBuffer;
 
         int pointer = 1;
         int numberOfExports = exportSectionBuffer[0];
@@ -213,7 +208,6 @@ namespace antiwasm {
     unsigned char* parseElementSection(unsigned char sizeOfSection)
     {
         unsigned char* elementSectionBuffer = getSection(sizeOfSection);
-        unsigned char* vectorBuffer;
 
         int pointer = 1;
         int numberOfElements = elementSectionBuffer[0];
@@ -228,7 +222,6 @@ namespace antiwasm {
     unsigned char* parseCodeSection(unsigned char sizeOfSection)
     {
         unsigned char* codeSectionBuffer = getSection(sizeOfSection);
-        unsigned char* vectorBuffer;
 
         int pointer = 1;
         int numberOfCodes = codeSectionBuffer[0];
@@ -243,7 +236,6 @@ namespace antiwasm {
     unsigned char* parseDataSection(unsigned char sizeOfSection)
     {
         unsigned char* dataSectionBuffer = getSection(sizeOfSection);
-        unsigned char* vectorBuffer;
 
         int pointer = 1;
         int numberOfDatas = dataSectionBuffer[0];
