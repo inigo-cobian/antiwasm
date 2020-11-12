@@ -90,20 +90,9 @@ namespace antiwasm {
     unsigned char* parseTypeSection(unsigned char sizeOfSection)
     {
         unsigned char* typeSectionBuffer = getSection(sizeOfSection);
-        unsigned char* vectorBuffer;
 
-        int pointer = 1;
-        int numberOfTypes = typeSectionBuffer[0];
-        std::cout << "Number of types at section: " << numberOfTypes << std::endl;
+        parseFuncTypeVec(typeSectionBuffer);
 
-        for(int i = 0; i < numberOfTypes; i++) {
-            if(typeSectionBuffer[pointer] != 0x60) {
-                std::cout << "Error. Not a function type" << std::endl;
-                exit (-1);
-            }
-            //TODO
-            
-        }
         free(typeSectionBuffer);
         return driver->GetNextBytes(2);
     }
