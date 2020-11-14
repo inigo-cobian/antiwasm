@@ -133,4 +133,33 @@ namespace antiwasm {
         }
     }
 
+    void parseDataVec(unsigned char *dataVec)
+    {
+        int nDatas = dataVec[0];
+        int pointer = 1;
+        std::cout << "Number of datas at section: " << nDatas << std::endl;
+
+        for(int i = 0; i < nDatas; i++) {
+            //Check the memidx
+            //At version 1.0 only the value 0x00 is valid
+            if(dataVec[pointer++] != 0x00){
+                //TODO warning message
+            }
+
+            //Get the offset as an expression
+            parseInstr(dataVec, pointer);
+
+            parseByteVec(dataVec, pointer);
+        }
+    }
+
+    void parseByteVec(unsigned char * byteVec, int pointer)
+    {
+        int nBytes = byteVec[pointer++];
+        for(int i = 0; i < nBytes; i++) {
+            pointer++;
+            //TODO
+        }
+    }
+
 }

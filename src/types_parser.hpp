@@ -12,6 +12,8 @@ namespace antiwasm {
     void parseInstr(unsigned char *instruction, int &pointer);
     void parseElementVec(unsigned char *elementVec);
     void parseFuncIdxVec(unsigned char* funcIdxVec, int &pointer);
+    void parseDataVec(unsigned char *dataVec);
+    void parseByteVec(unsigned char * byteVec, int pointer);
 }
 
 #endif

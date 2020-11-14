@@ -221,11 +221,7 @@ namespace antiwasm {
     {
         unsigned char* dataSectionBuffer = getSection(sizeOfSection);
 
-        int pointer = 1;
-        int numberOfDatas = dataSectionBuffer[0];
-        std::cout << "Number of data at section: " << numberOfDatas << std::endl;
-
-        //TODO
+        parseDataVec(dataSectionBuffer);
 
         free(dataSectionBuffer);
         return driver->GetNextBytes(2);
