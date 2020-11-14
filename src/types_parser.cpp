@@ -8,22 +8,23 @@ namespace antiwasm {
 
     void parseFuncTypeVec(unsigned char* funcTypeVecSection)
     {
+        int nFuncTypes = funcTypeVecSection[0];
         int pointer = 1;
-        int numberOfFuncTypes = funcTypeVecSection[0];
-        std::cout << "Number of func types at section: " << numberOfFuncTypes << std::endl;
+        std::cout << "Number of func types at section: " << nFuncTypes << std::endl;
 
-        for(int i = 0; i < numberOfFuncTypes; i++) {
+        for(int i = 0; i < nFuncTypes; i++) {
             parseFuncType(funcTypeVecSection, pointer);
         }
     }
 
     void parseFuncType(unsigned char* funcTypeSection, int &pointer)
     {
-        if(funcTypeSection[pointer++] != 0x60)
+        if(funcTypeSection[pointer] != 0x60)
         {
             std::cout << "Not a function type, but a " << (int)funcTypeSection[pointer] << " at " << (int)pointer << std::endl;
             return;
         }
+        pointer++;
 
         // Parse the first result type of the function type
         parseResultType(funcTypeSection, pointer);
@@ -35,11 +36,9 @@ namespace antiwasm {
 
     void parseResultType(unsigned char* resultTypeSection, int &pointer)
     {
-        unsigned char sizeOfResultType = resultTypeSection[pointer++];
-
-        if(sizeOfResultType == 0x00) {
-        }
-        else if(sizeOfResultType == 0x01) {
+        int nFuncTypes = resultTypeSection[pointer];
+        pointer++;
+        for(int i = 0; i < nFuncTypes; i++) {
             parseValType(resultTypeSection[pointer]);
             pointer++;
         }
@@ -47,13 +46,22 @@ namespace antiwasm {
 
     void parseValType(unsigned char valType)
     {
-        if(valType == i32)
+        if(valType == i32) {
+            //TODO
             std::cout << "i32" << std::endl;
-        else if(valType == i64)
+        }
+        else if(valType == i64) {
+            //TODO
             std::cout << "i64" << std::endl;
-        else if(valType == f32)
+        }
+        else if(valType == f32) {
+            //TODO
             std::cout << "f32" << std::endl;
-        else if(valType == f64)
+        }
+        else if(valType == f64) {
+            //TODO
             std::cout << "f64" << std::endl;
+        }
+        else printf("Unknown value: %0x\n", valType);
     }
 }
