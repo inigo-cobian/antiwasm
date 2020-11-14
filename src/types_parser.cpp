@@ -6,6 +6,9 @@ namespace antiwasm {
     static const unsigned char f32 = 0x7D;
     static const unsigned char f64 = 0x7C;
 
+    static const unsigned char CONST = 0x00;
+    static const unsigned char VAR   = 0x01;
+
     void parseFuncTypeVec(unsigned char* funcTypeVecSection)
     {
         int nFuncTypes = funcTypeVecSection[0];
@@ -64,4 +67,42 @@ namespace antiwasm {
         }
         else printf("Unknown value: %0x\n", valType);
     }
+
+    void parseMut(unsigned char mut)
+    {
+            if(mut == CONST) {
+                //TODO
+                std::cout << "const" << std::endl;
+            }
+            else if(mut == VAR) {
+                //TODO
+                std::cout << "var" << std::endl;
+            }
+            else printf("Unknown mut: %0x\n", mut);
+    }
+
+    void parseGlobalVec(unsigned char *globalSectionBuffer)
+    {
+        int nGlobals = globalSectionBuffer[0];
+        int pointer = 1;
+        std::cout << "Number of globals at section: " << nGlobals << std::endl;
+
+        for(int i = 0; i < nGlobals; i++) {
+            parseValType(globalSectionBuffer[pointer++]);
+            parseMut(globalSectionBuffer[pointer++]);
+            parseInstr(globalSectionBuffer, pointer);
+        }
+    }
+
+    void parseInstr(unsigned char *instruction, int &pointer)
+    {
+        //TODO create the parsing of instructions
+        do {
+            if(instruction[pointer++] == 0x0B) {
+                std::cout << "END" << std::endl;
+                return;
+            }
+        }while(true);
+    }
+
 }

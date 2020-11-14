@@ -168,11 +168,7 @@ namespace antiwasm {
     {
         unsigned char* globalSectionBuffer = getSection(sizeOfSection);
 
-        int pointer = 1;
-        int numberOfGlobals = globalSectionBuffer[0];
-        std::cout << "Number of globals at section: " << numberOfGlobals << std::endl;
-
-        //TODO
+        parseGlobalVec(globalSectionBuffer);
 
         free(globalSectionBuffer);
         return driver->GetNextBytes(2);
