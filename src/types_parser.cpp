@@ -105,4 +105,32 @@ namespace antiwasm {
         }while(true);
     }
 
+    void parseElementVec(unsigned char *elementVec)
+    {
+        int nElements = elementVec[0];
+        int pointer = 1;
+        std::cout << "Number of elements at section: " << nElements << std::endl;
+
+        for(int i = 0; i < nElements; i++) {
+            //Check the tableidx
+            //At version 1.0 only the value 0x00 is valid
+            if(elementVec[pointer++] != 0x00){
+                //TODO warning message
+            }
+
+            //Get the offset as an expression
+            parseInstr(elementVec, pointer);
+
+            parseFuncIdxVec(elementVec, pointer);
+        }
+    }
+
+    void parseFuncIdxVec(unsigned char* funcIdxVec, int &pointer) {
+        int nFuncIdx = funcIdxVec[pointer++];
+
+        for(int i = 0; i < nFuncIdx; i++) {
+            std::cout << "funcIdx: 0x" << std::hex << (int)funcIdxVec[pointer++] << std::endl;
+        }
+    }
+
 }

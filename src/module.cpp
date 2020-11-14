@@ -197,11 +197,7 @@ namespace antiwasm {
     {
         unsigned char* elementSectionBuffer = getSection(sizeOfSection);
 
-        int pointer = 1;
-        int numberOfElements = elementSectionBuffer[0];
-        std::cout << "Number of elements at section: " << numberOfElements << std::endl;
-
-        //TODO
+        parseElementVec(elementSectionBuffer);
 
         free(elementSectionBuffer);
         return driver->GetNextBytes(2);

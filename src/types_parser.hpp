@@ -10,6 +10,8 @@ namespace antiwasm {
     void parseValType(unsigned char valType);
     void parseGlobalVec(unsigned char *globalSectionBuffer);
     void parseInstr(unsigned char *instruction, int &pointer);
+    void parseElementVec(unsigned char *elementVec);
+    void parseFuncIdxVec(unsigned char* funcIdxVec, int &pointer);
 }
 
 #endif
