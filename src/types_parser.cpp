@@ -175,9 +175,6 @@ namespace antiwasm {
             //Get the second instance name (name)
             parseName((char*)importVec, pointer);
 
-            //Ignore the following two bytes
-            pointer += 2;
-
             parseImportDesc(importVec, pointer);
         }
     }
@@ -197,6 +194,7 @@ namespace antiwasm {
     }
 
     void parseImportDesc(unsigned char* importDesc, int &pointer) {
-        //TODO
+        //FIXME For now just ignore the following two bytes. See importdesc
+        pointer += 2;
     }
 }
