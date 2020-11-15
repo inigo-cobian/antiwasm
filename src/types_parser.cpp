@@ -162,4 +162,41 @@ namespace antiwasm {
         }
     }
 
+    void parseImportVec(unsigned char *importVec)
+    {
+        int nImports = importVec[0];
+        int pointer = 1;
+        std::cout << "Number of imports at section: " << nImports << std::endl;
+
+        for(int i = 0; i < nImports; i++) {
+            //Get the first instance name (module)
+            parseName((char*)importVec, pointer);
+
+            //Get the second instance name (name)
+            parseName((char*)importVec, pointer);
+
+            //Ignore the following two bytes
+            pointer += 2;
+
+            parseImportDesc(importVec, pointer);
+        }
+    }
+
+    void parseName(char* nameSectionBuffer, int &pointer)
+    {
+        int nBytesAtName = nameSectionBuffer[pointer];
+        char *nameBuffer = (char*)malloc(sizeof(char) * nBytesAtName + 1);
+
+        std::memcpy(nameBuffer, &nameSectionBuffer[pointer], nBytesAtName + 1); //+1 so \0 can be added
+        nameBuffer[nBytesAtName+1] = '\0';
+
+        pointer += nBytesAtName + 1;
+
+        std::string name = std::string(nameBuffer);
+        std::cout << "Name: " << name << std::endl;
+    }
+
+    void parseImportDesc(unsigned char* importDesc, int &pointer) {
+        //TODO
+    }
 }

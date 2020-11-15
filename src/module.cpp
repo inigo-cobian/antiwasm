@@ -101,11 +101,7 @@ namespace antiwasm {
     {
         unsigned char* importSectionBuffer = getSection(sizeOfSection);
 
-        int pointer = 1;
-        int numberOfImports = importSectionBuffer[0];
-        std::cout << "Number of imports at section: " << numberOfImports << std::endl;
-
-        //TODO
+        parseImportVec(importSectionBuffer);
 
         free(importSectionBuffer);
         return driver->GetNextBytes(2);

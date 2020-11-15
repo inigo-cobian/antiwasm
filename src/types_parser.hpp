@@ -2,6 +2,9 @@
 #define TYPES_PARSER_HPP
 
 #include <iostream>
+#include <string>
+#include <cstring>
+#include <locale>
 
 namespace antiwasm {
     void parseFuncTypeVec(unsigned char* funcTypeVecSection);
@@ -14,6 +17,9 @@ namespace antiwasm {
     void parseFuncIdxVec(unsigned char* funcIdxVec, int &pointer);
     void parseDataVec(unsigned char *dataVec);
     void parseByteVec(unsigned char * byteVec, int pointer);
+    void parseImportVec(unsigned char *importVec);
+    void parseName(char* nameBuffer, int &pointer);
+    void parseImportDesc(unsigned char* importDesc, int &pointer);
 }
 
 #endif
