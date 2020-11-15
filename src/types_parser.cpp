@@ -181,13 +181,13 @@ namespace antiwasm {
 
     void parseName(char* nameSectionBuffer, int &pointer)
     {
-        int nBytesAtName = nameSectionBuffer[pointer];
-        char *nameBuffer = (char*)malloc(sizeof(char) * nBytesAtName + 1);
+        int nBytesAtName = nameSectionBuffer[pointer++];
+        char *nameBuffer = (char*)malloc(sizeof(char) * nBytesAtName);
 
-        std::memcpy(nameBuffer, &nameSectionBuffer[pointer], nBytesAtName + 1); //+1 so \0 can be added
-        nameBuffer[nBytesAtName+1] = '\0';
+        std::memcpy(nameBuffer, &nameSectionBuffer[pointer], nBytesAtName); //+1 so \0 can be added
+        nameBuffer[nBytesAtName] = '\0';
 
-        pointer += nBytesAtName + 1;
+        pointer += nBytesAtName;
 
         std::string name = std::string(nameBuffer);
         std::cout << "Name: " << name << std::endl;
