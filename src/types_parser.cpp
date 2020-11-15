@@ -197,4 +197,23 @@ namespace antiwasm {
         //FIXME For now just ignore the following two bytes. See importdesc
         pointer += 2;
     }
+
+    void parseExportVec(unsigned char *exportVec)
+    {
+        int nExports = exportVec[0];
+        int pointer = 1;
+        std::cout << "Number of exports at section: " << nExports << std::endl;
+
+        for(int i = 0; i < nExports; i++) {
+            //Get the name of the exported item
+            parseName((char*)exportVec, pointer);
+
+            parseExportDesc(exportVec, pointer);
+        }
+    }
+
+    void parseExportDesc(unsigned char* exportDesc, int &pointer) {
+        //FIXME For now just ignore the following two bytes. See exportDesc
+        pointer += 2;
+    }
 }

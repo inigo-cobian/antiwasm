@@ -174,11 +174,7 @@ namespace antiwasm {
     {
         unsigned char* exportSectionBuffer = getSection(sizeOfSection);
 
-        int pointer = 1;
-        int numberOfExports = exportSectionBuffer[0];
-        std::cout << "Number of exports at section: " << numberOfExports << std::endl;
-
-        //TODO
+        parseExportVec(exportSectionBuffer);
 
         free(exportSectionBuffer);
         return driver->GetNextBytes(2);

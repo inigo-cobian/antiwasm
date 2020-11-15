@@ -20,6 +20,8 @@ namespace antiwasm {
     void parseImportVec(unsigned char *importVec);
     void parseName(char* nameBuffer, int &pointer);
     void parseImportDesc(unsigned char* importDesc, int &pointer);
+    void parseExportVec(unsigned char *exportVec);
+    void parseExportDesc(unsigned char* exportDesc, int &pointer);
 }
 
 #endif
