@@ -182,7 +182,8 @@ namespace antiwasm {
 
     unsigned char* parseStartSection(unsigned char sizeOfSection)
     {
-        return nullptr; //TODO
+        parseStart(sizeOfSection);
+        return driver->GetNextBytes(2);
     }
 
     unsigned char* parseElementSection(unsigned char sizeOfSection)

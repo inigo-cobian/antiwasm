@@ -216,4 +216,9 @@ namespace antiwasm {
         //FIXME For now just ignore the following two bytes. See exportDesc
         pointer += 2;
     }
+
+    void parseStart(unsigned char startFunc)
+    {
+        //TODO get start func
+    }
 }

@@ -22,6 +22,7 @@ namespace antiwasm {
     void parseImportDesc(unsigned char* importDesc, int &pointer);
     void parseExportVec(unsigned char *exportVec);
     void parseExportDesc(unsigned char* exportDesc, int &pointer);
+    void parseStart(unsigned char startFunc);
 }
 
 #endif
