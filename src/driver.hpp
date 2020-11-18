@@ -9,6 +9,8 @@
 #include <mutex>
 #include <string>
 
+#define SIZE_OF_SECTION_HEADER 2 //Section Id and Section Size
+
 class Driver {
     private:
         static Driver *instance_;
@@ -31,7 +33,8 @@ class Driver {
         Driver(Driver &driver) = delete;
         Driver *GetInstance(const char* fileName);
         Driver *GetInstance();
-        unsigned char* GetNextBytes(size_t nBytes);
+        unsigned char* GetNextBytes(size_t nBytesToBeRead);
+        unsigned char* GetNextSectionHeader();
         unsigned char* GetUTF8String();
         void CloseFile();
 };
@@ -74,20 +77,25 @@ inline Driver *Driver::GetInstance()
     return instance_;
 }
 
-inline unsigned char* Driver::GetNextBytes(size_t nBytes)
+inline unsigned char* Driver::GetNextBytes(size_t nBytesToBeRead)
 {
-    std::cout << "GetNextBytes: " << nBytes << std::endl;
-    char* buffer = (char*)malloc(sizeof(char) * nBytes + 1);
+    std::cout << "GetNextBytes: " << nBytesToBeRead << std::endl;
+    char* buffer = (char*)malloc(sizeof(char) * nBytesToBeRead + 1);
     instance_->wasmFile_.seekg(instance_->pointer_, std::ios::beg);
-    instance_->pointer_ += nBytes;
-    instance_->wasmFile_.read(buffer, nBytes);
+    instance_->pointer_ += nBytesToBeRead;
+    instance_->wasmFile_.read(buffer, nBytesToBeRead);
 
-    for(int i = 0; i < nBytes; i++) {
+    for(int i = 0; i < nBytesToBeRead; i++) {
         printf(" %02x", buffer[i]);
     }
     printf("\n");
 
     return (unsigned char*)buffer;
+}
+
+inline unsigned char* Driver::GetNextSectionHeader()
+{
+    return Driver::GetNextBytes(SIZE_OF_SECTION_HEADER);
 }
 
 inline unsigned char* Driver::GetUTF8String() //TODO not ready to be used

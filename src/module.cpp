@@ -94,7 +94,7 @@ namespace antiwasm {
         parseFuncTypeVec(typeSectionBuffer);
 
         free(typeSectionBuffer);
-        return driver->GetNextBytes(2);
+        return driver->GetNextSectionHeader();
     }
 
     unsigned char* parseImportSection(unsigned char sizeOfSection)
@@ -104,7 +104,7 @@ namespace antiwasm {
         parseImportVec(importSectionBuffer);
 
         free(importSectionBuffer);
-        return driver->GetNextBytes(2);
+        return driver->GetNextSectionHeader();
     }
 
     unsigned char* parseFunctionSection(unsigned char sizeOfSection)
@@ -118,7 +118,7 @@ namespace antiwasm {
         //TODO
 
         free(functionSectionBuffer);
-        return driver->GetNextBytes(2);
+        return driver->GetNextSectionHeader();
     }
 
     unsigned char* parseTableSection(unsigned char sizeOfSection)
@@ -144,7 +144,7 @@ namespace antiwasm {
         }
 
         free(tableSectionBuffer);
-        return driver->GetNextBytes(2);
+        return driver->GetNextSectionHeader();
     }
 
     unsigned char* parseMemorySection(unsigned char sizeOfSection)
@@ -157,7 +157,7 @@ namespace antiwasm {
         parseLimitVec(memorySectionBuffer);
 
         free(memorySectionBuffer);
-        return driver->GetNextBytes(2);
+        return driver->GetNextSectionHeader();
     }
 
     unsigned char* parseGlobalSection(unsigned char sizeOfSection)
@@ -167,7 +167,7 @@ namespace antiwasm {
         parseGlobalVec(globalSectionBuffer);
 
         free(globalSectionBuffer);
-        return driver->GetNextBytes(2);
+        return driver->GetNextSectionHeader();
     }
 
     unsigned char* parseExportSection(unsigned char sizeOfSection)
@@ -177,13 +177,13 @@ namespace antiwasm {
         parseExportVec(exportSectionBuffer);
 
         free(exportSectionBuffer);
-        return driver->GetNextBytes(2);
+        return driver->GetNextSectionHeader();
     }
 
     unsigned char* parseStartSection(unsigned char sizeOfSection)
     {
         parseStart(sizeOfSection);
-        return driver->GetNextBytes(2);
+        return driver->GetNextSectionHeader();
     }
 
     unsigned char* parseElementSection(unsigned char sizeOfSection)
@@ -193,7 +193,7 @@ namespace antiwasm {
         parseElementVec(elementSectionBuffer);
 
         free(elementSectionBuffer);
-        return driver->GetNextBytes(2);
+        return driver->GetNextSectionHeader();
     }
 
     unsigned char* parseCodeSection(unsigned char sizeOfSection)
@@ -207,7 +207,7 @@ namespace antiwasm {
         //TODO
 
         free(codeSectionBuffer);
-        return driver->GetNextBytes(2);
+        return driver->GetNextSectionHeader();
     }
 
     unsigned char* parseDataSection(unsigned char sizeOfSection)
@@ -217,7 +217,7 @@ namespace antiwasm {
         parseDataVec(dataSectionBuffer);
 
         free(dataSectionBuffer);
-        return driver->GetNextBytes(2);
+        return driver->GetNextSectionHeader();
     }
 
     /* Gets the whole section */
