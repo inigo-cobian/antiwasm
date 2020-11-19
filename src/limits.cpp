@@ -20,7 +20,7 @@ namespace antiwasm {
             limits[0] = limitSection[1];
             limits[1] = -1;
 
-            std::cout << "Limit[" << limits[0] << "]-[MAX]" << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Limit[" << limits[0] << "]-[MAX]";
 
             return 2;
         }
@@ -30,11 +30,11 @@ namespace antiwasm {
             limits[0] = limitSection[1];
             limits[1] = limitSection[2];
 
-            std::cout << "Limit[" << limits[0] << "]-[" << limits[1] << "]" << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Limit[" << limits[0] << "]-[" << limits[1] << "]";
 
             return 3;
         }
-        std::cout << "Error. This byte is not a limit" << std::endl;
+        BOOST_LOG_TRIVIAL(error) << "These bytes are not a limit";
         return 1;   //TODO throw an exception
     }
 

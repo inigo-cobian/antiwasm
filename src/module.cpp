@@ -8,73 +8,73 @@ namespace antiwasm {
     size_t parseSections(unsigned char* buffer) { //Size of the buffer -> 2
         driver = driver->GetInstance();
         if(buffer[0] == Section::Custom) {
-            std::cout << "Custom Section" << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Custom Section";
             unsigned char sectionSize = buffer[1];
             free(buffer);
             buffer = parseCustomSection(sectionSize);
         }
         if(buffer[0] == Section::Type) {
-            std::cout << "Type Section of size " << (unsigned int)buffer[1] << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Type Section of size " << (unsigned int)buffer[1];
             unsigned char sectionSize = buffer[1];
             free(buffer);
             buffer = parseTypeSection(sectionSize);
         }
         if(buffer[0] == Section::Import) {
-            std::cout << "Import Section of size " << (unsigned int)buffer[1] << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Import Section of size " << (unsigned int)buffer[1];
             unsigned char sectionSize = buffer[1];
             free(buffer);
             buffer = parseImportSection(sectionSize);
         }
         if(buffer[0] == Section::Function) {
-            std::cout << "Function Section of size " << (unsigned int)buffer[1] << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Function Section of size " << (unsigned int)buffer[1];
             unsigned char sectionSize = buffer[1];
             free(buffer);
             buffer = parseFunctionSection(sectionSize);
         }
         if(buffer[0] == Section::Table) {
-            std::cout << "Table Section of size " << (unsigned int)buffer[1] << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Table Section of size " << (unsigned int)buffer[1];
             unsigned char sectionSize = buffer[1];
             free(buffer);
             buffer = parseTableSection(sectionSize);
         }
         if(buffer[0] == Section::Memory) {
-            std::cout << "Memory Section of size " << (unsigned int)buffer[1] << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Memory Section of size " << (unsigned int)buffer[1];
             unsigned char sectionSize = buffer[1];
             free(buffer);
             buffer = parseMemorySection(sectionSize);
         }
         if(buffer[0] == Section::Global) {
-            std::cout << "Global Section of size " << (unsigned int)buffer[1] << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Global Section of size " << (unsigned int)buffer[1];
             unsigned char sectionSize = buffer[1];
             free(buffer);
             buffer = parseGlobalSection(sectionSize);
         }
         if(buffer[0] == Section::Export) {
-            std::cout << "Export Section of size " << (unsigned int)buffer[1] << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Export Section of size " << (unsigned int)buffer[1];
             unsigned char sectionSize = buffer[1];
             free(buffer);
             buffer = parseExportSection(sectionSize);
         }
         if(buffer[0] == Section::Start) {
-            std::cout << "Start Section" << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Start Section";
             unsigned char sectionSize = buffer[1];
             free(buffer);
             buffer = parseStartSection(sectionSize);
         }
         if(buffer[0] == Section::Element) {
-            std::cout << "Element Section" << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Element Section";
             unsigned char sectionSize = buffer[1];
             free(buffer);
             buffer = parseElementSection(sectionSize);
         }
         if(buffer[0] == Section::Code) {
-            std::cout << "Code Section" << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Code Section";
             unsigned char sectionSize = buffer[1];
             free(buffer);
             buffer = parseCodeSection(sectionSize);
         }
         if(buffer[0] == Section::Data) {
-            std::cout << "Data Section" << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "Data Section";
             unsigned char sectionSize = buffer[1];
             free(buffer);
             buffer = parseDataSection(sectionSize);
@@ -113,7 +113,7 @@ namespace antiwasm {
 
         int pointer = 1;
         int numberOfFunctions = functionSectionBuffer[0];
-        std::cout << "Number of functions at section: " << numberOfFunctions << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Number of functions at section: " << numberOfFunctions;
 
         //TODO
 
@@ -127,7 +127,7 @@ namespace antiwasm {
 
         int numberOfTables = tableSectionBuffer[0];
         int pointer = 1; //Pointer for the tableSectionBuffer
-        std::cout << "Number of tables at section: " << numberOfTables << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Number of tables at section: " << numberOfTables;
 
         int* currentLimits;
         for(int i = 0; i < numberOfTables; i++)
@@ -138,7 +138,7 @@ namespace antiwasm {
             }
             else
             {
-                std::cout << "Error. Not a table" << std::endl;
+                BOOST_LOG_TRIVIAL(error) << "Not a table" << std::endl;
                 return nullptr;
             }
         }
@@ -151,7 +151,7 @@ namespace antiwasm {
     {
         unsigned char* memorySectionBuffer = getSection(sizeOfSection);
 
-        std::cout << "Number of memories at section: " << memorySectionBuffer[1] << std::endl;
+        BOOST_LOG_TRIVIAL(debug)  << "Number of memories at section: " << memorySectionBuffer[1];
 
         //Memory is composed by a limit
         parseLimitVec(memorySectionBuffer);
@@ -202,7 +202,7 @@ namespace antiwasm {
 
         int pointer = 1;
         int numberOfCodes = codeSectionBuffer[0];
-        std::cout << "Number of codes at section: " << numberOfCodes << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Number of codes at section: " << numberOfCodes;
 
         //TODO
 

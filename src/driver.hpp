@@ -72,7 +72,7 @@ inline Driver *Driver::GetInstance()
     std::lock_guard<std::mutex> lock(mutex_);
     if (instance_ == nullptr) //TODO exception
     {
-        std::cout << "No instance" << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Generating new instance";
         return nullptr;
     }
 
@@ -81,14 +81,14 @@ inline Driver *Driver::GetInstance()
 
 inline unsigned char* Driver::GetNextBytes(size_t nBytesToBeRead)
 {
-    std::cout << "GetNextBytes: " << nBytesToBeRead << std::endl;
+    BOOST_LOG_TRIVIAL(debug) << "Getting next " << nBytesToBeRead << " bytes";
     char* buffer = (char*)malloc(sizeof(char) * nBytesToBeRead + 1);
     instance_->wasmFile_.seekg(instance_->pointer_, std::ios::beg);
     instance_->pointer_ += nBytesToBeRead;
     instance_->wasmFile_.read(buffer, nBytesToBeRead);
 
     for(int i = 0; i < nBytesToBeRead; i++) {
-        printf(" %02x", buffer[i]);
+        printf(" %02x", buffer[i]); //TODO format with Boost
     }
     printf("\n");
 
@@ -102,10 +102,10 @@ inline unsigned char* Driver::GetNextSectionHeader()
 
 inline unsigned char* Driver::GetUTF8String() //TODO not ready to be used
 {
-    std::cout << "GetUTF8String: " << std::endl;
+    BOOST_LOG_TRIVIAL(debug) << "Getting UTF8 String";
     unsigned char delimiter = 0x03;
     std::string temp = "";
-    
+
     instance_->wasmFile_.seekg(instance_->pointer_, std::ios::beg);
     std::istream& stream = instance_->wasmFile_;
     getline(stream, temp);
