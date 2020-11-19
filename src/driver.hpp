@@ -55,9 +55,9 @@ inline Driver *Driver::GetInstance(const char* fileName)
         instance_->pointer_ = 0;
         instance_->wasmFile_.open(fileName, std::ifstream::in);
         instance_->wasmFile_.seekg(0, std::ios::end);
-        //instance_->fileSize_ = wasmFile_.tellg(); FIXME
+        instance_->fileSize_ = instance_->wasmFile_.tellg(); //FIXME
 
-	    std::cout << "Size of file: " << instance_->fileSize_ << std::endl;
+ 	    std::cout << "Size of file: " << instance_->fileSize_ << std::endl;
         instance_->wasmFile_.seekg(0, std::ios::beg);
     }
 
