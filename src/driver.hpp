@@ -1,6 +1,8 @@
 #ifndef DRIVER_HPP
 #define DRIVER_HPP
 
+#define BOOST_LOG_DYN_LINK 1
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -8,6 +10,7 @@
 #include <thread>
 #include <mutex>
 #include <string>
+#include <boost/log/trivial.hpp>
 
 #define SIZE_OF_SECTION_HEADER 2 //Section Id and Section Size
 
@@ -47,7 +50,6 @@ inline extern char *Driver::buffer_;
 
 inline Driver *Driver::GetInstance(const char* fileName)
 {
-    std::cout << "GetInstance: " << fileName << std::endl;
     std::lock_guard<std::mutex> lock(mutex_);
     if (instance_ == nullptr)
     {
@@ -57,7 +59,7 @@ inline Driver *Driver::GetInstance(const char* fileName)
         instance_->wasmFile_.seekg(0, std::ios::end);
         instance_->fileSize_ = instance_->wasmFile_.tellg(); //FIXME
 
- 	    std::cout << "Size of file: " << instance_->fileSize_ << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Size of file: " << instance_->fileSize_;
         instance_->wasmFile_.seekg(0, std::ios::beg);
     }
 
