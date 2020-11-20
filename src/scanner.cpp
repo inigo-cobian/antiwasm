@@ -7,7 +7,7 @@ int main(int argc, char **argv) {
     }
 
     char* classFile = argv[1];
-    std::cout << "Filename: " << classFile << std::endl;
+    BOOST_LOG_TRIVIAL(debug) << "Filename: " << classFile << std::endl;
 
     antiwasm::parse(classFile);
 }

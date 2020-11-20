@@ -13,7 +13,7 @@ namespace antiwasm {
     {
         int nFuncTypes = funcTypeVecSection[0];
         int pointer = 1;
-        std::cout << "Number of func types at section: " << nFuncTypes << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Number of func types at section: " << nFuncTypes << std::endl;
 
         for(int i = 0; i < nFuncTypes; i++) {
             parseFuncType(funcTypeVecSection, pointer);
@@ -24,7 +24,7 @@ namespace antiwasm {
     {
         if(funcTypeSection[pointer] != 0x60)
         {
-            std::cout << "Not a function type, but a " << (int)funcTypeSection[pointer] << " at " << (int)pointer << std::endl;
+            BOOST_LOG_TRIVIAL(error) << "Not a function type. Val " << (int)funcTypeSection[pointer] << " at " << (int)pointer;
             return;
         }
         pointer++;
@@ -50,42 +50,40 @@ namespace antiwasm {
     void parseValType(unsigned char valType)
     {
         if(valType == i32) {
-            //TODO
-            std::cout << "i32" << std::endl;
+            BOOST_LOG_TRIVIAL(trace) << "i32";
         }
         else if(valType == i64) {
-            //TODO
-            std::cout << "i64" << std::endl;
+            BOOST_LOG_TRIVIAL(trace) << "i64";
         }
         else if(valType == f32) {
-            //TODO
-            std::cout << "f32" << std::endl;
+            BOOST_LOG_TRIVIAL(trace) << "f32";
         }
         else if(valType == f64) {
-            //TODO
-            std::cout << "f64" << std::endl;
+            BOOST_LOG_TRIVIAL(trace) << "f64";
         }
-        else printf("Unknown value: %0x\n", valType);
+        else {
+            BOOST_LOG_TRIVIAL(error) << "Unknown value: " << valType; //TODO print as a hex
+        }
     }
 
     void parseMut(unsigned char mut)
     {
             if(mut == CONST) {
-                //TODO
-                std::cout << "const" << std::endl;
+                BOOST_LOG_TRIVIAL(trace) << "const";
             }
             else if(mut == VAR) {
-                //TODO
-                std::cout << "var" << std::endl;
+                BOOST_LOG_TRIVIAL(trace) << "var";
             }
-            else printf("Unknown mut: %0x\n", mut);
+            else {
+                BOOST_LOG_TRIVIAL(error) << "Unknown mut: " << mut; //TODO print as a hex
+            }
     }
 
     void parseGlobalVec(unsigned char *globalSectionBuffer)
     {
         int nGlobals = globalSectionBuffer[0];
         int pointer = 1;
-        std::cout << "Number of globals at section: " << nGlobals << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Number of globals at section: " << nGlobals;
 
         for(int i = 0; i < nGlobals; i++) {
             parseValType(globalSectionBuffer[pointer++]);
@@ -99,7 +97,7 @@ namespace antiwasm {
         //TODO create the parsing of instructions
         do {
             if(instruction[pointer++] == 0x0B) {
-                std::cout << "END" << std::endl;
+                BOOST_LOG_TRIVIAL(trace) << "END of instruction";
                 return;
             }
         }while(true);
@@ -109,7 +107,7 @@ namespace antiwasm {
     {
         int nElements = elementVec[0];
         int pointer = 1;
-        std::cout << "Number of elements at section: " << nElements << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Number of elements at section: " << nElements;
 
         for(int i = 0; i < nElements; i++) {
             //Check the tableidx
@@ -129,7 +127,7 @@ namespace antiwasm {
         int nFuncIdx = funcIdxVec[pointer++];
 
         for(int i = 0; i < nFuncIdx; i++) {
-            std::cout << "funcIdx: 0x" << std::hex << (int)funcIdxVec[pointer++] << std::endl;
+            BOOST_LOG_TRIVIAL(debug) << "funcIdx: 0x" << std::hex << (int)funcIdxVec[pointer++];
         }
     }
 
@@ -137,7 +135,7 @@ namespace antiwasm {
     {
         int nDatas = dataVec[0];
         int pointer = 1;
-        std::cout << "Number of datas at section: " << nDatas << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Number of datas at section: " << nDatas;
 
         for(int i = 0; i < nDatas; i++) {
             //Check the memidx
@@ -166,7 +164,7 @@ namespace antiwasm {
     {
         int nImports = importVec[0];
         int pointer = 1;
-        std::cout << "Number of imports at section: " << nImports << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Number of imports at section: " << nImports;
 
         for(int i = 0; i < nImports; i++) {
             //Get the first instance name (module)
@@ -190,7 +188,7 @@ namespace antiwasm {
         pointer += nBytesAtName;
 
         std::string name = std::string(nameBuffer);
-        std::cout << "Name: " << name << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Name: " << name;
     }
 
     void parseImportDesc(unsigned char* importDesc, int &pointer) {
@@ -202,7 +200,7 @@ namespace antiwasm {
     {
         int nExports = exportVec[0];
         int pointer = 1;
-        std::cout << "Number of exports at section: " << nExports << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Number of exports at section: " << nExports;
 
         for(int i = 0; i < nExports; i++) {
             //Get the name of the exported item

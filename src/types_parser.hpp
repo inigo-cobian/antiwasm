@@ -1,10 +1,13 @@
 #ifndef TYPES_PARSER_HPP
 #define TYPES_PARSER_HPP
 
+#define BOOST_LOG_DYN_LINK 1
+
 #include <iostream>
 #include <string>
 #include <cstring>
 #include <locale>
+#include <boost/log/trivial.hpp>
 
 namespace antiwasm {
     void parseFuncTypeVec(unsigned char* funcTypeVecSection);

@@ -68,7 +68,6 @@ inline Driver *Driver::GetInstance(const char* fileName)
 
 inline Driver *Driver::GetInstance()
 {
-    std::cout << "GetInstance" << std::endl;
     std::lock_guard<std::mutex> lock(mutex_);
     if (instance_ == nullptr) //TODO exception
     {
