@@ -1,3 +1,8 @@
+#ifndef SCANNER_HPP
+#define SCANNER_HPP
+
+#define BOOST_LOG_DYN_LINK 1
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -6,6 +11,7 @@
 #include "header.hpp"
 #include "module.hpp"
 #include "driver.hpp"
+#include <boost/log/trivial.hpp>
 
 namespace antiwasm {
 
@@ -17,3 +23,5 @@ namespace antiwasm {
     const char INDEX_VERSION = 4;
     const char INDEX_SECTIONS = 8;
 }
+
+#endif

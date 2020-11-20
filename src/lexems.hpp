@@ -1,3 +1,6 @@
+#ifndef LEXEMS_HPP
+#define LEXEMS_HPP
+
 enum instruction_set : unsigned char
 {
     Unreachable = 0x00,
@@ -207,3 +210,4 @@ enum instruction_set : unsigned char
     f64_reinterpret_i64 = 0xBF
 }Instruction;
 
+#endif

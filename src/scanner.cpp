@@ -7,7 +7,7 @@ int main(int argc, char **argv) {
     }
 
     char* classFile = argv[1];
-    std::cout << "Filename: " << classFile << std::endl;
+    BOOST_LOG_TRIVIAL(debug) << "Filename: " << classFile << std::endl;
 
     antiwasm::parse(classFile);
 }
@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
 namespace antiwasm {
     int parse(const char* classFile) {
         Driver *driver = driver->GetInstance(classFile);
-        unsigned char *uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 5);
+        unsigned char *uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 4);
 
         //Magic header
         uBuffer = driver->GetNextBytes(4);
@@ -24,7 +24,7 @@ namespace antiwasm {
         }
 
         free(uBuffer);
-        uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 5);
+        uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 4);
 
         //Version number
         uBuffer = driver->GetNextBytes(4);
@@ -33,10 +33,10 @@ namespace antiwasm {
         }
 
         free(uBuffer);
-        uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 5);
+        uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 2);
 
         //Sections
-        uBuffer = driver->GetNextBytes(1);
+        uBuffer = driver->GetNextBytes(2);
         parseSections(uBuffer);
 
         driver->CloseFile();
