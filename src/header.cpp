@@ -1,4 +1,4 @@
-#include "header.hpp"
+#include "../includes/header.hpp"
 
 namespace antiwasm {
     char checkMagicNumber(unsigned char* header) {
