@@ -34,8 +34,8 @@ class Driver {
 
     public:
         Driver(Driver &driver) = delete;
-        Driver *GetInstance(const char* fileName);
-        Driver *GetInstance();
+        static Driver *GetInstance(const char* fileName);
+        static Driver *GetInstance();
         unsigned char* GetNextBytes(size_t nBytesToBeRead);
         unsigned char* GetNextSectionHeader();
         unsigned char* GetUTF8String();

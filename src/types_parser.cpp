@@ -92,17 +92,6 @@ namespace antiwasm {
         }
     }
 
-    void parseInstr(unsigned char *instruction, int &pointer)
-    {
-        //TODO create the parsing of instructions
-        do {
-            if(instruction[pointer++] == 0x0B) {
-                BOOST_LOG_TRIVIAL(trace) << "END of instruction";
-                return;
-            }
-        }while(true);
-    }
-
     void parseElementVec(unsigned char *elementVec)
     {
         int nElements = elementVec[0];
