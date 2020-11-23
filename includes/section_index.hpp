@@ -2,7 +2,7 @@
 #define SECTION_INDEX_HPP
 
 namespace antiwasm {
-    inline enum Section
+    enum SectionId
     {
         Custom = 0x00,
         Type = 0x01,
@@ -16,7 +16,7 @@ namespace antiwasm {
         Element = 0x09,
         Code = 0x10,
         Data = 0x11
-    }Section;
+    };
 }
 
 #endif
