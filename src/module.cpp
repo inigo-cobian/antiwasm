@@ -2,11 +2,11 @@
 
 namespace antiwasm {
 
-    Driver *driver;
+    std::shared_ptr<Driver> driver;
 
     //TODO create parsers for the different sections
     size_t parseSections(unsigned char* buffer) { //Size of the buffer -> 2
-        driver = driver->GetInstance();
+        driver = Driver::GetInstance();
         if(buffer[0] == SectionId::Custom) {
             BOOST_LOG_TRIVIAL(debug) << "Custom Section";
             unsigned char sectionSize = buffer[1];

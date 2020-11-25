@@ -16,16 +16,10 @@
 
 class Driver {
     private:
-        static Driver *instance_;
+        static std::shared_ptr<Driver> instance_;
         static std::mutex mutex_;
 
     protected:
-        Driver()
-        {
-        }
-
-        ~Driver() {}
-
         static size_t fileSize_;
         static size_t pointer_;
         static char *buffer_;  //TODO which size?
@@ -33,9 +27,11 @@ class Driver {
 
 
     public:
+        Driver() {}
+        ~Driver() {}
         Driver(Driver &driver) = delete;
-        static Driver *GetInstance(const char* fileName);
-        static Driver *GetInstance();
+        static std::shared_ptr<Driver> GetInstance(const char* fileName);
+        static std::shared_ptr<Driver> GetInstance();
         unsigned char* GetNextBytes(size_t nBytesToBeRead);
         unsigned char* GetNextSectionHeader();
         unsigned char* GetUTF8String();

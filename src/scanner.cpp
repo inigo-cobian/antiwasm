@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
 
 namespace antiwasm {
     int parse(const char* classFile) {
-        Driver *driver = driver->GetInstance(classFile);
+        std::shared_ptr<Driver> driver = Driver::GetInstance(classFile);
         unsigned char *uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 4);
 
         //Magic header

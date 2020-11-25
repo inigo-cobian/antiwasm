@@ -1,17 +1,19 @@
 #include "../includes/driver.hpp"
 
-inline Driver* Driver::instance_;
+#include <memory>
+
+inline std::shared_ptr<Driver> Driver::instance_;
 inline std::mutex Driver::mutex_;
 inline size_t Driver::fileSize_;
 inline size_t Driver::pointer_;
 inline char *Driver::buffer_;
 
-Driver *Driver::GetInstance(const char* fileName)
+std::shared_ptr<Driver> Driver::GetInstance(const char* fileName)
 {
     std::lock_guard<std::mutex> lock(mutex_);
     if (instance_ == nullptr)
     {
-        instance_ = new Driver();
+        instance_ = std::make_shared<Driver>();
         instance_->pointer_ = 0;
         instance_->wasmFile_.open(fileName, std::ifstream::in);
         instance_->wasmFile_.seekg(0, std::ios::end);
@@ -20,19 +22,17 @@ Driver *Driver::GetInstance(const char* fileName)
         BOOST_LOG_TRIVIAL(debug) << "Size of file: " << instance_->fileSize_;
         instance_->wasmFile_.seekg(0, std::ios::beg);
     }
-
     return instance_;
 }
 
-Driver *Driver::GetInstance()
+std::shared_ptr<Driver> Driver::GetInstance()
 {
     std::lock_guard<std::mutex> lock(mutex_);
-    if (instance_ == nullptr) //TODO exception
+    if (instance_.get() == nullptr) //TODO exception
     {
-        BOOST_LOG_TRIVIAL(debug) << "Generating new instance";
-        return nullptr;
+        //return nullptr;
     }
-
+    BOOST_LOG_TRIVIAL(debug) << "Returning instance";
     return instance_;
 }
 
