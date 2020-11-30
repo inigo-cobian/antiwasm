@@ -138,7 +138,7 @@ namespace antiwasm {
             }
             else
             {
-                BOOST_LOG_TRIVIAL(error) << "Not a table" << std::endl;
+                BOOST_LOG_TRIVIAL(error) << "Not a table";
                 return nullptr;
             }
         }

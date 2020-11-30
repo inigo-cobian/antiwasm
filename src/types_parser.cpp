@@ -13,7 +13,7 @@ namespace antiwasm {
     {
         int nFuncTypes = funcTypeVecSection[0];
         int pointer = 1;
-        BOOST_LOG_TRIVIAL(debug) << "Number of func types at section: " << nFuncTypes << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Number of func types at section: " << nFuncTypes;
 
         for(int i = 0; i < nFuncTypes; i++) {
             parseFuncType(funcTypeVecSection, pointer);
