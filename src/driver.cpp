@@ -18,6 +18,7 @@ std::shared_ptr<Driver> Driver::GetInstance(const char* fileName)
         instance_->wasmFile_.open(fileName, std::ifstream::in);
         instance_->wasmFile_.seekg(0, std::ios::end);
         instance_->fileSize_ = instance_->wasmFile_.tellg();
+        instance_->isParsing_ = true;
 
         BOOST_LOG_TRIVIAL(debug) << "Size of file: " << instance_->fileSize_;
         instance_->wasmFile_.seekg(0, std::ios::beg);
@@ -38,6 +39,9 @@ std::shared_ptr<Driver> Driver::GetInstance()
 
 unsigned char* Driver::GetNextBytes(size_t nBytesToBeRead)
 {
+    if( hasReachedFileSize(nBytesToBeRead) )
+        return nullptr; //TODO avoid using nullptr
+
     BOOST_LOG_TRIVIAL(debug) << "Getting next " << nBytesToBeRead << " bytes";
     char* buffer = (char*)malloc(sizeof(char) * nBytesToBeRead + 1);
     instance_->wasmFile_.seekg(instance_->pointer_, std::ios::beg);
@@ -72,4 +76,14 @@ unsigned char* Driver::GetUTF8String() //TODO not ready to be used
 
 void Driver::CloseFile() {
     instance_->wasmFile_.close();
+}
+
+bool Driver::hasReachedFileSize(size_t nextBytesSize) {
+    if (pointer_ <= fileSize_ + nextBytesSize)
+        return false;
+    return true;
+}
+
+bool Driver::IsCurrentlyParsing() {
+    return isParsing_;
 }
