@@ -7,14 +7,14 @@ int main(int argc, char **argv) {
     }
 
     char* classFile = argv[1];
-    BOOST_LOG_TRIVIAL(debug) << "Filename: " << classFile << std::endl;
+    BOOST_LOG_TRIVIAL(debug) << "Filename: " << classFile;
 
     antiwasm::parse(classFile);
 }
 
 namespace antiwasm {
     int parse(const char* classFile) {
-        Driver *driver = driver->GetInstance(classFile);
+        std::shared_ptr<Driver> driver = Driver::GetInstance(classFile);
         unsigned char *uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 4);
 
         //Magic header

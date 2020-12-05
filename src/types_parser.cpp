@@ -13,7 +13,7 @@ namespace antiwasm {
     {
         int nFuncTypes = funcTypeVecSection[0];
         int pointer = 1;
-        BOOST_LOG_TRIVIAL(debug) << "Number of func types at section: " << nFuncTypes << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Number of func types at section: " << nFuncTypes;
 
         for(int i = 0; i < nFuncTypes; i++) {
             parseFuncType(funcTypeVecSection, pointer);
@@ -90,17 +90,6 @@ namespace antiwasm {
             parseMut(globalSectionBuffer[pointer++]);
             parseInstr(globalSectionBuffer, pointer);
         }
-    }
-
-    void parseInstr(unsigned char *instruction, int &pointer)
-    {
-        //TODO create the parsing of instructions
-        do {
-            if(instruction[pointer++] == 0x0B) {
-                BOOST_LOG_TRIVIAL(trace) << "END of instruction";
-                return;
-            }
-        }while(true);
     }
 
     void parseElementVec(unsigned char *elementVec)
