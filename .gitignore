@@ -36,5 +36,3 @@ cmake-build-debug
 
 # Clion
 .idea/
-
-tests

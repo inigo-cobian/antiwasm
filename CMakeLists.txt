@@ -4,10 +4,13 @@ project (antiwasm)
 
 include_directories(src)
 
-# Boost
+# Boost (logging + unit test)
 find_package(Boost 1.70 REQUIRED COMPONENTS filesystem)
 message(STATUS "Boost version: ${Boost_VERSION}")
 add_definitions(${Boost_LIB_DIAGNOSTIC_DEFINITIONS})
+
+#Testing subdirectory
+add_subdirectory(test)
 
 file(GLOB SOURCES "src/*.cpp")
 
