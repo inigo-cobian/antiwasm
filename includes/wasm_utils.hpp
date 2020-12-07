@@ -1,7 +1,10 @@
 #ifndef ANTIWASM_WASM_UTILS_HPP
 #define ANTIWASM_WASM_UTILS_HPP
 #include <cstdint>
+#include <stdio.h>
 
-char* bytesToHexChar(uint8_t* signedLittleEndianBytes, int nBytes);
+char* bytesToHexChar(const char* signedLittleEndianBytes, int nBytes);
+void singleByteToTwoHexChar(const uint8_t byte, unsigned char* destHexChar);
+char getHexChar(unsigned char origin);
 
 #endif //ANTIWASM_WASM_UTILS_HPP
