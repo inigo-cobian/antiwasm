@@ -17,11 +17,22 @@ BOOST_AUTO_TEST_CASE(bytesToHexChar_correctFormatting)
     BOOST_CHECK_EQUAL(outgoingHexChars[0] , correctChars[0]);
 }
 
-BOOST_AUTO_TEST_CASE(getHexChar_getsChar)
+BOOST_AUTO_TEST_CASE(getHexChar_getsCharCorrectly)
 {
     uint8_t incomingByte = 0x2;
 
     char hexChar = getHexChar(incomingByte);
 
     BOOST_CHECK_EQUAL(hexChar, '2');
+}
+
+BOOST_AUTO_TEST_CASE(singleByteToTwoHexChar_getsTwoCharsCorrectly)
+{
+    uint8_t incomingByte = 0xC2;
+    auto* formattedChars = new char(2);
+
+    singleByteToTwoHexChar(incomingByte, formattedChars);
+
+    BOOST_CHECK_EQUAL(formattedChars[0], 'C');
+    BOOST_CHECK_EQUAL(formattedChars[1], '2');
 }
