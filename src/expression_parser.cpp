@@ -15,16 +15,16 @@ namespace antiwasm {
     void parseExpression(uint8_t instruction) {
         switch (instruction) {
             case (instruction_set::i32_const):
-                parseConstInt32(Driver::GetInstance()->GetNextBytes(4));
+                parseConstInt32(Driver::GetInstance()->GetNextBytes(2));
                 break;
             case (instruction_set::i64_const):
-                parseConstInt64(Driver::GetInstance()->GetNextBytes(8));
+                parseConstInt64(Driver::GetInstance()->GetNextBytes(4));
                 break;
             case (instruction_set::f32_const):
-                parseConstFloat32(Driver::GetInstance()->GetNextBytes(4));
+                parseConstFloat32(Driver::GetInstance()->GetNextBytes(2));
                 break;
             case (instruction_set::f64_const):
-                parseConstFloat64(Driver::GetInstance()->GetNextBytes(8));
+                parseConstFloat64(Driver::GetInstance()->GetNextBytes(4));
                 break;
         }
     }
