@@ -29,7 +29,7 @@ std::shared_ptr<Driver> Driver::GetInstance(const char* fileName)
 std::shared_ptr<Driver> Driver::GetInstance()
 {
     std::lock_guard<std::mutex> lock(mutex_);
-    if (instance_.get() == nullptr) //TODO exception
+    if (instance_ == nullptr) //TODO exception
     {
         //return nullptr;
     }
@@ -65,7 +65,7 @@ unsigned char* Driver::GetUTF8String() //TODO not ready to be used
 {
     BOOST_LOG_TRIVIAL(debug) << "Getting UTF8 String";
     unsigned char delimiter = 0x03;
-    std::string temp = "";
+    std::string temp;
 
     instance_->wasmFile_.seekg(instance_->pointer_, std::ios::beg);
     std::istream& stream = instance_->wasmFile_;
@@ -84,6 +84,6 @@ bool Driver::hasReachedFileSize(size_t nextBytesSize) {
     return true;
 }
 
-bool Driver::IsCurrentlyParsing() {
+bool Driver::IsCurrentlyParsing() const {
     return isParsing_;
 }
