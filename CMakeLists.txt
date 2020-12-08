@@ -16,5 +16,4 @@ file(GLOB SOURCES "src/*.cpp")
 
 add_executable(antiwasm ${SOURCES})
 
-
 target_link_libraries (antiwasm pthread boost_log)
