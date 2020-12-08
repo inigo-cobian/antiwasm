@@ -26,6 +26,9 @@ namespace antiwasm {
             case (instruction_set::f64_const):
                 parseConstFloat64(Driver::GetInstance()->GetNextBytes(4));
                 break;
+            default:
+                //TODO when the parsing is completed, print an error message
+                break;
         }
     }
 
