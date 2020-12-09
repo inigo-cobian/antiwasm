@@ -4,6 +4,8 @@
 #include "../src/wasm_utils.cpp"
 #include <cstdint>
 
+BOOST_AUTO_TEST_SUITE( wasm_utils_test )
+
 BOOST_AUTO_TEST_CASE(bytesToHexChar_correctFormatting)
 {
     const int nIncomingBytes = 2;
@@ -38,3 +40,5 @@ BOOST_AUTO_TEST_CASE(singleByteToTwoHexChar_getsTwoCharsCorrectly)
     BOOST_CHECK_EQUAL(formattedChars[0], 'C');
     BOOST_CHECK_EQUAL(formattedChars[1], '2');
 }
+
+BOOST_AUTO_TEST_SUITE_END() //wasm_utils_tets
