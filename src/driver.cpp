@@ -37,7 +37,7 @@ std::shared_ptr<Driver> Driver::GetInstance()
     return instance_;
 }
 
-unsigned char* Driver::GetNextBytes(size_t nBytesToBeRead)
+uint8_t* Driver::GetNextBytes(size_t nBytesToBeRead)
 {
     if( hasReachedFileSize(nBytesToBeRead) )
         return nullptr; //TODO avoid using nullptr
@@ -53,7 +53,7 @@ unsigned char* Driver::GetNextBytes(size_t nBytesToBeRead)
     }
     printf("\n");
 
-    return (unsigned char*)buffer;
+    return (uint8_t*)buffer;
 }
 
 unsigned char* Driver::GetNextSectionHeader()

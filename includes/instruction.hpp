@@ -8,10 +8,8 @@ class Instruction {
 protected:
     instruction_set instructionCode_;
 public:
-    virtual Instruction() {}
     virtual ~Instruction() {}
-    virtual Parse(uint8_t* operands);
-    virtual instruction_set getInstructionCode();
+    instruction_set getInstructionCode() { return instructionCode_; };
 };
 
 #endif //ANTIWASM_INSTRUCTION_HPP

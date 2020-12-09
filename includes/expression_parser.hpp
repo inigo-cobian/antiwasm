@@ -6,16 +6,12 @@
 #include <boost/log/trivial.hpp>
 #include <cstdint>
 #include "../includes/driver.hpp"
-#include "../includes/lexems.hpp"
+#include "../includes/instruction.hpp"
+#include "../includes/const.hpp"
 
 namespace antiwasm {
-    void parseInstr(unsigned char *instruction, int &pointer);
+    void parseInstr(const unsigned char *instruction, int &pointer);
     void parseExpression(uint8_t instruction);
-
-    void parseConstInt32(uint8_t *operands);
-    void parseConstInt64(uint8_t *operands);
-    void parseConstFloat32(uint8_t *operands);
-    void parseConstFloat64(uint8_t *operands);
 }
 
 #endif //ANTIWASM_EXPRESSION_PARSER_HPP
