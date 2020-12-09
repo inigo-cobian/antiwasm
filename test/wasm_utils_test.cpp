@@ -1,8 +1,7 @@
 #define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MAIN
-#include <boost/test/included/unit_test.hpp>
-#include "../src/wasm_utils.cpp"
+#include <boost/test/unit_test.hpp>
 #include <cstdint>
+#include "../src/wasm_utils.cpp"
 
 BOOST_AUTO_TEST_SUITE( wasm_utils_test )
 
@@ -41,4 +40,4 @@ BOOST_AUTO_TEST_CASE(singleByteToTwoHexChar_getsTwoCharsCorrectly)
     BOOST_CHECK_EQUAL(formattedChars[1], '2');
 }
 
-BOOST_AUTO_TEST_SUITE_END() //wasm_utils_tets
+BOOST_AUTO_TEST_SUITE_END() //wasm_utils_tests
