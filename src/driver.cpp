@@ -1,7 +1,5 @@
 #include "../includes/driver.hpp"
 
-#include <memory>
-
 inline std::shared_ptr<Driver> Driver::instance_;
 inline std::mutex Driver::mutex_;
 inline size_t Driver::fileSize_;

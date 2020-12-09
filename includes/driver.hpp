@@ -10,6 +10,7 @@
 #include <thread>
 #include <mutex>
 #include <string>
+#include <memory>
 #include <boost/log/trivial.hpp>
 
 #define SIZE_OF_SECTION_HEADER 2 //Section Id and Section Size
