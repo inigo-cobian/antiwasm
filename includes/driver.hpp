@@ -32,12 +32,11 @@ class Driver {
         Driver() {}
         ~Driver() {}
         Driver(Driver &driver) = delete;
-        static std::shared_ptr<Driver> GetInstance(const char* fileName);
         static std::shared_ptr<Driver> GetInstance();
         static unsigned char* GetNextBytes(size_t nBytesToBeRead);
         static unsigned char* GetNextSectionHeader();
         static unsigned char* GetUTF8String();
-        static void OpenFile(const char* fileName);
+        static bool OpenFile(const char* fileName);
         static void CloseFile();
         static bool IsCurrentlyParsing();
 };

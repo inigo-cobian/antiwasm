@@ -8,24 +8,6 @@ inline std::ifstream Driver::wasmFile_;
 inline char *Driver::buffer_;
 inline bool Driver::isParsing_;
 
-std::shared_ptr<Driver> Driver::GetInstance(const char* fileName)
-{
-    std::lock_guard<std::mutex> lock(mutex_);
-    if (instance_ == nullptr)
-    {
-        instance_ = std::make_shared<Driver>();
-        instance_->pointer_ = 0;
-        instance_->wasmFile_.open(fileName, std::ifstream::in);
-        instance_->wasmFile_.seekg(0, std::ios::end);
-        instance_->fileSize_ = instance_->wasmFile_.tellg();
-        instance_->isParsing_ = true;
-
-        BOOST_LOG_TRIVIAL(debug) << "Size of file: " << instance_->fileSize_;
-        instance_->wasmFile_.seekg(0, std::ios::beg);
-    }
-    return instance_;
-}
-
 std::shared_ptr<Driver> Driver::GetInstance()
 {
     std::lock_guard<std::mutex> lock(mutex_);
@@ -45,7 +27,8 @@ uint8_t* Driver::GetNextBytes(size_t nBytesToBeRead)
 {
     if( Driver::HasReachedFileSize(nBytesToBeRead) )
         return nullptr; //TODO avoid using nullptr
-    if( Driver::IsCurrentlyParsing() )
+    if( !Driver::IsCurrentlyParsing() )
+        return nullptr; //TODO avoid using nullptr
 
     BOOST_LOG_TRIVIAL(debug) << "Getting next " << nBytesToBeRead << " bytes";
     char* buffer = (char*)malloc(sizeof(char) * nBytesToBeRead + 1);
@@ -93,7 +76,8 @@ bool Driver::IsCurrentlyParsing() {
     return isParsing_;
 }
 
-void Driver::OpenFile(const char *fileName) {
+bool Driver::OpenFile(const char *fileName) {
+    instance_->pointer_ = 0;
     instance_->wasmFile_.open(fileName, std::ifstream::in);
     instance_->wasmFile_.seekg(0, std::ios::end);
     instance_->fileSize_ = instance_->wasmFile_.tellg();
@@ -102,4 +86,5 @@ void Driver::OpenFile(const char *fileName) {
 
     BOOST_LOG_TRIVIAL(debug) << "Size of file [" << fileName << "]: " << instance_->fileSize_;
 
+    return instance_->wasmFile_.is_open();
 }
