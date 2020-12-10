@@ -29,7 +29,7 @@ std::shared_ptr<Driver> Driver::GetInstance(const char* fileName)
 std::shared_ptr<Driver> Driver::GetInstance()
 {
     std::lock_guard<std::mutex> lock(mutex_);
-    if (instance_ == nullptr) //TODO exception
+    if (instance_ == nullptr)
     {
         instance_ = std::make_shared<Driver>();
         instance_->pointer_ = -1;
