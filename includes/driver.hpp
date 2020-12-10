@@ -24,9 +24,9 @@ class Driver {
         static size_t fileSize_;
         static size_t pointer_;
         static char *buffer_;  //TODO which size?
-        std::ifstream wasmFile_;
-        bool isParsing_ = false;
-        static bool hasReachedFileSize(size_t nextBytesSize);
+        static std::ifstream wasmFile_;
+        static bool isParsing_;
+        static bool HasReachedFileSize(size_t nextBytesSize);
 
     public:
         Driver() {}
@@ -37,8 +37,9 @@ class Driver {
         static unsigned char* GetNextBytes(size_t nBytesToBeRead);
         static unsigned char* GetNextSectionHeader();
         static unsigned char* GetUTF8String();
+        static void OpenFile(const char* fileName);
         static void CloseFile();
-        bool IsCurrentlyParsing() const;
+        static bool IsCurrentlyParsing();
 };
 
 #endif

@@ -4,7 +4,9 @@ inline std::shared_ptr<Driver> Driver::instance_;
 inline std::mutex Driver::mutex_;
 inline size_t Driver::fileSize_;
 inline size_t Driver::pointer_;
+inline std::ifstream Driver::wasmFile_;
 inline char *Driver::buffer_;
+inline bool Driver::isParsing_;
 
 std::shared_ptr<Driver> Driver::GetInstance(const char* fileName)
 {
@@ -29,7 +31,11 @@ std::shared_ptr<Driver> Driver::GetInstance()
     std::lock_guard<std::mutex> lock(mutex_);
     if (instance_ == nullptr) //TODO exception
     {
-        //return nullptr;
+        instance_ = std::make_shared<Driver>();
+        instance_->pointer_ = -1;
+        instance_->fileSize_ = -1;
+        instance_->isParsing_ = false;
+        BOOST_LOG_TRIVIAL(debug) << "Creating instance";
     }
     BOOST_LOG_TRIVIAL(debug) << "Returning instance";
     return instance_;
@@ -37,8 +43,9 @@ std::shared_ptr<Driver> Driver::GetInstance()
 
 uint8_t* Driver::GetNextBytes(size_t nBytesToBeRead)
 {
-    if( hasReachedFileSize(nBytesToBeRead) )
+    if( Driver::HasReachedFileSize(nBytesToBeRead) )
         return nullptr; //TODO avoid using nullptr
+    if( Driver::IsCurrentlyParsing() )
 
     BOOST_LOG_TRIVIAL(debug) << "Getting next " << nBytesToBeRead << " bytes";
     char* buffer = (char*)malloc(sizeof(char) * nBytesToBeRead + 1);
@@ -76,12 +83,23 @@ void Driver::CloseFile() {
     instance_->wasmFile_.close();
 }
 
-bool Driver::hasReachedFileSize(size_t nextBytesSize) {
+bool Driver::HasReachedFileSize(size_t nextBytesSize) {
     if (pointer_ <= fileSize_ + nextBytesSize)
         return false;
     return true;
 }
 
-bool Driver::IsCurrentlyParsing() const {
+bool Driver::IsCurrentlyParsing() {
     return isParsing_;
+}
+
+void Driver::OpenFile(const char *fileName) {
+    instance_->wasmFile_.open(fileName, std::ifstream::in);
+    instance_->wasmFile_.seekg(0, std::ios::end);
+    instance_->fileSize_ = instance_->wasmFile_.tellg();
+    instance_->isParsing_ = true;
+    instance_->wasmFile_.seekg(0, std::ios::beg);
+
+    BOOST_LOG_TRIVIAL(debug) << "Size of file [" << fileName << "]: " << instance_->fileSize_;
+
 }
