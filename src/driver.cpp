@@ -86,5 +86,5 @@ bool Driver::OpenFile(const char *fileName) {
 
     BOOST_LOG_TRIVIAL(debug) << "Size of file [" << fileName << "]: " << instance_->fileSize_;
 
-    return instance_->wasmFile_.is_open();
+    return instance_->wasmFile_.good();
 }
