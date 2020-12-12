@@ -50,4 +50,18 @@ BOOST_AUTO_TEST_CASE(GetInstance_always_returns_the_same_instance)
     BOOST_CHECK_EQUAL(driver1, driver2);
 }
 
+BOOST_AUTO_TEST_CASE(GetNextBytes_ReturnsThatNumberOfBytes)
+{
+    const char* filePath = "../../test/files/00-empty.wasm";
+    std::shared_ptr<Driver> driver = Driver::GetInstance();
+    driver->OpenFile(filePath);
+    const size_t nBytes = 4;
+    constexpr uint8_t expectedBytes[] = {0x00, 0x61, 0x73, 0x6D}; //Magic number
+
+    auto* readBytes = driver->GetNextBytes(4);
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(readBytes, readBytes+nBytes, expectedBytes, expectedBytes+nBytes);
+}
+
+
 BOOST_AUTO_TEST_SUITE_END() //driver_test
