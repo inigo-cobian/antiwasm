@@ -4,6 +4,9 @@
 
 BOOST_AUTO_TEST_SUITE( driver_test )
 
+const static  char* FILE_PATH = "../../test/files/00-empty.wasm";
+
+
 BOOST_AUTO_TEST_CASE(GetInstance_DoesCreateANotNullPtr)
 {
 
@@ -23,11 +26,11 @@ BOOST_AUTO_TEST_CASE(A_Recently_Created_File_Is_Not_Parsing)
 
 BOOST_AUTO_TEST_CASE(An_Existing_File_Can_Be_Opened)
 {
-    const char* filePath = "../../test/files/00-empty.wasm";
     std::shared_ptr<Driver> driver = Driver::GetInstance();
 
-    bool isOpen = driver->OpenFile(filePath);
+    bool isOpen = driver->OpenFile(FILE_PATH);
 
+    driver->CloseFile();
     BOOST_CHECK_EQUAL(isOpen, true);
 }
 
@@ -38,6 +41,7 @@ BOOST_AUTO_TEST_CASE(A_non_existing_file_cannot_be_opened)
 
     bool isOpen = driver->OpenFile(filePath);
 
+    driver->CloseFile();
     BOOST_CHECK_EQUAL(isOpen, false);
 }
 
@@ -60,6 +64,7 @@ BOOST_AUTO_TEST_CASE(GetNextBytes_ReturnsThatNumberOfBytes)
 
     auto* readBytes = driver->GetNextBytes(4);
 
+    driver->CloseFile();
     BOOST_CHECK_EQUAL_COLLECTIONS(readBytes, readBytes+nBytes, expectedBytes, expectedBytes+nBytes);
 }
 
