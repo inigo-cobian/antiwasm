@@ -68,5 +68,18 @@ BOOST_AUTO_TEST_CASE(GetNextBytes_ReturnsThatNumberOfBytes)
     BOOST_CHECK_EQUAL_COLLECTIONS(readBytes, readBytes+nBytes, expectedBytes, expectedBytes+nBytes);
 }
 
+BOOST_AUTO_TEST_CASE(GetNextSectionHeader_GetsTwoBytes)
+{
+    const char *filePath = "../../test/files/00-empty.wasm";
+    std::shared_ptr<Driver> driver = Driver::GetInstance();
+    driver->OpenFile(filePath);
+    constexpr uint8_t expectedBytes[] = {0x00, 0x61}; //Start of magic number
+    size_t sizeOfSectionHeader = 2;
+
+    auto *readBytes = driver->GetNextSectionHeader();
+
+    driver->CloseFile();
+    BOOST_CHECK_EQUAL_COLLECTIONS(readBytes, readBytes + sizeOfSectionHeader, expectedBytes, expectedBytes + + sizeOfSectionHeader);
+}
 
 BOOST_AUTO_TEST_SUITE_END() //driver_test
