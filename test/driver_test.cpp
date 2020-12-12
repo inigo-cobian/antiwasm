@@ -41,5 +41,13 @@ BOOST_AUTO_TEST_CASE(A_non_existing_file_cannot_be_opened)
     BOOST_CHECK_EQUAL(isOpen, false);
 }
 
+BOOST_AUTO_TEST_CASE(GetInstance_always_returns_the_same_instance)
+{
+
+    std::shared_ptr<Driver> driver1 = Driver::GetInstance();
+    std::shared_ptr<Driver> driver2 = Driver::GetInstance();
+
+    BOOST_CHECK_EQUAL(driver1, driver2);
+}
 
 BOOST_AUTO_TEST_SUITE_END() //driver_test
