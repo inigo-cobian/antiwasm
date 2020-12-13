@@ -5,7 +5,11 @@
 BOOST_AUTO_TEST_SUITE( limits_test )
 
 BOOST_AUTO_TEST_CASE( parseLimitVec_returnsTrueWithCorrectMinLimit ) {
+    constexpr unsigned char limitVec[] = {0x01, antiwasm::LIMIT_MIN, 0x05}; //aka [5-MAX]
 
+    bool isSuccessful = antiwasm::parseLimitVec(const_cast<unsigned char *>(limitVec));
+
+    BOOST_ASSERT(isSuccessful);
 }
 
 BOOST_AUTO_TEST_CASE( parseLimitVec_returnsTrueWithCorrectMinMaxLimit ) {
