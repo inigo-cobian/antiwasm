@@ -1,0 +1,35 @@
+#define BOOST_TEST_DYN_LINK
+#include <boost/test/unit_test.hpp>
+#include "../src/limits.cpp"
+
+BOOST_AUTO_TEST_SUITE( limits_test )
+
+BOOST_AUTO_TEST_CASE( parseLimitVec_returnsTrueWithCorrectMinLimit ) {
+
+}
+
+BOOST_AUTO_TEST_CASE( parseLimitVec_returnsTrueWithCorrectMinMaxLimit ) {
+
+}
+
+BOOST_AUTO_TEST_CASE( parseLimitVec_returnsTrueWithMultipleCorrectLimits ) {
+
+}
+
+BOOST_AUTO_TEST_CASE( parseLimitVec_returnsFalseWithWronglyFormattedLimits ) {
+
+}
+
+BOOST_AUTO_TEST_CASE( getLimits_returnsTheTypeOfMinLimit ) {
+
+}
+
+BOOST_AUTO_TEST_CASE( getLimits_returnsTheTypeOfMinMaxLimit ) {
+
+}
+
+BOOST_AUTO_TEST_CASE( getLimits_returnsAnErrorCodeWhenLimitsAreIncorrect ) {
+
+}
+
+BOOST_AUTO_TEST_SUITE_END() //limits_test
