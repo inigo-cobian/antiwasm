@@ -21,15 +21,21 @@ BOOST_AUTO_TEST_CASE( parseLimitVec_returnsTrueWithCorrectMinMaxLimit ) {
 }
 
 BOOST_AUTO_TEST_CASE( parseLimitVec_returnsTrueWithMultipleCorrectLimits ) {
+    constexpr unsigned char limitVec[] = {0x03, antiwasm::LIMIT_MIN_MAX, 0x05, 0x08,
+                                          antiwasm::LIMIT_MIN, 0x02,
+                                          antiwasm::LIMIT_MIN_MAX, 0x00, 0x48};
+
+    bool isSuccessful = antiwasm::parseLimitVec(const_cast<unsigned char *>(limitVec));
+
+    BOOST_CHECK_EQUAL(isSuccessful, true);
+}
+
+BOOST_AUTO_TEST_CASE( parseLimitVec_returnsFalseWithWronglyFormattedLimits ) {
     constexpr unsigned char limitVec[] = {0x01, 0xFF/*incorrect limit type*/, 0x05, 0x08};
 
     bool isSuccessful = antiwasm::parseLimitVec(const_cast<unsigned char *>(limitVec));
 
-    BOOST_CHECK_EQUAL(isSuccessful, false);
-}
-
-BOOST_AUTO_TEST_CASE( parseLimitVec_returnsFalseWithWronglyFormattedLimits ) {
-
+    BOOST_CHECK_EQUAL(isSuccessful, true);
 }
 
 BOOST_AUTO_TEST_CASE( getLimits_returnsTheTypeOfMinLimit ) {

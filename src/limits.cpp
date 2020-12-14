@@ -8,8 +8,11 @@ namespace antiwasm {
 
         for(auto i = 0; i < nLimits; i++)
         {
-            pointer += getLimits(&limitVec[pointer]);
-            //TODO is bad return false
+            int limitFeedback = getLimits(&limitVec[pointer]);
+            if(limitFeedback == -1) {
+                return false;
+            }
+            pointer += limitFeedback;
         }
         return true;
     }
@@ -18,7 +21,7 @@ namespace antiwasm {
     {
         if(limitSection[0] == LIMIT_MIN)
         {
-            auto limitMin = limitSection[1];
+            int limitMin = limitSection[1];
             //limit max is MAX value
 
             BOOST_LOG_TRIVIAL(debug) << "Limit[" << limitMin << "]-[MAX]";
@@ -27,8 +30,8 @@ namespace antiwasm {
         }
         if(limitSection[0] == LIMIT_MIN_MAX)
         {
-            auto limitMin = limitSection[1];
-            auto limitMax = limitSection[2];
+            int limitMin = limitSection[1];
+            int limitMax = limitSection[2];
 
             BOOST_LOG_TRIVIAL(debug) << "Limit[" << limitMin << "]-[" << limitMax << "]";
 
