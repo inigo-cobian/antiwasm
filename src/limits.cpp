@@ -26,7 +26,7 @@ namespace antiwasm {
 
             BOOST_LOG_TRIVIAL(debug) << "Limit[" << limitMin << "]-[MAX]";
 
-            return 2;
+            return CODE_LIMIT_MIN;
         }
         if(limitSection[0] == LIMIT_MIN_MAX)
         {
@@ -35,7 +35,7 @@ namespace antiwasm {
 
             BOOST_LOG_TRIVIAL(debug) << "Limit[" << limitMin << "]-[" << limitMax << "]";
 
-            return 3;
+            return CODE_LIMIT_MIN_MAX;
         }
         BOOST_LOG_TRIVIAL(error) << "These bytes are not a limit";
         return -1;   //TODO throw an exception
