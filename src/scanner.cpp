@@ -8,16 +8,13 @@ namespace antiwasm {
             return -1;
         }
 
-        unsigned char *uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 4);
-
         //Magic header
-        uBuffer = driver->GetNextBytes(4);
+        unsigned char *uBuffer = driver->GetNextBytes(4);
         if(antiwasm::checkMagicNumber(uBuffer) == false) {
             return -1;
         }
 
         free(uBuffer);
-        uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 4);
 
         //Version number
         uBuffer = driver->GetNextBytes(4);
@@ -26,7 +23,6 @@ namespace antiwasm {
         }
 
         free(uBuffer);
-        uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 2);
 
         //Sections
         uBuffer = driver->GetNextBytes(2);

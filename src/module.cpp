@@ -227,7 +227,6 @@ namespace antiwasm {
     /* Gets the whole section */
     unsigned char* getSection(unsigned char sizeOfSection)
     {
-        unsigned char* sectionBuffer = (unsigned char*)malloc(sizeof(unsigned char) * sizeOfSection);
         return driver->GetNextBytes(sizeOfSection);
     }
 }

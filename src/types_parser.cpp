@@ -140,7 +140,7 @@ namespace antiwasm {
         }
     }
 
-    void parseByteVec(unsigned char * byteVec, int pointer)
+    void parseByteVec(const unsigned char * byteVec, int pointer)
     {
         int nBytes = byteVec[pointer++];
         for(int i = 0; i < nBytes; i++) {
@@ -168,7 +168,7 @@ namespace antiwasm {
 
     void parseName(char* nameSectionBuffer, int &pointer)
     {
-        int nBytesAtName = nameSectionBuffer[pointer++];
+        auto nBytesAtName = nameSectionBuffer[pointer++];
         char *nameBuffer = (char*)malloc(sizeof(char) * nBytesAtName);
 
         std::memcpy(nameBuffer, &nameSectionBuffer[pointer], nBytesAtName); //+1 so \0 can be added
