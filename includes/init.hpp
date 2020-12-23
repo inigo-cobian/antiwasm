@@ -5,5 +5,6 @@
 #include <iostream>
 #include <boost/log/trivial.hpp>
 #include <boost/program_options.hpp>
+#include <boost/test/unit_test_parameters.hpp>
 
 #endif //ANTIWASM_INIT_HPP
