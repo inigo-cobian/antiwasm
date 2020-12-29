@@ -1,4 +1,8 @@
-#include "../includes/init.hpp"
+#include "../includes/scanner.hpp"
+#include "../includes/logger.hpp"
+#include <iostream>
+#include <boost/program_options.hpp>
+#include <boost/test/unit_test_parameters.hpp>
 #define BOOST_LOG_WITHOUT_DEBUG_OUTPUT
 
 int main(int argc, char **argv) {
@@ -32,6 +36,21 @@ int main(int argc, char **argv) {
         return 0;
     }
 
+    std::unique_ptr<Logger> logger = std::make_unique<Logger>();
+    logger->SetLoggingLevel(INFO);
+
+    if (variablesMap.count("debug")) {
+        logger->SetLoggingLevel(DEBUG);
+    }
+
+    if (variablesMap.count("verbose")) {
+        logger->SetLoggingLevel(VERBOSE);
+    }
+
+    if (variablesMap.count("pedantic")) {
+        logger->SetLoggingLevel(PEDANTIC);
+    }
+
     if (variablesMap.count("filename")) {
         std::cout << "Compiling " << variablesMap["filename"].as<std::string>() << "'\n";
         antiwasm::parse( variablesMap["filename"].as<std::string>().c_str() );
@@ -39,10 +58,6 @@ int main(int argc, char **argv) {
     else {
         std::cout << "No filename set\n";
         return 0;
-    }
-
-    if (variablesMap.count("level")) {
-        //TODO set debugging level
     }
 
     //TODO exception if unknown option
