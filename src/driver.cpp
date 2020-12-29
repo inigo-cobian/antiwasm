@@ -1,12 +1,12 @@
 #include "../includes/driver.hpp"
 
-inline std::shared_ptr<Driver> Driver::instance_;
-inline std::mutex Driver::mutex_;
-inline size_t Driver::fileSize_;
-inline size_t Driver::pointer_;
-inline std::ifstream Driver::wasmFile_;
-inline char *Driver::buffer_;
-inline bool Driver::isParsing_;
+std::shared_ptr<Driver> Driver::instance_;
+std::mutex Driver::mutex_;
+size_t Driver::fileSize_;
+size_t Driver::pointer_;
+std::ifstream Driver::wasmFile_;
+char *Driver::buffer_;
+bool Driver::isParsing_;
 
 std::shared_ptr<Driver> Driver::GetInstance()
 {
