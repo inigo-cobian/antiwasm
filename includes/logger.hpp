@@ -13,7 +13,7 @@ public:
     ~Logger();
     void Log(std::string logMessage);
     static void SetLoggingLevel(LoggingLevel loggingLevel);
-    static LoggingLevel GetLoggingLevel() { return Logger::loggingLevel_; };
+    static LoggingLevel GetLoggingLevel();
 };
 
 #endif //ANTIWASM_LOGGER_HPP

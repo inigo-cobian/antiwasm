@@ -17,3 +17,7 @@ void Logger::Log(std::string logMessage) {
 void Logger::SetLoggingLevel(LoggingLevel loggingLevel) {
     Logger::loggingLevel_ = loggingLevel;
 }
+
+LoggingLevel Logger::GetLoggingLevel() {
+    return Logger::loggingLevel_;
+}

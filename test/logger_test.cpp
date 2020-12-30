@@ -11,6 +11,13 @@ BOOST_AUTO_TEST_SUITE( logger_test )
         BOOST_ASSERT(logger != nullptr);
     }
 
+    BOOST_AUTO_TEST_CASE( loggerLevelIsInfoByDefault ) {
+
+        auto returnedLoggingLevel = Logger::GetLoggingLevel();
+
+        BOOST_CHECK_EQUAL(LoggingLevel::INFO, returnedLoggingLevel);
+    }
+
     BOOST_AUTO_TEST_CASE( loggerLevelCanBeSet ) {
         Logger::SetLoggingLevel(LoggingLevel::VERBOSE);
         auto expectedLoggingLevel = LoggingLevel::VERBOSE;
@@ -18,13 +25,6 @@ BOOST_AUTO_TEST_SUITE( logger_test )
         auto returnedLoggingLevel = Logger::GetLoggingLevel();
 
         BOOST_CHECK_EQUAL(expectedLoggingLevel, returnedLoggingLevel);
-    }
-
-    BOOST_AUTO_TEST_CASE( loggerLevelIsInfoByDefault ) {
-
-        auto returnedLoggingLevel = Logger::GetLoggingLevel();
-
-        BOOST_CHECK_EQUAL(LoggingLevel::INFO, returnedLoggingLevel);
     }
 
 
