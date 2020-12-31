@@ -2,14 +2,6 @@
 
 LoggingLevel Logger::loggingLevel_;
 
-Logger::~Logger() {
-
-}
-
-Logger::Logger() {
-    SetLoggingLevel(LoggingLevel::INFO);
-}
-
 void Logger::Log(LoggingLevel minLoggingLevel, std::string logMessage) {
     if(Logger::loggingLevel_ >= minLoggingLevel) {
         std::cout << logMessage << std::endl;

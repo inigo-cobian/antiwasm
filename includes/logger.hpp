@@ -9,9 +9,7 @@ private:
     static LoggingLevel loggingLevel_;
 
 public:
-    Logger();
-    ~Logger();
-    void Log(LoggingLevel minLoggingLevel, std::string logMessage);
+    static void Log(LoggingLevel minLoggingLevel, std::string logMessage);
     static void SetLoggingLevel(LoggingLevel loggingLevel);
     static LoggingLevel GetLoggingLevel();
 };

@@ -36,19 +36,18 @@ int main(int argc, char **argv) {
         return 0;
     }
 
-    std::unique_ptr<Logger> logger = std::make_unique<Logger>();
-    logger->SetLoggingLevel(INFO);
+    Logger::SetLoggingLevel(INFO);
 
     if (variablesMap.count("debug")) {
-        logger->SetLoggingLevel(DEBUG);
+        Logger::SetLoggingLevel(DEBUG);
     }
 
     if (variablesMap.count("verbose")) {
-        logger->SetLoggingLevel(VERBOSE);
+        Logger::SetLoggingLevel(VERBOSE);
     }
 
     if (variablesMap.count("pedantic")) {
-        logger->SetLoggingLevel(PEDANTIC);
+        Logger::SetLoggingLevel(PEDANTIC);
     }
 
     if (variablesMap.count("filename")) {
