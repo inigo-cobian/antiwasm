@@ -11,7 +11,7 @@ private:
 public:
     Logger();
     ~Logger();
-    void Log(std::string logMessage);
+    void Log(LoggingLevel minLoggingLevel, std::string logMessage);
     static void SetLoggingLevel(LoggingLevel loggingLevel);
     static LoggingLevel GetLoggingLevel();
 };
