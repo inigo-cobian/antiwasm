@@ -2,8 +2,18 @@
 #include "../includes/logger.hpp"
 #include <iostream>
 #include <boost/program_options.hpp>
+#include <boost/log/core.hpp>
+#include <boost/log/trivial.hpp>
+#include <boost/log/expressions.hpp>
 #include <boost/test/unit_test_parameters.hpp>
 #define BOOST_LOG_WITHOUT_DEBUG_OUTPUT
+
+void init_logging(boost::log::trivial::severity_level severityLevel) {
+    boost::log::core::get()->set_filter (
+            boost::log::trivial::severity >= severityLevel
+            );
+}
+
 
 int main(int argc, char **argv) {
 
@@ -16,6 +26,7 @@ int main(int argc, char **argv) {
              boost::program_options::value<std::string>(),
              "route of the .wasm file")
             ("debug",
+             boost::program_options::value<char>(),
              "set the debugging tools on")
             ("verbose",
              "display relevant information about the decompiling process")
@@ -40,6 +51,32 @@ int main(int argc, char **argv) {
 
     if (variablesMap.count("debug")) {
         Logger::SetLoggingLevel(DEBUG);
+        int debugLevel = variablesMap["debug"].as<char>();
+        switch(debugLevel) {
+        case 't':
+            init_logging(boost::log::trivial::trace);
+            break;
+        case 'd':
+            init_logging(boost::log::trivial::debug);
+            break;
+        case 'i':
+            init_logging(boost::log::trivial::info);
+            break;
+        case 'w':
+            init_logging(boost::log::trivial::warning);
+            break;
+        case 'e':
+            init_logging(boost::log::trivial::error);
+            break;
+        case 'f':
+            init_logging(boost::log::trivial::fatal);
+            break;
+        default:
+            std::cout << "Unknown option at debug level\n";
+            return 0;
+        }
+    } else {
+        init_logging(boost::log::trivial::debug); //TODO if release set as INFO
     }
 
     if (variablesMap.count("verbose")) {
