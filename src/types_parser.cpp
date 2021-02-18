@@ -1,4 +1,4 @@
-#include "types_parser.hpp"
+#include "../includes/types_parser.hpp"
 
 namespace antiwasm {
     static const unsigned char i32 = 0x7F;
@@ -13,7 +13,7 @@ namespace antiwasm {
     {
         int nFuncTypes = funcTypeVecSection[0];
         int pointer = 1;
-        BOOST_LOG_TRIVIAL(debug) << "Number of func types at section: " << nFuncTypes << std::endl;
+        BOOST_LOG_TRIVIAL(debug) << "Number of func types at section: " << nFuncTypes;
 
         for(int i = 0; i < nFuncTypes; i++) {
             parseFuncType(funcTypeVecSection, pointer);
@@ -92,17 +92,6 @@ namespace antiwasm {
         }
     }
 
-    void parseInstr(unsigned char *instruction, int &pointer)
-    {
-        //TODO create the parsing of instructions
-        do {
-            if(instruction[pointer++] == 0x0B) {
-                BOOST_LOG_TRIVIAL(trace) << "END of instruction";
-                return;
-            }
-        }while(true);
-    }
-
     void parseElementVec(unsigned char *elementVec)
     {
         int nElements = elementVec[0];
@@ -151,7 +140,7 @@ namespace antiwasm {
         }
     }
 
-    void parseByteVec(unsigned char * byteVec, int pointer)
+    void parseByteVec(const unsigned char * byteVec, int pointer)
     {
         int nBytes = byteVec[pointer++];
         for(int i = 0; i < nBytes; i++) {
@@ -179,7 +168,7 @@ namespace antiwasm {
 
     void parseName(char* nameSectionBuffer, int &pointer)
     {
-        int nBytesAtName = nameSectionBuffer[pointer++];
+        auto nBytesAtName = nameSectionBuffer[pointer++];
         char *nameBuffer = (char*)malloc(sizeof(char) * nBytesAtName);
 
         std::memcpy(nameBuffer, &nameSectionBuffer[pointer], nBytesAtName); //+1 so \0 can be added

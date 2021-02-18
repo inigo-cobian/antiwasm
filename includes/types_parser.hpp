@@ -8,6 +8,7 @@
 #include <cstring>
 #include <locale>
 #include <boost/log/trivial.hpp>
+#include "../includes/expression_parser.hpp"
 
 namespace antiwasm {
     void parseFuncTypeVec(unsigned char* funcTypeVecSection);
@@ -15,11 +16,10 @@ namespace antiwasm {
     void parseResultType(unsigned char* resultTypeSection, int &pointer);
     void parseValType(unsigned char valType);
     void parseGlobalVec(unsigned char *globalSectionBuffer);
-    void parseInstr(unsigned char *instruction, int &pointer);
     void parseElementVec(unsigned char *elementVec);
     void parseFuncIdxVec(unsigned char* funcIdxVec, int &pointer);
     void parseDataVec(unsigned char *dataVec);
-    void parseByteVec(unsigned char * byteVec, int pointer);
+    void parseByteVec(const unsigned char * byteVec, int pointer);
     void parseImportVec(unsigned char *importVec);
     void parseName(char* nameBuffer, int &pointer);
     void parseImportDesc(unsigned char* importDesc, int &pointer);

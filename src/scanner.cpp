@@ -1,39 +1,28 @@
-#include "scanner.hpp"
-
-int main(int argc, char **argv) {
-    if(argc != 2) {
-        std::cout << "Enter a filename" << std::endl;
-        return -1;
-    }
-
-    char* classFile = argv[1];
-    BOOST_LOG_TRIVIAL(debug) << "Filename: " << classFile << std::endl;
-
-    antiwasm::parse(classFile);
-}
+#include "../includes/scanner.hpp"
 
 namespace antiwasm {
     int parse(const char* classFile) {
-        Driver *driver = driver->GetInstance(classFile);
-        unsigned char *uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 4);
+        std::shared_ptr<Driver> driver = Driver::GetInstance();
+        if(!driver->OpenFile(classFile)) {
+            BOOST_LOG_TRIVIAL(error) << "Cannot open file";
+            return -1;
+        }
 
         //Magic header
-        uBuffer = driver->GetNextBytes(4);
+        unsigned char *uBuffer = driver->GetNextBytes(4);
         if(antiwasm::checkMagicNumber(uBuffer) == false) {
-            exit(0);
+            return -1;
         }
 
         free(uBuffer);
-        uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 4);
 
         //Version number
         uBuffer = driver->GetNextBytes(4);
         if(antiwasm::checkVersion(uBuffer) == false) {
-            exit(0);
+            return -1;
         }
 
         free(uBuffer);
-        uBuffer = (unsigned char*)malloc(sizeof(unsigned char) * 2);
 
         //Sections
         uBuffer = driver->GetNextBytes(2);

@@ -1,7 +1,7 @@
 #ifndef LEXEMS_HPP
 #define LEXEMS_HPP
 
-enum instruction_set : unsigned char
+enum instruction_set : uint8_t
 {
     Unreachable = 0x00,
     Nop = 0x01,
@@ -208,6 +208,6 @@ enum instruction_set : unsigned char
     i64_reinterpret_f64 = 0xBD,
     f32_reinterpret_i32 = 0xBE,
     f64_reinterpret_i64 = 0xBF
-}Instruction;
+};
 
 #endif

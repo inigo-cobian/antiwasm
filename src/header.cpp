@@ -1,7 +1,7 @@
-#include "header.hpp"
+#include "../includes/header.hpp"
 
 namespace antiwasm {
-    char checkMagicNumber(unsigned char* header) {
+    bool checkMagicNumber(const unsigned char* header) {
         if(header[0] == 0x00 && header[1] == 0x61 && header[2] == 0x73 && header[3] == 0x6D) {
             BOOST_LOG_TRIVIAL(debug) << "Magic header found";
             return true;
@@ -13,7 +13,7 @@ namespace antiwasm {
         }
     }
 
-    char checkVersion(unsigned char* version) {
+    bool checkVersion(const unsigned char* version) {
         if(version[0] == 0x01 && version[1] == 0x00 && version[2] == 0x00 && version[3] == 0x00) {
             BOOST_LOG_TRIVIAL(debug) << "Version 1.0";
             return true;

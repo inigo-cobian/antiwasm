@@ -9,9 +9,11 @@
 namespace antiwasm {
     static const unsigned char LIMIT_MIN = 0x00;
     static const unsigned char LIMIT_MIN_MAX = 0x01;
+    static const unsigned char CODE_LIMIT_MIN = 2;
+    static const unsigned char CODE_LIMIT_MIN_MAX = 3;
 
-    void parseLimitVec(unsigned char* limitVec);
-    int getLimits(unsigned char*);
+    bool parseLimitVec(unsigned char* limitVec);
+    int getLimits(const unsigned char*);
 
 }
 

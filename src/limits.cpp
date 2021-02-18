@@ -1,41 +1,44 @@
-#include "limits.hpp"
+#include "../includes/limits.hpp"
 
 namespace antiwasm {
-    void parseLimitVec(unsigned char* limitVec)
+    bool parseLimitVec(unsigned char* limitVec)
     {
         int nLimits = limitVec[0];
         int pointer = 1;
 
-        for(int i = 0; i < nLimits; i++)
+        for(auto i = 0; i < nLimits; i++)
         {
-            pointer += getLimits(&limitVec[pointer]);
+            int limitFeedback = getLimits(&limitVec[pointer]);
+            if(limitFeedback == -1) {
+                return false;
+            }
+            pointer += limitFeedback;
         }
+        return true;
     }
 
-    int getLimits(unsigned char* limitSection)
+    int getLimits(const unsigned char* limitSection)
     {
         if(limitSection[0] == LIMIT_MIN)
         {
-            int *limits = (int*)malloc(sizeof(int) * 2);
-            limits[0] = limitSection[1];
-            limits[1] = -1;
+            int limitMin = limitSection[1];
+            //limit max is MAX value
 
-            BOOST_LOG_TRIVIAL(debug) << "Limit[" << limits[0] << "]-[MAX]";
+            BOOST_LOG_TRIVIAL(debug) << "Limit[" << limitMin << "]-[MAX]";
 
-            return 2;
+            return CODE_LIMIT_MIN;
         }
         if(limitSection[0] == LIMIT_MIN_MAX)
         {
-            int *limits = (int*)malloc(sizeof(int) * 2);
-            limits[0] = limitSection[1];
-            limits[1] = limitSection[2];
+            int limitMin = limitSection[1];
+            int limitMax = limitSection[2];
 
-            BOOST_LOG_TRIVIAL(debug) << "Limit[" << limits[0] << "]-[" << limits[1] << "]";
+            BOOST_LOG_TRIVIAL(debug) << "Limit[" << limitMin << "]-[" << limitMax << "]";
 
-            return 3;
+            return CODE_LIMIT_MIN_MAX;
         }
         BOOST_LOG_TRIVIAL(error) << "These bytes are not a limit";
-        return 1;   //TODO throw an exception
+        return -1;   //TODO throw an exception
     }
 
 }

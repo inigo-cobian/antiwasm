@@ -10,8 +10,8 @@
 #include <boost/log/trivial.hpp>
 
 namespace antiwasm {
-    char checkMagicNumber(unsigned char* header);
-    char checkVersion(unsigned char* version);
+    bool checkMagicNumber(const unsigned char* header);
+    bool checkVersion(const unsigned char* version);
 }
 
 #endif
