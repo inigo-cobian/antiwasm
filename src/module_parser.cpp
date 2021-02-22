@@ -1,4 +1,4 @@
-#include "../includes/module.hpp"
+#include "../includes/module_parser.hpp"
 
 namespace antiwasm {
 
