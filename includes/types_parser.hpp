@@ -8,7 +8,8 @@
 #include <cstring>
 #include <locale>
 #include <boost/log/trivial.hpp>
-#include "../includes/expression_parser.hpp"
+#include "expression_parser.hpp"
+#include "val_type.hpp"
 
 namespace antiwasm {
     void parseFuncTypeVec(unsigned char* funcTypeVecSection);

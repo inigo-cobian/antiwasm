@@ -4,7 +4,7 @@
 
 BOOST_AUTO_TEST_SUITE( driver_test )
 
-const static  char* FILE_PATH = "../../test/files/00-empty.wasm";
+const static char* FILE_PATH = "../../test/files/00-empty.wasm";
 
 
 BOOST_AUTO_TEST_CASE(GetInstance_DoesCreateANotNullPtr)

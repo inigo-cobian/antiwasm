@@ -1,11 +1,6 @@
 #include "../includes/types_parser.hpp"
 
 namespace antiwasm {
-    static const unsigned char i32 = 0x7F;
-    static const unsigned char i64 = 0x7E;
-    static const unsigned char f32 = 0x7D;
-    static const unsigned char f64 = 0x7C;
-
     static const unsigned char CONST = 0x00;
     static const unsigned char VAR   = 0x01;
 
@@ -49,16 +44,16 @@ namespace antiwasm {
 
     void parseValType(unsigned char valType)
     {
-        if(valType == i32) {
+        if(valType == ValType::i32) {
             BOOST_LOG_TRIVIAL(trace) << "i32";
         }
-        else if(valType == i64) {
+        else if(valType == ValType::i64) {
             BOOST_LOG_TRIVIAL(trace) << "i64";
         }
-        else if(valType == f32) {
+        else if(valType == ValType::f32) {
             BOOST_LOG_TRIVIAL(trace) << "f32";
         }
-        else if(valType == f64) {
+        else if(valType == ValType::f64) {
             BOOST_LOG_TRIVIAL(trace) << "f64";
         }
         else {
@@ -88,7 +83,7 @@ namespace antiwasm {
         for(int i = 0; i < nGlobals; i++) {
             parseValType(globalSectionBuffer[pointer++]);
             parseMut(globalSectionBuffer[pointer++]);
-            parseInstr(globalSectionBuffer, pointer);
+            //parseInstr(globalSectionBuffer, pointer);
         }
     }
 
@@ -106,7 +101,7 @@ namespace antiwasm {
             }
 
             //Get the offset as an expression
-            parseInstr(elementVec, pointer);
+            //parseInstr(elementVec, pointer);
 
             parseFuncIdxVec(elementVec, pointer);
         }
@@ -134,7 +129,7 @@ namespace antiwasm {
             }
 
             //Get the offset as an expression
-            parseInstr(dataVec, pointer);
+            //parseInstr(dataVec, pointer);
 
             parseByteVec(dataVec, pointer);
         }

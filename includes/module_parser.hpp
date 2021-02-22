@@ -1,5 +1,5 @@
-#ifndef MODULE_HPP
-#define MODULE_HPP
+#ifndef MODULE_PARSER_HPP
+#define MODULE_PARSER_HPP
 
 #include <iostream>
 #include "section_index.hpp"
