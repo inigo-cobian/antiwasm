@@ -33,4 +33,14 @@ BOOST_AUTO_TEST_CASE(parseSections_canParseEverySection)
     BOOST_CHECK_EQUAL(0, result);
 }
 
+BOOST_AUTO_TEST_CASE(parseSections_failsIfEncountersAnUnknownSection)
+{
+    auto basicModule = setupBasicModule();
+    basicModule[0] = 0xBB; //There is no section with ID 0xBB
+
+    int result = antiwasm::parseSections(basicModule);
+
+    BOOST_CHECK_EQUAL(1, result);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
