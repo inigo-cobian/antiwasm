@@ -1,5 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
+#include <HippoMocks/hippomocks.h>
 #include "../src/module_parser.cpp"
 #include "../src/types_parser.cpp"
 
