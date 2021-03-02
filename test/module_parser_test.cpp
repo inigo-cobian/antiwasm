@@ -26,4 +26,112 @@ BOOST_AUTO_TEST_CASE(parseNextSection_failsIfEncountersAnUnknownSection)
     BOOST_CHECK_EQUAL(1, result);
 }
 
+BOOST_AUTO_TEST_CASE(parseCustomSection_emptySectionReturnsOkey)
+{
+    int sizeOfSection = 0;
+
+    auto result = antiwasm::parseNextSection(antiwasm::SectionId::Custom, sizeOfSection, nullptr);
+
+    BOOST_CHECK_EQUAL(0, result);
+}
+
+BOOST_AUTO_TEST_CASE(parseTypeSection_emptySectionReturnsOkey)
+{
+    int sizeOfSection = 0;
+
+    auto result = antiwasm::parseNextSection(antiwasm::SectionId::Type, sizeOfSection, nullptr);
+
+    BOOST_CHECK_EQUAL(0, result);
+}
+
+BOOST_AUTO_TEST_CASE(parseImportSection_emptySectionReturnsOkey)
+{
+    int sizeOfSection = 0;
+
+    auto result = antiwasm::parseNextSection(antiwasm::SectionId::Import, sizeOfSection, nullptr);
+
+    BOOST_CHECK_EQUAL(0, result);
+}
+
+BOOST_AUTO_TEST_CASE(parseFunctionSection_emptySectionReturnsOkey)
+{
+    int sizeOfSection = 0;
+
+    auto result = antiwasm::parseNextSection(antiwasm::SectionId::Function, sizeOfSection, nullptr);
+
+    BOOST_CHECK_EQUAL(0, result);
+}
+
+BOOST_AUTO_TEST_CASE(parseTableSection_emptySectionReturnsOkey)
+{
+    int sizeOfSection = 0;
+
+    auto result = antiwasm::parseNextSection(antiwasm::SectionId::Table, sizeOfSection, nullptr);
+
+    BOOST_CHECK_EQUAL(0, result);
+}
+
+BOOST_AUTO_TEST_CASE(parseMemorySection_emptySectionReturnsOkey)
+{
+    int sizeOfSection = 0;
+
+    auto result = antiwasm::parseNextSection(antiwasm::SectionId::Memory, sizeOfSection, nullptr);
+
+    BOOST_CHECK_EQUAL(0, result);
+}
+
+BOOST_AUTO_TEST_CASE(parseGlobalSection_emptySectionReturnsOkey)
+{
+    int sizeOfSection = 0;
+
+    auto result = antiwasm::parseNextSection(antiwasm::SectionId::Global, sizeOfSection, nullptr);
+
+    BOOST_CHECK_EQUAL(0, result);
+}
+
+BOOST_AUTO_TEST_CASE(parseExportSection_emptySectionReturnsOkey)
+{
+    int sizeOfSection = 0;
+
+    auto result = antiwasm::parseNextSection(antiwasm::SectionId::Export, sizeOfSection, nullptr);
+
+    BOOST_CHECK_EQUAL(0, result);
+}
+
+BOOST_AUTO_TEST_CASE(parseStartSection_emptySectionReturnsOkey)
+{
+    int sizeOfSection = 0;
+
+    auto result = antiwasm::parseNextSection(antiwasm::SectionId::Start, sizeOfSection, nullptr);
+
+    BOOST_CHECK_EQUAL(0, result);
+}
+
+BOOST_AUTO_TEST_CASE(parseElementSection_emptySectionReturnsOkey)
+{
+    int sizeOfSection = 0;
+
+    auto result = antiwasm::parseNextSection(antiwasm::SectionId::Element, sizeOfSection, nullptr);
+
+    BOOST_CHECK_EQUAL(0, result);
+}
+
+BOOST_AUTO_TEST_CASE(parseCodeSection_emptySectionReturnsOkey)
+{
+    int sizeOfSection = 0;
+
+    auto result = antiwasm::parseNextSection(antiwasm::SectionId::Code, sizeOfSection, nullptr);
+
+    BOOST_CHECK_EQUAL(0, result);
+}
+
+BOOST_AUTO_TEST_CASE(parseDataSection_emptySectionReturnsOkey)
+{
+    int sizeOfSection = 0;
+
+    auto result = antiwasm::parseNextSection(antiwasm::SectionId::Data, sizeOfSection, nullptr);
+
+    BOOST_CHECK_EQUAL(0, result);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
