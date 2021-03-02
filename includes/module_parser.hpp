@@ -1,16 +1,17 @@
 #ifndef MODULE_PARSER_HPP
 #define MODULE_PARSER_HPP
 
-#include <iostream>
+#include <iostream>/*
 #include "section_index.hpp"
 #include "driver.hpp"
 #include "val_type.hpp"
 #include "limits.hpp"
-#include "types_parser.hpp"
+#include "types_parser.hpp"*/
 
-namespace antiwasm {
+namespace antiwasm {/*
     size_t parseSections(unsigned char* buffer);
-    unsigned char* getSection(unsigned char sizeOfSection);
+    unsigned char* getSectionContent(unsigned char sizeOfSection);
+    int parseNextSection(unsigned char* buffer);
 
     unsigned char* parseCustomSection(unsigned char sizeOfSection);
     unsigned char* parseTypeSection(unsigned char sizeOfSection);
@@ -24,7 +25,7 @@ namespace antiwasm {
     unsigned char* parseElementSection(unsigned char sizeOfSection);
     unsigned char* parseCodeSection(unsigned char sizeOfSection);
     unsigned char* parseDataSection(unsigned char sizeOfSection);
-
+*/
 }
 
 #endif

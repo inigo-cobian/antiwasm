@@ -2,6 +2,8 @@
 
 std::shared_ptr<Driver> Driver::instance_;
 std::mutex Driver::mutex_;
+bool Driver::error_;
+
 size_t Driver::fileSize_;
 size_t Driver::pointer_;
 std::ifstream Driver::wasmFile_;
@@ -17,6 +19,7 @@ std::shared_ptr<Driver> Driver::GetInstance()
         instance_->pointer_ = -1;
         instance_->fileSize_ = -1;
         instance_->isParsing_ = false;
+        instance_->error_ = false;
         BOOST_LOG_TRIVIAL(debug) << "Creating instance";
     }
     BOOST_LOG_TRIVIAL(debug) << "Returning instance";
@@ -25,10 +28,13 @@ std::shared_ptr<Driver> Driver::GetInstance()
 
 uint8_t* Driver::GetNextBytes(size_t nBytesToBeRead)
 {
-    if( Driver::HasReachedFileSize(nBytesToBeRead) )
+    if( Driver::HasReachedFileSize(nBytesToBeRead) ) {
         return nullptr; //TODO avoid using nullptr
-    if( !Driver::IsCurrentlyParsing() )
+    }
+    if( !Driver::IsCurrentlyParsing() ) {
+        error_ = true;
         return nullptr; //TODO avoid using nullptr
+    }
 
     BOOST_LOG_TRIVIAL(debug) << "Getting next " << nBytesToBeRead << " bytes";
     char* buffer = (char*)malloc(sizeof(char) * nBytesToBeRead + 1);
