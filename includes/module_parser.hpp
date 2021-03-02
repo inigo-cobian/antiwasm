@@ -8,7 +8,7 @@
 #include "section_index.hpp"
 
 namespace antiwasm {
-    void parseNextSection(unsigned char sectionId, int sectionSize, unsigned char* sectionContent); //TODO ¿mover a otro fichero?
+    int parseNextSection(unsigned char sectionId, int sectionSize, unsigned char* sectionContent); //TODO ¿mover a otro fichero?
 
     unsigned char* parseCustomSection(int sizeOfSection, unsigned char* sectionContent);
     unsigned char* parseTypeSection(int sizeOfSection, unsigned char* sectionContent);
