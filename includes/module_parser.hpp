@@ -1,31 +1,31 @@
 #ifndef MODULE_PARSER_HPP
 #define MODULE_PARSER_HPP
 
-#include <iostream>/*
+#define BOOST_LOG_DYN_LINK 1
+
+#include <iostream>
+#include <boost/log/trivial.hpp>
 #include "section_index.hpp"
-#include "driver.hpp"
-#include "val_type.hpp"
-#include "limits.hpp"
-#include "types_parser.hpp"*/
+//#include "driver.hpp"
+//#include "val_type.hpp"
+//#include "limits.hpp"
+//#include "types_parser.hpp"
 
-namespace antiwasm {/*
-    size_t parseSections(unsigned char* buffer);
-    unsigned char* getSectionContent(unsigned char sizeOfSection);
-    int parseNextSection(unsigned char* buffer);
+namespace antiwasm {
+    void parseNextSection(unsigned char sectionId, int sectionSize, unsigned char* sectionContent); //TODO ¿mover a otro fichero?
 
-    unsigned char* parseCustomSection(unsigned char sizeOfSection);
-    unsigned char* parseTypeSection(unsigned char sizeOfSection);
-    unsigned char* parseImportSection(unsigned char sizeOfSection);
-    unsigned char* parseFunctionSection(unsigned char sizeOfSection);
-    unsigned char* parseTableSection(unsigned char sizeOfSection);
-    unsigned char* parseMemorySection(unsigned char sizeOfSection);
-    unsigned char* parseGlobalSection(unsigned char sizeOfSection);
-    unsigned char* parseExportSection(unsigned char sizeOfSection);
-    unsigned char* parseStartSection(unsigned char sizeOfSection);
-    unsigned char* parseElementSection(unsigned char sizeOfSection);
-    unsigned char* parseCodeSection(unsigned char sizeOfSection);
-    unsigned char* parseDataSection(unsigned char sizeOfSection);
-*/
+    unsigned char* parseCustomSection(int sizeOfSection, unsigned char* sectionContent);
+    unsigned char* parseTypeSection(int sizeOfSection, unsigned char* sectionContent);
+    unsigned char* parseImportSection(int sizeOfSection, unsigned char* sectionContent);
+    unsigned char* parseFunctionSection(int sizeOfSection, unsigned char* sectionContent);
+    unsigned char* parseTableSection(int sizeOfSection, unsigned char* sectionContent);
+    unsigned char* parseMemorySection(int sizeOfSection, unsigned char* sectionContent);
+    unsigned char* parseGlobalSection(int sizeOfSection, unsigned char* sectionContent);
+    unsigned char* parseExportSection(int sizeOfSection, unsigned char* sectionContent);
+    unsigned char* parseStartSection(int sizeOfSection, unsigned char* sectionContent);
+    unsigned char* parseElementSection(int sizeOfSection, unsigned char* sectionContent);
+    unsigned char* parseCodeSection(int sizeOfSection, unsigned char* sectionContent);
+    unsigned char* parseDataSection(int sizeOfSection, unsigned char* sectionContent);
 }
 
 #endif

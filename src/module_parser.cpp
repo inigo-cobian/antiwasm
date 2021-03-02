@@ -1,148 +1,116 @@
 #include "../includes/module_parser.hpp"
 
 namespace antiwasm {
-/*
-    std::shared_ptr<Driver> driver;
 
-    unsigned char* parseCustomSection(unsigned char sizeOfSection)
+    void parseNextSection(unsigned char sectionId, int sectionSize, unsigned char* sectionContent) { //TODO gestión de errores y return type
+
+        BOOST_LOG_TRIVIAL(debug) << "Info of the next section [" << (unsigned int)sectionId << "] with size " << (unsigned int)sectionSize;
+        switch (sectionId) {
+            case (SectionId::Custom):
+                parseCustomSection(sectionSize, sectionContent);
+                break;
+            case (SectionId::Type):
+                parseTypeSection(sectionSize, sectionContent);
+                break;
+            case (SectionId::Import):
+                parseImportSection(sectionSize, sectionContent);
+                break;
+            case (SectionId::Function):
+                parseFunctionSection(sectionSize, sectionContent);
+                break;
+            case (SectionId::Table):
+                parseTableSection(sectionSize, sectionContent);
+                break;
+            case (SectionId::Memory):
+                parseMemorySection(sectionSize, sectionContent);
+                break;
+            case (SectionId::Global):
+                parseGlobalSection(sectionSize, sectionContent);
+                break;
+            case (SectionId::Export):
+                parseExportSection(sectionSize, sectionContent);
+                break;
+            case (SectionId::Start):
+                parseStartSection(sectionSize, sectionContent);
+                break;
+            case (SectionId::Element):
+                parseElementSection(sectionSize, sectionContent);
+                break;
+            case (SectionId::Code):
+                parseCodeSection(sectionSize, sectionContent);
+                break;
+            case (SectionId::Data):
+                parseDataSection(sectionSize, sectionContent);
+                break;
+            default:
+                //TODO pretty error message
+                BOOST_LOG_TRIVIAL(error) << "Error at section " << sectionId << " with size " << sectionSize;
+        }
+    }
+
+    unsigned char* parseCustomSection(int sizeOfSection, unsigned char* sectionContent)
     {
         return nullptr; //TODO
     }
     
-    unsigned char* parseTypeSection(unsigned char sizeOfSection)
+    unsigned char* parseTypeSection(int sizeOfSection, unsigned char* sectionContent)
     {
-        unsigned char* typeSectionBuffer = getSectionContent(sizeOfSection);
-
-        parseFuncTypeVec(typeSectionBuffer);
-
-        free(typeSectionBuffer);
+        return nullptr; //TODO
     }
 
-    unsigned char* parseImportSection(unsigned char sizeOfSection)
+    unsigned char* parseImportSection(int sizeOfSection, unsigned char* sectionContent)
     {
-        unsigned char* importSectionBuffer = getSectionContent(sizeOfSection);
-
-        parseImportVec(importSectionBuffer);
-
-        free(importSectionBuffer);
+        return nullptr; //TODO
     }
 
-    unsigned char* parseFunctionSection(unsigned char sizeOfSection)
+    unsigned char* parseFunctionSection(int sizeOfSection, unsigned char* sectionContent)
     {
-        unsigned char* functionSectionBuffer = getSectionContent(sizeOfSection);
-
-        int pointer = 1;
-        int numberOfFunctions = functionSectionBuffer[0];
-        BOOST_LOG_TRIVIAL(debug) << "Number of functions at section: " << numberOfFunctions;
-
-        //TODO
-
-        free(functionSectionBuffer);
+        return nullptr; //TODO
     }
 
-    unsigned char* parseTableSection(unsigned char sizeOfSection)
+    unsigned char* parseTableSection(int sizeOfSection, unsigned char* sectionContent)
     {
-        unsigned char* tableSectionBuffer = getSectionContent(sizeOfSection);
-
-        int numberOfTables = tableSectionBuffer[0];
-        int pointer = 1; //Pointer for the tableSectionBuffer
-        BOOST_LOG_TRIVIAL(debug) << "Number of tables at section: " << numberOfTables;
-
-        int* currentLimits;
-        for(int i = 0; i < numberOfTables; i++)
-        {
-            if(tableSectionBuffer[pointer++] == 0x70)
-            {
-                pointer += getLimits(&tableSectionBuffer[pointer]);
-            }
-            else
-            {
-                BOOST_LOG_TRIVIAL(error) << "Not a table";
-                return nullptr;
-            }
-        }
-
-        free(tableSectionBuffer);
-        return driver->GetNextSectionHeader();
+        return nullptr; //TODO
     }
 
-    unsigned char* parseMemorySection(unsigned char sizeOfSection)
+    unsigned char* parseMemorySection(int sizeOfSection, unsigned char* sectionContent)
     {
-        unsigned char* memorySectionBuffer = getSectionContent(sizeOfSection);
-
-        BOOST_LOG_TRIVIAL(debug)  << "Number of memories at section: " << memorySectionBuffer[1];
-
-        //Memory is composed by a limit
-        parseLimitVec(memorySectionBuffer);
-
-        free(memorySectionBuffer);
-        return driver->GetNextSectionHeader();
+        return nullptr; //TODO
     }
 
-    unsigned char* parseGlobalSection(unsigned char sizeOfSection)
+    unsigned char* parseGlobalSection(int sizeOfSection, unsigned char* sectionContent)
     {
-        unsigned char* globalSectionBuffer = getSectionContent(sizeOfSection);
-
-        parseGlobalVec(globalSectionBuffer);
-
-        free(globalSectionBuffer);
-        return driver->GetNextSectionHeader();
+        return nullptr; //TODO
     }
 
-    unsigned char* parseExportSection(unsigned char sizeOfSection)
+    unsigned char* parseExportSection(int sizeOfSection, unsigned char* sectionContent)
     {
-        unsigned char* exportSectionBuffer = getSectionContent(sizeOfSection);
-
-        parseExportVec(exportSectionBuffer);
-
-        free(exportSectionBuffer);
-        return driver->GetNextSectionHeader();
+        return nullptr; //TODO
     }
 
-    unsigned char* parseStartSection(unsigned char sizeOfSection)
+    unsigned char* parseStartSection(int sizeOfSection, unsigned char* sectionContent)
     {
-        parseStart(sizeOfSection);
-        return driver->GetNextSectionHeader();
+        return nullptr; //TODO
     }
 
-    unsigned char* parseElementSection(unsigned char sizeOfSection)
+    unsigned char* parseElementSection(int sizeOfSection, unsigned char* sectionContent)
     {
-        unsigned char* elementSectionBuffer = getSectionContent(sizeOfSection);
-
-        parseElementVec(elementSectionBuffer);
-
-        free(elementSectionBuffer);
-        return driver->GetNextSectionHeader();
+        return nullptr; //TODO
     }
 
-    unsigned char* parseCodeSection(unsigned char sizeOfSection)
+    unsigned char* parseCodeSection(int sizeOfSection, unsigned char* sectionContent)
     {
-        unsigned char* codeSectionBuffer = getSectionContent(sizeOfSection);
-
-        int pointer = 1;
-        int numberOfCodes = codeSectionBuffer[0];
-        BOOST_LOG_TRIVIAL(debug) << "Number of codes at section: " << numberOfCodes;
-
-        //TODO
-
-        free(codeSectionBuffer);
-        return driver->GetNextSectionHeader();
+        return nullptr; //TODO
     }
 
-    unsigned char* parseDataSection(unsigned char sizeOfSection)
+    unsigned char* parseDataSection(int sizeOfSection, unsigned char* sectionContent)
     {
-        unsigned char* dataSectionBuffer = getSectionContent(sizeOfSection);
-
-        parseDataVec(dataSectionBuffer);
-
-        free(dataSectionBuffer);
-        return driver->GetNextSectionHeader();
+        return nullptr; //TODO
     }
 
     // Gets the whole section
-    unsigned char* getSectionContent(unsigned char sizeOfSection)
+    unsigned char* getSectionContent(int sizeOfSection, unsigned char* sectionContent)
     {
-        return driver->GetNextBytes(sizeOfSection);
+        return nullptr; //TODO
     }
-*/
 }
