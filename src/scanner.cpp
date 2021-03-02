@@ -27,9 +27,6 @@ namespace antiwasm {
         free(uBuffer);
 
         //Sections
-        //uBuffer = driver->GetNextSectionHeader();
-        //parseSections(uBuffer);
-
         while( !driver->HasReachedFileSize(2) ) {
             auto* nextSectionHeader = driver->GetNextSectionHeader();
             int sectionSize = nextSectionHeader[1];

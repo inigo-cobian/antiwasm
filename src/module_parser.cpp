@@ -107,10 +107,4 @@ namespace antiwasm {
     {
         return nullptr; //TODO
     }
-
-    // Gets the whole section
-    unsigned char* getSectionContent(int sizeOfSection, unsigned char* sectionContent)
-    {
-        return nullptr; //TODO
-    }
 }

@@ -6,10 +6,6 @@
 #include <iostream>
 #include <boost/log/trivial.hpp>
 #include "section_index.hpp"
-//#include "driver.hpp"
-//#include "val_type.hpp"
-//#include "limits.hpp"
-//#include "types_parser.hpp"
 
 namespace antiwasm {
     void parseNextSection(unsigned char sectionId, int sectionSize, unsigned char* sectionContent); //TODO ¿mover a otro fichero?
