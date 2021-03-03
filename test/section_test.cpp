@@ -15,5 +15,18 @@ BOOST_AUTO_TEST_CASE(Section_canBeCreated)
 
 }
 
+BOOST_AUTO_TEST_CASE(getSectionId_returnsCorrectSectionId)
+{
+    int sectionSize = 20;
+    int sectionIndex = 128;
+    antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
+    unsigned char * sectionContentMock = malloc(sizeof(unsigned char) * 20);
+    Section section(sectionIndex, sectionId, sectionSize, sectionContentMock);
+
+    auto result = section.getSectionId();
+
+    BOOST_CHECK_EQUAL(sectionId, result);
+}
+
 
 BOOST_AUTO_TEST_SUITE_END()
