@@ -15,7 +15,8 @@ namespace antiwasm {
         Start = 0x08,
         Element = 0x09,
         Code = 0x0A,
-        Data = 0x0B
+        Data = 0x0B,
+        Error = 0xFF
     };
 }
 
