@@ -12,7 +12,6 @@ class Section {
     public:
         Section(antiwasm::SectionId sectionId, int size, unsigned char* content, int initialPos);
         ~Section() {}
-        Section(Section &section) = delete;
         //Getters
         antiwasm::SectionId getSectionId();
         int getSize();

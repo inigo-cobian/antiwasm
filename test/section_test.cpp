@@ -9,9 +9,9 @@ BOOST_AUTO_TEST_CASE(Section_canBeCreated)
     int sectionSize = 20;
     int sectionIndex = 128;
     antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
-    unsigned char * sectionContentMock = malloc(sizeof(unsigned char) * 20);
+    unsigned char * sectionContentMock = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 20));
 
-    Section section(sectionIndex, sectionId, sectionSize, sectionContentMock);
+    Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
 
 }
 
@@ -20,8 +20,8 @@ BOOST_AUTO_TEST_CASE(getSectionId_returnsCorrectSectionId)
     int sectionSize = 20;
     int sectionIndex = 128;
     antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
-    unsigned char * sectionContentMock = malloc(sizeof(unsigned char) * 20);
-    Section section(sectionIndex, sectionId, sectionSize, sectionContentMock);
+    unsigned char * sectionContentMock = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 20));
+    Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
 
     auto result = section.getSectionId();
 
@@ -33,8 +33,8 @@ BOOST_AUTO_TEST_CASE(getSize_returnsCorrectSize)
     int sectionSize = 20;
     int sectionIndex = 128;
     antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
-    unsigned char * sectionContentMock = malloc(sizeof(unsigned char) * 20);
-    Section section(sectionIndex, sectionId, sectionSize, sectionContentMock);
+    unsigned char * sectionContentMock = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 20));
+    Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
 
     auto result = section.getSize();
 
