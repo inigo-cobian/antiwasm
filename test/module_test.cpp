@@ -26,4 +26,13 @@ BOOST_AUTO_TEST_CASE(Module_returnsASectionWithTheRequestedId)
     BOOST_CHECK_EQUAL(sectionId, returnValue.getSectionId());
 }
 
+BOOST_AUTO_TEST_CASE(Module_returnsAnErrorSectionIfNotDefinedtCreated)
+{
+    Module module(20);
+
+    auto returnValue = module.getSection(antiwasm::SectionId::Type);
+
+    BOOST_CHECK_EQUAL(antiwasm::SectionId::Error, returnValue.getSectionId());
+}
+
 BOOST_AUTO_TEST_SUITE_END()
