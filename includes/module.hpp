@@ -5,19 +5,16 @@
 #include "section.hpp"
 #include "section_index.hpp"
 
-namespace antiwasm {
-
 class Module {
     private:
-        std::map<const SectionId, Section> sections_;
+        std::map<const antiwasm::SectionId, Section> sections_;
+        int size_;
     public:
-        Module() {}
+        Module(int size) {}
         ~Module() { /*TODO*/ }
         Module(Module &module) = delete;
         void addSection(Section section);
-        Section getSection(SectionId sectionId);
+        Section getSection(antiwasm::SectionId sectionId);
 };
-
-}
 
 #endif //ANTIWASM_MODULE_HPP

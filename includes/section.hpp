@@ -6,8 +6,11 @@
 class Section {
     private:
         antiwasm::SectionId sectionId_;
+        int initialPos_;
+        int size_;
+        unsigned char* content_;
     public:
-        Section(antiwasm::SectionId sectionId) {sectionId_ = sectionId;}
+        Section(antiwasm::SectionId sectionId, unsigned char* content) {sectionId_ = sectionId, content_ = content;}
         ~Section() {}
         Section(Section &section) = delete;
         antiwasm::SectionId getSectionId();
