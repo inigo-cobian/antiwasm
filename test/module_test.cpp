@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_CASE(Module_returnsASectionWithTheRequestedId)
 {
     Module module(20);
     antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
-    Section section(sectionId, 10, nullptr);
+    Section section(sectionId, 10, nullptr, 0);
 
     module.addSection(section);
     auto returnValue = module.getSection(sectionId);
