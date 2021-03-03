@@ -32,8 +32,7 @@
 *.app
 
 # CMake
-cmake-build-debug
-cmake-build-debug-coverage
+cmake-*
 
 # Clion
 .idea/

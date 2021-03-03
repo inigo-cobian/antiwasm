@@ -8,6 +8,8 @@ namespace antiwasm {
             return -1;
         }
 
+        //TODO primera comprobación de tamaño
+
         //Magic header
         unsigned char *uBuffer = driver->GetNextBytes(4);
         if(antiwasm::checkMagicNumber(uBuffer) == false) {
@@ -25,11 +27,15 @@ namespace antiwasm {
         free(uBuffer);
 
         //Sections
-        uBuffer = driver->GetNextBytes(2);
-        parseSections(uBuffer);
-
+        while( !driver->HasReachedFileSize(2) ) {
+            auto* nextSectionHeader = driver->GetNextSectionHeader();
+            int sectionSize = nextSectionHeader[1];
+            auto* nextSectionContent = driver->GetNextBytes(sectionSize);
+            parseNextSection(nextSectionHeader[0], sectionSize, nextSectionContent);
+        }
         driver->CloseFile();
 
         return 0;
     }
 }
+

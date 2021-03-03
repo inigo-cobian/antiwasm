@@ -19,6 +19,7 @@ class Driver {
     private:
         static std::shared_ptr<Driver> instance_;
         static std::mutex mutex_;
+        static bool error_;
 
     protected:
         static size_t fileSize_;
@@ -26,7 +27,6 @@ class Driver {
         static char *buffer_;  //TODO which size?
         static std::ifstream wasmFile_;
         static bool isParsing_;
-        static bool HasReachedFileSize(size_t nextBytesSize);
 
     public:
         Driver() {}
@@ -39,6 +39,7 @@ class Driver {
         bool OpenFile(const char* fileName);
         void CloseFile();
         bool IsCurrentlyParsing();
+        static bool HasReachedFileSize(size_t nextBytesSize);
 };
 
 #endif
