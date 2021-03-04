@@ -3,7 +3,7 @@
 LoggingLevel Logger::loggingLevel_;
 
 void Logger::Log(LoggingLevel minLoggingLevel, std::string logMessage) {
-    if(Logger::loggingLevel_ >= minLoggingLevel) {
+    if (Logger::loggingLevel_ >= minLoggingLevel) {
         std::cout << logMessage << std::endl;
     }
 }

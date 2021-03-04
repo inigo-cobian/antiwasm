@@ -9,10 +9,9 @@ void Module::addSection(Section section) {
 }
 
 Section Module::getSection(antiwasm::SectionId sectionId) {
-    if(sections_.contains(sectionId)) {
+    if (sections_.contains(sectionId)) {
         return sections_.at(sectionId);
-    }
-    else {
+    } else {
         return Section(antiwasm::SectionId::Error, 0, nullptr, 0);
     }
 }

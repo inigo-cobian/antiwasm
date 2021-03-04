@@ -13,7 +13,7 @@ namespace antiwasm {
     }
 
     void parseExpression(uint8_t instructionCode) {
-        Instruction* instruction; //TODO store the Instruction somewhere
+        Instruction *instruction; //TODO store the Instruction somewhere
         switch (instructionCode) {
             case (instruction_set::i32_const):
                 instruction = new I32Const(Driver::GetInstance()->GetNextBytes(2));

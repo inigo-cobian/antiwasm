@@ -10,7 +10,9 @@ private:
 
 public:
     static void Log(LoggingLevel minLoggingLevel, std::string logMessage);
+
     static void SetLoggingLevel(LoggingLevel loggingLevel);
+
     static LoggingLevel GetLoggingLevel();
 };
 

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1.0)
-set (CMAKE_CXX_STANDARD 20)
-project (antiwasm)
+set(CMAKE_CXX_STANDARD 20)
+project(antiwasm)
 
 #codecov.io for code coverage
 set(--coverage)
@@ -20,4 +20,4 @@ file(GLOB SOURCES "src/*.cpp")
 
 add_executable(antiwasm ${SOURCES})
 
-target_link_libraries (antiwasm pthread boost_log boost_program_options)
+target_link_libraries(antiwasm pthread boost_log boost_program_options)

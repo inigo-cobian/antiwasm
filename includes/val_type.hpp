@@ -2,8 +2,7 @@
 #define VAL_TYPE_HPP
 
 namespace antiwasm {
-    enum ValType
-    {
+    enum ValType {
         i32 = 0x7F,
         i64 = 0x7E,
         f32 = 0x7D,
