@@ -40,6 +40,7 @@ class Driver {
         void CloseFile();
         bool IsCurrentlyParsing();
         static bool HasReachedFileSize(size_t nextBytesSize);
+        int GetFileSize();
 };
 
 #endif

@@ -2,50 +2,50 @@
 
 namespace antiwasm {
 
-    int parseNextSection(unsigned char sectionId, int sectionSize, unsigned char* sectionContent) { //TODO gestión de errores y return type
+    Section parseNextSection(unsigned char sectionId, int sectionSize, unsigned char* sectionContent) { //TODO gestión de errores y return type
 
         BOOST_LOG_TRIVIAL(debug) << "Info of the next section [" << (unsigned int)sectionId << "] with size " << (unsigned int)sectionSize;
         switch (sectionId) {
             case (SectionId::Custom):
                 parseCustomSection(sectionSize, sectionContent);
-                return 0;
+                return Section(SectionId::Custom, sectionSize, sectionContent, 0);
             case (SectionId::Type):
                 parseTypeSection(sectionSize, sectionContent);
-                return 0;
-                case (SectionId::Import):
+                return Section(SectionId::Type, sectionSize, sectionContent, 0);
+            case (SectionId::Import):
                 parseImportSection(sectionSize, sectionContent);
-                return 0;
+                return Section(SectionId::Import, sectionSize, sectionContent, 0);
             case (SectionId::Function):
                 parseFunctionSection(sectionSize, sectionContent);
-                return 0;
+                return Section(SectionId::Function, sectionSize, sectionContent, 0);
             case (SectionId::Table):
                 parseTableSection(sectionSize, sectionContent);
-                return 0;
+                return Section(SectionId::Table, sectionSize, sectionContent, 0);
             case (SectionId::Memory):
                 parseMemorySection(sectionSize, sectionContent);
-                return 0;
+                return Section(SectionId::Memory, sectionSize, sectionContent, 0);
             case (SectionId::Global):
                 parseGlobalSection(sectionSize, sectionContent);
-                return 0;
+                return Section(SectionId::Global, sectionSize, sectionContent, 0);
             case (SectionId::Export):
                 parseExportSection(sectionSize, sectionContent);
-                return 0;
+                return Section(SectionId::Export, sectionSize, sectionContent, 0);
             case (SectionId::Start):
                 parseStartSection(sectionSize, sectionContent);
-                return 0;
+                return Section(SectionId::Start, sectionSize, sectionContent, 0);
             case (SectionId::Element):
                 parseElementSection(sectionSize, sectionContent);
-                return 0;
+                return Section(SectionId::Element, sectionSize, sectionContent, 0);
             case (SectionId::Code):
                 parseCodeSection(sectionSize, sectionContent);
-                return 0;
+                return Section(SectionId::Code, sectionSize, sectionContent, 0);
             case (SectionId::Data):
                 parseDataSection(sectionSize, sectionContent);
-                return 0;
+                return Section(SectionId::Data, sectionSize, sectionContent, 0);
             default:
                 //TODO pretty error message
                 BOOST_LOG_TRIVIAL(error) << "Error at section " << sectionId << " with size " << sectionSize;
-                return 1;
+                return Section(SectionId::Error, -1, nullptr, 0);
         }
     }
 

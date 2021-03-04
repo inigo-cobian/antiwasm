@@ -94,3 +94,7 @@ bool Driver::OpenFile(const char *fileName) {
 
     return instance_->wasmFile_.good();
 }
+
+int Driver::GetFileSize() {
+    return fileSize_;
+}
