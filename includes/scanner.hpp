@@ -17,7 +17,7 @@
 namespace antiwasm {
 
     /* Function that begins to parse the file given as an argument */
-    int parse(const char* classFile);
+    int parse(const char *classFile);
 
     static const char INDEX_VERSION = 4;
     static const char INDEX_SECTIONS = 8;

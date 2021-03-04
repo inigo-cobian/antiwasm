@@ -2,9 +2,11 @@
 
 namespace antiwasm {
 
-    Section parseNextSection(unsigned char sectionId, int sectionSize, unsigned char* sectionContent) { //TODO gestión de errores y return type
+    Section parseNextSection(unsigned char sectionId, int sectionSize,
+                             unsigned char *sectionContent) { //TODO gestión de errores y return type
 
-        BOOST_LOG_TRIVIAL(debug) << "Info of the next section [" << (unsigned int)sectionId << "] with size " << (unsigned int)sectionSize;
+        BOOST_LOG_TRIVIAL(debug) << "Info of the next section [" << (unsigned int) sectionId << "] with size "
+                                 << (unsigned int) sectionSize;
         switch (sectionId) {
             case (SectionId::Custom):
                 parseCustomSection(sectionSize, sectionContent);
@@ -49,63 +51,51 @@ namespace antiwasm {
         }
     }
 
-    int parseCustomSection(int sizeOfSection, unsigned char* sectionContent)
-    {
+    int parseCustomSection(int sizeOfSection, unsigned char *sectionContent) {
         return 0; //TODO
     }
 
-    int parseTypeSection(int sizeOfSection, unsigned char* sectionContent)
-    {
+    int parseTypeSection(int sizeOfSection, unsigned char *sectionContent) {
         return 0; //TODO
     }
 
-    int parseImportSection(int sizeOfSection, unsigned char* sectionContent)
-    {
+    int parseImportSection(int sizeOfSection, unsigned char *sectionContent) {
         return 0; //TODO
     }
 
-    int parseFunctionSection(int sizeOfSection, unsigned char* sectionContent)
-    {
+    int parseFunctionSection(int sizeOfSection, unsigned char *sectionContent) {
         return 0; //TODO
     }
 
-    int parseTableSection(int sizeOfSection, unsigned char* sectionContent)
-    {
+    int parseTableSection(int sizeOfSection, unsigned char *sectionContent) {
         return 0; //TODO
     }
 
-    int parseMemorySection(int sizeOfSection, unsigned char* sectionContent)
-    {
+    int parseMemorySection(int sizeOfSection, unsigned char *sectionContent) {
         return 0; //TODO
     }
 
-    int parseGlobalSection(int sizeOfSection, unsigned char* sectionContent)
-    {
+    int parseGlobalSection(int sizeOfSection, unsigned char *sectionContent) {
         return 0; //TODO
     }
 
-    int parseExportSection(int sizeOfSection, unsigned char* sectionContent)
-    {
+    int parseExportSection(int sizeOfSection, unsigned char *sectionContent) {
         return 0; //TODO
     }
 
-    int parseStartSection(int sizeOfSection, unsigned char* sectionContent)
-    {
+    int parseStartSection(int sizeOfSection, unsigned char *sectionContent) {
         return 0; //TODO
     }
 
-    int parseElementSection(int sizeOfSection, unsigned char* sectionContent)
-    {
+    int parseElementSection(int sizeOfSection, unsigned char *sectionContent) {
         return 0; //TODO
     }
 
-    int parseCodeSection(int sizeOfSection, unsigned char* sectionContent)
-    {
+    int parseCodeSection(int sizeOfSection, unsigned char *sectionContent) {
         return 0; //TODO
     }
 
-    int parseDataSection(int sizeOfSection, unsigned char* sectionContent)
-    {
+    int parseDataSection(int sizeOfSection, unsigned char *sectionContent) {
         return 0; //TODO
     }
 }

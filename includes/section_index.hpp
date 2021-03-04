@@ -2,8 +2,7 @@
 #define SECTION_INDEX_HPP
 
 namespace antiwasm {
-    enum SectionId
-    {
+    enum SectionId {
         Custom = 0x00,
         Type = 0x01,
         Import = 0x02,

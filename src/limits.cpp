@@ -1,15 +1,13 @@
 #include "../includes/limits.hpp"
 
 namespace antiwasm {
-    bool parseLimitVec(unsigned char* limitVec)
-    {
+    bool parseLimitVec(unsigned char *limitVec) {
         int nLimits = limitVec[0];
         int pointer = 1;
 
-        for(auto i = 0; i < nLimits; i++)
-        {
+        for (auto i = 0; i < nLimits; i++) {
             int limitFeedback = getLimits(&limitVec[pointer]);
-            if(limitFeedback == -1) {
+            if (limitFeedback == -1) {
                 return false;
             }
             pointer += limitFeedback;
@@ -17,10 +15,8 @@ namespace antiwasm {
         return true;
     }
 
-    int getLimits(const unsigned char* limitSection)
-    {
-        if(limitSection[0] == LIMIT_MIN)
-        {
+    int getLimits(const unsigned char *limitSection) {
+        if (limitSection[0] == LIMIT_MIN) {
             int limitMin = limitSection[1];
             //limit max is MAX value
 
@@ -28,8 +24,7 @@ namespace antiwasm {
 
             return CODE_LIMIT_MIN;
         }
-        if(limitSection[0] == LIMIT_MIN_MAX)
-        {
+        if (limitSection[0] == LIMIT_MIN_MAX) {
             int limitMin = limitSection[1];
             int limitMax = limitSection[2];
 

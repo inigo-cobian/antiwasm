@@ -11,6 +11,7 @@
 
 namespace antiwasm {
     void parseInstr(const unsigned char *instruction, int &pointer);
+
     void parseExpression(uint8_t instruction);
 }
 

@@ -16,31 +16,42 @@
 #define SIZE_OF_SECTION_HEADER 2 //Section Id and Section Size
 
 class Driver {
-    private:
-        static std::shared_ptr<Driver> instance_;
-        static std::mutex mutex_;
-        static bool error_;
+private:
+    static std::shared_ptr<Driver> instance_;
+    static std::mutex mutex_;
+    static bool error_;
 
-    protected:
-        static size_t fileSize_;
-        static size_t pointer_;
-        static char *buffer_;  //TODO which size?
-        static std::ifstream wasmFile_;
-        static bool isParsing_;
+protected:
+    static size_t fileSize_;
+    static size_t pointer_;
+    static char *buffer_;  //TODO which size?
+    static std::ifstream wasmFile_;
+    static bool isParsing_;
 
-    public:
-        Driver() {}
-        ~Driver() {}
-        Driver(Driver &driver) = delete;
-        static std::shared_ptr<Driver> GetInstance();
-        unsigned char* GetNextBytes(size_t nBytesToBeRead);
-        unsigned char* GetNextSectionHeader();
-        unsigned char* GetUTF8String();
-        bool OpenFile(const char* fileName);
-        void CloseFile();
-        bool IsCurrentlyParsing();
-        static bool HasReachedFileSize(size_t nextBytesSize);
-        int GetFileSize();
+public:
+    Driver() {}
+
+    ~Driver() {}
+
+    Driver(Driver &driver) = delete;
+
+    static std::shared_ptr<Driver> GetInstance();
+
+    unsigned char *GetNextBytes(size_t nBytesToBeRead);
+
+    unsigned char *GetNextSectionHeader();
+
+    unsigned char *GetUTF8String();
+
+    bool OpenFile(const char *fileName);
+
+    void CloseFile();
+
+    bool IsCurrentlyParsing();
+
+    static bool HasReachedFileSize(size_t nextBytesSize);
+
+    int GetFileSize();
 };
 
 #endif

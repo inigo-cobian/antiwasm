@@ -9,6 +9,7 @@ protected:
     instruction_set instructionCode_;
 public:
     virtual ~Instruction() {}
+
     instruction_set getInstructionCode() { return instructionCode_; };
 };
 

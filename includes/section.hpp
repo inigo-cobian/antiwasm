@@ -4,19 +4,24 @@
 #include "section_index.hpp"
 
 class Section {
-    private:
-        antiwasm::SectionId sectionId_;
-        int size_;
-        unsigned char* content_;
-        int initialPos_;
-    public:
-        Section(antiwasm::SectionId sectionId, int size, unsigned char* content, int initialPos);
-        ~Section() {}
-        //Getters
-        antiwasm::SectionId getSectionId();
-        int getSize();
-        unsigned char* getContent();
-        int getInitialPos();
+private:
+    antiwasm::SectionId sectionId_;
+    int size_;
+    unsigned char *content_;
+    int initialPos_;
+public:
+    Section(antiwasm::SectionId sectionId, int size, unsigned char *content, int initialPos);
+
+    ~Section() {}
+
+    //Getters
+    antiwasm::SectionId getSectionId();
+
+    int getSize();
+
+    unsigned char *getContent();
+
+    int getInitialPos();
 };
 
 #endif //SECTION_HPP
