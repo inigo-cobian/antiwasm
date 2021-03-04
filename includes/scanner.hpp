@@ -16,7 +16,11 @@
 
 namespace antiwasm {
 
-    /* Function that begins to parse the file given as an argument */
+    /**
+     * Begins to parse the file given as an argument
+     * @param classFile
+     * @return 0 if the parsing was correct, otherwise it returns another value. TODO which ones
+     */
     int parse(const char *classFile);
 
     static const char INDEX_VERSION = 4;
