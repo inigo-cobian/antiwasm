@@ -6,9 +6,11 @@
 #include <iostream>
 #include <boost/log/trivial.hpp>
 #include "section_index.hpp"
+#include "../includes/section.hpp"
+
 
 namespace antiwasm {
-    int parseNextSection(unsigned char sectionId, int sectionSize, unsigned char* sectionContent);
+    Section parseNextSection(unsigned char sectionId, int sectionSize, unsigned char* sectionContent);
 
     int parseCustomSection(int sizeOfSection, unsigned char* sectionContent);
     int parseTypeSection(int sizeOfSection, unsigned char* sectionContent);

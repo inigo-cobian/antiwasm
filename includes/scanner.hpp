@@ -10,6 +10,7 @@
 #include "header.hpp"
 #include "module_parser.hpp"
 #include "driver.hpp"
+#include "module.hpp"
 #include "../includes/section_index.hpp"
 #include <boost/log/trivial.hpp>
 
