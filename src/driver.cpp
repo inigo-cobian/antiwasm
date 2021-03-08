@@ -40,9 +40,9 @@ uint8_t *Driver::GetNextBytes(size_t nBytesToBeRead) {
     instance_->wasmFile_.read(buffer, nBytesToBeRead);
 
     for (int i = 0; i < nBytesToBeRead; i++) {
-        printf(" %02x", buffer[i]); //TODO format with Boost
+        //printf(" %02x", buffer[i]); //TODO format with Boost
     }
-    printf("\n");
+    //printf("\n");
 
     return (uint8_t *) buffer;
 }
@@ -93,4 +93,8 @@ bool Driver::OpenFile(const char *fileName) {
 
 int Driver::GetFileSize() {
     return fileSize_;
+}
+
+int Driver::GetCurrentPos() {
+    return pointer_;
 }

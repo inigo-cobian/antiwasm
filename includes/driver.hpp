@@ -94,6 +94,13 @@ public:
      * @return the size of the file. TODO 0 if there is no file.
      */
     int GetFileSize();
+
+    /**
+     * Gets the current position of the pointer
+     * @return pointer_
+     */
+    int GetCurrentPos();
+
 };
 
 #endif

@@ -31,12 +31,17 @@ namespace antiwasm {
 
         //Sections
         while (!driver->HasReachedFileSize(2)) {
+            auto sectionPosition = driver->GetCurrentPos();
             auto *nextSectionHeader = driver->GetNextSectionHeader();
             int sectionSize = nextSectionHeader[1];
             auto *nextSectionContent = driver->GetNextBytes(sectionSize);
-            auto nextSection = parseNextSection(nextSectionHeader[0], sectionSize, nextSectionContent);
+            auto nextSection = parseNextSection(nextSectionHeader[0], sectionSize, nextSectionContent, sectionPosition);
+
+            BOOST_LOG_TRIVIAL(info) << "Id: " << std::hex << (int)nextSectionHeader[0];
+            BOOST_LOG_TRIVIAL(info) << "Size: " << std::hex << sectionSize;
 
             if (nextSection.getSectionId() != Error) {
+                nextSection.displaySectionInfo();
                 module.addSection(nextSection);
             } else { //TODO manage error
                 break;

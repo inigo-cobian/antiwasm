@@ -1,6 +1,7 @@
 #ifndef SECTION_HPP
 #define SECTION_HPP
 
+#include <iostream>
 #include "section_index.hpp"
 
 class Section {
@@ -47,6 +48,11 @@ public:
      * @return The initial position inside the module.
      */
     int getInitialPos();
+
+    /** TODO a different version for each section type
+     * Displays the general information of the section.
+     */
+    void displaySectionInfo();
 };
 
 #endif //SECTION_HPP
