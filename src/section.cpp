@@ -24,5 +24,7 @@ int Section::getInitialPos() {
 }
 
 void Section::displaySectionInfo() {
-    std::cout << std::hex << "ID=" << sectionId_ << " | start=" << (std::hex) << initialPos_ << " size=" << (std::hex) << size_ << std::endl;
+    std::cout << std::hex << "ID=" << sectionId_
+              << " | start=" << (std::hex) << initialPos_
+              << " size=" << (std::hex) << size_ << std::endl;
 }
