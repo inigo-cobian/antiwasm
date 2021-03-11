@@ -16,8 +16,8 @@ namespace antiwasm {
 
     void parseFuncType(unsigned char *funcTypeSection, int &pointer) {
         if (funcTypeSection[pointer] != 0x60) {
-            BOOST_LOG_TRIVIAL(error) << "[types_parser] Not a function type. Val " << (int) funcTypeSection[pointer] << " at "
-                                     << (int) pointer;
+            BOOST_LOG_TRIVIAL(error) << "[types_parser] Not a function type. Val " << (int) funcTypeSection[pointer]
+                                     << " at " << (int) pointer;
             return;
         }
         pointer++;
