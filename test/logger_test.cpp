@@ -1,36 +1,36 @@
 #define BOOST_TEST_DYN_LINK
 
 #include <boost/test/unit_test.hpp>
-#include "../src/logger.cpp"
+#include "../src/displayer.cpp"
 
 BOOST_AUTO_TEST_SUITE(logger_test)
 
     BOOST_AUTO_TEST_CASE(loggerPointerCanBeInstantiated) {
 
-        std::unique_ptr<Logger> logger = std::make_unique<Logger>();
+        std::unique_ptr<Displayer> logger = std::make_unique<Displayer>();
 
         BOOST_ASSERT(logger != nullptr);
     }
 
     BOOST_AUTO_TEST_CASE(loggerLevelIsInfoByDefault) {
 
-        auto returnedLoggingLevel = Logger::GetLoggingLevel();
+        auto returnedLoggingLevel = Displayer::GetLoggingLevel();
 
         BOOST_CHECK_EQUAL(LoggingLevel::INFO, returnedLoggingLevel);
     }
 
     BOOST_AUTO_TEST_CASE(loggerLevelCanBeSet) {
-        Logger::SetLoggingLevel(LoggingLevel::VERBOSE);
+        Displayer::SetLoggingLevel(LoggingLevel::VERBOSE);
         auto expectedLoggingLevel = LoggingLevel::VERBOSE;
 
-        auto returnedLoggingLevel = Logger::GetLoggingLevel();
+        auto returnedLoggingLevel = Displayer::GetLoggingLevel();
 
         BOOST_CHECK_EQUAL(expectedLoggingLevel, returnedLoggingLevel);
     }
 
     BOOST_AUTO_TEST_CASE(loggerPrintsMessageOfSameLevel) {
-        std::unique_ptr<Logger> logger = std::make_unique<Logger>();
-        Logger::SetLoggingLevel(LoggingLevel::INFO);
+        std::unique_ptr<Displayer> logger = std::make_unique<Displayer>();
+        Displayer::SetLoggingLevel(LoggingLevel::INFO);
 
         logger->Log(LoggingLevel::INFO, "Don't be evil");
 
@@ -38,8 +38,8 @@ BOOST_AUTO_TEST_SUITE(logger_test)
     }
 
     BOOST_AUTO_TEST_CASE(loggerDoesNotPrintMessagesWithHigherLevel) {
-        std::unique_ptr<Logger> logger = std::make_unique<Logger>();
-        Logger::SetLoggingLevel(LoggingLevel::INFO);
+        std::unique_ptr<Displayer> logger = std::make_unique<Displayer>();
+        Displayer::SetLoggingLevel(LoggingLevel::INFO);
 
         logger->Log(LoggingLevel::PEDANTIC, "Don't be evil");
 
@@ -47,8 +47,8 @@ BOOST_AUTO_TEST_SUITE(logger_test)
     }
 
     BOOST_AUTO_TEST_CASE(loggerDoesNotPrintMessagesWithLowerLevel) {
-        std::unique_ptr<Logger> logger = std::make_unique<Logger>();
-        Logger::SetLoggingLevel(LoggingLevel::VERBOSE);
+        std::unique_ptr<Displayer> logger = std::make_unique<Displayer>();
+        Displayer::SetLoggingLevel(LoggingLevel::VERBOSE);
 
         logger->Log(LoggingLevel::INFO, "Don't be evil");
 

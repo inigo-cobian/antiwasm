@@ -1,10 +1,10 @@
-#ifndef ANTIWASM_LOGGER_HPP
-#define ANTIWASM_LOGGER_HPP
+#ifndef ANTIWASM_DISPLAYER_HPP
+#define ANTIWASM_DISPLAYER_HPP
 
 #include <iostream>
 #include "logging_levels.hpp"
 
-class Logger {
+class Displayer { //TODO general
 private:
     static LoggingLevel loggingLevel_;
 
@@ -16,4 +16,4 @@ public:
     static LoggingLevel GetLoggingLevel();
 };
 
-#endif //ANTIWASM_LOGGER_HPP
+#endif //ANTIWASM_DISPLAYER_HPP
