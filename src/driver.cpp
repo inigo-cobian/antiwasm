@@ -18,9 +18,9 @@ std::shared_ptr<Driver> Driver::GetInstance() {
         instance_->fileSize_ = -1;
         instance_->isParsing_ = false;
         instance_->error_ = false;
-        BOOST_LOG_TRIVIAL(debug) << "Creating instance";
+        BOOST_LOG_TRIVIAL(debug) << "[Driver] Creating a new instance of the driver";
     }
-    BOOST_LOG_TRIVIAL(debug) << "Returning instance";
+    BOOST_LOG_TRIVIAL(debug) << "[Driver] Returning instance of driver";
     return instance_;
 }
 
@@ -33,16 +33,16 @@ uint8_t *Driver::GetNextBytes(size_t nBytesToBeRead) {
         return nullptr; //TODO avoid using nullptr
     }
 
-    BOOST_LOG_TRIVIAL(debug) << "Getting next " << nBytesToBeRead << " bytes";
+    BOOST_LOG_TRIVIAL(debug) << "[Driver]Getting next " << nBytesToBeRead << " bytes";
     char *buffer = (char *) malloc(sizeof(char) * nBytesToBeRead + 1);
     instance_->wasmFile_.seekg(instance_->pointer_, std::ios::beg);
     instance_->pointer_ += nBytesToBeRead;
     instance_->wasmFile_.read(buffer, nBytesToBeRead);
 
     for (int i = 0; i < nBytesToBeRead; i++) {
-        printf(" %02x", buffer[i]); //TODO format with Boost
+        //printf(" %02x", buffer[i]); //TODO format with Boost
     }
-    printf("\n");
+    //printf("\n");
 
     return (uint8_t *) buffer;
 }
@@ -53,7 +53,7 @@ unsigned char *Driver::GetNextSectionHeader() {
 
 unsigned char *Driver::GetUTF8String() //TODO not ready to be used
 {
-    BOOST_LOG_TRIVIAL(debug) << "Getting UTF8 String";
+    BOOST_LOG_TRIVIAL(debug) << "[Driver] Getting a UTF8 String";
     unsigned char delimiter = 0x03;
     std::string temp;
 
@@ -86,11 +86,17 @@ bool Driver::OpenFile(const char *fileName) {
     instance_->isParsing_ = true;
     instance_->wasmFile_.seekg(0, std::ios::beg);
 
-    BOOST_LOG_TRIVIAL(debug) << "Size of file [" << fileName << "]: " << instance_->fileSize_;
+    BOOST_LOG_TRIVIAL(debug) << "[Driver] Size of file [" << fileName << "]: " << instance_->fileSize_;
 
     return instance_->wasmFile_.good();
 }
 
 int Driver::GetFileSize() {
+    BOOST_LOG_TRIVIAL(trace) << "[Driver] Returning size of file: " << instance_->fileSize_;
     return fileSize_;
+}
+
+int Driver::GetCurrentPos() {
+    BOOST_LOG_TRIVIAL(trace) << "[Driver] Getting current position of the pointer: " << instance_->pointer_;
+    return pointer_;
 }

@@ -22,3 +22,9 @@ unsigned char *Section::getContent() {
 int Section::getInitialPos() {
     return initialPos_;
 }
+
+void Section::displaySectionInfo() {
+    std::cout << std::hex << "ID=" << sectionId_
+              << " | start=" << (std::hex) << initialPos_
+              << " size=" << (std::hex) << size_ << std::endl;
+}

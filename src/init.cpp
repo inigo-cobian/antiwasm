@@ -1,5 +1,5 @@
 #include "../includes/scanner.hpp"
-#include "../includes/logger.hpp"
+#include "../includes/displayer.hpp"
 #include <iostream>
 #include <boost/program_options.hpp>
 #include <boost/log/core.hpp>
@@ -47,10 +47,10 @@ int main(int argc, char **argv) {
         return 0;
     }
 
-    Logger::SetLoggingLevel(INFO);
+    Displayer::SetLoggingLevel(INFO);
 
     if (variablesMap.count("debug")) {
-        Logger::SetLoggingLevel(DEBUG);
+        Displayer::SetLoggingLevel(DEBUG);
         int debugLevel = variablesMap["debug"].as<char>();
         switch (debugLevel) {
             case 't':
@@ -80,11 +80,11 @@ int main(int argc, char **argv) {
     }
 
     if (variablesMap.count("verbose")) {
-        Logger::SetLoggingLevel(VERBOSE);
+        Displayer::SetLoggingLevel(VERBOSE);
     }
 
     if (variablesMap.count("pedantic")) {
-        Logger::SetLoggingLevel(PEDANTIC);
+        Displayer::SetLoggingLevel(PEDANTIC);
     }
 
     if (variablesMap.count("filename")) {

@@ -15,9 +15,10 @@ namespace antiwasm {
      * @param sectionId
      * @param sectionSize
      * @param sectionContent
+     * @param sectionPos
      * @return The parsed section.
      */
-    Section parseNextSection(unsigned char sectionId, int sectionSize, unsigned char *sectionContent);
+    Section parseNextSection(unsigned char sectionId, int sectionSize, unsigned char *sectionContent, int sectionPos);
 
     /**
      * Parses a Custom section and generates its instance.

@@ -7,7 +7,7 @@ namespace antiwasm {
     void parseFuncTypeVec(unsigned char *funcTypeVecSection) {
         int nFuncTypes = funcTypeVecSection[0];
         int pointer = 1;
-        BOOST_LOG_TRIVIAL(debug) << "Number of func types at section: " << nFuncTypes;
+        BOOST_LOG_TRIVIAL(debug) << "[types_parser] Number of func types at section: " << nFuncTypes;
 
         for (int i = 0; i < nFuncTypes; i++) {
             parseFuncType(funcTypeVecSection, pointer);
@@ -16,8 +16,8 @@ namespace antiwasm {
 
     void parseFuncType(unsigned char *funcTypeSection, int &pointer) {
         if (funcTypeSection[pointer] != 0x60) {
-            BOOST_LOG_TRIVIAL(error) << "Not a function type. Val " << (int) funcTypeSection[pointer] << " at "
-                                     << (int) pointer;
+            BOOST_LOG_TRIVIAL(error) << "[types_parser] Not a function type. Val " << (int) funcTypeSection[pointer]
+                                     << " at " << (int) pointer;
             return;
         }
         pointer++;
@@ -40,33 +40,33 @@ namespace antiwasm {
     }
 
     void parseValType(unsigned char valType) {
-        if (valType == ValType::i32) {
-            BOOST_LOG_TRIVIAL(trace) << "i32";
-        } else if (valType == ValType::i64) {
-            BOOST_LOG_TRIVIAL(trace) << "i64";
-        } else if (valType == ValType::f32) {
-            BOOST_LOG_TRIVIAL(trace) << "f32";
-        } else if (valType == ValType::f64) {
-            BOOST_LOG_TRIVIAL(trace) << "f64";
+        if (valType == i32) {
+            BOOST_LOG_TRIVIAL(trace) << "[types_parser] i32";
+        } else if (valType == i64) {
+            BOOST_LOG_TRIVIAL(trace) << "[types_parser] i64";
+        } else if (valType == f32) {
+            BOOST_LOG_TRIVIAL(trace) << "[types_parser] f32";
+        } else if (valType == f64) {
+            BOOST_LOG_TRIVIAL(trace) << "[types_parser] f64";
         } else {
-            BOOST_LOG_TRIVIAL(error) << "Unknown value: " << valType; //TODO print as a hex
+            BOOST_LOG_TRIVIAL(error) << "[types_parser] Unknown value: " << valType; //TODO print as a hex
         }
     }
 
     void parseMut(unsigned char mut) {
         if (mut == CONST) {
-            BOOST_LOG_TRIVIAL(trace) << "const";
+            BOOST_LOG_TRIVIAL(trace) << "[types_parser] const";
         } else if (mut == VAR) {
-            BOOST_LOG_TRIVIAL(trace) << "var";
+            BOOST_LOG_TRIVIAL(trace) << "[types_parser] var";
         } else {
-            BOOST_LOG_TRIVIAL(error) << "Unknown mut: " << mut; //TODO print as a hex
+            BOOST_LOG_TRIVIAL(error) << "[types_parser] Unknown mut: " << mut; //TODO print as a hex
         }
     }
 
     void parseGlobalVec(unsigned char *globalSectionBuffer) {
         int nGlobals = globalSectionBuffer[0];
         int pointer = 1;
-        BOOST_LOG_TRIVIAL(debug) << "Number of globals at section: " << nGlobals;
+        BOOST_LOG_TRIVIAL(debug) << "[types_parser] Number of globals at section: " << nGlobals;
 
         for (int i = 0; i < nGlobals; i++) {
             parseValType(globalSectionBuffer[pointer++]);
@@ -78,7 +78,7 @@ namespace antiwasm {
     void parseElementVec(unsigned char *elementVec) {
         int nElements = elementVec[0];
         int pointer = 1;
-        BOOST_LOG_TRIVIAL(debug) << "Number of elements at section: " << nElements;
+        BOOST_LOG_TRIVIAL(debug) << "[types_parser] Number of elements at section: " << nElements;
 
         for (int i = 0; i < nElements; i++) {
             //Check the tableidx
@@ -98,14 +98,14 @@ namespace antiwasm {
         int nFuncIdx = funcIdxVec[pointer++];
 
         for (int i = 0; i < nFuncIdx; i++) {
-            BOOST_LOG_TRIVIAL(debug) << "funcIdx: 0x" << std::hex << (int) funcIdxVec[pointer++];
+            BOOST_LOG_TRIVIAL(debug) << "[types_parser] funcIdx: 0x" << std::hex << (int) funcIdxVec[pointer++];
         }
     }
 
     void parseDataVec(unsigned char *dataVec) {
         int nDatas = dataVec[0];
         int pointer = 1;
-        BOOST_LOG_TRIVIAL(debug) << "Number of datas at section: " << nDatas;
+        BOOST_LOG_TRIVIAL(debug) << "[types_parser] Number of datas at section: " << nDatas;
 
         for (int i = 0; i < nDatas; i++) {
             //Check the memidx
@@ -132,7 +132,7 @@ namespace antiwasm {
     void parseImportVec(unsigned char *importVec) {
         int nImports = importVec[0];
         int pointer = 1;
-        BOOST_LOG_TRIVIAL(debug) << "Number of imports at section: " << nImports;
+        BOOST_LOG_TRIVIAL(debug) << "[types_parser] Number of imports at section: " << nImports;
 
         for (int i = 0; i < nImports; i++) {
             //Get the first instance name (module)
@@ -155,7 +155,7 @@ namespace antiwasm {
         pointer += nBytesAtName;
 
         std::string name = std::string(nameBuffer);
-        BOOST_LOG_TRIVIAL(debug) << "Name: " << name;
+        BOOST_LOG_TRIVIAL(debug) << "[types_parser] Name: " << name;
     }
 
     void parseImportDesc(unsigned char *importDesc, int &pointer) {
@@ -166,7 +166,7 @@ namespace antiwasm {
     void parseExportVec(unsigned char *exportVec) {
         int nExports = exportVec[0];
         int pointer = 1;
-        BOOST_LOG_TRIVIAL(debug) << "Number of exports at section: " << nExports;
+        BOOST_LOG_TRIVIAL(debug) << "[types_parser] Number of exports at section: " << nExports;
 
         for (int i = 0; i < nExports; i++) {
             //Get the name of the exported item
