@@ -6,7 +6,7 @@ namespace antiwasm {
         int pointer = 1;
 
         for (auto i = 0; i < nLimits; i++) {
-            int limitFeedback = getLimits(&limitVec[pointer]);
+            int limitFeedback = parseLimits(&limitVec[pointer]);
             if (limitFeedback == -1) {
                 return false;
             }
@@ -15,7 +15,7 @@ namespace antiwasm {
         return true;
     }
 
-    int getLimits(const unsigned char *limitSection) {
+    int parseLimits(const unsigned char *limitSection) {
         if (limitSection[0] == LIMIT_MIN) {
             int limitMin = limitSection[1];
             //limit max is MAX value

@@ -14,7 +14,7 @@ namespace antiwasm {
 
     bool parseLimitVec(unsigned char *limitVec);
 
-    int getLimits(const unsigned char *);
+    int parseLimits(const unsigned char *);
 
 }
 
