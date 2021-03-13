@@ -2,7 +2,7 @@
 
 namespace antiwasm {
     Limit *parseLimits(const unsigned char *limitSection) { //TODO redefine
-        if (limitSection[0] == LIMIT_MIN) {
+        if (limitSection[0] == limit_types::limit_min) {
             int limitMin = limitSection[1];
             //limit max is MAX value
 
@@ -10,7 +10,7 @@ namespace antiwasm {
 
             return new Limit();
         }
-        if (limitSection[0] == LIMIT_MIN_MAX) {
+        if (limitSection[0] == limit_types::limit_min_max) {
             int limitMin = limitSection[1];
             int limitMax = limitSection[2];
 

@@ -6,7 +6,7 @@
 BOOST_AUTO_TEST_SUITE(limits_test)
 
     BOOST_AUTO_TEST_CASE(parseLimits_returnsTheTypeOfMinLimit) {
-        constexpr unsigned char limitVec[] = {antiwasm::LIMIT_MIN, 0x05}; //aka [5-MAX]
+        constexpr unsigned char limitVec[] = {limit_types::limit_min, 0x05}; //aka [5-MAX]
 
         auto returnValue = antiwasm::parseLimits(limitVec);
 
@@ -14,7 +14,7 @@ BOOST_AUTO_TEST_SUITE(limits_test)
     }
 
     BOOST_AUTO_TEST_CASE(parseLimits_returnsTheTypeOfMinMaxLimit) {
-        constexpr unsigned char limitVec[] = {antiwasm::LIMIT_MIN_MAX, 0x05, 0x08}; //aka [5-8]
+        constexpr unsigned char limitVec[] = {limit_types::limit_min_max, 0x05, 0x08}; //aka [5-8]
 
         auto returnValue = antiwasm::parseLimits(limitVec);
 
