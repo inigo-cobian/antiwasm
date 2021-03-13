@@ -13,7 +13,7 @@ namespace antiwasm {
         }
         else {
             //TODO better error, ¿maybe get a msg?
-            Limit *limit = new Limit();
+            auto *limit = new Limit();
             limit->error = true;
             return limit;
         }
@@ -27,7 +27,7 @@ namespace antiwasm {
     }
 
     Limit *parseLimitMinMax(uint32_t min_, uint32_t max_) {
-        auto *limit = new Limit{limit_min, min_, max_, false};
+        auto *limit = new Limit{limit_min_max, min_, max_, false};
         limit->error = checkIfLimitIsNotValid(min_, max_);
 
         BOOST_LOG_TRIVIAL(info) << "[limits] New limit [" << std::hex << limit->min << "-" << std::hex << limit->max << "]";

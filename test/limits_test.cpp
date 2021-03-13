@@ -10,14 +10,14 @@ BOOST_AUTO_TEST_SUITE(limits_test)
         limitVec[0] = limit_types::limit_min;
         limitVec[1] = 0x05;
 
-        antiwasm::parseLimits(limitVec);
-        //auto limitType =
-        //BOOST_CHECK_EQUAL(limitType, limit_types::limit_min);
+        auto *returnLimit = antiwasm::parseLimits(limitVec);
+
+        BOOST_CHECK_EQUAL(returnLimit->type, limit_types::limit_min);
     }
 
     BOOST_AUTO_TEST_CASE(parseLimits_returnsTheTypeOfMinMaxLimit) {
         auto *limitVec = static_cast<unsigned char *>(malloc(sizeof(unsigned int) * 3));
-        limitVec[0] = limit_types::limit_min;
+        limitVec[0] = limit_types::limit_min_max;
         limitVec[1] = 0x05;
         limitVec[2] = 0x08;
 
