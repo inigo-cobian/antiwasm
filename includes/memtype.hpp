@@ -4,7 +4,7 @@
 #include "limits.hpp"
 
 namespace antiwasm {
-    int parseMemType(const unsigned char * memType);
+    int parseMemType(const unsigned char *memType);
 }
 
 #endif //ANTIWASM_MEMTYPE_HPP

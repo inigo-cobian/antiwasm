@@ -75,7 +75,7 @@ namespace antiwasm {
     int parseMemorySection(int sizeOfSection, unsigned char *sectionContent) {
         u_int32_t memsInVector = sectionContent[0];
         unsigned int pointer = 1;
-        for(u_int32_t i = 0; i < memsInVector; i++) {
+        for (u_int32_t i = 0; i < memsInVector; i++) {
             auto parseMemType(&sectionContent[pointer]);
             //TODO increase pointer
         }
