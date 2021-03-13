@@ -1,29 +1,41 @@
 #include "../includes/limits.hpp"
 
 namespace antiwasm {
-    Limit *parseLimits(const unsigned char *limitSection) { //TODO redefine
+    Limit *parseLimits(const unsigned char *limitSection) {
         if (limitSection[0] == limit_types::limit_min) {
-            int limitMin = limitSection[1];
-            //limit max is MAX value
-
-            BOOST_LOG_TRIVIAL(debug) << "[limits] Limit[" << limitMin << "]-[MAX]";
-
-            return new Limit();
+            return parseLimitMin(limitSection[1]);
         }
-        if (limitSection[0] == limit_types::limit_min_max) {
-            int limitMin = limitSection[1];
-            int limitMax = limitSection[2];
-
-            BOOST_LOG_TRIVIAL(debug) << "[limits] Limit[" << limitMin << "]-[" << limitMax << "]";
-
-            return new Limit();
+        else if (limitSection[0] == limit_types::limit_min_max) {
+            return parseLimitMinMax(limitSection[1], limitSection[2]);
         }
-        BOOST_LOG_TRIVIAL(error) << "[limits] These bytes are not a limit";
-        return new Limit();;   //TODO throw an exception
+        else {
+            //TODO better error, ¿maybe get a msg?
+            Limit *limit = new Limit();
+            limit->error = true;
+            return limit;
+        }
     }
 
-    void parseLimitMin() { }
+    Limit *parseLimitMin(uint32_t min_) {
+        auto *limit = new Limit();
+        limit->type = limit_min;
+        limit->min = min_;
 
-    void parseLimitMinMax() { }
+        BOOST_LOG_TRIVIAL(info) << "[limits] New limit [" << std::hex << limit->min << "-MAX]";
+    }
+
+    Limit *parseLimitMinMax(uint32_t min_, uint32_t max_) {
+        auto *limit = new Limit();
+        limit->type = limit_min_max;
+        limit->min = min_;
+        limit->max = max_;
+        limit->error = checkIfLimitIsNotValid(min_, max_);
+
+        BOOST_LOG_TRIVIAL(info) << "[limits] New limit [" << std::hex << limit->min << "-" << std::hex << limit->max << "]";
+    }
+
+    bool checkIfLimitIsNotValid(uint32_t min_, uint32_t max_) {
+        return min_ > max_;
+    }
 
 }

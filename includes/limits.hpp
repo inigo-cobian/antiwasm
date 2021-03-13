@@ -16,16 +16,39 @@ struct Limit {
     limit_types type; // 0x00 -> MIN, 0x01 -> MIN_MAX
     uint32_t min;
     uint32_t max;
-    bool error = false;
+    bool error = false; //TODO
 };
 
-
 namespace antiwasm {
+    /**
+     * Parses and returns a limit returning it as a struct.
+     * @param limitSection
+     * @return
+     */
     Limit *parseLimits(const unsigned char *limitSection);
 
-    void parseLimitMin(); //TODO
+    /**
+     * Generates a limit [min_-MAXUINT32].
+     * @param min_
+     * @return
+     */
+    Limit *parseLimitMin(uint32_t min_);
 
-    void parseLimitMinMax(); //TODO
+    /**
+     * Generates a limit [min-max]
+     * @param min_
+     * @param max_
+     * @return
+     */
+    Limit *parseLimitMinMax(uint32_t min_, uint32_t max_);
+
+    /**
+     * Checks if the limit range is valid.
+     * @param min_
+     * @param max_
+     * @return true if the limit is not valid, false if it is
+     */
+    bool checkIfLimitIsNotValid(uint32_t min_, uint32_t max_);
 }
 
 #endif
