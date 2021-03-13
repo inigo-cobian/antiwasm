@@ -4,7 +4,21 @@
 #define BOOST_LOG_DYN_LINK 1
 
 #include <iostream>
+#include <cstdint>
 #include <boost/log/trivial.hpp>
+
+enum limit_types : uint32_t {
+    limit_min = 0x00,
+    limit_min_max = 0x01
+};
+
+struct Limit {
+    limit_types type; // 0x00 -> MIN, 0x01 -> MIN_MAX
+    uint32_t min;
+    uint32_t max;
+    bool error = false;
+};
+
 
 namespace antiwasm {
     static const unsigned char LIMIT_MIN = 0x00;
@@ -12,9 +26,7 @@ namespace antiwasm {
     static const unsigned char CODE_LIMIT_MIN = 2;
     static const unsigned char CODE_LIMIT_MIN_MAX = 3;
 
-    bool parseLimitVec(unsigned char *limitVec);
-
-    int parseLimits(const unsigned char *);
+    Limit *parseLimits(const unsigned char *);
 
     void parseLimitMin(); //TODO
 
