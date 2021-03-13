@@ -21,7 +21,8 @@ namespace antiwasm {
     Limit *parseLimitMin(uint32_t min_) {
         auto *limit = new Limit{limit_min, min_, 0, false};
 
-        BOOST_LOG_TRIVIAL(info) << "[limits] New limit [" << std::hex << limit->min << "-MAX]";
+        BOOST_LOG_TRIVIAL(info) << "[limits] New limit ["
+                                << std::hex << limit->min << "-MAX]";
         return limit;
     }
 
@@ -29,7 +30,9 @@ namespace antiwasm {
         auto *limit = new Limit{limit_min_max, min_, max_, false};
         limit->error = checkIfLimitIsNotValid(min_, max_);
 
-        BOOST_LOG_TRIVIAL(info) << "[limits] New limit [" << std::hex << limit->min << "-" << std::hex << limit->max
+        BOOST_LOG_TRIVIAL(info) << "[limits] New limit ["
+                                << std::hex << limit->min << "-"
+                                << std::hex << limit->max
                                 << "]";
 
         return limit;
