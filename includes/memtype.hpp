@@ -3,8 +3,12 @@
 
 #include "limits.hpp"
 
+union Memtype {
+    Limit* limit;
+};
+
 namespace antiwasm {
-    int parseMemType(const unsigned char *memType);
+    Memtype* parseMemType(const unsigned char *memTypeContent);
 }
 
 #endif //ANTIWASM_MEMTYPE_HPP

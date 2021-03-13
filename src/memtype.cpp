@@ -1,7 +1,9 @@
 #include "../includes/memtype.hpp"
 
 namespace antiwasm {
-    int parseMemType(const unsigned char *memType) {
-        parseLimits(memType);
+    Memtype* parseMemType(const unsigned char *memTypeContent) {
+        Memtype* memtype;
+        memtype->limit = parseLimits(memTypeContent);
+        return memtype;
     }
 }
