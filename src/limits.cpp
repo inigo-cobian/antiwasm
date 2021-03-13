@@ -36,12 +36,8 @@ namespace antiwasm {
         return -1;   //TODO throw an exception
     }
 
-    void parseLimitMin() {
+    void parseLimitMin() { }
 
-    }
-
-    void parseLimitMinMax() {
-
-    }
+    void parseLimitMinMax() { }
 
 }

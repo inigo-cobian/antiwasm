@@ -19,5 +19,6 @@ namespace antiwasm {
     void parseLimitMin(); //TODO
 
     void parseLimitMinMax(); //TODO
+}
 
 #endif

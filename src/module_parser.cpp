@@ -76,7 +76,8 @@ namespace antiwasm {
         u_int32_t memsInVector = sectionContent[0];
         unsigned int pointer = 1;
         for(u_int32_t i = 0; i < memsInVector; i++) {
-            auto parseMem();
+            auto parseMemType(&sectionContent[pointer]);
+            //TODO increase pointer
         }
         return 0; //TODO XXX
     }
