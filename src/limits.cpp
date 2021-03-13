@@ -15,7 +15,7 @@ namespace antiwasm {
         return true;
     }
 
-    int parseLimits(const unsigned char *limitSection) {
+    int parseLimits(const unsigned char *limitSection) { //TODO redefine
         if (limitSection[0] == LIMIT_MIN) {
             int limitMin = limitSection[1];
             //limit max is MAX value
@@ -34,6 +34,14 @@ namespace antiwasm {
         }
         BOOST_LOG_TRIVIAL(error) << "[limits] These bytes are not a limit";
         return -1;   //TODO throw an exception
+    }
+
+    void parseLimitMin() {
+
+    }
+
+    void parseLimitMinMax() {
+
     }
 
 }

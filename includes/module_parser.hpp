@@ -5,9 +5,9 @@
 
 #include <iostream>
 #include <boost/log/trivial.hpp>
+#include <cstdint>
 #include "section_index.hpp"
 #include "../includes/section.hpp"
-
 
 namespace antiwasm {
     /**

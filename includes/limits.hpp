@@ -16,6 +16,8 @@ namespace antiwasm {
 
     int parseLimits(const unsigned char *);
 
-}
+    void parseLimitMin(); //TODO
+
+    void parseLimitMinMax(); //TODO
 
 #endif

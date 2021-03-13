@@ -57,7 +57,7 @@ namespace antiwasm {
     }
 
     int parseTypeSection(int sizeOfSection, unsigned char *sectionContent) {
-        return 0; //TODO
+        return 0; //TODO XXX
     }
 
     int parseImportSection(int sizeOfSection, unsigned char *sectionContent) {
@@ -69,11 +69,16 @@ namespace antiwasm {
     }
 
     int parseTableSection(int sizeOfSection, unsigned char *sectionContent) {
-        return 0; //TODO
+        return 0; //TODO XXX
     }
 
     int parseMemorySection(int sizeOfSection, unsigned char *sectionContent) {
-        return 0; //TODO
+        u_int32_t memsInVector = sectionContent[0];
+        unsigned int pointer = 1;
+        for(u_int32_t i = 0; i < memsInVector; i++) {
+            auto parseMem();
+        }
+        return 0; //TODO XXX
     }
 
     int parseGlobalSection(int sizeOfSection, unsigned char *sectionContent) {
@@ -89,7 +94,7 @@ namespace antiwasm {
     }
 
     int parseElementSection(int sizeOfSection, unsigned char *sectionContent) {
-        return 0; //TODO
+        return 0; //TODO XXX
     }
 
     int parseCodeSection(int sizeOfSection, unsigned char *sectionContent) {
