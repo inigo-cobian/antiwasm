@@ -19,6 +19,9 @@ struct Limit {
     bool error = false; //TODO
 };
 
+const auto MIN_LIMIT_SIZE = 2;
+const auto MIN_MAX_LIMIT_SIZE = 3;
+
 namespace antiwasm {
     /**
      * Parses and returns a limit returning it as a struct.

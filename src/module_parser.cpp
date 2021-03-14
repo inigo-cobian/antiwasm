@@ -76,17 +76,12 @@ namespace antiwasm {
         u_int32_t memsInVector = sectionContent[0];
         unsigned int pointer = 1;
         for (u_int32_t i = 0; i < memsInVector; i++) {
-            BOOST_LOG_TRIVIAL(info) << "AAA";
             Memtype *memtype = parseMemType(&sectionContent[pointer]);
-            BOOST_LOG_TRIVIAL(info) << "BBB";
             if(memtype->limit->type == limit_min) {
-                BOOST_LOG_TRIVIAL(info) << "111";
-                pointer += 2;
+                pointer += MIN_LIMIT_SIZE;
             } else if (memtype->limit->type == limit_min_max) {
-                BOOST_LOG_TRIVIAL(info) << "222";
-                pointer += 3;
+                pointer += MIN_MAX_LIMIT_SIZE;
             }
-            BOOST_LOG_TRIVIAL(info) << "CCC";
             //TODO assign the memtype to the section
         }
         return 0;
