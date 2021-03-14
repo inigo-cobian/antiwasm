@@ -7,7 +7,8 @@
 #include <boost/log/trivial.hpp>
 #include <cstdint>
 #include "section_index.hpp"
-#include "../includes/section.hpp"
+#include "section.hpp"
+#include "memtype.hpp"
 
 namespace antiwasm {
     /**

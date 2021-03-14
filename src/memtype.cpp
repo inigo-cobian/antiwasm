@@ -2,7 +2,7 @@
 
 namespace antiwasm {
     Memtype* parseMemType(const unsigned char *memTypeContent) {
-        Memtype* memtype;
+        Memtype* memtype = new Memtype();
         memtype->limit = parseLimits(memTypeContent);
         return memtype;
     }
