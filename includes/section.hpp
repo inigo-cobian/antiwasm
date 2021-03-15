@@ -5,7 +5,7 @@
 #include "section_index.hpp"
 
 class Section {
-private:
+protected:
     antiwasm::SectionId sectionId_;
     int size_;
     unsigned char *content_;

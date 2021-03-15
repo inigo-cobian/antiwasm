@@ -2,7 +2,7 @@
 
 namespace antiwasm {
 
-    Section parseNextSection(unsigned char sectionId, int sectionSize,
+    Section *parseNextSection(unsigned char sectionId, int sectionSize,
                              unsigned char *sectionContent, int sectionPos) { //TODO gestión de errores y return type
 
         BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (unsigned int) sectionId
@@ -10,45 +10,44 @@ namespace antiwasm {
         switch (sectionId) {
             case (SectionId::Custom):
                 parseCustomSection(sectionSize, sectionContent);
-                return Section(SectionId::Custom, sectionSize, sectionContent, sectionPos);
+                return new Section(SectionId::Custom, sectionSize, sectionContent, sectionPos);
             case (SectionId::Type):
                 parseTypeSection(sectionSize, sectionContent);
-                return Section(SectionId::Type, sectionSize, sectionContent, sectionPos);
+                return new Section(SectionId::Type, sectionSize, sectionContent, sectionPos);
             case (SectionId::Import):
                 parseImportSection(sectionSize, sectionContent);
-                return Section(SectionId::Import, sectionSize, sectionContent, sectionPos);
+                return new Section(SectionId::Import, sectionSize, sectionContent, sectionPos);
             case (SectionId::Function):
                 parseFunctionSection(sectionSize, sectionContent);
-                return Section(SectionId::Function, sectionSize, sectionContent, sectionPos);
+                return new Section(SectionId::Function, sectionSize, sectionContent, sectionPos);
             case (SectionId::Table):
                 parseTableSection(sectionSize, sectionContent);
-                return Section(SectionId::Table, sectionSize, sectionContent, sectionPos);
+                return new Section(SectionId::Table, sectionSize, sectionContent, sectionPos);
             case (SectionId::Memory):
-                parseMemorySection(sectionSize, sectionContent);
-                return Section(SectionId::Memory, sectionSize, sectionContent, sectionPos);
+                return parseMemorySection(sectionSize, sectionContent);
             case (SectionId::Global):
                 parseGlobalSection(sectionSize, sectionContent);
-                return Section(SectionId::Global, sectionSize, sectionContent, sectionPos);
+                return new Section(SectionId::Global, sectionSize, sectionContent, sectionPos);
             case (SectionId::Export):
                 parseExportSection(sectionSize, sectionContent);
-                return Section(SectionId::Export, sectionSize, sectionContent, sectionPos);
+                return new Section(SectionId::Export, sectionSize, sectionContent, sectionPos);
             case (SectionId::Start):
                 parseStartSection(sectionSize, sectionContent);
-                return Section(SectionId::Start, sectionSize, sectionContent, sectionPos);
+                return new Section(SectionId::Start, sectionSize, sectionContent, sectionPos);
             case (SectionId::Element):
                 parseElementSection(sectionSize, sectionContent);
-                return Section(SectionId::Element, sectionSize, sectionContent, sectionPos);
+                return new Section(SectionId::Element, sectionSize, sectionContent, sectionPos);
             case (SectionId::Code):
                 parseCodeSection(sectionSize, sectionContent);
-                return Section(SectionId::Code, sectionSize, sectionContent, sectionPos);
+                return new Section(SectionId::Code, sectionSize, sectionContent, sectionPos);
             case (SectionId::Data):
                 parseDataSection(sectionSize, sectionContent);
-                return Section(SectionId::Data, sectionSize, sectionContent, sectionPos);
+                return new Section(SectionId::Data, sectionSize, sectionContent, sectionPos);
             default:
                 //TODO pretty error message
                 BOOST_LOG_TRIVIAL(error) << "[module_parser] Error at section " << std::hex << (unsigned int) sectionId
                                          << " with size " << sectionSize;
-                return Section(SectionId::Error, -1, nullptr, 0);
+                return new Section(SectionId::Error, -1, nullptr, 0);
         }
     }
 
@@ -72,9 +71,11 @@ namespace antiwasm {
         return 0; //TODO XXX
     }
 
-    int parseMemorySection(int sizeOfSection, unsigned char *sectionContent) {
+    MemorySection *parseMemorySection(int sizeOfSection, unsigned char *sectionContent) {
         u_int32_t memsInVector = sectionContent[0];
         unsigned int pointer = 1;
+        MemorySection *memorySection = new MemorySection(SectionId::Memory, sizeOfSection, sectionContent, 0); //TODO position
+
         for (u_int32_t i = 0; i < memsInVector; i++) {
             Memtype *memtype = parseMemType(&sectionContent[pointer]);
             if(memtype->limit->type == limit_min) {
@@ -82,9 +83,9 @@ namespace antiwasm {
             } else if (memtype->limit->type == limit_min_max) {
                 pointer += MIN_MAX_LIMIT_SIZE;
             }
-            //TODO assign the memtype to the section
+            memorySection->addMemtype(memtype);
         }
-        return 0;
+        return memorySection;
     }
 
     int parseGlobalSection(int sizeOfSection, unsigned char *sectionContent) {

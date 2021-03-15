@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_SUITE(module_test)
     {
         Module module(20);
         antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
-        Section section(sectionId, 10, nullptr, 0);
+        Section *section = new Section(sectionId, 10, nullptr, 0);
         module.addSection(section);
 
         auto returnValue = module.getSection(sectionId);
@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_SUITE(module_test)
     {
         Module module(20);
         antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
-        Section section(sectionId, 10, nullptr, 0);
+        Section *section = new Section(sectionId, 10, nullptr, 0);
         module.addSection(section);
 
         auto returnValue = module.containsSection(sectionId);

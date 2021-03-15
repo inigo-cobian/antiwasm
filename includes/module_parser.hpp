@@ -8,6 +8,7 @@
 #include <cstdint>
 #include "section_index.hpp"
 #include "section.hpp"
+#include "memsec.hpp"
 #include "memtype.hpp"
 
 namespace antiwasm {
@@ -19,7 +20,7 @@ namespace antiwasm {
      * @param sectionPos
      * @return The parsed section.
      */
-    Section parseNextSection(unsigned char sectionId, int sectionSize, unsigned char *sectionContent, int sectionPos);
+    Section *parseNextSection(unsigned char sectionId, int sectionSize, unsigned char *sectionContent, int sectionPos);
 
     /**
      * Parses a Custom section and generates its instance.
@@ -67,7 +68,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Memory section.
      */
-    int parseMemorySection(int sizeOfSection, unsigned char *sectionContent);
+    MemorySection *parseMemorySection(int sizeOfSection, unsigned char *sectionContent);
 
     /**
      * Parses a Global section and generates its instance.
