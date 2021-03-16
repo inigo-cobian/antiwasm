@@ -9,6 +9,7 @@
 #include "section_index.hpp"
 #include "section.hpp"
 #include "memsec.hpp"
+#include "tablesec.hpp"
 #include "memtype.hpp"
 
 namespace antiwasm {
