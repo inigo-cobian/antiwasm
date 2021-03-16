@@ -9,12 +9,9 @@ TableSection::~TableSection() {
 
 }
 
-void TableSection::addTabletype(Tabletype *tabletypes) {
-
-}
-
-Memtype *TableSection::getTabletype() {
-    return nullptr;
+void TableSection::addTabletype(Tabletype *tabletype) {
+    tabletypes.add(tabletype);
+    free(tabletype);
 }
 
 std::vector<Tabletype> TableSection::getTabletypeVector() {
