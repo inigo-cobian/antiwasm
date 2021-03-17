@@ -1,6 +1,6 @@
 #include "tablesec.hpp"
 
-TableSection::TableSection(antiwasm::SectionId sectionId, int size, unsigned char *content, int initialPos)
+TableSection::TableSection(SectionId sectionId, int size, unsigned char *content, int initialPos)
         : Section(sectionId, size, content, initialPos) {
 
 }

@@ -9,7 +9,7 @@ BOOST_AUTO_TEST_SUITE(section_test)
     {
         int sectionSize = 20;
         int sectionIndex = 128;
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
+        SectionId sectionId = SectionId::Type;
         unsigned char *sectionContentMock = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 20));
 
         Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
@@ -20,7 +20,7 @@ BOOST_AUTO_TEST_SUITE(section_test)
     {
         int sectionSize = 20;
         int sectionIndex = 128;
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
+        SectionId sectionId = SectionId::Type;
         unsigned char *sectionContentMock = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 20));
         Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
 
@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_SUITE(section_test)
     {
         int sectionSize = 20;
         int sectionIndex = 128;
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
+        SectionId sectionId = SectionId::Type;
         unsigned char *sectionContentMock = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 20));
         Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
 
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_SUITE(section_test)
     {
         int sectionSize = 4;
         int sectionIndex = 128;
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
+        SectionId sectionId = SectionId::Type;
         unsigned char *sectionContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * sectionSize));
         sectionContent[0] = 0xCA;
         sectionContent[1] = 0xFE;
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_SUITE(section_test)
     {
         int sectionSize = 4;
         int sectionIndex = 128;
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
+        SectionId sectionId = SectionId::Type;
         unsigned char *sectionContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * sectionSize));
         sectionContent[0] = 0xCA;
         sectionContent[1] = 0xFE;
@@ -82,7 +82,7 @@ BOOST_AUTO_TEST_SUITE(section_test)
     {
         int sectionSize = 4;
         int sectionIndex = 128;
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
+        SectionId sectionId = SectionId::Type;
         unsigned char *sectionContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * sectionSize));
         Section section(sectionId, sectionSize, sectionContent, sectionIndex);
 

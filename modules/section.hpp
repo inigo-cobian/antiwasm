@@ -2,11 +2,26 @@
 #define SECTION_HPP
 
 #include <iostream>
-#include "../includes/section_index.hpp"
+
+enum SectionId {
+    Custom = 0x00,
+    Type = 0x01,
+    Import = 0x02,
+    Function = 0x03,
+    Table = 0x04,
+    Memory = 0x05,
+    Global = 0x06,
+    Export = 0x07,
+    Start = 0x08,
+    Element = 0x09,
+    Code = 0x0A,
+    Data = 0x0B,
+    Error = 0xFF
+};
 
 class Section {
 protected:
-    antiwasm::SectionId sectionId_;
+    SectionId sectionId_;
     int size_;
     unsigned char *content_;
     int initialPos_;
@@ -18,7 +33,7 @@ public:
      * @param content
      * @param initialPos
      */
-    Section(antiwasm::SectionId sectionId, int size, unsigned char *content, int initialPos);
+    Section(SectionId sectionId, int size, unsigned char *content, int initialPos);
 
     /**
      * Destructor
@@ -29,7 +44,7 @@ public:
      * Gets the Id of the section.
      * @return The section Id.
      */
-    antiwasm::SectionId getSectionId();
+    SectionId getSectionId();
 
     /**
      * Gets the size of the section in bytes.

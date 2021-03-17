@@ -6,7 +6,6 @@
 #include <iostream>
 #include <boost/log/trivial.hpp>
 #include <cstdint>
-#include "section_index.hpp"
 #include "../modules/section.hpp"
 #include "../modules/memsec.hpp"
 #include "../modules/tablesec.hpp"

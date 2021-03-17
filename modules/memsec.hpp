@@ -9,7 +9,7 @@ class MemorySection : public Section {
 private:
     std::vector<Memtype> memTypes;
 public:
-    MemorySection(antiwasm::SectionId sectionId, int size, unsigned char *content, int initialPos);
+    MemorySection(SectionId sectionId, int size, unsigned char *content, int initialPos);
 
     ~MemorySection();
 

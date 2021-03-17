@@ -1,13 +1,13 @@
 #include "section.hpp"
 
-Section::Section(antiwasm::SectionId sectionId, int size, unsigned char *content, int initialPos) {
+Section::Section(SectionId sectionId, int size, unsigned char *content, int initialPos) {
     sectionId_ = sectionId;
     size_ = size;
     content_ = content;
     initialPos_ = initialPos;
 }
 
-antiwasm::SectionId Section::getSectionId() {
+SectionId Section::getSectionId() {
     return sectionId_;
 }
 
