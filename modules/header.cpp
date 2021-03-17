@@ -1,4 +1,4 @@
-#include "../includes/header.hpp"
+#include "header.hpp"
 
 namespace antiwasm {
     bool checkMagicNumber(const unsigned char *header) {

@@ -1,7 +1,7 @@
 #define BOOST_TEST_DYN_LINK
 
 #include <boost/test/unit_test.hpp>
-#include "../src/header.cpp"
+#include "../modules/header.cpp"
 
 BOOST_AUTO_TEST_SUITE(header_test)
 
