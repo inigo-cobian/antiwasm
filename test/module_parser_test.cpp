@@ -5,6 +5,7 @@
 #include "../src/memsec.cpp" //TODO remove if possible
 #include "../src/tablesec.cpp"
 #include "../src/tabletype.cpp"
+#include "../src/reftype.cpp"
 
 BOOST_AUTO_TEST_SUITE(module_parser_test)
 

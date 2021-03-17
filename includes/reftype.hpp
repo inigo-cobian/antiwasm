@@ -10,6 +10,13 @@ enum Reftype : uint32_t {
     externref = 0x6F
 };
 
-
+namespace antiwasm {
+    /**
+     * Parses and returns the reftype value.
+     * @param reftype
+     * @return
+     */
+    Reftype parseReftype(const unsigned char reftype);
+}
 
 #endif //ANTIWASM_REFTYPE_HPP
