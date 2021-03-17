@@ -73,10 +73,12 @@ BOOST_AUTO_TEST_SUITE(module_parser_test)
     BOOST_AUTO_TEST_CASE(parseTableSection_emptySectionReturnsOkey)
     {
         int sizeOfSection = 0;
+        auto *tableSectionContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 1));
+        tableSectionContent[0] = 0; //Número de tabletypes en la sección
 
-        auto *result = antiwasm::parseNextSection(antiwasm::SectionId::Table, sizeOfSection, nullptr, 0);
+        auto *result = antiwasm::parseNextSection(antiwasm::SectionId::Table, sizeOfSection, tableSectionContent, 0);
 
-        //BOOST_CHECK_EQUAL(antiwasm::SectionId::Table, result->getSectionId()); TODO
+        BOOST_CHECK_EQUAL(antiwasm::SectionId::Table, result->getSectionId());
     }
 
     BOOST_AUTO_TEST_CASE(parseMemorySection_emptySectionReturnsOkey)
