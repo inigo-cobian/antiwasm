@@ -9,6 +9,7 @@
 #include "../modules/section.hpp"
 #include "../modules/memsec.hpp"
 #include "../modules/tablesec.hpp"
+#include "../modules/typesec.cpp"
 
 namespace antiwasm {
     /**
@@ -35,7 +36,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Type section.
      */
-    int parseTypeSection(int sizeOfSection, unsigned char *sectionContent);
+    TypeSection parseTypeSection(int sizeOfSection, unsigned char *sectionContent);
 
     /**
      * Parses an Import section and generates its instance.

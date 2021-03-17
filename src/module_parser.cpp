@@ -12,8 +12,7 @@ namespace antiwasm {
                 parseCustomSection(sectionSize, sectionContent);
                 return Section(SectionId::Custom, sectionSize, sectionContent, sectionPos);
             case (SectionId::Type):
-                parseTypeSection(sectionSize, sectionContent);
-                return Section(SectionId::Type, sectionSize, sectionContent, sectionPos);
+                return parseTypeSection(sectionSize, sectionContent);
             case (SectionId::Import):
                 parseImportSection(sectionSize, sectionContent);
                 return Section(SectionId::Import, sectionSize, sectionContent, sectionPos);
@@ -54,8 +53,9 @@ namespace antiwasm {
         return 0; //TODO
     }
 
-    int parseTypeSection(int sizeOfSection, unsigned char *sectionContent) {
-        return 0; //TODO XXX
+    TypeSection parseTypeSection(int sizeOfSection, unsigned char *sectionContent) { //TODO XXX
+        TypeSection typeSection(SectionId::Type, sizeOfSection, sectionContent, 0); //TODO position
+        return typeSection;
     }
 
     int parseImportSection(int sizeOfSection, unsigned char *sectionContent) {
@@ -112,7 +112,7 @@ namespace antiwasm {
     }
 
     int parseElementSection(int sizeOfSection, unsigned char *sectionContent) {
-        return 0; //TODO XXX
+        return 0; //TODO
     }
 
     int parseCodeSection(int sizeOfSection, unsigned char *sectionContent) {

@@ -2,9 +2,10 @@
 #define ANTIWASM_RESULTTYPE_HPP
 
 #include <vector>
+#include "valtype.hpp"
 
 struct Resulttype {
-    Vector<Valtype> valtypeVector;
+    std::vector<Valtype> valtypeVector;
 };
 
 namespace antiwasm {

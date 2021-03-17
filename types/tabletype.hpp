@@ -9,7 +9,7 @@ struct Tabletype {
     Limit limit;
 };
 
-namespace antiwasm {//TODO change
+namespace antiwasm {
     Tabletype parseTableType(const unsigned char *tableTypeContent);
 }
 
