@@ -8,7 +8,7 @@ union Memtype {
 };
 
 namespace antiwasm {
-    Memtype* parseMemType(const unsigned char *memTypeContent);
+    Memtype parseMemType(const unsigned char *memTypeContent);
 }
 
 #endif //ANTIWASM_MEMTYPE_HPP

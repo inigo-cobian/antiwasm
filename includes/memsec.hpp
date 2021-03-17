@@ -13,7 +13,7 @@ public:
 
     ~MemorySection();
 
-    void addMemtype(Memtype *memtype);
+    void addMemtype(Memtype memtype);
 
     Memtype *getMemtype();
 

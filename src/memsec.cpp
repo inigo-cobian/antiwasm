@@ -8,8 +8,8 @@ MemorySection::~MemorySection() {
 
 }
 
-void MemorySection::addMemtype(Memtype *memtype) {
-    //TODO
+void MemorySection::addMemtype(Memtype memtype) {
+    memTypes.push_back(memtype);
 }
 
 Memtype *MemorySection::getMemtype() {
