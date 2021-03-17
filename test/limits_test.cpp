@@ -10,9 +10,9 @@ BOOST_AUTO_TEST_SUITE(limits_test)
         limitVec[0] = limit_types::limit_min;
         limitVec[1] = 0x05;
 
-        auto *returnLimit = antiwasm::parseLimits(limitVec);
+        auto returnLimit = antiwasm::parseLimits(limitVec);
 
-        BOOST_CHECK_EQUAL(returnLimit->type, limit_types::limit_min);
+        BOOST_CHECK_EQUAL(returnLimit.type, limit_types::limit_min);
     }
 
     BOOST_AUTO_TEST_CASE(parseLimits_returnsTheTypeOfMinMaxLimit) {
@@ -21,9 +21,9 @@ BOOST_AUTO_TEST_SUITE(limits_test)
         limitVec[1] = 0x05;
         limitVec[2] = 0x08;
 
-        Limit *returnLimit = antiwasm::parseLimits(limitVec);
+        Limit returnLimit = antiwasm::parseLimits(limitVec);
 
-        BOOST_CHECK_EQUAL(returnLimit->type, limit_types::limit_min_max);
+        BOOST_CHECK_EQUAL(returnLimit.type, limit_types::limit_min_max);
     }
 
     BOOST_AUTO_TEST_CASE(parseLimits_returnsAnErrorCodeWhenLimitsAreIncorrect) {
@@ -32,9 +32,9 @@ BOOST_AUTO_TEST_SUITE(limits_test)
         limitVec[1] = 0x05;
         limitVec[2] = 0x08;
 
-        Limit *returnLimit = antiwasm::parseLimits(limitVec);
+        Limit returnLimit = antiwasm::parseLimits(limitVec);
 
-        BOOST_CHECK_EQUAL(returnLimit->error, true);
+        BOOST_CHECK_EQUAL(returnLimit.error, true);
     }
 
 BOOST_AUTO_TEST_SUITE_END() //limits_test

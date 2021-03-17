@@ -4,7 +4,7 @@
 #include "limits.hpp"
 
 union Memtype {
-    Limit* limit;
+    Limit limit;
 };
 
 namespace antiwasm {

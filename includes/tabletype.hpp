@@ -6,7 +6,7 @@
 
 struct Tabletype {
     Reftype reftype;
-    Limit* limit;
+    Limit limit;
 };
 
 namespace antiwasm {//TODO change

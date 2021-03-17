@@ -28,14 +28,14 @@ namespace antiwasm {
      * @param limitSection
      * @return
      */
-    Limit *parseLimits(const unsigned char *limitSection);
+    Limit parseLimits(const unsigned char *limitSection);
 
     /**
      * Generates a limit [min_-MAXUINT32].
      * @param min_
      * @return
      */
-    Limit *parseLimitMin(uint32_t min_);
+    Limit parseLimitMin(uint32_t min_);
 
     /**
      * Generates a limit [min-max]
@@ -43,7 +43,7 @@ namespace antiwasm {
      * @param max_
      * @return
      */
-    Limit *parseLimitMinMax(uint32_t min_, uint32_t max_);
+    Limit parseLimitMinMax(uint32_t min_, uint32_t max_);
 
     /**
      * Checks if the limit range is valid.
