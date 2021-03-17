@@ -82,6 +82,17 @@ BOOST_AUTO_TEST_SUITE(module_parser_test)
     BOOST_AUTO_TEST_CASE(parseMemorySection_emptySectionReturnsOkey)
     {
         int sizeOfSection = 0;
+        auto *memorySectionContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 1));
+        memorySectionContent[0] = 0; //Número de memtypes en la sección
+
+        auto *result = antiwasm::parseNextSection(antiwasm::SectionId::Memory, sizeOfSection, memorySectionContent, 0);
+
+        BOOST_CHECK_EQUAL(antiwasm::SectionId::Memory, result->getSectionId());
+    }
+
+    BOOST_AUTO_TEST_CASE(parseMemorySection_realisticSectionReturnsOkey)
+    {
+        int sizeOfSection = 0;
         auto *memorySectionContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 8));
         memorySectionContent[0] = 3; //Número de memtypes en la sección
         memorySectionContent[1] = limit_min; memorySectionContent[2] = 0x12;
