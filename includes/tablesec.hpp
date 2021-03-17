@@ -14,7 +14,7 @@ public:
 
     ~TableSection();
 
-    void addTabletype(Tabletype *tabletype);
+    void addTabletype(Tabletype tabletype);
 
     std::vector<Tabletype> getTabletypeVector();
 };

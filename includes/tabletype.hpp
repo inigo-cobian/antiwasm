@@ -10,7 +10,7 @@ struct Tabletype {
 };
 
 namespace antiwasm {//TODO change
-    Tabletype* parseTableType(const unsigned char *tableTypeContent);
+    Tabletype parseTableType(const unsigned char *tableTypeContent);
 }
 
 #endif //ANTIWASM_TABLETYPE_HPP

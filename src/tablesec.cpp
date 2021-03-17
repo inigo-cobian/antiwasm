@@ -9,8 +9,8 @@ TableSection::~TableSection() {
 
 }
 
-void TableSection::addTabletype(Tabletype *tabletype) {
-    //TODO
+void TableSection::addTabletype(Tabletype tabletype) {
+    tabletypes.push_back(tabletype);
 }
 
 std::vector<Tabletype> TableSection::getTabletypeVector() {

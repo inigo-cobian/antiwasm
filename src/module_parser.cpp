@@ -72,10 +72,10 @@ namespace antiwasm {
         unsigned int pointer = 1;
         TableSection *tableSection = new TableSection(SectionId::Table, sizeOfSection, sectionContent, 0); //TODO position
         for (u_int32_t i = 0; i < tablesInVector; i++) {
-            Tabletype *tabletype = parseTableType(&sectionContent[pointer]);
-            if(tabletype->limit->type == limit_min) {
+            Tabletype tabletype = parseTableType(&sectionContent[pointer]);
+            if(tabletype.limit->type == limit_min) {
                 pointer += REFTYPE_SIZE + MIN_LIMIT_SIZE;
-            } else if (tabletype->limit->type == limit_min_max) {
+            } else if (tabletype.limit->type == limit_min_max) {
                 pointer += REFTYPE_SIZE + MIN_MAX_LIMIT_SIZE;
             }
             tableSection->addTabletype(tabletype);
