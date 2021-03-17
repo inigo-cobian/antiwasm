@@ -2,7 +2,7 @@
 
 namespace antiwasm {
 
-    Section *parseNextSection(unsigned char sectionId, int sectionSize,
+    Section parseNextSection(unsigned char sectionId, int sectionSize,
                              unsigned char *sectionContent, int sectionPos) { //TODO gestión de errores y return type
 
         BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (unsigned int) sectionId
@@ -10,44 +10,43 @@ namespace antiwasm {
         switch (sectionId) {
             case (SectionId::Custom):
                 parseCustomSection(sectionSize, sectionContent);
-                return new Section(SectionId::Custom, sectionSize, sectionContent, sectionPos);
+                return Section(SectionId::Custom, sectionSize, sectionContent, sectionPos);
             case (SectionId::Type):
                 parseTypeSection(sectionSize, sectionContent);
-                return new Section(SectionId::Type, sectionSize, sectionContent, sectionPos);
+                return Section(SectionId::Type, sectionSize, sectionContent, sectionPos);
             case (SectionId::Import):
                 parseImportSection(sectionSize, sectionContent);
-                return new Section(SectionId::Import, sectionSize, sectionContent, sectionPos);
+                return Section(SectionId::Import, sectionSize, sectionContent, sectionPos);
             case (SectionId::Function):
                 parseFunctionSection(sectionSize, sectionContent);
-                return new Section(SectionId::Function, sectionSize, sectionContent, sectionPos);
+                return Section(SectionId::Function, sectionSize, sectionContent, sectionPos);
             case (SectionId::Table):
-                parseTableSection(sectionSize, sectionContent);
-                return new Section(SectionId::Table, sectionSize, sectionContent, sectionPos);
+                return parseTableSection(sectionSize, sectionContent);
             case (SectionId::Memory):
                 return parseMemorySection(sectionSize, sectionContent);
             case (SectionId::Global):
                 parseGlobalSection(sectionSize, sectionContent);
-                return new Section(SectionId::Global, sectionSize, sectionContent, sectionPos);
+                return Section(SectionId::Global, sectionSize, sectionContent, sectionPos);
             case (SectionId::Export):
                 parseExportSection(sectionSize, sectionContent);
-                return new Section(SectionId::Export, sectionSize, sectionContent, sectionPos);
+                return Section(SectionId::Export, sectionSize, sectionContent, sectionPos);
             case (SectionId::Start):
                 parseStartSection(sectionSize, sectionContent);
-                return new Section(SectionId::Start, sectionSize, sectionContent, sectionPos);
+                return Section(SectionId::Start, sectionSize, sectionContent, sectionPos);
             case (SectionId::Element):
                 parseElementSection(sectionSize, sectionContent);
-                return new Section(SectionId::Element, sectionSize, sectionContent, sectionPos);
+                return Section(SectionId::Element, sectionSize, sectionContent, sectionPos);
             case (SectionId::Code):
                 parseCodeSection(sectionSize, sectionContent);
-                return new Section(SectionId::Code, sectionSize, sectionContent, sectionPos);
+                return Section(SectionId::Code, sectionSize, sectionContent, sectionPos);
             case (SectionId::Data):
                 parseDataSection(sectionSize, sectionContent);
-                return new Section(SectionId::Data, sectionSize, sectionContent, sectionPos);
+                return Section(SectionId::Data, sectionSize, sectionContent, sectionPos);
             default:
                 //TODO pretty error message
                 BOOST_LOG_TRIVIAL(error) << "[module_parser] Error at section " << std::hex << (unsigned int) sectionId
                                          << " with size " << sectionSize;
-                return new Section(SectionId::Error, -1, nullptr, 0);
+                return Section(SectionId::Error, -1, nullptr, 0);
         }
     }
 
@@ -67,10 +66,10 @@ namespace antiwasm {
         return 0; //TODO
     }
 
-    TableSection *parseTableSection(int sizeOfSection, unsigned char *sectionContent) {
+    TableSection parseTableSection(int sizeOfSection, unsigned char *sectionContent) {
         u_int32_t tablesInVector = sectionContent[0];
         unsigned int pointer = 1;
-        TableSection *tableSection = new TableSection(SectionId::Table, sizeOfSection, sectionContent, 0); //TODO position
+        TableSection tableSection(SectionId::Table, sizeOfSection, sectionContent, 0); //TODO position
         for (u_int32_t i = 0; i < tablesInVector; i++) {
             Tabletype tabletype = parseTableType(&sectionContent[pointer]);
             if(tabletype.limit.type == limit_min) {
@@ -78,15 +77,15 @@ namespace antiwasm {
             } else if (tabletype.limit.type == limit_min_max) {
                 pointer += REFTYPE_SIZE + MIN_MAX_LIMIT_SIZE;
             }
-            tableSection->addTabletype(tabletype);
+            tableSection.addTabletype(tabletype);
         }
         return tableSection;
     }
 
-    MemorySection *parseMemorySection(int sizeOfSection, unsigned char *sectionContent) {
+    MemorySection parseMemorySection(int sizeOfSection, unsigned char *sectionContent) {
         u_int32_t memsInVector = sectionContent[0];
         unsigned int pointer = 1;
-        MemorySection *memorySection = new MemorySection(SectionId::Memory, sizeOfSection, sectionContent, 0); //TODO position
+        MemorySection memorySection(SectionId::Memory, sizeOfSection, sectionContent, 0); //TODO position
 
         for (u_int32_t i = 0; i < memsInVector; i++) {
             Memtype memtype = parseMemType(&sectionContent[pointer]);
@@ -95,7 +94,7 @@ namespace antiwasm {
             } else if (memtype.limit.type == limit_min_max) {
                 pointer += MIN_MAX_LIMIT_SIZE;
             }
-            memorySection->addMemtype(memtype);
+            memorySection.addMemtype(memtype);
         }
         return memorySection;
     }

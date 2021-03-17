@@ -4,9 +4,8 @@ Module::Module(int size) {
     size_ = size;
 }
 
-void Module::addSection(Section *section) {
-    sections_.insert({section->getSectionId(), *section});
-    free(section);
+void Module::addSection(Section section) {
+    sections_.insert({section.getSectionId(), section});
 }
 
 Section Module::getSection(antiwasm::SectionId sectionId) {

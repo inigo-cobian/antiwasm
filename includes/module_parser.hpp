@@ -20,7 +20,7 @@ namespace antiwasm {
      * @param sectionPos
      * @return The parsed section.
      */
-    Section *parseNextSection(unsigned char sectionId, int sectionSize, unsigned char *sectionContent, int sectionPos);
+    Section parseNextSection(unsigned char sectionId, int sectionSize, unsigned char *sectionContent, int sectionPos);
 
     /**
      * Parses a Custom section and generates its instance.
@@ -60,7 +60,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Table section.
      */
-    TableSection *parseTableSection(int sizeOfSection, unsigned char *sectionContent);
+    TableSection parseTableSection(int sizeOfSection, unsigned char *sectionContent);
 
     /**
      * Parses a Memory section and generates its instance.
@@ -68,7 +68,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Memory section.
      */
-    MemorySection *parseMemorySection(int sizeOfSection, unsigned char *sectionContent);
+    MemorySection parseMemorySection(int sizeOfSection, unsigned char *sectionContent);
 
     /**
      * Parses a Global section and generates its instance.
