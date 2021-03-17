@@ -67,8 +67,20 @@ namespace antiwasm {
         return 0; //TODO
     }
 
-    int parseTableSection(int sizeOfSection, unsigned char *sectionContent) {
-        return 0; //TODO XXX
+    TableSection *parseTableSection(int sizeOfSection, unsigned char *sectionContent) {
+        u_int32_t tablesInVector = sectionContent[0];
+        unsigned int pointer = 1;
+        TableSection *tableSection = new TableSection(SectionId::Table, sizeOfSection, sectionContent, 0); //TODO position
+        for (u_int32_t i = 0; i < tablesInVector; i++) {
+            Tabletype *tabletype = parseTableType(&sectionContent[pointer]);
+            if(tabletype->limit->type == limit_min) {
+                pointer += REFTYPE_SIZE + MIN_LIMIT_SIZE;
+            } else if (tabletype->limit->type == limit_min_max) {
+                pointer += REFTYPE_SIZE + MIN_MAX_LIMIT_SIZE;
+            }
+            tableSection->addTabletype(tabletype);
+        }
+        return tableSection;
     }
 
     MemorySection *parseMemorySection(int sizeOfSection, unsigned char *sectionContent) {

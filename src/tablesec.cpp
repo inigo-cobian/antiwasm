@@ -10,8 +10,7 @@ TableSection::~TableSection() {
 }
 
 void TableSection::addTabletype(Tabletype *tabletype) {
-    tabletypes.add(tabletype);
-    free(tabletype);
+    //TODO
 }
 
 std::vector<Tabletype> TableSection::getTabletypeVector() {

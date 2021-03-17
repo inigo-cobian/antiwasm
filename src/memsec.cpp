@@ -9,7 +9,7 @@ MemorySection::~MemorySection() {
 }
 
 void MemorySection::addMemtype(Memtype *memtype) {
-
+    //TODO
 }
 
 Memtype *MemorySection::getMemtype() {

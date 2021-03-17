@@ -10,7 +10,6 @@
 #include "section.hpp"
 #include "memsec.hpp"
 #include "tablesec.hpp"
-#include "memtype.hpp"
 
 namespace antiwasm {
     /**
@@ -61,7 +60,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Table section.
      */
-    int parseTableSection(int sizeOfSection, unsigned char *sectionContent);
+    TableSection *parseTableSection(int sizeOfSection, unsigned char *sectionContent);
 
     /**
      * Parses a Memory section and generates its instance.
