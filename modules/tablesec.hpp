@@ -3,8 +3,8 @@
 
 #include <vector>
 #include "section.hpp"
-#include "reftype.hpp"
-#include "tabletype.hpp"
+#include "../types/reftype.hpp"
+#include "../types/tabletype.hpp"
 
 class TableSection : public Section {
 private:

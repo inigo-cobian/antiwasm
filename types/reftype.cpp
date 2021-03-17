@@ -1,4 +1,4 @@
-#include "../includes/reftype.hpp"
+#include "reftype.hpp"
 
 namespace antiwasm {
     Reftype parseReftype(const unsigned char reftype) {

@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "section.hpp"
-#include "memtype.hpp"
+#include "../types/memtype.hpp"
 
 class MemorySection : public Section {
 private:

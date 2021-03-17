@@ -7,9 +7,9 @@
 #include <boost/log/trivial.hpp>
 #include <cstdint>
 #include "section_index.hpp"
-#include "section.hpp"
-#include "memsec.hpp"
-#include "tablesec.hpp"
+#include "../modules/section.hpp"
+#include "../modules/memsec.hpp"
+#include "../modules/tablesec.hpp"
 
 namespace antiwasm {
     /**

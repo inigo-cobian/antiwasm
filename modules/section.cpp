@@ -1,4 +1,4 @@
-#include "../includes/section.hpp"
+#include "section.hpp"
 
 Section::Section(antiwasm::SectionId sectionId, int size, unsigned char *content, int initialPos) {
     sectionId_ = sectionId;

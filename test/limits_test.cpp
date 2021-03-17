@@ -1,7 +1,7 @@
 #define BOOST_TEST_DYN_LINK
 
 #include <boost/test/unit_test.hpp>
-#include "../src/limits.cpp"
+#include "../types/limits.cpp"
 
 BOOST_AUTO_TEST_SUITE(limits_test)
 

@@ -2,7 +2,7 @@
 #define SECTION_HPP
 
 #include <iostream>
-#include "section_index.hpp"
+#include "../includes/section_index.hpp"
 
 class Section {
 protected:

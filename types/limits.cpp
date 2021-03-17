@@ -1,4 +1,4 @@
-#include "../includes/limits.hpp"
+#include "limits.hpp"
 
 namespace antiwasm {
     Limit parseLimits(const unsigned char *limitSection) {

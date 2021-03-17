@@ -1,4 +1,4 @@
-#include "../includes/memtype.hpp"
+#include "memtype.hpp"
 
 namespace antiwasm {
     Memtype parseMemType(const unsigned char *memTypeContent) {

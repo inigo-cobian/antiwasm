@@ -1,4 +1,4 @@
-#include "../includes/tabletype.hpp"
+#include "tabletype.hpp"
 
 namespace antiwasm {
     Tabletype parseTableType(const unsigned char *tableTypeContent) {

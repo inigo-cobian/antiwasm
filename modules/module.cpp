@@ -1,4 +1,4 @@
-#include "../includes/module.hpp"
+#include "module.hpp"
 
 Module::Module(int size) {
     size_ = size;
