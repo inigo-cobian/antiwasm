@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_SUITE(numtype_test)
 
         auto returnNumtype = antiwasm::parseNumType(numtypeContent);
 
-        BOOST_CHECK_EQUAL(Numtype::invalid, returnNumtype);
+        BOOST_CHECK_EQUAL(Numtype::invalid_numtype, returnNumtype);
     }
 
 

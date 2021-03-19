@@ -12,7 +12,7 @@ namespace antiwasm {
             return f64;
         } else {
             //TODO error message
-            return invalid;
+            return invalid_numtype;
         }
     }
 }

@@ -8,7 +8,7 @@ enum Numtype : int32_t {
     i64 = 0x7E,
     f32 = 0x7D,
     f64 = 0x7C,
-    invalid = 0xFF
+    invalid_numtype = 0xFF
 };
 
 namespace antiwasm {
