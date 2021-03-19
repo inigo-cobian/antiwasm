@@ -6,8 +6,9 @@ namespace antiwasm {
             return funref;
         } else if (reftype == externref) {
             return externref;
-        } else { //TODO error
-            return funref;
+        } else {
+            //TODO error message
+            return invalid_reftype;
         }
     }
 }

@@ -7,7 +7,8 @@ const auto REFTYPE_SIZE = 1;
 
 enum Reftype : uint32_t {
     funref = 0x70,
-    externref = 0x6F
+    externref = 0x6F,
+    invalid_reftype = 0xFF
 };
 
 namespace antiwasm {
