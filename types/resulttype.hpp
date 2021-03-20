@@ -6,6 +6,7 @@
 
 struct Resulttype {
     std::vector<Valtype> valtypeVector;
+    bool error = false;
 };
 
 namespace antiwasm {
