@@ -9,7 +9,7 @@ struct Functype {
 };
 
 namespace antiwasm {
-    Resulttype parseFunctype(const unsigned char *resultTypeContent);
+    Functype parseFunctype(const unsigned char *funcTypeContent);
 }
 
 #endif //ANTIWASM_FUNCTYPE_HPP

@@ -1,6 +1,6 @@
 #include "functype.hpp"
 
-ResultType antiwasm::parseResulType(const unsigned char *resultTypeContent) {
-    return ResultType{} //TODO
+Functype antiwasm::parseFunctype(const unsigned char *funcTypeContent) {
+    return Functype{}; //TODO
 }
 
