@@ -2,10 +2,12 @@
 
 namespace antiwasm {
     Valtype parseValtype(const unsigned char valtypeContent) {
+        Valtype valtype;
         if(valtypeContent <= i32 && valtypeContent >= f64) {
-            parseNumType(valtypeContent);
+            valtype.numtype = parseNumType(valtypeContent);
         } else if (valtypeContent == funref || valtypeContent == externref) {
-            parseReftype(valtypeContent);
-        }
+            valtype.reftype = parseReftype(valtypeContent);
+        } //TODO error case
+        return valtype;
     }
 }
