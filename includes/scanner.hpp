@@ -7,11 +7,11 @@
 #include <fstream>
 #include <cstring>
 #include <cstddef>
-#include "header.hpp"
+#include <boost/log/trivial.hpp>
 #include "module_parser.hpp"
 #include "driver.hpp"
-#include "module.hpp"
-#include <boost/log/trivial.hpp>
+#include "../modules/header.hpp"
+#include "../modules/module.hpp"
 
 namespace antiwasm {
 
