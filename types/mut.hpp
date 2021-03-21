@@ -14,7 +14,7 @@ namespace antiwasm {
      * @param mutContent
      * @return
      */
-    Mut parseMut(const unsigned char mutContent);
+    Mut parseMut(const uint8_t mutContent);
 }
 
 #endif //ANTIWASM_MUT_HPP

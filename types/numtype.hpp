@@ -18,7 +18,7 @@ namespace antiwasm {
      * @param numtypeContent
      * @return
      */
-    Numtype parseNumType(const unsigned char numtypeContent);
+    Numtype parseNumType(const uint8_t numtypeContent);
 }
 
 #endif //ANTIWASM_NUMTYPE_HPP

@@ -8,7 +8,7 @@ class TypeSection : public Section {
 private:
     std::vector<Functype> functypeVector;
 public:
-    TypeSection(SectionId sectionId, int size, unsigned char *content, int initialPos);
+    TypeSection(SectionId sectionId, int size, uint8_t *content, int initialPos);
 
     ~TypeSection();
 

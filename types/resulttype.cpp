@@ -1,7 +1,7 @@
 #include "resulttype.hpp"
 
 namespace antiwasm {
-    Resulttype parseResulttype(const unsigned char *resultTypeContent) {
+    Resulttype parseResulttype(const uint8_t *resultTypeContent) {
         Resulttype resulttype;
         auto elementsInResulttype = resultTypeContent[0];
         auto pointer = 1;

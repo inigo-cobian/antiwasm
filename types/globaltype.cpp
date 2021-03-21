@@ -1,7 +1,7 @@
 #include "globaltype.hpp"
 
 namespace antiwasm {
-    Globaltype parseGlobaltype(const unsigned char *globaltypeContent) {
+    Globaltype parseGlobaltype(const uint8_t *globaltypeContent) {
         Globaltype globaltype{};
         globaltype.valtype = parseValtype(globaltypeContent[0]);
         if(globaltype.valtype.error) {

@@ -6,7 +6,7 @@
 BOOST_AUTO_TEST_SUITE(reftype_test)
 
     BOOST_AUTO_TEST_CASE(parseReftype_caseFunref) {
-        unsigned char reftypeContent = 0x70;
+        uint8_t reftypeContent = 0x70;
 
         auto returnReftype = antiwasm::parseReftype(reftypeContent);
 
@@ -14,7 +14,7 @@ BOOST_AUTO_TEST_SUITE(reftype_test)
     }
 
     BOOST_AUTO_TEST_CASE(parseReftype_caseExternref) {
-        unsigned char reftypeContent = 0x6F;
+        uint8_t reftypeContent = 0x6F;
 
         auto returnReftype = antiwasm::parseReftype(reftypeContent);
 
@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_SUITE(reftype_test)
     }
 
     BOOST_AUTO_TEST_CASE(parseReftype_casefunref) {
-        unsigned char reftypeContent = 0xCA; //Invalid
+        uint8_t reftypeContent = 0xCA; //Invalid
 
         auto returnReftype = antiwasm::parseReftype(reftypeContent);
 

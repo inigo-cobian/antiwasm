@@ -7,7 +7,7 @@ bool Driver::error_;
 size_t Driver::fileSize_;
 size_t Driver::pointer_;
 std::ifstream Driver::wasmFile_;
-char *Driver::buffer_;
+uint8_t *Driver::buffer_;
 bool Driver::isParsing_;
 
 std::shared_ptr<Driver> Driver::GetInstance() {
@@ -47,14 +47,14 @@ uint8_t *Driver::GetNextBytes(size_t nBytesToBeRead) {
     return (uint8_t *) buffer;
 }
 
-unsigned char *Driver::GetNextSectionHeader() {
+uint8_t *Driver::GetNextSectionHeader() {
     return Driver::GetNextBytes(SIZE_OF_SECTION_HEADER);
 }
 
-unsigned char *Driver::GetUTF8String() //TODO not ready to be used
+uint8_t *Driver::GetUTF8String() //TODO not ready to be used
 {
     BOOST_LOG_TRIVIAL(debug) << "[Driver] Getting a UTF8 String";
-    unsigned char delimiter = 0x03;
+    uint8_t delimiter = 0x03;
     std::string temp;
 
     instance_->wasmFile_.seekg(instance_->pointer_, std::ios::beg);

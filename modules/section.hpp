@@ -23,7 +23,7 @@ class Section {
 protected:
     SectionId sectionId_;
     int size_;
-    unsigned char *content_;
+    uint8_t *content_;
     int initialPos_;
 public:
     /**
@@ -33,7 +33,7 @@ public:
      * @param content
      * @param initialPos
      */
-    Section(SectionId sectionId, int size, unsigned char *content, int initialPos);
+    Section(SectionId sectionId, int size, uint8_t *content, int initialPos);
 
     /**
      * Destructor
@@ -56,7 +56,7 @@ public:
      * Gets the content of the section as bytes.
      * @return The content of the section as bytes
      */
-    unsigned char *getContent();
+    uint8_t *getContent();
 
     /**
      * Gets the initial position of the section inside the module.

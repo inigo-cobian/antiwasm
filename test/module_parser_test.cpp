@@ -12,8 +12,8 @@ BOOST_AUTO_TEST_SUITE(module_parser_test)
     {
         SectionId sectionId = SectionId::Custom;
         int sizeOfSection = 1;
-        auto *contentOfSection = static_cast<unsigned char *>(malloc(
-                sizeof(unsigned char) * sizeOfSection)); //Does not matter
+        auto *contentOfSection = static_cast<uint8_t *>(malloc(
+                sizeof(uint8_t) * sizeOfSection)); //Does not matter
 
         auto result = antiwasm::parseNextSection(sectionId, sizeOfSection, contentOfSection, 0);
 
@@ -24,10 +24,9 @@ BOOST_AUTO_TEST_SUITE(module_parser_test)
 
     BOOST_AUTO_TEST_CASE(parseNextSection_createsABadSectionIfEncountersAnUnknownSection)
     {
-        unsigned char nonExistingSectionId = 100;
+        uint8_t nonExistingSectionId = 100;
         int sizeOfSection = 1;
-        auto *contentOfSection = static_cast<unsigned char *>(malloc(
-                sizeof(unsigned char) * sizeOfSection)); //Does not matter
+        auto *contentOfSection = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * sizeOfSection));
 
         auto result = antiwasm::parseNextSection(nonExistingSectionId, sizeOfSection, contentOfSection, 0);
 
@@ -73,7 +72,7 @@ BOOST_AUTO_TEST_SUITE(module_parser_test)
     BOOST_AUTO_TEST_CASE(parseTableSection_emptySectionReturnsOkey)
     {
         int sizeOfSection = 0;
-        auto *tableSectionContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 1));
+        auto *tableSectionContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 1));
         tableSectionContent[0] = 0; //Número de tabletypes en la sección
 
         auto result = antiwasm::parseNextSection(SectionId::Table, sizeOfSection, tableSectionContent, 0);
@@ -84,7 +83,7 @@ BOOST_AUTO_TEST_SUITE(module_parser_test)
     BOOST_AUTO_TEST_CASE(parseMemorySection_emptySectionReturnsOkey)
     {
         int sizeOfSection = 0;
-        auto *memorySectionContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 1));
+        auto *memorySectionContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 1));
         memorySectionContent[0] = 0; //Número de memtypes en la sección
 
         auto result = antiwasm::parseNextSection(SectionId::Memory, sizeOfSection, memorySectionContent, 0);
@@ -95,7 +94,7 @@ BOOST_AUTO_TEST_SUITE(module_parser_test)
     BOOST_AUTO_TEST_CASE(parseMemorySection_realisticSectionReturnsOkey)
     {
         int sizeOfSection = 0;
-        auto *memorySectionContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 8));
+        auto *memorySectionContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 8));
         memorySectionContent[0] = 3; //Número de memtypes en la sección
         memorySectionContent[1] = limit_min, memorySectionContent[2] = 0x12;
         memorySectionContent[3] = limit_min_max, memorySectionContent[4] = 0x00, memorySectionContent[5] = 0x0F;

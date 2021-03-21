@@ -1,7 +1,7 @@
 #include "reftype.hpp"
 
 namespace antiwasm {
-    Reftype parseReftype(const unsigned char reftype) {
+    Reftype parseReftype(const uint8_t reftype) {
         if (reftype == funref) {
             return funref;
         } else if (reftype == externref) {

@@ -29,7 +29,7 @@ namespace antiwasm {
      * @param limitSection
      * @return
      */
-    Limit parseLimits(const unsigned char *limitSection);
+    Limit parseLimits(const uint8_t *limitSection);
 
     /**
      * Generates a limit [min_-inf].

@@ -14,7 +14,7 @@ namespace antiwasm {
      * @param memTypeContent
      * @return
      */
-    Memtype parseMemType(const unsigned char *memTypeContent);
+    Memtype parseMemType(const uint8_t *memTypeContent);
 }
 
 #endif //ANTIWASM_MEMTYPE_HPP

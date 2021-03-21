@@ -7,7 +7,7 @@ BOOST_AUTO_TEST_SUITE(resulttype_test)
 
     BOOST_AUTO_TEST_CASE(parseResulttype_correctResultType) {
         auto sizeOfValtypeVec = 3;
-        unsigned char *resulttypeContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 4));
+        auto *resulttypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 4));
         resulttypeContent[0] = sizeOfValtypeVec;
         resulttypeContent[1] = Numtype::i32;
         resulttypeContent[2] = Reftype::externref;
@@ -23,7 +23,7 @@ BOOST_AUTO_TEST_SUITE(resulttype_test)
 
     BOOST_AUTO_TEST_CASE(parseResulttype_errorResultType) {
         auto sizeOfValtypeVec = 3;
-        unsigned char *resulttypeContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 4));
+        auto *resulttypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 4));
         resulttypeContent[0] = sizeOfValtypeVec;
         resulttypeContent[1] = Numtype::i32;
         resulttypeContent[2] = 0xCA; //invalid

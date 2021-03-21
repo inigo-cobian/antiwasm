@@ -2,8 +2,8 @@
 
 namespace antiwasm {
 
-    Section parseNextSection(unsigned char sectionId, int sectionSize,
-                             unsigned char *sectionContent, int sectionPos) { //TODO gestión de errores y return type
+    Section parseNextSection(uint8_t sectionId, int sectionSize,
+                             uint8_t *sectionContent, int sectionPos) { //TODO gestión de errores y return type
 
         BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (unsigned int) sectionId
                                  << "] with size " << (unsigned int) sectionSize;
@@ -49,24 +49,24 @@ namespace antiwasm {
         }
     }
 
-    int parseCustomSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseCustomSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    TypeSection parseTypeSection(int sizeOfSection, unsigned char *sectionContent) { //TODO XXX
+    TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent) { //TODO XXX
         TypeSection typeSection(SectionId::Type, sizeOfSection, sectionContent, 0); //TODO position
         return typeSection;
     }
 
-    int parseImportSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseImportSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseFunctionSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseFunctionSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    TableSection parseTableSection(int sizeOfSection, unsigned char *sectionContent) {
+    TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent) {
         u_int32_t tablesInVector = sectionContent[0];
         unsigned int pointer = 1;
         TableSection tableSection(SectionId::Table, sizeOfSection, sectionContent, 0); //TODO position
@@ -82,7 +82,7 @@ namespace antiwasm {
         return tableSection;
     }
 
-    MemorySection parseMemorySection(int sizeOfSection, unsigned char *sectionContent) {
+    MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent) {
         u_int32_t memsInVector = sectionContent[0];
         unsigned int pointer = 1;
         MemorySection memorySection(SectionId::Memory, sizeOfSection, sectionContent, 0); //TODO position
@@ -99,27 +99,27 @@ namespace antiwasm {
         return memorySection;
     }
 
-    int parseGlobalSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseGlobalSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseExportSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseExportSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseStartSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseStartSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseElementSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseElementSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseCodeSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseCodeSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseDataSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseDataSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 }

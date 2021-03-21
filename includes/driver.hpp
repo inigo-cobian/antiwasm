@@ -7,6 +7,7 @@
 #include <fstream>
 #include <cstring>
 #include <cstddef>
+#include <cstdint>
 #include <thread>
 #include <mutex>
 #include <string>
@@ -24,7 +25,7 @@ private:
 protected:
     static size_t fileSize_;
     static size_t pointer_;
-    static char *buffer_;  //TODO which size?
+    static uint8_t *buffer_;  //TODO which size?
     static std::ifstream wasmFile_;
     static bool isParsing_;
 
@@ -50,19 +51,19 @@ public:
      * @param nBytesToBeRead
      * @return The bytes from the current position of the pointer until nBytesToBeRead.
      */
-    unsigned char *GetNextBytes(size_t nBytesToBeRead);
+    uint8_t *GetNextBytes(size_t nBytesToBeRead);
 
     /**
      * Returns the next 2 bytes. Alias of GetNextBytes when it is used for section headers.
      * @return The next 2 bytes
      */
-    unsigned char *GetNextSectionHeader();
+    uint8_t *GetNextSectionHeader();
 
     /**
      * TODO
      * @return
      */
-    unsigned char *GetUTF8String();
+    uint8_t *GetUTF8String();
 
     /**
      * Opens the file at the given position.

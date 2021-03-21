@@ -1,6 +1,6 @@
 #include "section.hpp"
 
-Section::Section(SectionId sectionId, int size, unsigned char *content, int initialPos) {
+Section::Section(SectionId sectionId, int size, uint8_t *content, int initialPos) {
     sectionId_ = sectionId;
     size_ = size;
     content_ = content;
@@ -15,7 +15,7 @@ int Section::getSize() {
     return size_;
 }
 
-unsigned char *Section::getContent() {
+uint8_t *Section::getContent() {
     return content_;
 }
 

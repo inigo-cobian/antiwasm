@@ -14,7 +14,7 @@ namespace antiwasm {
         Module module(driver->GetFileSize());
 
         //Magic header
-        unsigned char *uBuffer = driver->GetNextBytes(4);
+        uint8_t *uBuffer = driver->GetNextBytes(4);
         if (antiwasm::checkMagicNumber(uBuffer) == false) {
             return -1;
         }

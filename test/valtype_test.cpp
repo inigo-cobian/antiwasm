@@ -6,7 +6,7 @@
 BOOST_AUTO_TEST_SUITE(valttype_test)
 
     BOOST_AUTO_TEST_CASE(parseValtype_caseNumtype) {
-        unsigned char valtypeContent = Numtype::f64;
+        uint8_t valtypeContent = Numtype::f64;
 
         auto returnValtype = antiwasm::parseValtype(valtypeContent);
 
@@ -14,7 +14,7 @@ BOOST_AUTO_TEST_SUITE(valttype_test)
     }
 
     BOOST_AUTO_TEST_CASE(parseValtype_caseReftype) {
-        unsigned char valtypeContent = Reftype::externref;
+        uint8_t valtypeContent = Reftype::externref;
 
         auto returnValtype = antiwasm::parseValtype(valtypeContent);
 

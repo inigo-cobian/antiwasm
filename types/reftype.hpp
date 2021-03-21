@@ -18,7 +18,7 @@ namespace antiwasm {
      * @param reftype
      * @return
      */
-    Reftype parseReftype(const unsigned char reftype);
+    Reftype parseReftype(const uint8_t reftype);
 }
 
 #endif //ANTIWASM_REFTYPE_HPP

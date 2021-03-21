@@ -17,7 +17,7 @@ namespace antiwasm {
      * @param tableTypeContent
      * @return
      */
-    Tabletype parseTableType(const unsigned char *tableTypeContent);
+    Tabletype parseTableType(const uint8_t *tableTypeContent);
 }
 
 #endif //ANTIWASM_TABLETYPE_HPP

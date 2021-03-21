@@ -6,7 +6,7 @@
 BOOST_AUTO_TEST_SUITE(numtype_test)
 
     BOOST_AUTO_TEST_CASE(parseNumType_casei32) {
-        unsigned char numtypeContent = 0x7F;
+        uint8_t numtypeContent = 0x7F;
 
         auto returnNumtype = antiwasm::parseNumType(numtypeContent);
 
@@ -14,7 +14,7 @@ BOOST_AUTO_TEST_SUITE(numtype_test)
     }
 
     BOOST_AUTO_TEST_CASE(parseNumType_casei64) {
-        unsigned char numtypeContent = 0x7E;
+        uint8_t numtypeContent = 0x7E;
 
         auto returnNumtype = antiwasm::parseNumType(numtypeContent);
 
@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_SUITE(numtype_test)
     }
 
     BOOST_AUTO_TEST_CASE(parseNumType_casef32) {
-        unsigned char numtypeContent = 0x7D;
+        uint8_t numtypeContent = 0x7D;
 
         auto returnNumtype = antiwasm::parseNumType(numtypeContent);
 
@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_SUITE(numtype_test)
     }
 
     BOOST_AUTO_TEST_CASE(parseNumType_casef64) {
-        unsigned char numtypeContent = 0x7C;
+        uint8_t numtypeContent = 0x7C;
 
         auto returnNumtype = antiwasm::parseNumType(numtypeContent);
 
@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_SUITE(numtype_test)
     }
 
     BOOST_AUTO_TEST_CASE(parseNumType_caseInvalid) {
-        unsigned char numtypeContent = 0xCA;
+        uint8_t numtypeContent = 0xCA;
 
         auto returnNumtype = antiwasm::parseNumType(numtypeContent);
 

@@ -1,6 +1,6 @@
 #include "memsec.hpp"
 
-MemorySection::MemorySection(SectionId sectionId, int size, unsigned char *content, int initialPos) :
+MemorySection::MemorySection(SectionId sectionId, int size, uint8_t *content, int initialPos) :
         Section(sectionId, size, content, initialPos) {
     BOOST_LOG_TRIVIAL(debug) << "[memsec] Creating a Memory Section";
 }

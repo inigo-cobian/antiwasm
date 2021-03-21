@@ -17,7 +17,7 @@ namespace antiwasm {
      * @param globaltypeContent
      * @return
      */
-    Globaltype parseGlobaltype(const unsigned char *globaltypeContent);
+    Globaltype parseGlobaltype(const uint8_t *globaltypeContent);
 }
 
 #endif //ANTIWASM_GLOBALTYPE_HPP

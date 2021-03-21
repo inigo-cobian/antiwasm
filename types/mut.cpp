@@ -1,7 +1,7 @@
 #include "globaltype.hpp"
 
 namespace antiwasm {
-    Mut parseMut(const unsigned char mutContent) {
+    Mut parseMut(const uint8_t mutContent) {
         if(mutContent == Mut::const_) {
             return Mut::const_;
         } else if(mutContent == Mut::var_) {

@@ -1,7 +1,7 @@
 #include "limits.hpp"
 
 namespace antiwasm {
-    Limit parseLimits(const unsigned char *limitSection) {
+    Limit parseLimits(const uint8_t *limitSection) {
         if (limitSection[0] == limit_types::limit_min) {
             uint32_t min_ = limitSection[1];
             return parseLimitMin(min_);

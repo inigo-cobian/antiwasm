@@ -6,7 +6,7 @@
 BOOST_AUTO_TEST_SUITE(mut_test)
 
     BOOST_AUTO_TEST_CASE(parseMut_caseConst) {
-        unsigned char mutContent = Mut::const_;
+        uint8_t mutContent = Mut::const_;
 
         auto returnMut = antiwasm::parseMut(mutContent);
 
@@ -14,7 +14,7 @@ BOOST_AUTO_TEST_SUITE(mut_test)
     }
 
     BOOST_AUTO_TEST_CASE(parseMut_caseVar) {
-        unsigned char mutContent = Mut::var_;
+        uint8_t mutContent = Mut::var_;
 
         auto returnMut = antiwasm::parseMut(mutContent);
 
@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_SUITE(mut_test)
     }
 
     BOOST_AUTO_TEST_CASE(parseMut_caseInvalid) {
-        unsigned char mutContent = 0xCA;
+        uint8_t mutContent = 0xCA;
 
         auto returnMut = antiwasm::parseMut(mutContent);
 

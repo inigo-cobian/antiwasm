@@ -1,7 +1,7 @@
 #include "numtype.hpp"
 
 namespace antiwasm {
-    Numtype parseNumType(const unsigned char numtypeContent) {
+    Numtype parseNumType(const uint8_t numtypeContent) {
         if(numtypeContent == i32) {
             return i32;
         } else if(numtypeContent == i64) {

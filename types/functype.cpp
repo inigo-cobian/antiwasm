@@ -1,6 +1,6 @@
 #include "functype.hpp"
 
-Functype antiwasm::parseFunctype(const unsigned char *funcTypeContent) {
+Functype antiwasm::parseFunctype(const uint8_t *funcTypeContent) {
     Functype functype;
     if(funcTypeContent[0] != FUNCTYPE_HEADER) {
         functype.error = true;

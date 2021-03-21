@@ -18,7 +18,7 @@ namespace antiwasm {
      * @param funcTypeContent
      * @return
      */
-    Functype parseFunctype(const unsigned char *funcTypeContent);
+    Functype parseFunctype(const uint8_t *funcTypeContent);
 }
 
 #endif //ANTIWASM_FUNCTYPE_HPP

@@ -1,7 +1,7 @@
 #include "valtype.hpp"
 
 namespace antiwasm {
-    Valtype parseValtype(const unsigned char valtypeContent) {
+    Valtype parseValtype(const uint8_t valtypeContent) {
         Valtype valtype;
         if(valtypeContent <= i32 && valtypeContent >= f64) {
             valtype.numtype = parseNumType(valtypeContent);

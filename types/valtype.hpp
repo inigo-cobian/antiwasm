@@ -17,7 +17,7 @@ namespace antiwasm {
      * @param valtypeContent
      * @return
      */
-    Valtype parseValtype(const unsigned char valtypeContent);
+    Valtype parseValtype(const uint8_t valtypeContent);
 }
 
 #endif //ANTIWASM_VALTYPE_HPP

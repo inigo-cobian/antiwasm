@@ -16,7 +16,7 @@ namespace antiwasm {
      * @param resultTypeContent
      * @return
      */
-    Resulttype parseResulttype(const unsigned char *resultTypeContent);
+    Resulttype parseResulttype(const uint8_t *resultTypeContent);
 }
 
 

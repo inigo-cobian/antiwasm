@@ -6,7 +6,7 @@
 BOOST_AUTO_TEST_SUITE(functype_test)
 
     BOOST_AUTO_TEST_CASE(parseFunctype_caseCorrectlyFormed) {
-        unsigned char *functypeContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 6));
+        uint8_t *functypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 6));
         functypeContent[0] = FUNCTYPE_HEADER;
         functypeContent[1] = 2, functypeContent[2] = Numtype::i32, functypeContent[3] = Reftype::funref;
         functypeContent[4] = 1, functypeContent[5] = Numtype::f64;
@@ -17,7 +17,7 @@ BOOST_AUTO_TEST_SUITE(functype_test)
     }
 
     BOOST_AUTO_TEST_CASE(parseFunctype_caseIncorrectHeader) {
-        unsigned char *functypeContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 6));
+        uint8_t *functypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 6));
         functypeContent[0] = 0x99; //Invalid header
         functypeContent[1] = 2, functypeContent[2] = Numtype::i32, functypeContent[3] = Reftype::funref; // Should be ignored
         functypeContent[4] = 1, functypeContent[5] = Numtype::f64; // Should be ignored
@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_SUITE(functype_test)
     }
 
     BOOST_AUTO_TEST_CASE(parseFunctype_caseErrorAtParameters) {
-        unsigned char *functypeContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 6));
+        uint8_t *functypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 6));
         functypeContent[0] = FUNCTYPE_HEADER; //Invalid header
         functypeContent[1] = 2, functypeContent[2] = Numtype::i32, functypeContent[3] = 0xAA; // Invalid value
         functypeContent[4] = 1, functypeContent[5] = Numtype::f64; // Should be ignored
@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_SUITE(functype_test)
     }
 
     BOOST_AUTO_TEST_CASE(parseFunctype_caseErrorAtReturns) {
-        unsigned char *functypeContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 6));
+        uint8_t *functypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 6));
         functypeContent[0] = FUNCTYPE_HEADER; //Invalid header
         functypeContent[1] = 2, functypeContent[2] = Numtype::i32, functypeContent[3] = Reftype::funref;
         functypeContent[4] = 1, functypeContent[5] = 0xAA; // Invalid value
