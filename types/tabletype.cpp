@@ -4,7 +4,14 @@ namespace antiwasm {
     Tabletype parseTableType(const unsigned char *tableTypeContent) {
         Tabletype tabletype{};
         tabletype.reftype = parseReftype(tableTypeContent[0]);
-        tabletype.limit = parseLimits(tableTypeContent);
+        if(tabletype.reftype == invalid_reftype) {
+            tabletype.error = true;
+            return tabletype;
+        }
+        tabletype.limit = parseLimits(&tableTypeContent[1]);
+        if(tabletype.limit.error) {
+            tabletype.error = true;
+        }
         return tabletype;
     }
 }

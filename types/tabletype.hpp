@@ -7,6 +7,7 @@
 struct Tabletype {
     Reftype reftype;
     Limit limit;
+    bool error = false;
 };
 
 namespace antiwasm {
