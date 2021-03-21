@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_SUITE(functype_test)
         BOOST_CHECK_EQUAL(true, returnFunctype.error);
     }
 
-    BOOST_AUTO_TEST_CASE(parseFunctype_caseErrorAtParameters) {
+    BOOST_AUTO_TEST_CASE(parseFunctype_caseErrorAtReturns) {
         unsigned char *functypeContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 6));
         functypeContent[0] = FUNCTYPE_HEADER; //Invalid header
         functypeContent[1] = 2, functypeContent[2] = Numtype::i32, functypeContent[3] = Reftype::funref;
