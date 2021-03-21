@@ -12,7 +12,8 @@ struct Valtype {
 
 namespace antiwasm {
     /**
-     * Gets a byte and returns the equivalent Valtype
+     * Gets a byte and returns the equivalent Valtype.
+     * Adds error if cannot complete the parsing.
      * @param valtypeContent
      * @return
      */

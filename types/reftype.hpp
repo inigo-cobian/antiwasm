@@ -14,6 +14,7 @@ enum Reftype : uint32_t {
 namespace antiwasm {
     /**
      * Parses and returns the reftype value.
+     * Returns invalid_reftype if it is not a correct value.
      * @param reftype
      * @return
      */

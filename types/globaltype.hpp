@@ -11,6 +11,12 @@ struct Globaltype {
 };
 
 namespace antiwasm {
+    /**
+     * Parses and generates the parsed globaltype.
+     * Adds error if cannot complete the parsing.
+     * @param globaltypeContent
+     * @return
+     */
     Globaltype parseGlobaltype(const unsigned char *globaltypeContent);
 }
 

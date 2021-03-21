@@ -14,6 +14,7 @@ enum Numtype : int32_t {
 namespace antiwasm {
     /**
      * Gets a byte and returns the equivalent NumType
+     * Returns invalid_numtype if it is not a correct value.
      * @param numtypeContent
      * @return
      */

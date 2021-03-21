@@ -11,6 +11,12 @@ struct Tabletype {
 };
 
 namespace antiwasm {
+    /**
+     * Parses and generates the parsed tabletype.
+     * Adds error if cannot complete the parsing.
+     * @param tableTypeContent
+     * @return
+     */
     Tabletype parseTableType(const unsigned char *tableTypeContent);
 }
 

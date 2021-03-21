@@ -10,6 +10,12 @@ struct Resulttype {
 };
 
 namespace antiwasm {
+    /**
+     * Parses and generates the parsed resulttype.
+     * Adds error if cannot complete the parsing.
+     * @param resultTypeContent
+     * @return
+     */
     Resulttype parseResulttype(const unsigned char *resultTypeContent);
 }
 

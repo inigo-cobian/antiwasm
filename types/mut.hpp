@@ -8,6 +8,12 @@ enum Mut : int32_t {
 };
 
 namespace antiwasm {
+    /**
+     * Gets a byte and returns the equivalent Mut.
+     * Returns invalid_mut if it is not a correct value.
+     * @param mutContent
+     * @return
+     */
     Mut parseMut(const unsigned char mutContent);
 }
 

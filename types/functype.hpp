@@ -12,6 +12,12 @@ struct Functype {
 };
 
 namespace antiwasm {
+    /**
+     * Parses and generates the parsed functype.
+     * Adds error if cannot complete the parsing.
+     * @param funcTypeContent
+     * @return
+     */
     Functype parseFunctype(const unsigned char *funcTypeContent);
 }
 

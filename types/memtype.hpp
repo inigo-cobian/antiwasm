@@ -8,6 +8,12 @@ union Memtype {
 };
 
 namespace antiwasm {
+    /**
+     * Parses and generates the parsed memtype.
+     * Adds error if cannot complete the parsing.
+     * @param memTypeContent
+     * @return
+     */
     Memtype parseMemType(const unsigned char *memTypeContent);
 }
 

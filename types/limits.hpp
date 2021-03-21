@@ -24,21 +24,23 @@ const auto MIN_MAX_LIMIT_SIZE = 3;
 
 namespace antiwasm {
     /**
-     * Parses and returns a limit returning it as a struct.
+     * Parses and generates the parsed limit.
+     * Adds error if cannot complete the parsing.
      * @param limitSection
      * @return
      */
     Limit parseLimits(const unsigned char *limitSection);
 
     /**
-     * Generates a limit [min_-MAXUINT32].
+     * Generates a limit [min_-inf].
      * @param min_
      * @return
      */
     Limit parseLimitMin(uint32_t min_);
 
     /**
-     * Generates a limit [min-max]
+     * Generates a limit [min-max].
+     * Adds error if cannot complete the parsing.
      * @param min_
      * @param max_
      * @return
