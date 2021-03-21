@@ -7,7 +7,9 @@ namespace antiwasm {
             valtype.numtype = parseNumType(valtypeContent);
         } else if (valtypeContent == funref || valtypeContent == externref) {
             valtype.reftype = parseReftype(valtypeContent);
-        } //TODO error case
+        } else {
+            valtype.error = true;
+        }
         return valtype;
     }
 }

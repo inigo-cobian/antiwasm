@@ -4,9 +4,10 @@
 #include "numtype.hpp"
 #include "reftype.hpp"
 
-union Valtype {
-    Numtype numtype;
+struct Valtype {
+    Numtype numtype; //TODO explain in the docs that they are two elements to keep the code Æ s t h e t i c
     Reftype reftype;
+    bool error = false;
 };
 
 namespace antiwasm {
