@@ -36,7 +36,7 @@ namespace antiwasm {
      * @param min_
      * @return
      */
-    Limit parseLimitMin(uint32_t min_);
+    Limit parseLimitMin(const uint32_t min_);
 
     /**
      * Generates a limit [min-max].
@@ -45,7 +45,7 @@ namespace antiwasm {
      * @param max_
      * @return
      */
-    Limit parseLimitMinMax(uint32_t min_, uint32_t max_);
+    Limit parseLimitMinMax(const uint32_t min_, const uint32_t max_);
 
     /**
      * Checks if the limit range is valid.
@@ -53,7 +53,7 @@ namespace antiwasm {
      * @param max_
      * @return true if the limit is not valid, false if it is
      */
-    bool checkIfLimitIsNotValid(uint32_t min_, uint32_t max_);
+    bool checkIfLimitIsNotValid(const uint32_t min_, const uint32_t max_);
 }
 
 #endif

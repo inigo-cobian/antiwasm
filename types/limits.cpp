@@ -18,7 +18,7 @@ namespace antiwasm {
         }
     }
 
-    Limit parseLimitMin(uint32_t min_) {
+    Limit parseLimitMin(const uint32_t min_) {
         Limit limit{limit_min, min_, 0, false};
 
         BOOST_LOG_TRIVIAL(info) << "[limits] New limit ["
@@ -26,7 +26,7 @@ namespace antiwasm {
         return limit;
     }
 
-    Limit parseLimitMinMax(uint32_t min_, uint32_t max_) {
+    Limit parseLimitMinMax(const uint32_t min_, const uint32_t max_) {
         Limit limit{limit_min_max, min_, max_, false};
         limit.error = checkIfLimitIsNotValid(min_, max_);
 
@@ -38,7 +38,7 @@ namespace antiwasm {
         return limit;
     }
 
-    bool checkIfLimitIsNotValid(uint32_t min_, uint32_t max_) {
+    bool checkIfLimitIsNotValid(const uint32_t min_, const uint32_t max_) {
         return min_ > max_;
     }
 
