@@ -8,14 +8,13 @@ namespace antiwasm {
         for(auto i = 0; i < elementsInResulttype; i++) {
             auto elementType = resultTypeContent[pointer];
             Valtype valtype = parseValtype(elementType);
-             if(valtype.error) {
-                 resulttype.valtypeVector.push_back(valtype);
+            resulttype.valtypeVector.push_back(valtype);
+            if(valtype.error) {
                  resulttype.error = true;
                  return resulttype;
              }
-            resulttype.valtypeVector.push_back(valtype);
             pointer++;
-        } //TODO error case
+        }
         return resulttype;
     }
 }
