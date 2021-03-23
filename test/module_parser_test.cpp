@@ -45,8 +45,10 @@ BOOST_AUTO_TEST_SUITE(module_parser_test)
     BOOST_AUTO_TEST_CASE(parseTypeSection_emptySectionReturnsOkey)
     {
         int sizeOfSection = 0;
+        auto *typeSectionContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 1));
+        typeSectionContent[0] = 0; //Número de types en la sección
 
-        auto result = antiwasm::parseNextSection(SectionId::Type, sizeOfSection, nullptr, 0);
+        auto result = antiwasm::parseNextSection(SectionId::Type, sizeOfSection, typeSectionContent, 0);
 
         BOOST_CHECK_EQUAL(SectionId::Type, result.getSectionId());
     }
