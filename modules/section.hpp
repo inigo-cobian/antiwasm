@@ -67,7 +67,7 @@ public:
     /** TODO a different version for each section type
      * Displays the general information of the section.
      */
-    void displaySectionInfo();
+    void displaySectionHeaderInfo();
 };
 
 #endif //SECTION_HPP
