@@ -9,7 +9,7 @@ class MemorySection : public Section {
 private:
     std::vector<Memtype> memTypes;
 public:
-    MemorySection(SectionId sectionId, int size, uint8_t *content, int initialPos);
+    MemorySection(int size, uint8_t *content, int initialPos);
 
     ~MemorySection();
 

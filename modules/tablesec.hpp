@@ -10,7 +10,7 @@ class TableSection : public Section {
 private:
     std::vector<Tabletype> tabletypes;
 public:
-    TableSection(SectionId sectionId, int size, uint8_t *content, int initialPos);
+    TableSection(int size, uint8_t *content, int initialPos);
 
     ~TableSection();
 

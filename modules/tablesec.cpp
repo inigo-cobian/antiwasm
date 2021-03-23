@@ -1,7 +1,7 @@
 #include "tablesec.hpp"
 
-TableSection::TableSection(SectionId sectionId, int size, uint8_t *content, int initialPos)
-        : Section(sectionId, size, content, initialPos) {
+TableSection::TableSection(int size, uint8_t *content, int initialPos)
+        : Section(SectionId::Table, size, content, initialPos) {
 
 }
 

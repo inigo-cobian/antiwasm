@@ -54,7 +54,7 @@ namespace antiwasm {
     }
 
     TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent) { //TODO XXX
-        TypeSection typeSection(SectionId::Type, sizeOfSection, sectionContent, 0); //TODO position
+        TypeSection typeSection(sizeOfSection, sectionContent, 0); //TODO position
         return typeSection;
     }
 
@@ -69,7 +69,7 @@ namespace antiwasm {
     TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent) {
         u_int32_t tablesInVector = sectionContent[0];
         unsigned int pointer = 1;
-        TableSection tableSection(SectionId::Table, sizeOfSection, sectionContent, 0); //TODO position
+        TableSection tableSection(sizeOfSection, sectionContent, 0); //TODO position
         for (u_int32_t i = 0; i < tablesInVector; i++) {
             Tabletype tabletype = parseTableType(&sectionContent[pointer]);
             if (tabletype.limit.type == limit_min) {
@@ -85,7 +85,7 @@ namespace antiwasm {
     MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent) {
         u_int32_t memsInVector = sectionContent[0];
         unsigned int pointer = 1;
-        MemorySection memorySection(SectionId::Memory, sizeOfSection, sectionContent, 0); //TODO position
+        MemorySection memorySection(sizeOfSection, sectionContent, 0); //TODO position
 
         for (u_int32_t i = 0; i < memsInVector; i++) {
             Memtype memtype = parseMemType(&sectionContent[pointer]);

@@ -1,7 +1,7 @@
 #include "typesec.hpp"
 
-TypeSection::TypeSection(SectionId sectionId, int size, uint8_t *content, int initialPos) :
-        Section(sectionId, size, content, initialPos) {
+TypeSection::TypeSection(int size, uint8_t *content, int initialPos) :
+        Section(SectionId::Type, size, content, initialPos) {
 
 }
 
