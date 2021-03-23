@@ -10,12 +10,30 @@ class TableSection : public Section {
 private:
     std::vector<Tabletype> tabletypes;
 public:
+    /**
+     * Contructor.
+     * SectionId = SectionId::Table
+     * @param size
+     * @param content
+     * @param initialPos
+     */
     TableSection(int size, uint8_t *content, int initialPos);
 
+    /**
+     * Destructor
+     */
     ~TableSection();
 
+    /**
+     * Adds a new tabletype to the vector
+     * @param tabletype
+     */
     void addTabletype(Tabletype tabletype);
 
+    /**
+     * Gets the tabletype vector
+     * @return tabletypes
+     */
     std::vector<Tabletype> getTabletypeVector();
 };
 
