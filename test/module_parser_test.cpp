@@ -82,6 +82,20 @@ BOOST_AUTO_TEST_SUITE(module_parser_test)
         BOOST_CHECK_EQUAL(SectionId::Table, result.getSectionId());
     }
 
+    BOOST_AUTO_TEST_CASE(parseTableSection_realisticSectionReturnsOkey)
+    {
+        int sizeOfSection = 0;
+        auto *tableSectionContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 11));
+        tableSectionContent[0] = 3; //Número de tabletypes en la sección
+        tableSectionContent[1] = Reftype::funref, tableSectionContent[2] = limit_min, tableSectionContent[3] = 0x12;
+        tableSectionContent[4] = Reftype::externref, tableSectionContent[5] = limit_min_max, tableSectionContent[6] = 0x00, tableSectionContent[7] = 0x0F;
+        tableSectionContent[8] = Reftype::funref, tableSectionContent[9] = limit_min, tableSectionContent[10] = 0xCA;
+
+        auto result = antiwasm::parseNextSection(SectionId::Table, sizeOfSection, tableSectionContent, 0);
+
+        BOOST_CHECK_EQUAL(SectionId::Table, result.getSectionId());
+    }
+
     BOOST_AUTO_TEST_CASE(parseMemorySection_emptySectionReturnsOkey)
     {
         int sizeOfSection = 0;
