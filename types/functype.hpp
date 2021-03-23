@@ -11,6 +11,10 @@ struct Functype {
     bool error = false;
 };
 
+const auto BYTES_HEADER_FUNCTYPE = 1;
+constexpr auto INDEX_RETURNTYPE = BYTES_HEADER_FUNCTYPE + BYTES_RETURN_TYPE;
+
+
 namespace antiwasm {
     /**
      * Parses and generates the parsed functype.

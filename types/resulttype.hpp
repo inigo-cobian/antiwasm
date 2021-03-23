@@ -9,6 +9,8 @@ struct Resulttype {
     bool error = false;
 };
 
+const auto BYTES_RETURN_TYPE = 1;
+
 namespace antiwasm {
     /**
      * Parses and generates the parsed resulttype.

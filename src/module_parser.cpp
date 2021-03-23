@@ -73,9 +73,9 @@ namespace antiwasm {
         for (u_int32_t i = 0; i < tablesInVector; i++) {
             Tabletype tabletype = parseTableType(&sectionContent[pointer]);
             if (tabletype.limit.type == limit_min) {
-                pointer += REFTYPE_SIZE + MIN_LIMIT_SIZE;
+                pointer += REFTYPE_SIZE + BYTES_LIMIT_MIN;
             } else if (tabletype.limit.type == limit_min_max) {
-                pointer += REFTYPE_SIZE + MIN_MAX_LIMIT_SIZE;
+                pointer += REFTYPE_SIZE + BYTES_LIMIT_MIN_MAX;
             }
             tableSection.addTabletype(tabletype);
         }
@@ -90,9 +90,9 @@ namespace antiwasm {
         for (u_int32_t i = 0; i < memsInVector; i++) {
             Memtype memtype = parseMemType(&sectionContent[pointer]);
             if (memtype.limit.type == limit_min) {
-                pointer += MIN_LIMIT_SIZE;
+                pointer += BYTES_LIMIT_MIN;
             } else if (memtype.limit.type == limit_min_max) {
-                pointer += MIN_MAX_LIMIT_SIZE;
+                pointer += BYTES_LIMIT_MIN_MAX;
             }
             memorySection.addMemtype(memtype);
         }

@@ -13,14 +13,14 @@ enum limit_types : uint32_t {
 };
 
 struct Limit {
-    limit_types type; // 0x00 -> MIN, 0x01 -> MIN_MAX
+    limit_types type;
     uint32_t min;
     uint32_t max;
     bool error = false; //TODO
 };
 
-const auto MIN_LIMIT_SIZE = 2;
-const auto MIN_MAX_LIMIT_SIZE = 3;
+const auto BYTES_LIMIT_MIN = 2;
+const auto BYTES_LIMIT_MIN_MAX = 3;
 
 namespace antiwasm {
     /**
