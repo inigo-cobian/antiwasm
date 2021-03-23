@@ -7,7 +7,7 @@
 
 class MemorySection : public Section {
 private:
-    std::vector<Memtype> memTypes;
+    std::vector<Memtype> memtypeVector;
 public:
     /**
      * Contructor.
@@ -31,7 +31,7 @@ public:
 
     /**
      * Gets the memtype vector
-     * @return memTypes
+     * @return memtypeVector
      */
     std::vector<Memtype> getMemtypeVector();
 };

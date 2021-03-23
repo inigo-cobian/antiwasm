@@ -8,7 +8,7 @@
 
 class TableSection : public Section {
 private:
-    std::vector<Tabletype> tabletypes;
+    std::vector<Tabletype> tabletypeVector;
 public:
     /**
      * Contructor.
@@ -32,7 +32,7 @@ public:
 
     /**
      * Gets the tabletype vector
-     * @return tabletypes
+     * @return tabletypeVector
      */
     std::vector<Tabletype> getTabletypeVector();
 };

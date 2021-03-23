@@ -10,7 +10,7 @@ MemorySection::~MemorySection() {
 }
 
 void MemorySection::addMemtype(Memtype memtype) {
-    memTypes.push_back(memtype);
+    memtypeVector.push_back(memtype);
 }
 
 std::vector<Memtype> MemorySection::getMemtypeVector() {
