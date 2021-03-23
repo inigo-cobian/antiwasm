@@ -40,8 +40,8 @@ namespace antiwasm {
             BOOST_LOG_TRIVIAL(trace) << "[scanner] Id: " << std::hex << (int) nextSectionHeader[0];
             BOOST_LOG_TRIVIAL(trace) << "[scanner] Size: " << std::hex << sectionSize;
 
-            if (nextSection->getSectionId() != Error) {
-                nextSection->displaySectionInfo();
+            if (nextSection.getSectionId() != Error) {
+                nextSection.displaySectionHeaderInfo();
                 module.addSection(nextSection);
             } else { //TODO manage error
                 break;
