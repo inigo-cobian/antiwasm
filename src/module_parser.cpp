@@ -53,7 +53,7 @@ namespace antiwasm {
         return 0; //TODO
     }
 
-    TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent) { //TODO XXX
+    TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent) {
         u_int32_t typesInVector = sectionContent[0];
         unsigned int pointer = 1;
         TypeSection typeSection(sizeOfSection, sectionContent, 0); //TODO position
@@ -61,7 +61,9 @@ namespace antiwasm {
             Functype functype = parseFunctype(&sectionContent[pointer]);
             typeSection.addFunctype(functype);
             pointer += functype.nBytes;
-            //TODO error case
+            if (functype.error) {
+                //TODO error case
+            }
         }
 
         return typeSection;
@@ -85,7 +87,9 @@ namespace antiwasm {
                 pointer += REFTYPE_SIZE + BYTES_LIMIT_MIN;
             } else if (tabletype.limit.type == limit_min_max) {
                 pointer += REFTYPE_SIZE + BYTES_LIMIT_MIN_MAX;
-            } //TODO error
+            } else {
+                //TODO error case
+            }
             tableSection.addTabletype(tabletype);
         }
         return tableSection;
@@ -102,7 +106,9 @@ namespace antiwasm {
                 pointer += BYTES_LIMIT_MIN;
             } else if (memtype.limit.type == limit_min_max) {
                 pointer += BYTES_LIMIT_MIN_MAX;
-            } //TODO error
+            } else {
+                //TODO error case
+            }
             memorySection.addMemtype(memtype);
         }
         return memorySection;
