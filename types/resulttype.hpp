@@ -9,7 +9,7 @@ struct Resulttype {
     bool error = false;
 };
 
-const auto BYTES_RETURN_TYPE = 1;
+const auto BYTES_VALTYPE_HEADER = 1; //TODO ¿general vec size?
 
 namespace antiwasm {
     /**

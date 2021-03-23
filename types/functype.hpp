@@ -8,11 +8,12 @@ const uint32_t FUNCTYPE_HEADER = 0x60;
 struct Functype {
     Resulttype parameterType;
     Resulttype returnType; //TODO check if this name has the same meaning in the docs
+    int nBytes = 0;
     bool error = false;
 };
 
 const auto BYTES_HEADER_FUNCTYPE = 1;
-constexpr auto INDEX_RETURNTYPE = BYTES_HEADER_FUNCTYPE + BYTES_RETURN_TYPE;
+constexpr auto INDEX_RETURNTYPE = BYTES_HEADER_FUNCTYPE + BYTES_VALTYPE_HEADER;
 
 
 namespace antiwasm {
