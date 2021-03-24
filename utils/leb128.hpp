@@ -9,6 +9,8 @@ namespace antiwasm {
 
     uint32_t transformLeb128ToUnsignedInt32(uint8_t *leb128);
     uint64_t transformLeb128ToUnsignedInt64(uint8_t *leb128);
+
+    int sizeOfLeb128(uint8_t *leb128);
 }
 
 #endif //ANTIWASM_LEB128_HPP
