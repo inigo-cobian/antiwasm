@@ -13,6 +13,6 @@ void TypeSection::addFunctype(Functype functype) {
 
 }
 
-std::vector <Functype> TypeSection::getFunctypeVector() {
+std::vector<Functype> TypeSection::getFunctypeVector() {
     return functypeVector;
 }

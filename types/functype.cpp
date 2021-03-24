@@ -2,7 +2,7 @@
 
 Functype antiwasm::parseFunctype(const uint8_t *funcTypeContent) {
     Functype functype;
-    if(funcTypeContent[0] != FUNCTYPE_HEADER) {
+    if (funcTypeContent[0] != FUNCTYPE_HEADER) {
         functype.error = true;
         return functype;
     }
