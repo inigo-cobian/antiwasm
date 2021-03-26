@@ -26,7 +26,20 @@ uint32_t antiwasm::transformLeb128ToUnsignedInt32(uint8_t *leb128) {
 }
 
 uint64_t antiwasm::transformLeb128ToUnsignedInt64(uint8_t *leb128) {
-    return 0; // TODO
+    uint64_t result = 0;
+    int shift = 0;
+    int pos = 0;
+    while (true) {
+        uint8_t currentByte = leb128[pos];
+        result |= (currentByte & 0b0111'1111) << shift;
+        if ((currentByte & 1000'0000) == 0) {
+            break;
+        }
+        shift += 7;
+        pos++;
+    }
+
+    return result;
 }
 
 int antiwasm::sizeOfLeb128(uint8_t *leb128) {
