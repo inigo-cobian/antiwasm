@@ -62,7 +62,7 @@ uint8_t *Driver::GetNextSectionHeader() {
     auto *buffer = (char *) malloc(sizeof(char) * bytesToRead);
     instance_->wasmFile_.seekg(instance_->pointer_, std::ios::beg);
     instance_->wasmFile_.read(buffer, MAX_SIZE_OF_SECTION_HEADER);
-    instance_->pointer_ += antiwasm::sizeOfLeb128(reinterpret_cast<uint8_t *>(&buffer[1]));
+    instance_->pointer_ += antiwasm::sizeOfLeb128(reinterpret_cast<uint8_t *>(&buffer[1])) + SIZE_OF_SECTION_ID;
 
     return reinterpret_cast<uint8_t *>(buffer);
 }

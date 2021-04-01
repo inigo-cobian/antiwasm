@@ -2,6 +2,7 @@
 #define ANTIWASM_TYPESEC_HPP
 
 #include <vector>
+#include "section.hpp"
 #include "../types/functype.hpp"
 
 class TypeSection : public Section {

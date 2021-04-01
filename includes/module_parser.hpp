@@ -9,7 +9,7 @@
 #include "../modules/section.hpp"
 #include "../modules/memsec.hpp"
 #include "../modules/tablesec.hpp"
-#include "../modules/typesec.cpp"
+#include "../modules/typesec.hpp"
 
 namespace antiwasm {
     /**

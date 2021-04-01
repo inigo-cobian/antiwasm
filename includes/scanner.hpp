@@ -10,8 +10,9 @@
 #include <boost/log/trivial.hpp>
 #include "module_parser.hpp"
 #include "driver.hpp"
-#include "../modules/header.hpp"
 #include "../modules/module.hpp"
+#include "../modules/header.hpp"
+#include "../utils/leb128.hpp"
 
 namespace antiwasm {
 
