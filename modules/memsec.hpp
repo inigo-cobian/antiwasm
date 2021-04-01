@@ -34,6 +34,11 @@ public:
      * @return memtypeVector
      */
     std::vector<Memtype> getMemtypeVector();
+
+    /**
+     * Displays the header information for the memory section.
+     */
+    void displaySectionHeaderInfo();
 };
 
 #endif //ANTIWASM_MEMSEC_HPP

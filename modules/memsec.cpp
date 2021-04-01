@@ -16,3 +16,8 @@ void MemorySection::addMemtype(Memtype memtype) {
 std::vector<Memtype> MemorySection::getMemtypeVector() {
     return std::vector<Memtype>();
 }
+
+void MemorySection::displaySectionHeaderInfo() {
+    std::cout << "  Memory | start=" << (std::hex) << initialPos_
+              << " size=" << (std::hex) << size_ << std::endl;
+}

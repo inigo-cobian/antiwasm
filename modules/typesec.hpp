@@ -35,6 +35,10 @@ public:
      */
     std::vector<Functype> getFunctypeVector();
 
+    /**
+     * Displays the header information for the type section.
+     */
+    void displaySectionHeaderInfo();
 };
 
 #endif //ANTIWASM_TYPESEC_HPP

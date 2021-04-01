@@ -19,7 +19,7 @@ enum SectionId {
     Error = 0xFF
 };
 
-class Section {
+class Section { //TODO make virtual
 protected:
     SectionId sectionId_;
     int size_;
@@ -64,10 +64,10 @@ public:
      */
     int getInitialPos();
 
-    /** TODO a different version for each section type
-     * Displays the general information of the section.
+    /**
+     * Displays the general information for the section.
      */
-    void displaySectionHeaderInfo();
+    virtual void displaySectionHeaderInfo();
 };
 
 #endif //SECTION_HPP

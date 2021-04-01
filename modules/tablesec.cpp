@@ -16,3 +16,8 @@ void TableSection::addTabletype(Tabletype tabletype) {
 std::vector<Tabletype> TableSection::getTabletypeVector() {
     return std::vector<Tabletype>();
 }
+
+void TableSection::displaySectionHeaderInfo() {
+    std::cout << "   Table | start=" << (std::hex) << initialPos_
+              << " size=" << (std::hex) << size_ << std::endl;
+}

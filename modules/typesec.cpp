@@ -16,3 +16,8 @@ void TypeSection::addFunctype(Functype functype) {
 std::vector<Functype> TypeSection::getFunctypeVector() {
     return functypeVector;
 }
+
+void TypeSection::displaySectionHeaderInfo() {
+    std::cout << "    Type | start=" << (std::hex) << initialPos_
+              << " size=" << (std::hex) << size_ << std::endl;
+}

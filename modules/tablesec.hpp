@@ -35,6 +35,12 @@ public:
      * @return tabletypeVector
      */
     std::vector<Tabletype> getTabletypeVector();
+
+    /**
+     * Displays the header information for the table section.
+     */
+    void displaySectionHeaderInfo();
+
 };
 
 
