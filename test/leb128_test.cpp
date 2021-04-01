@@ -46,14 +46,13 @@ BOOST_AUTO_TEST_SUITE(leb128_test)
     }
 
 
-    /*TODO rest of tests
-    BOOST_AUTO_TEST_CASE(sizeOfLeb128_oneByte) { FIXME commented because the LEB128 logic is being analyzed
+    BOOST_AUTO_TEST_CASE(sizeOfLeb128_threeBytes) { //FIXME commented because the LEB128 logic is being analyzed
         auto *leb128Val = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 3));
-        leb128Val[0] = 0b1000'0001, leb128Val[1] = 0b1110'1001, leb128Val[3] = 0b0010'1011;
+        leb128Val[0] = 0b1000'0001, leb128Val[1] = 0b1110'1001, leb128Val[2] = 0b0010'1011;
 
         auto returnVal = antiwasm::sizeOfLeb128(leb128Val);
 
         BOOST_CHECK_EQUAL(3, returnVal);
-    }*/
+    }
 
 BOOST_AUTO_TEST_SUITE_END() //leb128_test
