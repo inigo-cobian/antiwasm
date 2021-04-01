@@ -33,7 +33,7 @@ uint8_t *Driver::GetNextBytes(size_t nBytesToBeRead) {
         return nullptr; //TODO avoid using nullptr
     }
 
-    BOOST_LOG_TRIVIAL(debug) << "[Driver]Getting next " << nBytesToBeRead << " bytes";
+    BOOST_LOG_TRIVIAL(debug) << "[Driver] Getting next " << nBytesToBeRead << " bytes";
     char *buffer = (char *) malloc(sizeof(char) * nBytesToBeRead + 1);
     instance_->wasmFile_.seekg(instance_->pointer_, std::ios::beg);
     instance_->pointer_ += nBytesToBeRead;
@@ -58,7 +58,7 @@ uint8_t *Driver::GetNextSectionHeader() {
         bytesToRead = Driver::fileSize_ - Driver::pointer_;
     }
 
-    BOOST_LOG_TRIVIAL(debug) << "[Driver]Getting of next section header";
+    BOOST_LOG_TRIVIAL(debug) << "[Driver] Getting of next section header";
     auto *buffer = (char *) malloc(sizeof(char) * bytesToRead);
     instance_->wasmFile_.seekg(instance_->pointer_, std::ios::beg);
     instance_->wasmFile_.read(buffer, MAX_SIZE_OF_SECTION_HEADER);
