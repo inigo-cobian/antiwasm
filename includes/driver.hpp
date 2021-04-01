@@ -53,56 +53,56 @@ public:
      * @param nBytesToBeRead
      * @return The bytes from the current position of the pointer until nBytesToBeRead.
      */
-    uint8_t *GetNextBytes(size_t nBytesToBeRead);
+    static uint8_t *GetNextBytes(size_t nBytesToBeRead);
 
     /**
      * Returns the next 2 bytes. Alias of GetNextBytes when it is used for section headers.
      * @return The next 2 bytes
      */
-    uint8_t *GetNextSectionHeader();
+    static uint8_t *GetNextSectionHeader();
 
     /**
      * TODO
      * @return
      */
-    uint8_t *GetUTF8String();
+    static uint8_t *GetUTF8String();
 
     /**
      * Opens the file at the given position.
      * @param fileName
      * @return true if the file exists, false if it doesn't.
      */
-    bool OpenFile(const char *fileName);
+    static bool OpenFile(const char *fileName);
 
     /**
      * It closes the file that is currently being parsed.
      */
-    void CloseFile();
+    static void CloseFile();
 
     /**
      * Checks if a file is being parsed.
      * @return true if it is parsing a file, false if it is not.
      */
-    bool IsCurrentlyParsing();
+    static bool IsCurrentlyParsing();
 
     /**
      * Checks if the next request would reach the end of the file.
      * @param nextBytesSize
      * @return true if it has reached the end of the file, false if it has not.
      */
-    bool HasReachedFileSize(size_t nextBytesSize);
+    static bool HasReachedFileSize(size_t nextBytesSize);
 
     /**
      * Gets the size of the file.
      * @return the size of the file. TODO 0 if there is no file.
      */
-    int GetFileSize();
+    static int GetFileSize();
 
     /**
      * Gets the current position of the pointer
      * @return pointer_
      */
-    int GetCurrentPos();
+    static int GetCurrentPos();
 
 };
 

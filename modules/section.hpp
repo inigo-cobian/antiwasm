@@ -50,7 +50,7 @@ public:
      * Gets the size of the section in bytes.
      * @return The size of the section.
      */
-    int getSize();
+    int getSize() const;
 
     /**
      * Gets the content of the section as bytes.
@@ -62,7 +62,7 @@ public:
      * Gets the initial position of the section inside the module.
      * @return The initial position inside the module.
      */
-    int getInitialPos();
+    int getInitialPos() const;
 
     /**
      * Displays the general information for the section.

@@ -13,7 +13,7 @@ namespace antiwasm {
 
         //Magic header
         uint8_t *uBuffer = driver->GetNextBytes(4);
-        if (checkMagicNumber(uBuffer) == false) {
+        if (!checkMagicNumber(uBuffer)) {
             return -1;
         }
 
@@ -21,7 +21,7 @@ namespace antiwasm {
 
         //Version number
         uBuffer = driver->GetNextBytes(4);
-        if (checkVersion(uBuffer) == false) {
+        if (!checkVersion(uBuffer)) {
             return -1;
         }
 

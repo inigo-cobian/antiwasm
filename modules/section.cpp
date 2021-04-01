@@ -11,7 +11,7 @@ SectionId Section::getSectionId() {
     return sectionId_;
 }
 
-int Section::getSize() {
+int Section::getSize() const {
     return size_;
 }
 
@@ -19,7 +19,7 @@ uint8_t *Section::getContent() {
     return content_;
 }
 
-int Section::getInitialPos() {
+int Section::getInitialPos() const {
     return initialPos_;
 }
 

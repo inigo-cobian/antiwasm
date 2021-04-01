@@ -5,9 +5,7 @@ MemorySection::MemorySection(int size, uint8_t *content, int initialPos) :
     BOOST_LOG_TRIVIAL(debug) << "[memsec] Creating a Memory Section";
 }
 
-MemorySection::~MemorySection() {
-
-}
+MemorySection::~MemorySection() = default;
 
 void MemorySection::addMemtype(Memtype memtype) {
     memtypeVector.push_back(memtype);

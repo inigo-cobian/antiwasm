@@ -114,6 +114,7 @@ int Driver::GetFileSize() {
 }
 
 int Driver::GetCurrentPos() {
-    BOOST_LOG_TRIVIAL(trace) << "[Driver] Getting current position of the pointer: " << (std::hex) << instance_->pointer_;
+    BOOST_LOG_TRIVIAL(trace) << "[Driver] Getting current position of the pointer: " << (std::hex)
+                             << instance_->pointer_;
     return instance_->pointer_;
 }

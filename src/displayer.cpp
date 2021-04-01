@@ -2,7 +2,7 @@
 
 LoggingLevel Displayer::loggingLevel_;
 
-void Displayer::Log(LoggingLevel minLoggingLevel, std::string logMessage) {
+void Displayer::Log(LoggingLevel minLoggingLevel, const std::string& logMessage) {
     if (Displayer::loggingLevel_ >= minLoggingLevel) {
         std::cout << logMessage << std::endl;
     }

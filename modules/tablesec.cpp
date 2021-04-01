@@ -5,9 +5,7 @@ TableSection::TableSection(int size, uint8_t *content, int initialPos)
 
 }
 
-TableSection::~TableSection() {
-
-}
+TableSection::~TableSection() = default;
 
 void TableSection::addTabletype(Tabletype tabletype) {
     tabletypeVector.push_back(tabletype);
