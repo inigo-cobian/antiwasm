@@ -45,8 +45,23 @@ BOOST_AUTO_TEST_SUITE(leb128_test)
         BOOST_CHECK_EQUAL(expected, returnVal);
     }
 
+    BOOST_AUTO_TEST_CASE(transformLeb128ToSignedInt32_oneByte) {
+        //TODO
+    }
 
-    BOOST_AUTO_TEST_CASE(sizeOfLeb128_threeBytes) { //FIXME commented because the LEB128 logic is being analyzed
+    BOOST_AUTO_TEST_CASE(transformLeb128ToSignedInt32_multipleBytes) {
+        //TODO
+    }
+
+    BOOST_AUTO_TEST_CASE(transformLeb128ToSignedInt64_oneByte) {
+        //TODO
+    }
+
+    BOOST_AUTO_TEST_CASE(transformLeb128ToSignedInt64_multipleBytes) {
+        //TODO
+    }
+
+    BOOST_AUTO_TEST_CASE(sizeOfLeb128_threeBytes) {
         auto *leb128Val = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 3));
         leb128Val[0] = 0b1000'0001, leb128Val[1] = 0b1110'1001, leb128Val[2] = 0b0010'1011;
 
