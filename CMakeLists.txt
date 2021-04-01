@@ -23,4 +23,4 @@ file(GLOB UTILS "utils/*.cpp")
 
 add_executable(antiwasm ${SOURCES} ${MODULES} ${TYPES} ${UTILS})
 
-target_link_libraries(antiwasm pthread boost_log boost_program_options)
+target_link_libraries(antiwasm pthread boost_log boost_program_options boost_thread)

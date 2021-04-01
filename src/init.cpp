@@ -5,11 +5,25 @@
 #include <boost/log/core.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/log/expressions.hpp>
-#include <boost/test/unit_test_parameters.hpp>
+#include <boost/log/utility/setup/file.hpp>
 
 #define BOOST_LOG_WITHOUT_DEBUG_OUTPUT
 
-void init_logging(boost::log::trivial::severity_level severityLevel) {
+void init_logging(boost::log::trivial::severity_level severityLevel) { //TODO change the format of the log
+    /*
+    boost::log::add_file_log
+    (
+        boost::log::keywords::file_name = "sample_%N.log",
+        boost::log::keywords::format =
+        (
+            boost::log::expressions::stream
+            << boost::log::expressions::attr< unsigned int >("LineID")
+            << ": <" << boost::log::trivial::severity
+            << "> " << boost::log::expressions::smessage
+        )
+    );
+    */
+
     boost::log::core::get()->set_filter(
             boost::log::trivial::severity >= severityLevel
     );
