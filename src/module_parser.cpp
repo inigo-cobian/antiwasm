@@ -5,8 +5,8 @@ namespace antiwasm {
     Section parseNextSection(uint8_t sectionId, int sectionSize,
                              uint8_t *sectionContent, int sectionPos) { //TODO gestión de errores y return type
 
-        BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (unsigned int) sectionId
-                                 << "] with size " << (unsigned int) sectionSize;
+        BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (std::hex) << (unsigned int) sectionId
+                                 << "] with size " << (std::hex) << (unsigned int) sectionSize;
         switch (sectionId) {
             case (SectionId::Custom):
                 parseCustomSection(sectionSize, sectionContent);
@@ -44,7 +44,7 @@ namespace antiwasm {
             default:
                 //TODO pretty error message
                 BOOST_LOG_TRIVIAL(error) << "[module_parser] Error at section " << std::hex << (unsigned int) sectionId
-                                         << " with size " << sectionSize;
+                                         << " with size " << (std::hex) << sectionSize;
                 return Section(SectionId::Error, -1, nullptr, 0);
         }
     }
