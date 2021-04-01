@@ -48,7 +48,23 @@ uint8_t *Driver::GetNextBytes(size_t nBytesToBeRead) {
 }
 
 uint8_t *Driver::GetNextSectionHeader() {
-    return Driver::GetNextBytes(SIZE_OF_SECTION_HEADER);
+    if (!Driver::IsCurrentlyParsing()) {
+        error_ = true;
+        return nullptr; //TODO avoid using nullptr
+    }
+
+    auto bytesToRead = MAX_SIZE_OF_SECTION_HEADER;
+    if (Driver::HasReachedFileSize(MAX_SIZE_OF_SECTION_HEADER)) {
+        bytesToRead = Driver::fileSize_ - Driver::pointer_;
+    }
+
+    BOOST_LOG_TRIVIAL(debug) << "[Driver]Getting of next section header";
+    auto *buffer = (char *) malloc(sizeof(char) * bytesToRead);
+    instance_->wasmFile_.seekg(instance_->pointer_, std::ios::beg);
+    instance_->wasmFile_.read(buffer, MAX_SIZE_OF_SECTION_HEADER);
+    instance_->pointer_ += antiwasm::sizeOfLeb128(reinterpret_cast<uint8_t *>(&buffer[1]));
+
+    return reinterpret_cast<uint8_t *>(buffer);
 }
 
 uint8_t *Driver::GetUTF8String() //TODO not ready to be used

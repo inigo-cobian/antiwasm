@@ -13,8 +13,10 @@
 #include <string>
 #include <memory>
 #include <boost/log/trivial.hpp>
+#include "../utils/leb128.hpp"
 
 #define SIZE_OF_SECTION_HEADER 2 //Section Id and Section Size
+const auto MAX_SIZE_OF_SECTION_HEADER = 6; //Section Id + max LEB128 for u32
 
 class Driver {
 private:
