@@ -1,7 +1,10 @@
 #ifndef ANTIWASM_LEB128_HPP
 #define ANTIWASM_LEB128_HPP
 
+#define BOOST_LOG_DYN_LINK 1
+
 #include <cstdint>
+#include <boost/log/trivial.hpp>
 
 namespace antiwasm {
     /**
