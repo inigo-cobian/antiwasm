@@ -88,7 +88,7 @@ int main(int argc, char **argv) {
     }
 
     if (variablesMap.count("filename")) {
-        std::cout << "Compiling " << variablesMap["filename"].as<std::string>() << "'\n";
+        std::cout << "Decoding \'" << variablesMap["filename"].as<std::string>() << "'\n";
         antiwasm::parse(variablesMap["filename"].as<std::string>().c_str());
     } else {
         std::cout << "No filename set\n";
