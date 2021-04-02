@@ -66,7 +66,7 @@ namespace antiwasm {
                 //TODO error case
             }
         }
-
+        typeSection.displaySectionHeaderInfo();
         return typeSection;
     }
 
@@ -93,6 +93,7 @@ namespace antiwasm {
             }
             tableSection.addTabletype(tabletype);
         }
+        tableSection.displaySectionHeaderInfo();
         return tableSection;
     }
 
@@ -112,6 +113,7 @@ namespace antiwasm {
             }
             memorySection.addMemtype(memtype);
         }
+        memorySection.displayMemsecContent(); //TODO move to another place in the future
         return memorySection;
     }
 

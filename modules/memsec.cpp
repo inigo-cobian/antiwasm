@@ -19,3 +19,13 @@ void MemorySection::displaySectionHeaderInfo() {
     std::cout << "  Memory | start=" << (std::hex) << initialPos_
               << " size=" << (std::hex) << size_ << std::endl;
 }
+
+void MemorySection::displayMemsecContent() {
+    std::cout << "  Memory | start=" << (std::hex) << initialPos_
+              << " size=" << (std::hex) << size_
+              << " (" << memtypeVector.size() <<") memtypes" << std::endl;
+
+    for(auto memtype : memtypeVector) {
+        antiwasm::displayMemtype(memtype);
+    }
+}

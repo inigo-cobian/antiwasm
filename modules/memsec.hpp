@@ -39,6 +39,11 @@ public:
      * Displays the header information for the memory section.
      */
     void displaySectionHeaderInfo();
+
+    /**
+     * Displays the information of the memsec
+     */
+    void displayMemsecContent();
 };
 
 #endif //ANTIWASM_MEMSEC_HPP

@@ -3,7 +3,7 @@
 
 #include "limits.hpp"
 
-union Memtype {
+struct Memtype {
     Limit limit;
 };
 
@@ -15,6 +15,8 @@ namespace antiwasm {
      * @return
      */
     Memtype parseMemType(const uint8_t *memTypeContent);
+
+    void displayMemtype(Memtype memtype);
 }
 
 #endif //ANTIWASM_MEMTYPE_HPP
