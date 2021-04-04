@@ -11,4 +11,18 @@ namespace antiwasm {
             return invalid_reftype;
         }
     }
+
+    void displayReftype(Reftype reftype) {
+        switch (reftype) {
+            case funref:
+                std::cout << "funref";
+                break;
+            case externref:
+                std::cout << "externref";
+                break;
+            case invalid_reftype:
+                std::cout << "error.reftype";
+                break;
+        }
+    }
 }

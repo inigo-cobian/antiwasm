@@ -11,11 +11,19 @@ namespace antiwasm {
             resulttype.valtypeVector.push_back(valtype);
             if (valtype.error) {
                 resulttype.error = true;
-                return resulttype;
             }
             pointer++;
         }
-        resulttype.nBytes = pointer;
+        resulttype.nBytes = sizeOfLeb128(resultTypeContent) + elementsInResulttype;
         return resulttype;
+    }
+
+    void displayResulttype(const Resulttype& resulttype) {
+        std::cout << "    Resulttype[";
+        for(auto valtype : resulttype.valtypeVector) {
+            displayValtype(valtype);
+            std::cout << "-";
+        }
+        std::cout << "]" << std::endl;
     }
 }

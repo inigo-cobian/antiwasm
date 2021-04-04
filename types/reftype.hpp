@@ -1,6 +1,7 @@
 #ifndef ANTIWASM_REFTYPE_HPP
 #define ANTIWASM_REFTYPE_HPP
 
+#include <iostream>
 #include <cstdint>
 
 const auto REFTYPE_SIZE = 1;
@@ -18,7 +19,9 @@ namespace antiwasm {
      * @param reftype
      * @return
      */
-    Reftype parseReftype(const uint8_t reftype);
+    Reftype parseReftype(uint8_t reftype);
+
+    void displayReftype(Reftype reftype);
 }
 
 #endif //ANTIWASM_REFTYPE_HPP

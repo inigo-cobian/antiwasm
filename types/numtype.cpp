@@ -15,4 +15,24 @@ namespace antiwasm {
             return invalid_numtype;
         }
     }
+
+    void displayNumtype(Numtype numtype) {
+        switch (numtype) {
+            case i32:
+                std::cout << "i32";
+                break;
+            case i64:
+                std::cout << "i64";
+                break;
+            case f32:
+                std::cout << "f32";
+                break;
+            case f64:
+                std::cout << "f64";
+                break;
+            case invalid_numtype:
+                std::cout << "error.numtype";
+                break;
+        }
+    }
 }

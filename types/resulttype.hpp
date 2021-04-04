@@ -2,6 +2,7 @@
 #define ANTIWASM_RESULTTYPE_HPP
 
 #include <vector>
+#include <iostream>
 #include "valtype.hpp"
 #include "../utils/leb128.hpp"
 
@@ -19,6 +20,8 @@ namespace antiwasm {
      * @return
      */
     Resulttype parseResulttype(const uint8_t *resultTypeContent);
+
+    void displayResulttype(const Resulttype& resulttype);
 }
 
 

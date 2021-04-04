@@ -2,6 +2,7 @@
 #define ANTIWASM_NUMTYPE_HPP
 
 #include <cstdint>
+#include <iostream>
 
 enum Numtype : int32_t {
     i32 = 0x7F,
@@ -18,7 +19,9 @@ namespace antiwasm {
      * @param numtypeContent
      * @return
      */
-    Numtype parseNumType(const uint8_t numtypeContent);
+    Numtype parseNumType(uint8_t numtypeContent);
+
+    void displayNumtype(Numtype numtype);
 }
 
 #endif //ANTIWASM_NUMTYPE_HPP

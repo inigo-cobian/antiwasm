@@ -4,21 +4,23 @@ Functype antiwasm::parseFunctype(const uint8_t *funcTypeContent) {
     Functype functype;
     if (funcTypeContent[0] != FUNCTYPE_HEADER) {
         functype.error = false;
+        std::cout << "Functype header not found: " << std::hex << (int)funcTypeContent[0] << std::endl;
         return functype;
     }
 
-    functype.parameterType = parseResulttype(&funcTypeContent[1]);
+    functype.parameterType = parseResulttype(&funcTypeContent[BYTES_HEADER_FUNCTYPE]);
     if (functype.parameterType.error) {
-        functype.error = false;
+        functype.error = true;
+        std::cout << "Error at functype.parameterType" << std::endl;
         return functype;
     }
-
-    functype.returnType = parseResulttype(&funcTypeContent[functype.parameterType.nBytes]);
+    auto indexReturnType = BYTES_HEADER_FUNCTYPE + functype.parameterType.nBytes;
+    functype.returnType = parseResulttype(&funcTypeContent[indexReturnType]);
     if (functype.returnType.error) {
         functype.error = true;
+        std::cout << "Error at functype.returnType" << std::endl;
     }
-
-    functype.nBytes = BYTES_HEADER_FUNCTYPE + functype.returnType.nBytes;
+    functype.nBytes = BYTES_HEADER_FUNCTYPE + functype.parameterType.nBytes + functype.returnType.nBytes;
 
     return functype;
 }
@@ -30,7 +32,9 @@ void antiwasm::displayFunctype(Functype functype) {
     }
 
     std::cout << "  Functype (rt1):" << std::endl;
+    displayResulttype(functype.parameterType);
 
     std::cout << "  Functype (rt2):" << std::endl;
+    displayResulttype(functype.returnType);
 
 }

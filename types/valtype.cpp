@@ -15,4 +15,14 @@ namespace antiwasm {
         }
         return valtype;
     }
+
+    void displayValtype(Valtype valtype) {
+        if (valtype.type == valtype_numtype) {
+            displayNumtype(valtype.numtype);
+        } else if (valtype.type == valtype_reftype) {
+            displayReftype(valtype.reftype);
+        } else {
+            std::cout << "Error at valtype" << std::endl;
+        }
+    }
 }
