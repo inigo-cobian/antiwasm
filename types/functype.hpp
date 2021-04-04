@@ -13,7 +13,7 @@ struct Functype {
     bool error = false;
 };
 
-const int BYTES_HEADER_FUNCTYPE = 1;
+const unsigned int BYTES_HEADER_FUNCTYPE = 1;
 constexpr int INDEX_RETURNTYPE = BYTES_HEADER_FUNCTYPE + BYTES_VALTYPE_HEADER;
 
 

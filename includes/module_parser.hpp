@@ -10,6 +10,7 @@
 #include "../modules/memsec.hpp"
 #include "../modules/tablesec.hpp"
 #include "../modules/typesec.hpp"
+#include "../utils/leb128.hpp"
 
 namespace antiwasm {
     /**

@@ -10,7 +10,7 @@ TypeSection::~TypeSection() {
 }
 
 void TypeSection::addFunctype(Functype functype) {
-
+    functypeVector.push_back(functype);
 }
 
 std::vector<Functype> TypeSection::getFunctypeVector() {
