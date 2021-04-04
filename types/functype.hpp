@@ -14,7 +14,6 @@ struct Functype {
 };
 
 const unsigned int BYTES_HEADER_FUNCTYPE = 1;
-constexpr int INDEX_RETURNTYPE = BYTES_HEADER_FUNCTYPE + 1; //FIXME read number of bytes at resulttype
 
 namespace antiwasm {
     /**

@@ -13,8 +13,7 @@ Functype antiwasm::parseFunctype(const uint8_t *funcTypeContent) {
         return functype;
     }
 
-    size_t sizeOfParams = functype.parameterType.valtypeVector.size() + INDEX_RETURNTYPE;
-    functype.returnType = parseResulttype(&funcTypeContent[sizeOfParams]);
+    functype.returnType = parseResulttype(&funcTypeContent[functype.parameterType.nBytes]);
     if (functype.returnType.error) {
         functype.error = true;
     }
