@@ -27,7 +27,7 @@ void TypeSection::displayTypesecContent() {
               << " size=" << (std::hex) << size_
               << " (" << functypeVector.size() << ") functypes" << std::endl;
 
-    for (auto functype : functypeVector) {
+    for (const auto& functype : functypeVector) {
         antiwasm::displayFunctype(functype);
     }
 }
