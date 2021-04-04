@@ -63,10 +63,11 @@ namespace antiwasm {
             typeSection.addFunctype(functype);
             pointer += functype.nBytes;
             if (functype.error) {
+                std::cout << "ERROR" << std::endl;
                 //TODO error case
             }
         }
-        typeSection.displaySectionHeaderInfo();
+        typeSection.displayTypesecContent();
         return typeSection;
     }
 

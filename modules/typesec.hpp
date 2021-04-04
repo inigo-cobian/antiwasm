@@ -39,6 +39,8 @@ public:
      * Displays the header information for the type section.
      */
     void displaySectionHeaderInfo();
+
+    void displayTypesecContent();
 };
 
 #endif //ANTIWASM_TYPESEC_HPP

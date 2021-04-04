@@ -1,6 +1,7 @@
 #ifndef ANTIWASM_FUNCTYPE_HPP
 #define ANTIWASM_FUNCTYPE_HPP
 
+#include <iostream>
 #include "resulttype.hpp"
 
 const uint32_t FUNCTYPE_HEADER = 0x60;
@@ -12,8 +13,8 @@ struct Functype {
     bool error = false;
 };
 
-const auto BYTES_HEADER_FUNCTYPE = 1;
-constexpr auto INDEX_RETURNTYPE = BYTES_HEADER_FUNCTYPE + BYTES_VALTYPE_HEADER;
+const int BYTES_HEADER_FUNCTYPE = 1;
+constexpr int INDEX_RETURNTYPE = BYTES_HEADER_FUNCTYPE + BYTES_VALTYPE_HEADER;
 
 
 namespace antiwasm {
@@ -24,6 +25,8 @@ namespace antiwasm {
      * @return
      */
     Functype parseFunctype(const uint8_t *funcTypeContent);
+
+    void displayFunctype(Functype functype);
 }
 
 #endif //ANTIWASM_FUNCTYPE_HPP

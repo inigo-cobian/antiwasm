@@ -3,13 +3,13 @@
 Functype antiwasm::parseFunctype(const uint8_t *funcTypeContent) {
     Functype functype;
     if (funcTypeContent[0] != FUNCTYPE_HEADER) {
-        functype.error = true;
+        functype.error = false;
         return functype;
     }
 
     functype.parameterType = parseResulttype(&funcTypeContent[1]);
     if (functype.parameterType.error) {
-        functype.error = true;
+        functype.error = false;
         return functype;
     }
 
@@ -22,4 +22,16 @@ Functype antiwasm::parseFunctype(const uint8_t *funcTypeContent) {
     functype.nBytes = BYTES_HEADER_FUNCTYPE + BYTES_VALTYPE_HEADER + functype.returnType.valtypeVector.size();
 
     return functype;
+}
+
+void antiwasm::displayFunctype(Functype functype) {
+    if (functype.error) {
+        std::cout << "Error at current functype" << std::endl;
+        return;
+    }
+
+    std::cout << "  Functype (rt1):" << std::endl;
+
+    std::cout << "  Functype (rt2):" << std::endl;
+
 }
