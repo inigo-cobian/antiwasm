@@ -19,7 +19,7 @@ Functype antiwasm::parseFunctype(const uint8_t *funcTypeContent) {
         functype.error = true;
     }
 
-    functype.nBytes = BYTES_HEADER_FUNCTYPE + BYTES_VALTYPE_HEADER + functype.returnType.valtypeVector.size();
+    functype.nBytes = BYTES_HEADER_FUNCTYPE + functype.returnType.nBytes;
 
     return functype;
 }

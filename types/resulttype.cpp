@@ -3,8 +3,8 @@
 namespace antiwasm {
     Resulttype parseResulttype(const uint8_t *resultTypeContent) {
         Resulttype resulttype;
-        auto elementsInResulttype = resultTypeContent[0];
-        auto pointer = 1;
+        auto elementsInResulttype = transformLeb128ToUnsignedInt32(resultTypeContent);
+        auto pointer = sizeOfLeb128(resultTypeContent);
         for (auto i = 0; i < elementsInResulttype; i++) {
             auto elementType = resultTypeContent[pointer];
             Valtype valtype = parseValtype(elementType);
@@ -15,6 +15,7 @@ namespace antiwasm {
             }
             pointer++;
         }
+        resulttype.nBytes = pointer;
         return resulttype;
     }
 }

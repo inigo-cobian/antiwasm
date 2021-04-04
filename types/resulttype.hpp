@@ -3,13 +3,13 @@
 
 #include <vector>
 #include "valtype.hpp"
+#include "../utils/leb128.hpp"
 
 struct Resulttype {
     std::vector<Valtype> valtypeVector;
+    unsigned int nBytes = 0;
     bool error = false;
 };
-
-const auto BYTES_VALTYPE_HEADER = 1; //TODO ¿general vec size?
 
 namespace antiwasm {
     /**
