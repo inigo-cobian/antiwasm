@@ -1,7 +1,7 @@
 #define BOOST_TEST_DYN_LINK
 
 #include <boost/test/unit_test.hpp>
-#include "../src/section.cpp"
+#include "../modules/section.cpp"
 
 BOOST_AUTO_TEST_SUITE(section_test)
 
@@ -9,8 +9,8 @@ BOOST_AUTO_TEST_SUITE(section_test)
     {
         int sectionSize = 20;
         int sectionIndex = 128;
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
-        unsigned char *sectionContentMock = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 20));
+        SectionId sectionId = SectionId::Type;
+        auto *sectionContentMock = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 20));
 
         Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
 
@@ -20,8 +20,8 @@ BOOST_AUTO_TEST_SUITE(section_test)
     {
         int sectionSize = 20;
         int sectionIndex = 128;
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
-        unsigned char *sectionContentMock = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 20));
+        SectionId sectionId = SectionId::Type;
+        auto *sectionContentMock = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 20));
         Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
 
         auto result = section.getSectionId();
@@ -33,8 +33,8 @@ BOOST_AUTO_TEST_SUITE(section_test)
     {
         int sectionSize = 20;
         int sectionIndex = 128;
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
-        unsigned char *sectionContentMock = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * 20));
+        SectionId sectionId = SectionId::Type;
+        auto *sectionContentMock = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 20));
         Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
 
         auto result = section.getSize();
@@ -46,8 +46,8 @@ BOOST_AUTO_TEST_SUITE(section_test)
     {
         int sectionSize = 4;
         int sectionIndex = 128;
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
-        unsigned char *sectionContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * sectionSize));
+        SectionId sectionId = SectionId::Type;
+        auto *sectionContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * sectionSize));
         sectionContent[0] = 0xCA;
         sectionContent[1] = 0xFE;
         sectionContent[0] = 0x19;
@@ -65,8 +65,8 @@ BOOST_AUTO_TEST_SUITE(section_test)
     {
         int sectionSize = 4;
         int sectionIndex = 128;
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
-        unsigned char *sectionContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * sectionSize));
+        SectionId sectionId = SectionId::Type;
+        auto *sectionContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * sectionSize));
         sectionContent[0] = 0xCA;
         sectionContent[1] = 0xFE;
         sectionContent[0] = 0x19;
@@ -82,8 +82,8 @@ BOOST_AUTO_TEST_SUITE(section_test)
     {
         int sectionSize = 4;
         int sectionIndex = 128;
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
-        unsigned char *sectionContent = static_cast<unsigned char *>(malloc(sizeof(unsigned char) * sectionSize));
+        SectionId sectionId = SectionId::Type;
+        auto *sectionContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * sectionSize));
         Section section(sectionId, sectionSize, sectionContent, sectionIndex);
 
         auto result = section.getInitialPos();

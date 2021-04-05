@@ -10,7 +10,7 @@
 #include "../includes/const.hpp"
 
 namespace antiwasm {
-    void parseInstr(const unsigned char *instruction, int &pointer);
+    void parseInstr(const uint8_t *instruction, int &pointer);
 
     void parseExpression(uint8_t instruction);
 }

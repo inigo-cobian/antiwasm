@@ -1,29 +1,29 @@
-#include "../includes/section.hpp"
+#include "section.hpp"
 
-Section::Section(antiwasm::SectionId sectionId, int size, unsigned char *content, int initialPos) {
+Section::Section(SectionId sectionId, int size, uint8_t *content, int initialPos) {
     sectionId_ = sectionId;
     size_ = size;
     content_ = content;
     initialPos_ = initialPos;
 }
 
-antiwasm::SectionId Section::getSectionId() {
+SectionId Section::getSectionId() {
     return sectionId_;
 }
 
-int Section::getSize() {
+int Section::getSize() const {
     return size_;
 }
 
-unsigned char *Section::getContent() {
+uint8_t *Section::getContent() {
     return content_;
 }
 
-int Section::getInitialPos() {
+int Section::getInitialPos() const {
     return initialPos_;
 }
 
-void Section::displaySectionInfo() {
+void Section::displaySectionHeaderInfo() {
     std::cout << std::hex << "ID=" << sectionId_
               << " | start=" << (std::hex) << initialPos_
               << " size=" << (std::hex) << size_ << std::endl;

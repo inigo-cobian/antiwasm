@@ -5,9 +5,12 @@
 
 #include <iostream>
 #include <boost/log/trivial.hpp>
-#include "section_index.hpp"
-#include "../includes/section.hpp"
-
+#include <cstdint>
+#include "../modules/section.hpp"
+#include "../modules/memsec.hpp"
+#include "../modules/tablesec.hpp"
+#include "../modules/typesec.hpp"
+#include "../utils/leb128.hpp"
 
 namespace antiwasm {
     /**
@@ -18,7 +21,7 @@ namespace antiwasm {
      * @param sectionPos
      * @return The parsed section.
      */
-    Section parseNextSection(unsigned char sectionId, int sectionSize, unsigned char *sectionContent, int sectionPos);
+    Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionContent, int sectionPos);
 
     /**
      * Parses a Custom section and generates its instance.
@@ -26,7 +29,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Custom section.
      */
-    int parseCustomSection(int sizeOfSection, unsigned char *sectionContent);
+    int parseCustomSection(int sizeOfSection, uint8_t *sectionContent);
 
     /**
      * Parses a Type section and generates its instance.
@@ -34,7 +37,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Type section.
      */
-    int parseTypeSection(int sizeOfSection, unsigned char *sectionContent);
+    TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent);
 
     /**
      * Parses an Import section and generates its instance.
@@ -42,7 +45,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Import section.
      */
-    int parseImportSection(int sizeOfSection, unsigned char *sectionContent);
+    int parseImportSection(int sizeOfSection, uint8_t *sectionContent);
 
     /**
      * Parses a Function section and generates its instance.
@@ -50,7 +53,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Function section.
      */
-    int parseFunctionSection(int sizeOfSection, unsigned char *sectionContent);
+    int parseFunctionSection(int sizeOfSection, uint8_t *sectionContent);
 
     /**
      * Parses a Table section and generates its instance.
@@ -58,7 +61,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Table section.
      */
-    int parseTableSection(int sizeOfSection, unsigned char *sectionContent);
+    TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent);
 
     /**
      * Parses a Memory section and generates its instance.
@@ -66,7 +69,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Memory section.
      */
-    int parseMemorySection(int sizeOfSection, unsigned char *sectionContent);
+    MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent);
 
     /**
      * Parses a Global section and generates its instance.
@@ -74,7 +77,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Global section.
      */
-    int parseGlobalSection(int sizeOfSection, unsigned char *sectionContent);
+    int parseGlobalSection(int sizeOfSection, uint8_t *sectionContent);
 
     /**
      * Parses an Export section and generates its instance.
@@ -82,7 +85,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Export section.
      */
-    int parseExportSection(int sizeOfSection, unsigned char *sectionContent);
+    int parseExportSection(int sizeOfSection, uint8_t *sectionContent);
 
     /**
      * Parses a Start section and generates its instance.
@@ -90,7 +93,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Start section.
      */
-    int parseStartSection(int sizeOfSection, unsigned char *sectionContent);
+    int parseStartSection(int sizeOfSection, uint8_t *sectionContent);
 
     /**
      * Parses an Element section and generates its instance.
@@ -98,7 +101,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Element section.
      */
-    int parseElementSection(int sizeOfSection, unsigned char *sectionContent);
+    int parseElementSection(int sizeOfSection, uint8_t *sectionContent);
 
     /**
      * Parses a Code section and generates its instance.
@@ -106,7 +109,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Code section.
      */
-    int parseCodeSection(int sizeOfSection, unsigned char *sectionContent);
+    int parseCodeSection(int sizeOfSection, uint8_t *sectionContent);
 
     /**
      * Parses a Data section and generates its instance.
@@ -114,7 +117,7 @@ namespace antiwasm {
      * @param sectionContent
      * @return The parsed Data section.
      */
-    int parseDataSection(int sizeOfSection, unsigned char *sectionContent);
+    int parseDataSection(int sizeOfSection, uint8_t *sectionContent);
 }
 
 #endif

@@ -6,7 +6,7 @@
 
 class I32Const : public virtual Instruction {
 private:
-    int32_t getI32Const(uint8_t *i32ConstAsBytes);
+    int32_t getI32Const(uint8_t *i32ConstAsBytes) const;
 
     int32_t value = 0;
 public:
@@ -30,7 +30,7 @@ public:
 
 class F32Const : public virtual Instruction {
 private:
-    float getF32Const(uint8_t *f32ConstAsBytes);
+    float getF32Const(uint8_t *f32ConstAsBytes) const;
 
     float value = 0;
 public:
@@ -42,7 +42,7 @@ public:
 
 class F64Const : public virtual Instruction {
 private:
-    double getF64Const(uint8_t *f64ConstAsBytes);
+    double getF64Const(uint8_t *f64ConstAsBytes) const;
 
     double value = 0;
 public:

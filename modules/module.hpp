@@ -7,7 +7,7 @@
 class Module {
 private:
     int size_;
-    std::map<const antiwasm::SectionId, Section> sections_;
+    std::map<const SectionId, Section> sections_;
 public:
     /**
      * Constructor
@@ -37,14 +37,14 @@ public:
      * @param sectionId
      * @return The existing section. A section with Error id if it does not exist.
      */
-    Section getSection(antiwasm::SectionId sectionId);
+    Section getSection(SectionId sectionId);
 
     /**
      * Checks if the section with the given Id exists.
      * @param sectionId
      * @return true if the section exists, false if it does not.
      */
-    bool containsSection(antiwasm::SectionId sectionId);
+    bool containsSection(SectionId sectionId);
 };
 
 #endif //ANTIWASM_MODULE_HPP

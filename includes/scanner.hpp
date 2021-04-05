@@ -7,12 +7,12 @@
 #include <fstream>
 #include <cstring>
 #include <cstddef>
-#include "header.hpp"
+#include <boost/log/trivial.hpp>
 #include "module_parser.hpp"
 #include "driver.hpp"
-#include "module.hpp"
-#include "../includes/section_index.hpp"
-#include <boost/log/trivial.hpp>
+#include "../modules/module.hpp"
+#include "../modules/header.hpp"
+#include "../utils/leb128.hpp"
 
 namespace antiwasm {
 

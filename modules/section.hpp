@@ -2,13 +2,28 @@
 #define SECTION_HPP
 
 #include <iostream>
-#include "section_index.hpp"
 
-class Section {
-private:
-    antiwasm::SectionId sectionId_;
+enum SectionId {
+    Custom = 0x00,
+    Type = 0x01,
+    Import = 0x02,
+    Function = 0x03,
+    Table = 0x04,
+    Memory = 0x05,
+    Global = 0x06,
+    Export = 0x07,
+    Start = 0x08,
+    Element = 0x09,
+    Code = 0x0A,
+    Data = 0x0B,
+    Error = 0xFF
+};
+
+class Section { //TODO make virtual
+protected:
+    SectionId sectionId_;
     int size_;
-    unsigned char *content_;
+    uint8_t *content_;
     int initialPos_;
 public:
     /**
@@ -18,7 +33,7 @@ public:
      * @param content
      * @param initialPos
      */
-    Section(antiwasm::SectionId sectionId, int size, unsigned char *content, int initialPos);
+    Section(SectionId sectionId, int size, uint8_t *content, int initialPos);
 
     /**
      * Destructor
@@ -29,30 +44,30 @@ public:
      * Gets the Id of the section.
      * @return The section Id.
      */
-    antiwasm::SectionId getSectionId();
+    SectionId getSectionId();
 
     /**
      * Gets the size of the section in bytes.
      * @return The size of the section.
      */
-    int getSize();
+    int getSize() const;
 
     /**
      * Gets the content of the section as bytes.
      * @return The content of the section as bytes
      */
-    unsigned char *getContent();
+    uint8_t *getContent();
 
     /**
      * Gets the initial position of the section inside the module.
      * @return The initial position inside the module.
      */
-    int getInitialPos();
+    int getInitialPos() const;
 
-    /** TODO a different version for each section type
-     * Displays the general information of the section.
+    /**
+     * Displays the general information for the section.
      */
-    void displaySectionInfo();
+    virtual void displaySectionHeaderInfo();
 };
 
 #endif //SECTION_HPP

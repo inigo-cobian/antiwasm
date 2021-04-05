@@ -8,14 +8,12 @@ namespace antiwasm {
             return -1;
         }
 
-        //TODO primera comprobación de tamaño
-
         //Generate Module
         Module module(driver->GetFileSize());
 
         //Magic header
-        unsigned char *uBuffer = driver->GetNextBytes(4);
-        if (antiwasm::checkMagicNumber(uBuffer) == false) {
+        uint8_t *uBuffer = driver->GetNextBytes(4);
+        if (!checkMagicNumber(uBuffer)) {
             return -1;
         }
 
@@ -23,7 +21,7 @@ namespace antiwasm {
 
         //Version number
         uBuffer = driver->GetNextBytes(4);
-        if (antiwasm::checkVersion(uBuffer) == false) {
+        if (!checkVersion(uBuffer)) {
             return -1;
         }
 
@@ -33,7 +31,7 @@ namespace antiwasm {
         while (!driver->HasReachedFileSize(2)) {
             auto sectionPosition = driver->GetCurrentPos();
             auto *nextSectionHeader = driver->GetNextSectionHeader();
-            int sectionSize = nextSectionHeader[1];
+            auto sectionSize = transformLeb128ToUnsignedInt32(&nextSectionHeader[1]);
             auto *nextSectionContent = driver->GetNextBytes(sectionSize);
             auto nextSection = parseNextSection(nextSectionHeader[0], sectionSize, nextSectionContent, sectionPosition);
 
@@ -41,7 +39,7 @@ namespace antiwasm {
             BOOST_LOG_TRIVIAL(trace) << "[scanner] Size: " << std::hex << sectionSize;
 
             if (nextSection.getSectionId() != Error) {
-                nextSection.displaySectionInfo();
+                nextSection.displaySectionHeaderInfo();
                 module.addSection(nextSection);
             } else { //TODO manage error
                 break;

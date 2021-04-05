@@ -1,7 +1,7 @@
 #define BOOST_TEST_DYN_LINK
 
 #include <boost/test/unit_test.hpp>
-#include "../src/module.cpp"
+#include "../modules/module.cpp"
 
 BOOST_AUTO_TEST_SUITE(module_test)
 
@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_SUITE(module_test)
     BOOST_AUTO_TEST_CASE(Module_returnsASectionWithTheRequestedId)
     {
         Module module(20);
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
+        SectionId sectionId = SectionId::Type;
         Section section(sectionId, 10, nullptr, 0);
         module.addSection(section);
 
@@ -31,15 +31,15 @@ BOOST_AUTO_TEST_SUITE(module_test)
     {
         Module module(20);
 
-        auto returnValue = module.getSection(antiwasm::SectionId::Type);
+        auto returnValue = module.getSection(SectionId::Type);
 
-        BOOST_CHECK_EQUAL(antiwasm::SectionId::Error, returnValue.getSectionId());
+        BOOST_CHECK_EQUAL(SectionId::Error, returnValue.getSectionId());
     }
 
     BOOST_AUTO_TEST_CASE(containsSection_returnsTrueIfSectionExists)
     {
         Module module(20);
-        antiwasm::SectionId sectionId = antiwasm::SectionId::Type;
+        SectionId sectionId = SectionId::Type;
         Section section(sectionId, 10, nullptr, 0);
         module.addSection(section);
 
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_SUITE(module_test)
     {
         Module module(20);
 
-        auto returnValue = module.containsSection(antiwasm::SectionId::Type);
+        auto returnValue = module.containsSection(SectionId::Type);
 
         BOOST_CHECK_EQUAL(false, returnValue);
     }

@@ -2,7 +2,7 @@
 
 namespace antiwasm {
 
-    void parseInstr(const unsigned char *instructionPtr, int &pointer) {
+    void parseInstr(const uint8_t *instructionPtr, int &pointer) {
         //TODO create the parsing of instructions
         do {
             if (instructionPtr[pointer++] == 0x0B) {

@@ -2,18 +2,18 @@
 
 namespace antiwasm {
 
-    Section parseNextSection(unsigned char sectionId, int sectionSize,
-                             unsigned char *sectionContent, int sectionPos) { //TODO gestión de errores y return type
+    Section parseNextSection(uint8_t sectionId, int sectionSize,
+                             uint8_t *sectionContent, int sectionPos) { //TODO gestión de errores y return type
 
-        BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (unsigned int) sectionId
-                                 << "] with size " << (unsigned int) sectionSize;
+        BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (std::hex)
+                                 << (unsigned int) sectionId
+                                 << "] with size " << (std::hex) << (unsigned int) sectionSize;
         switch (sectionId) {
             case (SectionId::Custom):
                 parseCustomSection(sectionSize, sectionContent);
                 return Section(SectionId::Custom, sectionSize, sectionContent, sectionPos);
             case (SectionId::Type):
-                parseTypeSection(sectionSize, sectionContent);
-                return Section(SectionId::Type, sectionSize, sectionContent, sectionPos);
+                return parseTypeSection(sectionSize, sectionContent);
             case (SectionId::Import):
                 parseImportSection(sectionSize, sectionContent);
                 return Section(SectionId::Import, sectionSize, sectionContent, sectionPos);
@@ -21,11 +21,9 @@ namespace antiwasm {
                 parseFunctionSection(sectionSize, sectionContent);
                 return Section(SectionId::Function, sectionSize, sectionContent, sectionPos);
             case (SectionId::Table):
-                parseTableSection(sectionSize, sectionContent);
-                return Section(SectionId::Table, sectionSize, sectionContent, sectionPos);
+                return parseTableSection(sectionSize, sectionContent);
             case (SectionId::Memory):
-                parseMemorySection(sectionSize, sectionContent);
-                return Section(SectionId::Memory, sectionSize, sectionContent, sectionPos);
+                return parseMemorySection(sectionSize, sectionContent);
             case (SectionId::Global):
                 parseGlobalSection(sectionSize, sectionContent);
                 return Section(SectionId::Global, sectionSize, sectionContent, sectionPos);
@@ -47,56 +45,102 @@ namespace antiwasm {
             default:
                 //TODO pretty error message
                 BOOST_LOG_TRIVIAL(error) << "[module_parser] Error at section " << std::hex << (unsigned int) sectionId
-                                         << " with size " << sectionSize;
+                                         << " with size " << (std::hex) << sectionSize;
                 return Section(SectionId::Error, -1, nullptr, 0);
         }
     }
 
-    int parseCustomSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseCustomSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseTypeSection(int sizeOfSection, unsigned char *sectionContent) {
+    TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent) {
+        auto typesInVector = transformLeb128ToUnsignedInt32(sectionContent);
+        unsigned int pointer = sizeOfLeb128(sectionContent);
+        TypeSection typeSection(sizeOfSection, sectionContent, 0); //TODO position
+        for (u_int32_t i = 0; i < typesInVector; i++) {
+            Functype functype = parseFunctype(&sectionContent[pointer]);
+            typeSection.addFunctype(functype);
+            pointer += functype.nBytes;
+            if (functype.error) {
+                std::cout << "ERROR parseTypeSection" << std::endl;
+                //TODO error case
+                return typeSection;
+            }
+        }
+        typeSection.displayTypesecContent();
+        return typeSection;
+    }
+
+    int parseImportSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseImportSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseFunctionSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseFunctionSection(int sizeOfSection, unsigned char *sectionContent) {
+    TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent) {
+        u_int32_t tablesInVector = sectionContent[0];
+        unsigned int pointer = 1;
+        TableSection tableSection(sizeOfSection, sectionContent, 0); //TODO position
+        for (u_int32_t i = 0; i < tablesInVector; i++) {
+            Tabletype tabletype = parseTableType(&sectionContent[pointer]);
+            if (tabletype.limit.type == limit_min) {
+                pointer += REFTYPE_SIZE + tabletype.limit.nBytes;
+            } else if (tabletype.limit.type == limit_min_max) {
+                pointer += REFTYPE_SIZE + tabletype.limit.nBytes;
+            } else {
+                //TODO error case
+                std::cout << "Error at parsing tabletype" << std::endl;
+            }
+            tableSection.addTabletype(tabletype);
+        }
+        tableSection.displayTablesecContent();
+        return tableSection;
+    }
+
+    MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent) {
+        u_int32_t memsInVector = sectionContent[0];
+        unsigned int pointer = 1;
+        MemorySection memorySection(sizeOfSection, sectionContent, 0); //TODO position
+
+        for (u_int32_t i = 0; i < memsInVector; i++) {
+            Memtype memtype = parseMemType(&sectionContent[pointer]);
+            if (memtype.limit.type == limit_min) {
+                pointer += BYTES_LIMIT_MIN;
+            } else if (memtype.limit.type == limit_min_max) {
+                pointer += BYTES_LIMIT_MIN_MAX;
+            } else {
+                //TODO error case
+            }
+            memorySection.addMemtype(memtype);
+        }
+        memorySection.displayMemsecContent(); //TODO move to another place in the future
+        return memorySection;
+    }
+
+    int parseGlobalSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseTableSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseExportSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseMemorySection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseStartSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseGlobalSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseElementSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseExportSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseCodeSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 
-    int parseStartSection(int sizeOfSection, unsigned char *sectionContent) {
-        return 0; //TODO
-    }
-
-    int parseElementSection(int sizeOfSection, unsigned char *sectionContent) {
-        return 0; //TODO
-    }
-
-    int parseCodeSection(int sizeOfSection, unsigned char *sectionContent) {
-        return 0; //TODO
-    }
-
-    int parseDataSection(int sizeOfSection, unsigned char *sectionContent) {
+    int parseDataSection(int sizeOfSection, uint8_t *sectionContent) {
         return 0; //TODO
     }
 }

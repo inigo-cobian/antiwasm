@@ -19,7 +19,7 @@ void singleByteToTwoHexChar(const uint8_t byte, char *destHexChar) {
     destHexChar[1] = getHexChar(secondChar);
 }
 
-char getHexChar(unsigned char origin) {
+char getHexChar(uint8_t origin) {
     if (origin < 0xA) {
         return '0' + origin;
     } else {
