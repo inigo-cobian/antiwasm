@@ -3,7 +3,7 @@
 Functype antiwasm::parseFunctype(const uint8_t *funcTypeContent) {
     Functype functype;
     if (funcTypeContent[0] != FUNCTYPE_HEADER) {
-        functype.error = false;
+        functype.error = true;
         std::cout << "Functype header not found: " << std::hex << (int)funcTypeContent[0] << std::endl;
         return functype;
     }
