@@ -25,7 +25,7 @@ namespace antiwasm {
         std::cout << "    [";
         displayReftype(tabletype.reftype);
         std::cout << "] ";
-        //displayLimits(tabletype.limit); TODO
+        displayLimits(tabletype.limit);
         std::cout << std::endl;
     }
 }

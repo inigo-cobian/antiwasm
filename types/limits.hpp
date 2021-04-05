@@ -57,6 +57,8 @@ namespace antiwasm {
      * @return true if the limit is not valid, false if it is
      */
     bool checkIfLimitIsNotValid(const uint32_t min_, const uint32_t max_);
+
+    void displayLimits(Limit limit);
 }
 
 #endif
