@@ -19,3 +19,14 @@ void TableSection::displaySectionHeaderInfo() {
     std::cout << "   Table | start=" << (std::hex) << initialPos_
               << " size=" << (std::hex) << size_ << std::endl;
 }
+
+void TableSection::displayTablesecContent() {
+    std::cout << "   Table | start=" << (std::hex) << initialPos_
+              << " size=" << (std::hex) << size_
+              << " (" << tabletypeVector.size() <<") tabletypes" << std::endl;
+
+    for(auto tabletype : tabletypeVector) {
+        antiwasm::displayTabletype(tabletype);
+    }
+
+}

@@ -87,15 +87,16 @@ namespace antiwasm {
         for (u_int32_t i = 0; i < tablesInVector; i++) {
             Tabletype tabletype = parseTableType(&sectionContent[pointer]);
             if (tabletype.limit.type == limit_min) {
-                pointer += REFTYPE_SIZE + BYTES_LIMIT_MIN;
+                pointer += REFTYPE_SIZE + tabletype.limit.nBytes;
             } else if (tabletype.limit.type == limit_min_max) {
-                pointer += REFTYPE_SIZE + BYTES_LIMIT_MIN_MAX;
+                pointer += REFTYPE_SIZE + tabletype.limit.nBytes;
             } else {
                 //TODO error case
+                std::cout << "Error at parsing tabletype" << std::endl;
             }
             tableSection.addTabletype(tabletype);
         }
-        tableSection.displaySectionHeaderInfo();
+        tableSection.displayTablesecContent();
         return tableSection;
     }
 

@@ -41,6 +41,7 @@ public:
      */
     void displaySectionHeaderInfo();
 
+    void displayTablesecContent();
 };
 
 

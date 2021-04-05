@@ -18,6 +18,8 @@ namespace antiwasm {
      * @return
      */
     Tabletype parseTableType(const uint8_t *tableTypeContent);
+
+    void displayTabletype(Tabletype tabletype);
 }
 
 #endif //ANTIWASM_TABLETYPE_HPP
