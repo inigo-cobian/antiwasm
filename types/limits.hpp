@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cstdint>
 #include <boost/log/trivial.hpp>
+#include "../utils/leb128.hpp"
 
 enum limit_types : uint32_t {
     limit_min = 0x00,
@@ -16,9 +17,11 @@ struct Limit {
     limit_types type;
     uint32_t min;
     uint32_t max;
-    bool error = false; //TODO
+    int nBytes = 0;
+    bool error = false;
 };
 
+const unsigned int SIZE_OF_LIMIT_TYPE = 1;
 const auto BYTES_LIMIT_MIN = 2;
 const auto BYTES_LIMIT_MIN_MAX = 3;
 
@@ -36,7 +39,7 @@ namespace antiwasm {
      * @param min_
      * @return
      */
-    Limit parseLimitMin(const uint32_t min_);
+    Limit parseLimitMin(const uint32_t min_, const int nBytes);
 
     /**
      * Generates a limit [min-max].
@@ -45,7 +48,7 @@ namespace antiwasm {
      * @param max_
      * @return
      */
-    Limit parseLimitMinMax(const uint32_t min_, const uint32_t max_);
+    Limit parseLimitMinMax(uint32_t min_, const uint32_t max_, const int nBytes);
 
     /**
      * Checks if the limit range is valid.
