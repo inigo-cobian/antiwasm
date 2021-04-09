@@ -1,24 +1,27 @@
 #ifndef ANTIWASM_ERROR_HPP
 #define ANTIWASM_ERROR_HPP
 
-enum error_types {
-    unknown,
-    incorrectHeader,
-    unrecognizedVersion,
-    wrongSectionId
-};
+#include <section.hpp>
 
-enum error_severity {
-    fatal,
-    warning
-};
+namespace antiwasm {
+    enum error_types {
+        unknown,
+        incorrectHeader,
+        unrecognizedVersion,
+        wrongSectionId
+    };
 
-struct Error {
-    Section *section;
-    unsigned int elementIndex;
-    error_types errorType;
-    error_severity severity;
-};
+    enum error_severity {
+        fatal,
+        warning
+    };
 
+    struct Error {
+        Section *section;
+        unsigned int elementIndex;
+        error_types errorType;
+        error_severity severity;
+    };
+}
 
 #endif //ANTIWASM_ERROR_HPP
