@@ -1,19 +1,19 @@
 #ifndef ANTIWASM_DISPLAYER_HPP
 #define ANTIWASM_DISPLAYER_HPP
 
-#include <iostream>
 #include "logging_levels.hpp"
+#include <iostream>
 
-class Displayer { //TODO general
+class Displayer { // TODO general
 private:
-    static LoggingLevel loggingLevel_;
+  static LoggingLevel loggingLevel_;
 
 public:
-    static void Log(LoggingLevel minLoggingLevel, const std::string& logMessage);
+  static void Log(LoggingLevel minLoggingLevel, const std::string &logMessage);
 
-    static void SetLoggingLevel(LoggingLevel loggingLevel);
+  static void SetLoggingLevel(LoggingLevel loggingLevel);
 
-    static LoggingLevel GetLoggingLevel();
+  static LoggingLevel GetLoggingLevel();
 };
 
-#endif //ANTIWASM_DISPLAYER_HPP
+#endif // ANTIWASM_DISPLAYER_HPP

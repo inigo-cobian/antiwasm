@@ -4,19 +4,19 @@
 #include "limits.hpp"
 
 struct Memtype {
-    Limit limit;
+  Limit limit;
 };
 
 namespace antiwasm {
-    /**
-     * Parses and generates the parsed memtype.
-     * Adds error if cannot complete the parsing.
-     * @param memTypeContent
-     * @return
-     */
-    Memtype parseMemType(const uint8_t *memTypeContent);
+/**
+ * Parses and generates the parsed memtype.
+ * Adds error if cannot complete the parsing.
+ * @param memTypeContent
+ * @return
+ */
+Memtype parseMemType(const uint8_t *memTypeContent);
 
-    void displayMemtype(Memtype memtype);
-}
+void displayMemtype(Memtype memtype);
+} // namespace antiwasm
 
-#endif //ANTIWASM_MEMTYPE_HPP
+#endif // ANTIWASM_MEMTYPE_HPP

@@ -1,10 +1,10 @@
 #ifndef ANTIWASM_INIT_HPP
 #define ANTIWASM_INIT_HPP
 
-#include "scanner.hpp"
 #include "displayer.hpp"
-#include <iostream>
+#include "scanner.hpp"
 #include <boost/program_options.hpp>
 #include <boost/test/unit_test_parameters.hpp>
+#include <iostream>
 
-#endif //ANTIWASM_INIT_HPP
+#endif // ANTIWASM_INIT_HPP

@@ -1,28 +1,28 @@
 #ifndef ANTIWASM_RESULTTYPE_HPP
 #define ANTIWASM_RESULTTYPE_HPP
 
-#include <vector>
 #include <iostream>
-#include "valtype.hpp"
+#include <vector>
+
 #include "../utils/leb128.hpp"
+#include "valtype.hpp"
 
 struct Resulttype {
-    std::vector<Valtype> valtypeVector;
-    unsigned int nBytes = 0;
-    bool error = false;
+  std::vector<Valtype> valtypeVector;
+  unsigned int nBytes = 0;
+  bool error = false;
 };
 
 namespace antiwasm {
-    /**
-     * Parses and generates the parsed resulttype.
-     * Adds error if cannot complete the parsing.
-     * @param resultTypeContent
-     * @return
-     */
-    Resulttype parseResulttype(const uint8_t *resultTypeContent);
+/**
+ * Parses and generates the parsed resulttype.
+ * Adds error if cannot complete the parsing.
+ * @param resultTypeContent
+ * @return
+ */
+Resulttype parseResulttype(const uint8_t *resultTypeContent);
 
-    void displayResulttype(const Resulttype& resulttype);
-}
+void displayResulttype(const Resulttype &resulttype);
+} // namespace antiwasm
 
-
-#endif //ANTIWASM_RESULTTYPE_HPP
+#endif // ANTIWASM_RESULTTYPE_HPP

@@ -1,11 +1,11 @@
 #ifndef ANTIWASM_LOGGING_LEVELS_HPP
 #define ANTIWASM_LOGGING_LEVELS_HPP
 
-enum LoggingLevel { //TODO update names
-    INFO = 0,
-    DEBUG = 1,
-    VERBOSE = 2,
-    PEDANTIC = 3
+enum LoggingLevel { // TODO update names
+  INFO = 0,
+  DEBUG = 1,
+  VERBOSE = 2,
+  PEDANTIC = 3
 };
 
-#endif //ANTIWASM_LOGGING_LEVELS_HPP
+#endif // ANTIWASM_LOGGING_LEVELS_HPP

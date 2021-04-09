@@ -4,24 +4,21 @@
 #include <section.hpp>
 
 namespace antiwasm {
-    enum error_types {
-        unknown,
-        incorrectHeader,
-        unrecognizedVersion,
-        wrongSectionId
-    };
+enum error_types {
+  unknown,
+  incorrectHeader,
+  unrecognizedVersion,
+  wrongSectionId
+};
 
-    enum error_severity {
-        fatal,
-        warning
-    };
+enum error_severity { fatal, warning };
 
-    struct Error {
-        Section *section;
-        unsigned int elementIndex;
-        error_types errorType;
-        error_severity severity;
-    };
-}
+struct Error {
+  Section *section;
+  unsigned int elementIndex;
+  error_types errorType;
+  error_severity severity;
+};
+} // namespace antiwasm
 
-#endif //ANTIWASM_ERROR_HPP
+#endif // ANTIWASM_ERROR_HPP

@@ -10,4 +10,4 @@ void singleByteToTwoHexChar(const uint8_t byte, char *destHexChar);
 
 char getHexChar(uint8_t origin);
 
-#endif //ANTIWASM_WASM_UTILS_HPP
+#endif // ANTIWASM_WASM_UTILS_HPP

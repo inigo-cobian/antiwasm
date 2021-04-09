@@ -4,29 +4,26 @@
 #include "numtype.hpp"
 #include "reftype.hpp"
 
-enum valtype_type {
-    valtype_numtype,
-    valtype_reftype,
-    valtype_error
-};
+enum valtype_type { valtype_numtype, valtype_reftype, valtype_error };
 
 struct Valtype {
-    valtype_type type;
-    Numtype numtype; //TODO explain in the docs that they are two elements to keep the code Æ s t h e t i c
-    Reftype reftype;
-    bool error = false;
+  valtype_type type;
+  Numtype numtype; // TODO explain in the docs that they are two elements to
+                   // keep the code Æ s t h e t i c
+  Reftype reftype;
+  bool error = false;
 };
 
 namespace antiwasm {
-    /**
-     * Gets a byte and returns the equivalent Valtype.
-     * Adds error if cannot complete the parsing.
-     * @param valtypeContent
-     * @return
-     */
-    Valtype parseValtype(uint8_t valtypeContent);
+/**
+ * Gets a byte and returns the equivalent Valtype.
+ * Adds error if cannot complete the parsing.
+ * @param valtypeContent
+ * @return
+ */
+Valtype parseValtype(uint8_t valtypeContent);
 
-    void displayValtype(Valtype valtype);
-}
+void displayValtype(Valtype valtype);
+} // namespace antiwasm
 
-#endif //ANTIWASM_VALTYPE_HPP
+#endif // ANTIWASM_VALTYPE_HPP
