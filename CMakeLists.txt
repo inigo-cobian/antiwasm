@@ -5,7 +5,7 @@ project(antiwasm)
 #codecov.io for code coverage
 set(--coverage)
 
-include_directories(src instructions types modules utils)
+include_directories(src instructions scanner types modules utils)
 
 # Boost (logging + unit test)
 find_package(Boost 1.70 REQUIRED COMPONENTS filesystem)
@@ -18,10 +18,11 @@ add_subdirectory(test)
 
 file(GLOB SOURCES "src/*.cpp")
 file(GLOB INSTRUCTIONS "instructions/*.cpp")
+file(GLOB SCANNER "scanner/*.cpp")
 file(GLOB MODULES "modules/*.cpp")
 file(GLOB TYPES "types/*.cpp")
 file(GLOB UTILS "utils/*.cpp")
 
-add_executable(antiwasm ${SOURCES} ${INSTRUCTIONS} ${MODULES} ${TYPES} ${UTILS})
+add_executable(antiwasm ${SOURCES} ${INSTRUCTIONS} ${SCANNER} ${MODULES} ${TYPES} ${UTILS})
 
 target_link_libraries(antiwasm pthread boost_log boost_program_options boost_thread)

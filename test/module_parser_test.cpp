@@ -3,8 +3,8 @@
 #include "../modules/memsec.cpp" //TODO remove if possible
 #include "../modules/tablesec.cpp"
 #include "../modules/typesec.cpp"
-#include "../src/module_parser.cpp"
 #include "../types/reftype.cpp"
+#include "module_parser.cpp"
 #include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_SUITE(module_parser_test)

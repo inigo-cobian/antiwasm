@@ -1,4 +1,4 @@
-#include "../includes/scanner.hpp"
+#include "scanner.hpp"
 
 namespace antiwasm {
 int parse(const char *classFile) {

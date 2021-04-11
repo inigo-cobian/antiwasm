@@ -1,5 +1,5 @@
 #include "../includes/displayer.hpp"
-#include "../includes/scanner.hpp"
+#include "../scanner/scanner.hpp"
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>
 #include <boost/log/trivial.hpp>

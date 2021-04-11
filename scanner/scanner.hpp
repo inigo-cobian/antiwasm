@@ -3,10 +3,10 @@
 
 #define BOOST_LOG_DYN_LINK 1
 
-#include "../modules/header.hpp"
-#include "../modules/module.hpp"
-#include "../utils/leb128.hpp"
-#include "driver.hpp"
+#include "../includes/driver.hpp"
+#include "header.hpp"
+#include "leb128.hpp"
+#include "module.hpp"
 #include "module_parser.hpp"
 #include <boost/log/trivial.hpp>
 #include <cstddef>

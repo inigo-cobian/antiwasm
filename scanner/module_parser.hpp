@@ -3,11 +3,11 @@
 
 #define BOOST_LOG_DYN_LINK 1
 
-#include "../modules/memsec.hpp"
-#include "../modules/section.hpp"
-#include "../modules/tablesec.hpp"
-#include "../modules/typesec.hpp"
-#include "../utils/leb128.hpp"
+#include "leb128.hpp"
+#include "memsec.hpp"
+#include "section.hpp"
+#include "tablesec.hpp"
+#include "typesec.hpp"
 #include <boost/log/trivial.hpp>
 #include <cstdint>
 #include <iostream>
