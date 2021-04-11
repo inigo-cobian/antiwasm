@@ -1,4 +1,4 @@
-#include "../includes/wasm_utils.hpp"
+#include "wasm_utils.hpp"
 
 char *bytesToHexChar(uint8_t *signedLittleEndianBytes, int nBytes) {
   char *formattedHexBytes = new char(nBytes * 2);

@@ -1,6 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "../src/wasm_utils.cpp"
+#include "wasm_utils.cpp"
 #include <boost/test/unit_test.hpp>
 #include <cstdint>
 
