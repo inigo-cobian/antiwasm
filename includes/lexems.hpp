@@ -1,6 +1,8 @@
 #ifndef LEXEMS_HPP
 #define LEXEMS_HPP
 
+#include <cstdint>
+
 enum instruction_set : uint8_t {
   Unreachable = 0x00,
   Nop = 0x01,
