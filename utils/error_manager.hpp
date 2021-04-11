@@ -19,6 +19,9 @@ struct Error {
   error_types errorType;
   error_severity severity;
 };
+
+std::shared_ptr<Error>
+
 } // namespace antiwasm
 
 #endif // ANTIWASM_ERROR_HPP

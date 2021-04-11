@@ -1,6 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "../utils/error.hpp"
+#include "../utils/error_manager.hpp"
 #include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_SUITE(error_test)
