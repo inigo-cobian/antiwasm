@@ -1,6 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "../src/displayer.cpp"
+#include "displayer.cpp"
 #include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_SUITE(logger_test)

@@ -1,6 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "../src/driver.cpp"
+#include "driver.cpp"
 #include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_SUITE(driver_test)

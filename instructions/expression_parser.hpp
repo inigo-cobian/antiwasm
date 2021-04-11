@@ -3,8 +3,8 @@
 
 #define BOOST_LOG_DYN_LINK 1
 
-#include "../includes/driver.hpp"
 #include "const.hpp"
+#include "driver.hpp"
 #include "instruction.hpp"
 #include <boost/log/trivial.hpp>
 #include <cstdint>

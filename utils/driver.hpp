@@ -3,7 +3,7 @@
 
 #define BOOST_LOG_DYN_LINK 1
 
-#include "../utils/leb128.hpp"
+#include "leb128.hpp"
 #include <boost/log/trivial.hpp>
 #include <cstddef>
 #include <cstdint>
