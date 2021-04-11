@@ -1,7 +1,7 @@
 #ifndef ANTIWASM_CONST_HPP
 #define ANTIWASM_CONST_HPP
 
-#include "../includes/instruction.hpp"
+#include "instruction.hpp"
 #include <cstdint>
 
 class I32Const : public virtual Instruction {

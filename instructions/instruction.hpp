@@ -1,7 +1,7 @@
 #ifndef ANTIWASM_INSTRUCTION_HPP
 #define ANTIWASM_INSTRUCTION_HPP
 
-#include "../includes/lexems.hpp"
+#include "lexems.hpp"
 #include <cstdint>
 
 class Instruction {
