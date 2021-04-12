@@ -14,14 +14,14 @@ enum ErrorTypes {
 
 enum ErrorSeverity { fatal, warning };
 
-struct ParsingError {
+struct ErrorAtWasm {
   ErrorSeverity severity;
   ErrorTypes errorType;
   Section *section;
   unsigned int elementIndex;
 };
 
-std::shared_ptr<ParsingError> generateError(ErrorSeverity severity,
+std::shared_ptr<ErrorAtWasm> generateError(ErrorSeverity severity,
                                             ErrorTypes errorType,
                                             Section *section,
                                             unsigned int index);
