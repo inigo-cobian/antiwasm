@@ -1,27 +1,31 @@
-#ifndef ANTIWASM_ERROR_HPP
-#define ANTIWASM_ERROR_HPP
+#ifndef ANTIWASM_ERROR_MANAGER_HPP
+#define ANTIWASM_ERROR_MANAGER_HPP
 
+#include <memory>
 #include <section.hpp>
 
 namespace antiwasm {
-enum error_types {
+enum ErrorTypes {
   unknown,
   incorrectHeader,
   unrecognizedVersion,
   wrongSectionId
 };
 
-enum error_severity { fatal, warning };
+enum ErrorSeverity { fatal, warning };
 
-struct Error {
+struct ParsingError {
+  ErrorSeverity severity;
+  ErrorTypes errorType;
   Section *section;
   unsigned int elementIndex;
-  error_types errorType;
-  error_severity severity;
 };
 
-std::shared_ptr<Error>
+std::shared_ptr<ParsingError> generateError(ErrorSeverity severity,
+                                            ErrorTypes errorType,
+                                            Section *section,
+                                            unsigned int index);
 
 } // namespace antiwasm
 
-#endif // ANTIWASM_ERROR_HPP
+#endif // ANTIWASM_ERROR_MANAGER_HPP
