@@ -1,9 +1,11 @@
 #ifndef ANTIWASM_MODULE_HPP
 #define ANTIWASM_MODULE_HPP
 
+#include "error_manager.hpp"
 #include "section.hpp"
 #include <map>
 
+namespace antiwasm {
 class Module {
 private:
   int size_;
@@ -49,5 +51,6 @@ public:
    */
   bool containsSection(SectionId sectionId);
 };
+} // namespace antiwasm
 
 #endif // ANTIWASM_MODULE_HPP

@@ -1,5 +1,6 @@
 #include "wasm_utils.hpp"
 
+namespace antiwasm {
 char *bytesToHexChar(uint8_t *signedLittleEndianBytes, int nBytes) {
   char *formattedHexBytes = new char(nBytes * 2);
   for (int i = 0; i < nBytes; i++) {
@@ -27,3 +28,5 @@ char getHexChar(uint8_t origin) {
     return 'A' + origin - 0xA;
   }
 }
+
+} // namespace antiwasm

@@ -3,6 +3,8 @@
 #include "../types/memtype.cpp"
 #include <boost/test/unit_test.hpp>
 
+using namespace antiwasm;
+
 BOOST_AUTO_TEST_SUITE(memtype_test)
 
 BOOST_AUTO_TEST_CASE(parseMemType_doesNotCauseError) {

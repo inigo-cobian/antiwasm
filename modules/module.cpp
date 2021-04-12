@@ -1,5 +1,7 @@
 #include "module.hpp"
 
+namespace antiwasm {
+
 Module::Module(int size) { size_ = size; }
 
 void Module::addSection(Section section) {
@@ -19,3 +21,5 @@ int Module::getSize() { return size_; }
 bool Module::containsSection(SectionId sectionId) {
   return sections_.contains(sectionId);
 }
+
+} // namespace antiwasm

@@ -7,6 +7,8 @@
 #include "section_parser.cpp"
 #include <boost/test/unit_test.hpp>
 
+using namespace antiwasm;
+
 BOOST_AUTO_TEST_SUITE(module_parser_test)
 
 BOOST_AUTO_TEST_CASE(parseNextSection_canParseACorrectSection) {

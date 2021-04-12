@@ -3,6 +3,8 @@
 #include "../types/resulttype.cpp"
 #include <boost/test/unit_test.hpp>
 
+using namespace antiwasm;
+
 BOOST_AUTO_TEST_SUITE(resulttype_test)
 
 BOOST_AUTO_TEST_CASE(parseResulttype_correctResultType) {

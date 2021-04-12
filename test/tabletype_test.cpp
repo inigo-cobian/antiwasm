@@ -3,6 +3,8 @@
 #include "../types/tabletype.cpp"
 #include <boost/test/unit_test.hpp>
 
+using namespace antiwasm;
+
 BOOST_AUTO_TEST_SUITE(tabletype_test)
 
 BOOST_AUTO_TEST_CASE(parseTableType_caseCorrect) {

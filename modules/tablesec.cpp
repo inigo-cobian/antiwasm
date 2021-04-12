@@ -1,5 +1,7 @@
 #include "tablesec.hpp"
 
+namespace antiwasm {
+
 TableSection::TableSection(int size, uint8_t *content, int initialPos)
     : Section(SectionId::Table, size, content, initialPos) {}
 
@@ -27,3 +29,5 @@ void TableSection::displayTablesecContent() {
     antiwasm::displayTabletype(tabletype);
   }
 }
+
+} // namespace antiwasm

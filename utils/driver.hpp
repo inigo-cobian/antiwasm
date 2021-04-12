@@ -15,6 +15,8 @@
 #include <string>
 #include <thread>
 
+namespace antiwasm {
+
 const int SIZE_OF_SECTION_ID = 1;
 const int MAX_SIZE_OF_SECTION_HEADER = 6; // Section Id + max LEB128 for u32
 
@@ -107,4 +109,5 @@ public:
   static int GetCurrentPos();
 };
 
+} // namespace antiwasm
 #endif

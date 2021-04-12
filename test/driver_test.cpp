@@ -3,6 +3,8 @@
 #include "driver.cpp"
 #include <boost/test/unit_test.hpp>
 
+using namespace antiwasm;
+
 BOOST_AUTO_TEST_SUITE(driver_test)
 
 const static char *FILE_PATH = "../../test/files/00-empty.wasm";

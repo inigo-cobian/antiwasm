@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+namespace antiwasm {
+
 enum SectionId {
   Custom = 0x00,
   Type = 0x01,
@@ -71,4 +73,5 @@ public:
   virtual void displaySectionHeaderInfo();
 };
 
+} // namespace antiwasm
 #endif // SECTION_HPP

@@ -1,5 +1,7 @@
 #include "section.hpp"
 
+namespace antiwasm {
+
 Section::Section(SectionId sectionId, int size, uint8_t *content,
                  int initialPos) {
   sectionId_ = sectionId;
@@ -20,3 +22,5 @@ void Section::displaySectionHeaderInfo() {
   std::cout << std::hex << "ID=" << sectionId_ << " | start=" << (std::hex)
             << initialPos_ << " size=" << (std::hex) << size_ << std::endl;
 }
+
+} // namespace antiwasm

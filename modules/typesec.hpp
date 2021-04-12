@@ -5,6 +5,8 @@
 #include "section.hpp"
 #include <vector>
 
+namespace antiwasm {
+
 class TypeSection : public Section {
 private:
   std::vector<Functype> functypeVector;
@@ -43,5 +45,7 @@ public:
 
   void displayTypesecContent();
 };
+
+} // namespace antiwasm
 
 #endif // ANTIWASM_TYPESEC_HPP

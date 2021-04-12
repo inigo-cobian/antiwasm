@@ -3,6 +3,8 @@
 #include "../types/mut.cpp"
 #include <boost/test/unit_test.hpp>
 
+using namespace antiwasm;
+
 BOOST_AUTO_TEST_SUITE(mut_test)
 
 BOOST_AUTO_TEST_CASE(parseMut_caseConst) {

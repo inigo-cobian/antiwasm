@@ -4,6 +4,8 @@
 #include <boost/test/unit_test.hpp>
 #include <cstdint>
 
+using namespace antiwasm;
+
 BOOST_AUTO_TEST_SUITE(wasm_utils_test)
 
 BOOST_AUTO_TEST_CASE(bytesToHexChar_correctFormatting) {

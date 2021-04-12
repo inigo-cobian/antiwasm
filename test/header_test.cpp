@@ -3,6 +3,8 @@
 #include "../modules/header.cpp"
 #include <boost/test/unit_test.hpp>
 
+using namespace antiwasm;
+
 BOOST_AUTO_TEST_SUITE(header_test)
 
 BOOST_AUTO_TEST_CASE(checkMagicNumber_returnsTrueWithCorrectMagicNum) {

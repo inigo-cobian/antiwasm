@@ -4,6 +4,8 @@
 #include "logging_levels.hpp"
 #include <iostream>
 
+namespace antiwasm {
+
 class Displayer { // TODO general
 private:
   static LoggingLevel loggingLevel_;
@@ -16,4 +18,5 @@ public:
   static LoggingLevel GetLoggingLevel();
 };
 
+} // namespace antiwasm
 #endif // ANTIWASM_DISPLAYER_HPP

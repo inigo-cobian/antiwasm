@@ -1,5 +1,7 @@
 #include "typesec.hpp"
 
+namespace antiwasm {
+
 TypeSection::TypeSection(int size, uint8_t *content, int initialPos)
     : Section(SectionId::Type, size, content, initialPos) {}
 
@@ -27,3 +29,5 @@ void TypeSection::displayTypesecContent() {
     antiwasm::displayFunctype(functype);
   }
 }
+
+} // namespace antiwasm

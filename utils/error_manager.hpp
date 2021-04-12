@@ -22,9 +22,9 @@ struct ErrorAtWasm {
 };
 
 std::shared_ptr<ErrorAtWasm> generateError(ErrorSeverity severity,
-                                            ErrorTypes errorType,
-                                            Section *section,
-                                            unsigned int index);
+                                           ErrorTypes errorType,
+                                           Section *section,
+                                           unsigned int index);
 
 } // namespace antiwasm
 

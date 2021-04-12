@@ -3,6 +3,8 @@
 #include "../types/reftype.hpp"
 #include <boost/test/unit_test.hpp>
 
+using namespace antiwasm;
+
 BOOST_AUTO_TEST_SUITE(reftype_test)
 
 BOOST_AUTO_TEST_CASE(parseReftype_caseFunref) {

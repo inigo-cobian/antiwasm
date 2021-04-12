@@ -1,5 +1,6 @@
 #include "driver.hpp"
 
+namespace antiwasm {
 std::shared_ptr<Driver> Driver::instance_;
 std::mutex Driver::mutex_;
 bool Driver::error_;
@@ -122,3 +123,5 @@ int Driver::GetCurrentPos() {
       << instance_->pointer_;
   return instance_->pointer_;
 }
+
+} // namespace antiwasm

@@ -1,5 +1,7 @@
 #include "displayer.hpp"
 
+namespace antiwasm {
+
 LoggingLevel Displayer::loggingLevel_;
 
 void Displayer::Log(LoggingLevel minLoggingLevel,
@@ -14,3 +16,5 @@ void Displayer::SetLoggingLevel(LoggingLevel loggingLevel) {
 }
 
 LoggingLevel Displayer::GetLoggingLevel() { return Displayer::loggingLevel_; }
+
+} // namespace antiwasm

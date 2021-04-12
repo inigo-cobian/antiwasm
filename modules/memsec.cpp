@@ -1,5 +1,7 @@
 #include "memsec.hpp"
 
+namespace antiwasm {
+
 MemorySection::MemorySection(int size, uint8_t *content, int initialPos)
     : Section(SectionId::Memory, size, content, initialPos) {
   BOOST_LOG_TRIVIAL(debug) << "[memsec] Creating a Memory Section";
@@ -29,3 +31,5 @@ void MemorySection::displayMemsecContent() {
     antiwasm::displayMemtype(memtype);
   }
 }
+
+} // namespace antiwasm

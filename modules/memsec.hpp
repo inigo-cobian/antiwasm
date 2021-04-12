@@ -5,6 +5,8 @@
 #include "section.hpp"
 #include <vector>
 
+namespace antiwasm {
+
 class MemorySection : public Section {
 private:
   std::vector<Memtype> memtypeVector;
@@ -46,5 +48,7 @@ public:
    */
   void displayMemsecContent();
 };
+
+} // namespace antiwasm
 
 #endif // ANTIWASM_MEMSEC_HPP

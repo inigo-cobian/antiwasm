@@ -6,6 +6,8 @@
 #include "section.hpp"
 #include <vector>
 
+namespace antiwasm {
+
 class TableSection : public Section {
 private:
   std::vector<Tabletype> tabletypeVector;
@@ -45,4 +47,5 @@ public:
   void displayTablesecContent();
 };
 
+} // namespace antiwasm
 #endif // ANTIWASM_TABLESEC_HPP

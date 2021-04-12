@@ -3,6 +3,8 @@
 #include "../types/valtype.cpp"
 #include <boost/test/unit_test.hpp>
 
+using namespace antiwasm;
+
 BOOST_AUTO_TEST_SUITE(valttype_test)
 
 BOOST_AUTO_TEST_CASE(parseValtype_caseNumtype) {
