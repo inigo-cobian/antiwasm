@@ -9,6 +9,8 @@
 
 #define BOOST_LOG_WITHOUT_DEBUG_OUTPUT
 
+using namespace antiwasm;
+
 void init_logging(boost::log::trivial::severity_level
                       severityLevel) { // TODO change the format of the log
   /*
