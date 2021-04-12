@@ -4,7 +4,7 @@
 #include "../modules/tablesec.cpp"
 #include "../modules/typesec.cpp"
 #include "../types/reftype.cpp"
-#include "module_parser.cpp"
+#include "section_parser.cpp"
 #include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_SUITE(module_parser_test)
