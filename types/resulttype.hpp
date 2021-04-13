@@ -1,18 +1,18 @@
 #ifndef ANTIWASM_RESULTTYPE_HPP
 #define ANTIWASM_RESULTTYPE_HPP
 
+#include "leb128.hpp"
+#include "valtype.hpp"
 #include <iostream>
 #include <vector>
 
-#include "../utils/leb128.hpp"
-#include "valtype.hpp"
-
 namespace antiwasm {
 
-struct Resulttype {
+struct Resulttype : ContentBlock {
   std::vector<Valtype> valtypeVector;
   unsigned int nBytes = 0;
-  bool error = false;
+
+  void displayError() override;
 };
 
 /**

@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(parseResulttype_errorResultType) {
 
   auto returnResulttype = antiwasm::parseResulttype(resulttypeContent);
 
-  BOOST_CHECK_EQUAL(true, returnResulttype.error);
+  BOOST_CHECK_EQUAL(true, returnResulttype.hasError());
 }
 
 BOOST_AUTO_TEST_CASE(displayResulttype_doesNotFail) {

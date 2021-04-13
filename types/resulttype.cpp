@@ -10,7 +10,8 @@ Resulttype parseResulttype(const uint8_t *resultTypeContent) {
     Valtype valtype = parseValtype(elementType);
     resulttype.valtypeVector.push_back(valtype);
     if (valtype.hasError()) {
-      resulttype.error = true;
+      auto error = generateError(fatal, unrecognizedResulttype_AtValtype, resulttype.valtypeVector.size());
+      resulttype.addError(error);
     }
     pointer++;
   }
@@ -26,4 +27,9 @@ void displayResulttype(const Resulttype &resulttype) {
   }
   std::cout << "]" << std::endl;
 }
+
+void Resulttype::displayError() {
+  // TODO
+}
+
 } // namespace antiwasm

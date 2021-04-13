@@ -7,7 +7,7 @@
 
 namespace antiwasm {
 
-const uint32_t FUNCTYPE_HEADER = 0x60;
+const uint8_t FUNCTYPE_HEADER = 0x60;
 
 struct Functype {
   Resulttype parameterType;

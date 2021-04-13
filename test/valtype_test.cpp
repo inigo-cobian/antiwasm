@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(parseValtype_caseReftype) {
 }
 
 BOOST_AUTO_TEST_CASE(parseValtype_caseErrorHasError) {
-  uint8_t valtypeContent = 0xFF; //Incorrect valtype
+  uint8_t valtypeContent = 0xFF; // Incorrect valtype
 
   auto returnValtype = antiwasm::parseValtype(valtypeContent);
 

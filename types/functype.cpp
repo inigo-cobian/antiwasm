@@ -5,20 +5,23 @@ namespace antiwasm {
 Functype parseFunctype(const uint8_t *funcTypeContent) {
   Functype functype;
   if (funcTypeContent[0] != FUNCTYPE_HEADER) {
+    // TODO add error
     functype.error = true;
-    std::cout << "Functype header not found: " << std::hex << (int)funcTypeContent[0] << std::endl;
+    std::cout << "Functype header not found: " << std::hex << (unsigned int)funcTypeContent[0] << std::endl;
     return functype;
   }
 
   functype.parameterType = parseResulttype(&funcTypeContent[BYTES_HEADER_FUNCTYPE]);
-  if (functype.parameterType.error) {
+  if (functype.parameterType.hasError()) {
+    // TODO add error
     functype.error = true;
     std::cout << "Error at functype.parameterType" << std::endl;
     return functype;
   }
   auto indexReturnType = BYTES_HEADER_FUNCTYPE + functype.parameterType.nBytes;
   functype.returnType = parseResulttype(&funcTypeContent[indexReturnType]);
-  if (functype.returnType.error) {
+  if (functype.returnType.hasError()) {
+    // TODO add error
     functype.error = true;
     std::cout << "Error at functype.returnType" << std::endl;
   }
