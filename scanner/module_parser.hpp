@@ -3,12 +3,12 @@
 
 #define BOOST_LOG_DYN_LINK 1
 
+#include "contentBlock.hpp"
 #include "driver.hpp"
 #include "header.hpp"
 #include "leb128.hpp"
 #include "module.hpp"
 #include "section_parser.hpp"
-#include "contentBlock.hpp"
 #include <boost/log/trivial.hpp>
 #include <cstddef>
 #include <cstring>

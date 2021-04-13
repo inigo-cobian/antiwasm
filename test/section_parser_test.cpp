@@ -1,10 +1,11 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "../modules/memsec.cpp" //TODO remove if possible
-#include "../modules/tablesec.cpp"
-#include "../modules/typesec.cpp"
-#include "../types/reftype.cpp"
+#include "memsec.cpp" //TODO remove if possible
+#include "tablesec.cpp"
+#include "typesec.cpp"
+#include "reftype.cpp"
 #include "section_parser.cpp"
+#include "contentBlock.cpp"
 #include <boost/test/unit_test.hpp>
 
 using namespace antiwasm;

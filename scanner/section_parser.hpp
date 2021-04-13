@@ -3,6 +3,7 @@
 
 #define BOOST_LOG_DYN_LINK 1
 
+#include "contentBlock.hpp"
 #include "leb128.hpp"
 #include "memsec.hpp"
 #include "section.hpp"
