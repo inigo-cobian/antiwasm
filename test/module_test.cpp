@@ -54,4 +54,19 @@ BOOST_AUTO_TEST_CASE(containsSection_returnsFalseIfSectionDoesNotExist) {
   BOOST_CHECK_EQUAL(false, returnValue);
 }
 
+BOOST_AUTO_TEST_CASE(errorsCanBeAdded) {
+  Module module(20);
+  auto mockError = generateError(ErrorSeverity::warning, ErrorTypes::unknown, 0);
+
+  module.addError(mockError);
+
+  BOOST_CHECK_EQUAL(true, module.hasError());
+}
+
+BOOST_AUTO_TEST_CASE(displayError) {
+  Module module(20);
+
+  module.displayError();
+}
+
 BOOST_AUTO_TEST_SUITE_END()

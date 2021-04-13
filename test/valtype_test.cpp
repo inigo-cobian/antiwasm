@@ -1,6 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "../types/valtype.cpp"
+#include "valtype.cpp"
 #include <boost/test/unit_test.hpp>
 
 using namespace antiwasm;
@@ -21,6 +21,21 @@ BOOST_AUTO_TEST_CASE(parseValtype_caseReftype) {
   auto returnValtype = antiwasm::parseValtype(valtypeContent);
 
   BOOST_CHECK_EQUAL(Reftype::externref, returnValtype.reftype);
+}
+
+BOOST_AUTO_TEST_CASE(parseValtype_caseErrorHasError) {
+  uint8_t valtypeContent = 0xFF; //Incorrect valtype
+
+  auto returnValtype = antiwasm::parseValtype(valtypeContent);
+
+  BOOST_CHECK_EQUAL(true, returnValtype.hasError());
+}
+
+BOOST_AUTO_TEST_CASE(displayError) {
+  uint8_t valtypeContent = Reftype::externref;
+  auto returnValtype = antiwasm::parseValtype(valtypeContent);
+
+  returnValtype.displayError();
 }
 
 BOOST_AUTO_TEST_SUITE_END() // valttype_test

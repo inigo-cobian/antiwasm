@@ -1,6 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "../modules/section.cpp"
+#include "section.cpp"
 #include <boost/test/unit_test.hpp>
 
 using namespace antiwasm;
@@ -84,6 +84,39 @@ BOOST_AUTO_TEST_CASE(getInitialPos_returnsTheValue) {
   auto result = section.getInitialPos();
 
   BOOST_CHECK_EQUAL(sectionIndex, result);
+}
+
+BOOST_AUTO_TEST_CASE(errorsCanBeAdded) {
+  int sectionSize = 20;
+  int sectionIndex = 128;
+  SectionId sectionId = SectionId::Type;
+  auto *sectionContentMock = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 20));
+  Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
+  auto mockError = generateError(ErrorSeverity::warning, ErrorTypes::unknown, 0);
+
+  section.addError(mockError);
+
+  BOOST_CHECK_EQUAL(true, section.hasError());
+}
+
+BOOST_AUTO_TEST_CASE(displayError) {
+  int sectionSize = 20;
+  int sectionIndex = 128;
+  SectionId sectionId = SectionId::Type;
+  auto *sectionContentMock = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 20));
+  Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
+
+  section.displayError();
+}
+
+BOOST_AUTO_TEST_CASE(displaySectionHeaderInfo) {
+  int sectionSize = 20;
+  int sectionIndex = 128;
+  SectionId sectionId = SectionId::Type;
+  auto *sectionContentMock = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 20));
+  Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
+
+  section.displaySectionHeaderInfo();
 }
 
 BOOST_AUTO_TEST_SUITE_END()
