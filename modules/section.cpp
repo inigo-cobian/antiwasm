@@ -2,8 +2,7 @@
 
 namespace antiwasm {
 
-Section::Section(SectionId sectionId, int size, uint8_t *content,
-                 int initialPos) {
+Section::Section(SectionId sectionId, int size, uint8_t *content, int initialPos) {
   sectionId_ = sectionId;
   size_ = size;
   content_ = content;
@@ -19,11 +18,9 @@ uint8_t *Section::getContent() { return content_; }
 int Section::getInitialPos() const { return initialPos_; }
 
 void Section::displaySectionHeaderInfo() {
-  std::cout << std::hex << "ID=" << sectionId_ << " | start=" << (std::hex)
-            << initialPos_ << " size=" << (std::hex) << size_ << std::endl;
+  std::cout << std::hex << "ID=" << sectionId_ << " | start=" << (std::hex) << initialPos_ << " size=" << (std::hex)
+            << size_ << std::endl;
 }
-void Section::displayError() {
-
-}
+void Section::displayError() {}
 
 } // namespace antiwasm

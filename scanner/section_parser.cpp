@@ -2,13 +2,10 @@
 
 namespace antiwasm {
 
-Section parseNextSection(uint8_t sectionId, int sectionSize,
-                         uint8_t *sectionContent, int sectionPos) {
+Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionContent, int sectionPos) {
 
-  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section ["
-                           << (std::hex) << (unsigned int)sectionId
-                           << "] with size " << (std::hex)
-                           << (unsigned int)sectionSize;
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (std::hex) << (unsigned int)sectionId
+                           << "] with size " << (std::hex) << (unsigned int)sectionSize;
   switch (sectionId) {
   case (SectionId::Custom):
     parseCustomSection(sectionSize, sectionContent);
@@ -20,8 +17,7 @@ Section parseNextSection(uint8_t sectionId, int sectionSize,
     return Section(SectionId::Import, sectionSize, sectionContent, sectionPos);
   case (SectionId::Function):
     parseFunctionSection(sectionSize, sectionContent);
-    return Section(SectionId::Function, sectionSize, sectionContent,
-                   sectionPos);
+    return Section(SectionId::Function, sectionSize, sectionContent, sectionPos);
   case (SectionId::Table):
     return parseTableSection(sectionSize, sectionContent);
   case (SectionId::Memory):
@@ -46,9 +42,8 @@ Section parseNextSection(uint8_t sectionId, int sectionSize,
     return Section(SectionId::Data, sectionSize, sectionContent, sectionPos);
   default:
     // TODO pretty error message
-    BOOST_LOG_TRIVIAL(error) << "[module_parser] Error at section " << std::hex
-                             << (unsigned int)sectionId << " with size "
-                             << (std::hex) << sectionSize;
+    BOOST_LOG_TRIVIAL(error) << "[module_parser] Error at section " << std::hex << (unsigned int)sectionId
+                             << " with size " << (std::hex) << sectionSize;
     Section section = Section(SectionId::Error, sectionSize, sectionContent, 0);
     auto error = generateError(fatal, wrongSectionId, 0);
     section.addError(error);
@@ -122,8 +117,7 @@ MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent) {
     }
     memorySection.addMemtype(memtype);
   }
-  memorySection
-      .displayMemsecContent(); // TODO move to another place in the future
+  memorySection.displayMemsecContent(); // TODO move to another place in the future
   return memorySection;
 }
 

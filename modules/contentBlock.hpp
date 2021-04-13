@@ -8,7 +8,7 @@ namespace antiwasm {
 
 class ContentBlock {
 protected:
-  //TODO store bytes
+  // TODO store bytes
   std::vector<std::shared_ptr<ErrorAtWasm>> errors_;
 
 public:

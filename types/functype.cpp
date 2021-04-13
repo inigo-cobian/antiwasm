@@ -6,8 +6,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
   Functype functype;
   if (funcTypeContent[0] != FUNCTYPE_HEADER) {
     functype.error = true;
-    std::cout << "Functype header not found: " << std::hex
-              << (int)funcTypeContent[0] << std::endl;
+    std::cout << "Functype header not found: " << std::hex << (int)funcTypeContent[0] << std::endl;
     return functype;
   }
 
@@ -23,8 +22,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
     functype.error = true;
     std::cout << "Error at functype.returnType" << std::endl;
   }
-  functype.nBytes = BYTES_HEADER_FUNCTYPE + functype.parameterType.nBytes +
-                    functype.returnType.nBytes;
+  functype.nBytes = BYTES_HEADER_FUNCTYPE + functype.parameterType.nBytes + functype.returnType.nBytes;
 
   return functype;
 }
@@ -42,4 +40,4 @@ void displayFunctype(Functype functype) {
   displayResulttype(functype.returnType);
 }
 
-}
+} // namespace antiwasm

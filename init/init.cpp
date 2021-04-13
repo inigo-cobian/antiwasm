@@ -11,8 +11,7 @@
 
 using namespace antiwasm;
 
-void init_logging(boost::log::trivial::severity_level
-                      severityLevel) { // TODO change the format of the log
+void init_logging(boost::log::trivial::severity_level severityLevel) { // TODO change the format of the log
   /*
   boost::log::add_file_log
   (
@@ -27,26 +26,23 @@ void init_logging(boost::log::trivial::severity_level
   );
   */
 
-  boost::log::core::get()->set_filter(boost::log::trivial::severity >=
-                                      severityLevel);
+  boost::log::core::get()->set_filter(boost::log::trivial::severity >= severityLevel);
 }
 
 int main(int argc, char **argv) {
 
   // Declare the supported options.
-  boost::program_options::options_description argDescription(
-      "Allowed options for antiwasm");
+  boost::program_options::options_description argDescription("Allowed options for antiwasm");
   argDescription.add_options()("help", "produce this help message")(
       "filename", boost::program_options::value<std::string>(),
       "route of the .wasm file")("debug", boost::program_options::value<char>(),
-                                 "set the debugging tools on")(
-      "verbose", "display relevant information about the decompiling process")(
-      "pedantic", "display every single datum about the decompiling process");
+                                 "set the debugging tools on")("verbose",
+                                                               "display relevant information about the decompiling "
+                                                               "process")("pedantic", "display every single datum "
+                                                                                      "about the decompiling process");
 
   boost::program_options::variables_map variablesMap;
-  boost::program_options::store(
-      boost::program_options::parse_command_line(argc, argv, argDescription),
-      variablesMap);
+  boost::program_options::store(boost::program_options::parse_command_line(argc, argv, argDescription), variablesMap);
   boost::program_options::notify(variablesMap);
 
   // If one of the options is set to 'help'...
@@ -97,8 +93,7 @@ int main(int argc, char **argv) {
   }
 
   if (variablesMap.count("filename")) {
-    std::cout << "Decoding \'" << variablesMap["filename"].as<std::string>()
-              << "'\n";
+    std::cout << "Decoding \'" << variablesMap["filename"].as<std::string>() << "'\n";
     antiwasm::parse(variablesMap["filename"].as<std::string>().c_str());
   } else {
     std::cout << "No filename set\n";

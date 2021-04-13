@@ -28,6 +28,6 @@ void displayValtype(Valtype valtype) {
 }
 
 void Valtype::displayError() {
-  //TODO
+  // TODO
 }
 } // namespace antiwasm

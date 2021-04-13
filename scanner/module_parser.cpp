@@ -37,11 +37,9 @@ int parse(const char *classFile) {
     auto *nextSectionHeader = driver->GetNextSectionHeader();
     auto sectionSize = transformLeb128ToUnsignedInt32(&nextSectionHeader[1]);
     auto *nextSectionContent = driver->GetNextBytes(sectionSize);
-    auto nextSection = parseNextSection(nextSectionHeader[0], sectionSize,
-                                        nextSectionContent, sectionPosition);
+    auto nextSection = parseNextSection(nextSectionHeader[0], sectionSize, nextSectionContent, sectionPosition);
 
-    BOOST_LOG_TRIVIAL(trace)
-        << "[scanner] Id: " << std::hex << (int)nextSectionHeader[0];
+    BOOST_LOG_TRIVIAL(trace) << "[scanner] Id: " << std::hex << (int)nextSectionHeader[0];
     BOOST_LOG_TRIVIAL(trace) << "[scanner] Size: " << std::hex << sectionSize;
 
     if (nextSection.getSectionId() != Error) {

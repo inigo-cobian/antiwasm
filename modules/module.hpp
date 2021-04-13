@@ -38,8 +38,7 @@ public:
    * Adds a section to the module.
    * @param section that has been parsed.
    */
-  void
-  addSection(Section section); // TODO check if a return value is interesting
+  void addSection(Section section); // TODO check if a return value is interesting
 
   /**
    * Gets the section with the given Id.

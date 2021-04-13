@@ -19,8 +19,7 @@ BOOST_AUTO_TEST_CASE(parseResulttype_correctResultType) {
 
   BOOST_CHECK_EQUAL(sizeOfValtypeVec, returnResulttype.valtypeVector.size());
   BOOST_CHECK_EQUAL(Numtype::i32, returnResulttype.valtypeVector[0].numtype);
-  BOOST_CHECK_EQUAL(Reftype::externref,
-                    returnResulttype.valtypeVector.at(1).reftype);
+  BOOST_CHECK_EQUAL(Reftype::externref, returnResulttype.valtypeVector.at(1).reftype);
   BOOST_CHECK_EQUAL(Numtype::f64, returnResulttype.valtypeVector.at(2).numtype);
 }
 

@@ -9,23 +9,17 @@ MemorySection::MemorySection(int size, uint8_t *content, int initialPos)
 
 MemorySection::~MemorySection() = default;
 
-void MemorySection::addMemtype(Memtype memtype) {
-  memtypeVector.push_back(memtype);
-}
+void MemorySection::addMemtype(Memtype memtype) { memtypeVector.push_back(memtype); }
 
-std::vector<Memtype> MemorySection::getMemtypeVector() {
-  return std::vector<Memtype>();
-}
+std::vector<Memtype> MemorySection::getMemtypeVector() { return std::vector<Memtype>(); }
 
 void MemorySection::displaySectionHeaderInfo() {
-  std::cout << "  Memory | start=" << (std::hex) << initialPos_
-            << " size=" << (std::hex) << size_ << std::endl;
+  std::cout << "  Memory | start=" << (std::hex) << initialPos_ << " size=" << (std::hex) << size_ << std::endl;
 }
 
 void MemorySection::displayMemsecContent() {
-  std::cout << "  Memory | start=" << (std::hex) << initialPos_
-            << " size=" << (std::hex) << size_ << " (" << memtypeVector.size()
-            << ") memtypes" << std::endl;
+  std::cout << "  Memory | start=" << (std::hex) << initialPos_ << " size=" << (std::hex) << size_ << " ("
+            << memtypeVector.size() << ") memtypes" << std::endl;
 
   for (auto memtype : memtypeVector) {
     antiwasm::displayMemtype(memtype);
