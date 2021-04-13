@@ -1,6 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "../types/reftype.hpp"
+#include "reftype.hpp"
 #include <boost/test/unit_test.hpp>
 
 using namespace antiwasm;

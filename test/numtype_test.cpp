@@ -1,6 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "../types/numtype.cpp"
+#include "numtype.cpp"
 #include <boost/test/unit_test.hpp>
 
 using namespace antiwasm;
