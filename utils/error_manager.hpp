@@ -10,8 +10,8 @@ enum ErrorTypes {
   unrecognizedVersion,
   wrongSectionId,
 
-  unrecognizedNumtype,
-  unrecognizedReftype,
+  unrecognizedNumtype [[maybe_unused]],
+  unrecognizedReftype [[maybe_unused]],
   unrecognizedValtype,
   unrecognizedResulttype_AtValtype,
   unrecognizedFunctype_AtHeader,

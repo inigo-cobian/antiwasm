@@ -4,13 +4,14 @@
 #include "mut.hpp"
 #include "valtype.hpp"
 
+namespace antiwasm {
+
 struct Globaltype {
   Valtype valtype;
   Mut mut;
   bool error = false;
 };
 
-namespace antiwasm {
 /**
  * Parses and generates the parsed globaltype.
  * Adds error if cannot complete the parsing.

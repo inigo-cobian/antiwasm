@@ -1,6 +1,8 @@
 #include "functype.hpp"
 
-Functype antiwasm::parseFunctype(const uint8_t *funcTypeContent) {
+namespace antiwasm {
+
+Functype parseFunctype(const uint8_t *funcTypeContent) {
   Functype functype;
   if (funcTypeContent[0] != FUNCTYPE_HEADER) {
     functype.error = true;
@@ -28,7 +30,7 @@ Functype antiwasm::parseFunctype(const uint8_t *funcTypeContent) {
   return functype;
 }
 
-void antiwasm::displayFunctype(Functype functype) {
+void displayFunctype(Functype functype) {
   if (functype.error) {
     std::cout << "Error at current functype" << std::endl;
     return;
@@ -39,4 +41,6 @@ void antiwasm::displayFunctype(Functype functype) {
 
   std::cout << "  Functype (rt2):" << std::endl;
   displayResulttype(functype.returnType);
+}
+
 }
