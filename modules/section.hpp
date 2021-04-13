@@ -74,6 +74,8 @@ public:
    * Displays the general information for the section.
    */
   virtual void displaySectionHeaderInfo();
+
+  void displayError() override;
 };
 
 } // namespace antiwasm

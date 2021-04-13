@@ -10,10 +10,13 @@ namespace antiwasm {
 enum valtype_type { valtype_numtype, valtype_reftype, valtype_error };
 
 struct Valtype : public ContentBlock {
+public:
   valtype_type type;
   // TODO explain in the docs that they are two elements to keep the code Æ s t h e t i c
   Numtype numtype;
   Reftype reftype;
+
+  void displayError() override;
 };
 
 /**
@@ -25,6 +28,6 @@ struct Valtype : public ContentBlock {
 Valtype parseValtype(uint8_t valtypeContent);
 
 void displayValtype(Valtype valtype);
-} // namespace antiwasm
 
+} // namespace antiwasm
 #endif // ANTIWASM_VALTYPE_HPP

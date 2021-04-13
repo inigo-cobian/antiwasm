@@ -19,10 +19,12 @@ public:
   void addError(std::shared_ptr<ErrorAtWasm> errorAtWasm);
 
   /**
-   *
-   * @return
+   * Checks the vector of errors and returns true if there is at least one.
+   * @return if the content block has any error.
    */
   bool hasError();
+
+  virtual void displayError() = 0;
 };
 
 } // namespace antiwasm

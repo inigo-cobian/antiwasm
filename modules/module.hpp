@@ -54,6 +54,8 @@ public:
    * @return true if the section exists, false if it does not.
    */
   bool containsSection(SectionId sectionId);
+
+  void displayError() override;
 };
 } // namespace antiwasm
 

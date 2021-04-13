@@ -26,4 +26,8 @@ void displayValtype(Valtype valtype) {
     std::cout << "Error at valtype" << std::endl;
   }
 }
+
+void Valtype::displayError() {
+  //TODO
+}
 } // namespace antiwasm
