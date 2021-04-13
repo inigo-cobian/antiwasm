@@ -63,7 +63,7 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent) {
     Functype functype = parseFunctype(&sectionContent[pointer]);
     typeSection.addFunctype(functype);
     pointer += functype.nBytes;
-    if (functype.error) {
+    if (functype.hasError()) {
       std::cout << "ERROR parseTypeSection" << std::endl;
       // TODO error case
       return typeSection;

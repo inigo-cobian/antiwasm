@@ -1,20 +1,21 @@
 #ifndef ANTIWASM_FUNCTYPE_HPP
 #define ANTIWASM_FUNCTYPE_HPP
 
-#include <iostream>
-
+#include "contentBlock.hpp"
 #include "resulttype.hpp"
+#include <iostream>
 
 namespace antiwasm {
 
 const uint8_t FUNCTYPE_HEADER = 0x60;
 
-struct Functype {
+struct Functype : public ContentBlock {
   Resulttype parameterType;
   // TODO check if this name has the same meaning in the docs
   Resulttype returnType;
   int nBytes = 0;
-  bool error = false;
+
+  void displayError() override;
 };
 
 const unsigned int BYTES_HEADER_FUNCTYPE = 1;

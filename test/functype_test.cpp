@@ -15,7 +15,7 @@ BOOST_AUTO_TEST_CASE(parseFunctype_caseCorrectlyFormed) {
 
   auto returnFunctype = antiwasm::parseFunctype(functypeContent);
 
-  BOOST_CHECK_EQUAL(false, returnFunctype.error);
+  BOOST_CHECK_EQUAL(false, returnFunctype.hasError());
 }
 
 BOOST_AUTO_TEST_CASE(parseFunctype_caseIncorrectHeader) {
@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE(parseFunctype_caseIncorrectHeader) {
 
   auto returnFunctype = antiwasm::parseFunctype(functypeContent);
 
-  BOOST_CHECK_EQUAL(true, returnFunctype.error);
+  BOOST_CHECK_EQUAL(true, returnFunctype.hasError());
 }
 
 BOOST_AUTO_TEST_CASE(parseFunctype_caseErrorAtParameters) {
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(parseFunctype_caseErrorAtParameters) {
 
   auto returnFunctype = antiwasm::parseFunctype(functypeContent);
 
-  BOOST_CHECK_EQUAL(true, returnFunctype.error);
+  BOOST_CHECK_EQUAL(true, returnFunctype.hasError());
 }
 
 BOOST_AUTO_TEST_CASE(parseFunctype_caseErrorAtReturns) {
@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(parseFunctype_caseErrorAtReturns) {
 
   auto returnFunctype = antiwasm::parseFunctype(functypeContent);
 
-  BOOST_CHECK_EQUAL(true, returnFunctype.error);
+  BOOST_CHECK_EQUAL(true, returnFunctype.hasError());
 }
 
 BOOST_AUTO_TEST_CASE(displayResulttype_ifCorrect) {
