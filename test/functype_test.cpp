@@ -55,4 +55,24 @@ BOOST_AUTO_TEST_CASE(parseFunctype_caseErrorAtReturns) {
   BOOST_CHECK_EQUAL(true, returnFunctype.error);
 }
 
+BOOST_AUTO_TEST_CASE(displayResulttype_ifCorrect) {
+  uint8_t *functypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 6));
+  functypeContent[0] = FUNCTYPE_HEADER;
+  functypeContent[1] = 2, functypeContent[2] = Numtype::i32, functypeContent[3] = Reftype::funref;
+  functypeContent[4] = 1, functypeContent[5] = Numtype::f64;
+  auto returnFunctype = antiwasm::parseFunctype(functypeContent);
+
+  displayFunctype(returnFunctype);
+}
+
+BOOST_AUTO_TEST_CASE(displayResulttype_ifError) {
+  uint8_t *functypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 6));
+  functypeContent[0] = FUNCTYPE_HEADER; // Invalid header
+  functypeContent[1] = 2, functypeContent[2] = Numtype::i32, functypeContent[3] = Reftype::funref;
+  functypeContent[4] = 1, functypeContent[5] = 0xAA; // Invalid value
+  auto returnFunctype = antiwasm::parseFunctype(functypeContent);
+
+  displayFunctype(returnFunctype);
+}
+
 BOOST_AUTO_TEST_SUITE_END() // functype_test
