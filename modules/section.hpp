@@ -1,7 +1,10 @@
 #ifndef SECTION_HPP
 #define SECTION_HPP
 
+#include "contentBlock.hpp"
+#include "error_manager.hpp"
 #include <iostream>
+#include <memory>
 
 namespace antiwasm {
 
@@ -21,7 +24,7 @@ enum SectionId {
   Error = 0xFF
 };
 
-class Section { // TODO make virtual
+class Section : public ContentBlock { // TODO make virtual
 protected:
   SectionId sectionId_;
   int size_;
@@ -41,7 +44,7 @@ public:
   /**
    * Destructor
    */
-  ~Section() {}
+  ~Section() = default;
 
   /**
    * Gets the Id of the section.

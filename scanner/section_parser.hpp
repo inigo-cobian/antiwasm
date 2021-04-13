@@ -1,5 +1,5 @@
-#ifndef MODULE_PARSER_HPP
-#define MODULE_PARSER_HPP
+#ifndef SECTION_PARSER_HPP
+#define SECTION_PARSER_HPP
 
 #define BOOST_LOG_DYN_LINK 1
 
@@ -121,4 +121,4 @@ int parseCodeSection(int sizeOfSection, uint8_t *sectionContent);
 int parseDataSection(int sizeOfSection, uint8_t *sectionContent);
 } // namespace antiwasm
 
-#endif
+#endif // SECTION_PARSER_HPP

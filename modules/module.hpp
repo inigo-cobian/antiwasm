@@ -1,19 +1,19 @@
 #ifndef ANTIWASM_MODULE_HPP
 #define ANTIWASM_MODULE_HPP
 
+#include "contentBlock.hpp"
 #include "error_manager.hpp"
 #include "section.hpp"
 #include <map>
-#include <vector>
 #include <memory>
+#include <vector>
 
 namespace antiwasm {
-class Module {
+class Module : public ContentBlock {
 private:
   int size_;
-  //TODO version
+  // TODO version
   std::map<const SectionId, Section> sections_;
-  std::vector<std::shared_ptr<ErrorAtWasm>> errors_;
 
 public:
   /**
@@ -54,12 +54,6 @@ public:
    * @return true if the section exists, false if it does not.
    */
   bool containsSection(SectionId sectionId);
-
-  /**
-   * Adds a new error to the error_ vector.
-   * @param pointer to ErrorAtWasm
-   */
-  void addError(std::shared_ptr<ErrorAtWasm> errorAtWasm);
 };
 } // namespace antiwasm
 

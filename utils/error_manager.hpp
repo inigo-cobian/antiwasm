@@ -2,7 +2,6 @@
 #define ANTIWASM_ERROR_MANAGER_HPP
 
 #include <memory>
-#include <section.hpp>
 
 namespace antiwasm {
 enum ErrorTypes {
@@ -17,14 +16,10 @@ enum ErrorSeverity { fatal, warning };
 struct ErrorAtWasm {
   ErrorSeverity severity;
   ErrorTypes errorType;
-  Section *section;
   unsigned int elementIndex;
 };
 
-std::shared_ptr<ErrorAtWasm> generateError(ErrorSeverity severity,
-                                           ErrorTypes errorType,
-                                           Section *section,
-                                           unsigned int index);
+std::shared_ptr<ErrorAtWasm> generateError(ErrorSeverity severity, ErrorTypes errorType, unsigned int index);
 
 } // namespace antiwasm
 

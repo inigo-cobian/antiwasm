@@ -1,5 +1,5 @@
-#ifndef SCANNER_HPP
-#define SCANNER_HPP
+#ifndef MODULE_PARSER_HPP
+#define MODULE_PARSER_HPP
 
 #define BOOST_LOG_DYN_LINK 1
 
@@ -8,6 +8,7 @@
 #include "leb128.hpp"
 #include "module.hpp"
 #include "section_parser.hpp"
+#include "contentBlock.hpp"
 #include <boost/log/trivial.hpp>
 #include <cstddef>
 #include <cstring>
@@ -26,4 +27,4 @@ int parse(const char *classFile);
 
 } // namespace antiwasm
 
-#endif
+#endif // MODULE_PARSER_HPP
