@@ -3,17 +3,17 @@
 
 #include "numtype.hpp"
 #include "reftype.hpp"
+#include "contentBlock.hpp"
 
 namespace antiwasm {
 
 enum valtype_type { valtype_numtype, valtype_reftype, valtype_error };
 
-struct Valtype {
+struct Valtype : public ContentBlock {
   valtype_type type;
   // TODO explain in the docs that they are two elements to keep the code Æ s t h e t i c
   Numtype numtype;
   Reftype reftype;
-  bool error = false;
 };
 
 /**

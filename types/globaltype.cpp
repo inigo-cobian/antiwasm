@@ -4,7 +4,7 @@ namespace antiwasm {
 Globaltype parseGlobaltype(const uint8_t *globaltypeContent) {
   Globaltype globaltype{};
   globaltype.valtype = parseValtype(globaltypeContent[0]);
-  if (globaltype.valtype.error) {
+  if (globaltype.valtype.hasError()) {
     globaltype.error = true;
     return globaltype;
   }

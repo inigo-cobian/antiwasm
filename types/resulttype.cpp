@@ -9,7 +9,7 @@ Resulttype parseResulttype(const uint8_t *resultTypeContent) {
     auto elementType = resultTypeContent[pointer];
     Valtype valtype = parseValtype(elementType);
     resulttype.valtypeVector.push_back(valtype);
-    if (valtype.error) {
+    if (valtype.hasError()) {
       resulttype.error = true;
     }
     pointer++;

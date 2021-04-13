@@ -11,8 +11,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
     return functype;
   }
 
-  functype.parameterType =
-      parseResulttype(&funcTypeContent[BYTES_HEADER_FUNCTYPE]);
+  functype.parameterType = parseResulttype(&funcTypeContent[BYTES_HEADER_FUNCTYPE]);
   if (functype.parameterType.error) {
     functype.error = true;
     std::cout << "Error at functype.parameterType" << std::endl;

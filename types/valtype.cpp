@@ -11,7 +11,8 @@ Valtype parseValtype(const uint8_t valtypeContent) {
     valtype.reftype = parseReftype(valtypeContent);
   } else {
     valtype.type = valtype_error;
-    valtype.error = true;
+    auto error = generateError(fatal, unrecognizedValtype, 0);
+    valtype.addError(error);
   }
   return valtype;
 }

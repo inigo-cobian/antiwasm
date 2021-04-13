@@ -17,6 +17,12 @@ public:
    * @param pointer to ErrorAtWasm
    */
   void addError(std::shared_ptr<ErrorAtWasm> errorAtWasm);
+
+  /**
+   *
+   * @return
+   */
+  bool hasError();
 };
 
 } // namespace antiwasm
