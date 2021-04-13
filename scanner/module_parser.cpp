@@ -14,7 +14,7 @@ int parse(const char *classFile) {
   // Magic header
   uint8_t *uBuffer = driver->GetNextBytes(4);
   if (!checkMagicNumber(uBuffer)) {
-    auto error = generateError(fatal, incorrectHeader, 0);
+    auto error = generateError(fatal, unrecognizedHeader, 0);
     module.addError(error);
     return -1;
   }

@@ -109,8 +109,7 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent) {
 MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent) {
   u_int32_t memsInVector = sectionContent[0];
   unsigned int pointer = 1;
-  MemorySection memorySection(sizeOfSection, sectionContent, 0); // TODO
-                                                                 // position
+  MemorySection memorySection(sizeOfSection, sectionContent, 0);
 
   for (u_int32_t i = 0; i < memsInVector; i++) {
     Memtype memtype = parseMemType(&sectionContent[pointer]);
