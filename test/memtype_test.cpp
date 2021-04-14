@@ -13,9 +13,9 @@ BOOST_AUTO_TEST_CASE(parseMemType_doesNotCauseError) {
   memtypeContent[1] = 0x05;
   memtypeContent[2] = 0x08;
 
-  Memtype returnVal = antiwasm::parseMemType(memtypeContent);
+  Memtype returnMemtype = antiwasm::parseMemType(memtypeContent);
 
-  BOOST_CHECK_EQUAL(false, returnVal.limit.hasError());
+  BOOST_CHECK_EQUAL(false, returnMemtype.hasError());
 }
 
 BOOST_AUTO_TEST_CASE(parseMemType_errorCase) {
@@ -24,9 +24,19 @@ BOOST_AUTO_TEST_CASE(parseMemType_errorCase) {
   memtypeContent[1] = 0x05;
   memtypeContent[1] = 0x08;
 
-  Memtype returnVal = antiwasm::parseMemType(memtypeContent);
+  Memtype returnMemtype = antiwasm::parseMemType(memtypeContent);
 
-  BOOST_CHECK_EQUAL(true, returnVal.limit.hasError());
+  BOOST_CHECK_EQUAL(true, returnMemtype.hasError());
+}
+
+BOOST_AUTO_TEST_CASE(displayMemcase_errorCase) {
+  auto *memtypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 3));
+  memtypeContent[0] = 0xCF; // Does not exist
+  memtypeContent[1] = 0x05;
+  memtypeContent[1] = 0x08;
+  Memtype returnMemtype = antiwasm::parseMemType(memtypeContent);
+
+  displayMemtype(returnMemtype);
 }
 
 BOOST_AUTO_TEST_SUITE_END() // memtype_test
