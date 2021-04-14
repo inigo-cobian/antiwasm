@@ -7,8 +7,10 @@ Memtype parseMemType(const uint8_t *memTypeContent) {
   if(memtypeLimit.hasError()) {
     if(memtypeLimit.getError()->errorType == unrecognizedLimit_AtHeader) {
       auto error = generateError(fatal, unrecognizedTabletype_AtLimit_Header, 0);
+      memtype.addError(error);
     } else if (memtypeLimit.getError()->errorType == unrecognizedLimit_MinGreaterThanMax) {
       auto error = generateError(fatal, unrecognizedTabletype_AtLimit_Header, 0);
+      memtype.addError(error);
     } else {
       auto error = generateError(fatal, unknown, 0);
       memtype.addError(error);
