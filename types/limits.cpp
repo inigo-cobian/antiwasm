@@ -32,7 +32,7 @@ Limit parseLimitMin(const uint32_t min_, const int nBytes) {
 Limit parseLimitMinMax(const uint32_t min_, const uint32_t max_, const int nBytes) {
   Limit limit{limit_min_max, min_, max_, nBytes};
   if (checkIfLimitIsNotValid(min_, max_)) {
-    auto error = generateError(fatal, unrecognizedLimit_MinGreaterThanMax, 0);
+    auto error = generateError(fatal, unrecognizedMinGreaterThanMaxAtLimit, 0);
     limit.addError(error);
   }
   if (limit.hasError()) {
@@ -45,7 +45,7 @@ Limit parseLimitMinMax(const uint32_t min_, const uint32_t max_, const int nByte
 
 Limit generateErrorLimit() {
   Limit limit(limit_error, 0, 0);
-  auto error = generateError(fatal, unrecognizedLimit_AtHeader, 0);
+  auto error = generateError(fatal, unrecognizedHeaderAtLimit, 0);
   limit.addError(error);
   return limit;
 }

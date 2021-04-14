@@ -5,11 +5,11 @@ Memtype parseMemType(const uint8_t *memTypeContent) {
   Limit memtypeLimit = parseLimits(memTypeContent);
   Memtype memtype{memtypeLimit};
   if(memtypeLimit.hasError()) {
-    if(memtypeLimit.getError()->errorType == unrecognizedLimit_AtHeader) {
-      auto error = generateError(fatal, unrecognizedTabletype_AtLimit_Header, 0);
+    if(memtypeLimit.getError()->errorType == unrecognizedHeaderAtLimit) {
+      auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, 0);
       memtype.addError(error);
-    } else if (memtypeLimit.getError()->errorType == unrecognizedLimit_MinGreaterThanMax) {
-      auto error = generateError(fatal, unrecognizedTabletype_AtLimit_Header, 0);
+    } else if (memtypeLimit.getError()->errorType == unrecognizedMinGreaterThanMaxAtLimit) {
+      auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, 0);
       memtype.addError(error);
     } else {
       auto error = generateError(fatal, unknown, 0);

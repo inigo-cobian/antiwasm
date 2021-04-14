@@ -13,17 +13,17 @@ enum ErrorTypes {
   unrecognizedNumtype [[maybe_unused]],
   unrecognizedReftype [[maybe_unused]],
   unrecognizedValtype,
-  unrecognizedResulttype_AtValtype,
-  unrecognizedFunctype_AtHeader,
-  unrecognizedFunctype_AtRT1,
-  unrecognizedFunctype_AtRT2,
-  unrecognizedLimit_AtHeader,
-  unrecognizedLimit_MinGreaterThanMax,
-  unrecognizedTabletype_AtReftype,
-  unrecognizedTabletype_AtLimit_Header,
-  unrecognizedTabletype_AtLimit_MinGreaterThanMax,
-  unrecognizedTabletype_AtValtype,
-  unrecognizedTabletype_AtMut
+  unrecognizedValtypeAtResulttype,
+  unrecognizedHeaderAtFunctype,
+  unrecognizedRT1Functype,
+  unrecognizedRT2Functype,
+  unrecognizedHeaderAtLimit,
+  unrecognizedMinGreaterThanMaxAtLimit,
+  unrecognizedReftypeAtTabletype,
+  unrecognizedLimitHeaderAtTabletype,
+  unrecognizedMinGreaterThanMaxLimitAtTabletype,
+  unrecognizedValtypeAtGlobaltype,
+  unrecognizedMutAtTabletype
 };
 
 enum ErrorSeverity { fatal, warning };

@@ -5,7 +5,7 @@ namespace antiwasm {
 Functype parseFunctype(const uint8_t *funcTypeContent) {
   Functype functype;
   if (funcTypeContent[0] != FUNCTYPE_HEADER) {
-    auto error = generateError(fatal, unrecognizedFunctype_AtHeader, 0);
+    auto error = generateError(fatal, unrecognizedHeaderAtFunctype, 0);
     functype.addError(error);
     std::cout << "Functype header not found: " << std::hex << (unsigned int)funcTypeContent[0] << std::endl;
     return functype;
@@ -13,7 +13,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
 
   functype.parameterType = parseResulttype(&funcTypeContent[BYTES_HEADER_FUNCTYPE]);
   if (functype.parameterType.hasError()) {
-    auto error = generateError(fatal, unrecognizedFunctype_AtRT1, 0);
+    auto error = generateError(fatal, unrecognizedRT1Functype, 0);
     functype.addError(error);
     std::cout << "Error at functype.parameterType" << std::endl;
     return functype;
@@ -21,7 +21,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
   auto indexReturnType = BYTES_HEADER_FUNCTYPE + functype.parameterType.nBytes;
   functype.returnType = parseResulttype(&funcTypeContent[indexReturnType]);
   if (functype.returnType.hasError()) {
-    auto error = generateError(fatal, unrecognizedFunctype_AtRT2, 0);
+    auto error = generateError(fatal, unrecognizedRT2Functype, 0);
     functype.addError(error);
     std::cout << "Error at functype.returnType" << std::endl;
   }
