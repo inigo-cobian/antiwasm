@@ -48,4 +48,17 @@ BOOST_AUTO_TEST_CASE(displayResulttype_doesNotFail) {
   displayResulttype(returnResulttype);
 }
 
+BOOST_AUTO_TEST_CASE(displayError_doesNotFail) {
+  auto sizeOfValtypeVec = 3;
+  auto *resulttypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 4));
+  resulttypeContent[0] = sizeOfValtypeVec;
+  resulttypeContent[1] = Numtype::i32;
+  resulttypeContent[2] = 0xCA; // invalid
+  resulttypeContent[3] = Numtype::f64;
+  auto returnResulttype = antiwasm::parseResulttype(resulttypeContent);
+
+  returnResulttype.displayError();
+}
+
+
 BOOST_AUTO_TEST_SUITE_END() // resulttype_test

@@ -47,4 +47,39 @@ BOOST_AUTO_TEST_CASE(parseNumType_caseInvalid) {
   BOOST_CHECK_EQUAL(Numtype::invalid_numtype, returnNumtype);
 }
 
+BOOST_AUTO_TEST_CASE(displayNumType_casei32) {
+  uint8_t numtypeContent = i32;
+  auto returnNumtype = antiwasm::parseNumType(numtypeContent);
+
+  displayNumtype(returnNumtype);
+}
+
+BOOST_AUTO_TEST_CASE(displayNumType_casei64) {
+  uint8_t numtypeContent = i64;
+  auto returnNumtype = antiwasm::parseNumType(numtypeContent);
+
+  displayNumtype(returnNumtype);
+}
+
+BOOST_AUTO_TEST_CASE(displayNumType_casef32) {
+  uint8_t numtypeContent = f32;
+  auto returnNumtype = antiwasm::parseNumType(numtypeContent);
+
+  displayNumtype(returnNumtype);
+}
+
+BOOST_AUTO_TEST_CASE(displayNumType_casef64) {
+  uint8_t numtypeContent = f64;
+  auto returnNumtype = antiwasm::parseNumType(numtypeContent);
+
+  displayNumtype(returnNumtype);
+}
+
+BOOST_AUTO_TEST_CASE(displayNumType_caseError) {
+  uint8_t numtypeContent = 0xCA; // Incorrect numtype
+  auto returnNumtype = antiwasm::parseNumType(numtypeContent);
+
+  displayNumtype(returnNumtype);
+}
+
 BOOST_AUTO_TEST_SUITE_END() // numtype_test
