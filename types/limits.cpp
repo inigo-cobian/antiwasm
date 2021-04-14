@@ -58,7 +58,7 @@ void displayLimits(Limit limit) {
   } else if (limit.type == limit_min_max) {
     std::cout << "[" << std::hex << limit.min << "-" << limit.max << "]";
   } else {
-    std::cout << "error limit";
+    limit.displayError();
   }
 }
 void Limit::displayError() {

@@ -60,5 +60,4 @@ BOOST_AUTO_TEST_CASE(displayError_doesNotFail) {
   returnResulttype.displayError();
 }
 
-
 BOOST_AUTO_TEST_SUITE_END() // resulttype_test
