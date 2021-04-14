@@ -17,27 +17,36 @@ Limit parseLimits(const uint8_t *limitSection) {
   } else {
     // TODO better error, ¿maybe get a msg?
     std::cout << "limit raro" << std::endl;
-    Limit limit{};
-    limit.error = true;
+    Limit limit = generateErrorLimit();
     return limit;
   }
 }
 
 Limit parseLimitMin(const uint32_t min_, const int nBytes) {
-  Limit limit{limit_min, min_, 0, nBytes, false};
+  Limit limit{limit_min, min_, nBytes};
 
   BOOST_LOG_TRIVIAL(info) << "[limits] New limit [" << std::hex << limit.min << "-MAX]";
   return limit;
 }
 
 Limit parseLimitMinMax(const uint32_t min_, const uint32_t max_, const int nBytes) {
-  Limit limit{limit_min_max, min_, max_, nBytes, false};
-  limit.error = checkIfLimitIsNotValid(min_, max_);
-  if (limit.error)
+  Limit limit{limit_min_max, min_, max_, nBytes};
+  if (checkIfLimitIsNotValid(min_, max_)) {
+    auto error = generateError(fatal, unrecognizedLimit_MinGreaterThanMax, 0);
+    limit.addError(error);
+  }
+  if (limit.hasError()) {
     std::cout << "Min-Max: " << (int)limit.min << "-" << (int)limit.max << std::endl;
+  }
 
   BOOST_LOG_TRIVIAL(info) << "[limits] New limit [" << std::hex << limit.min << "-" << std::hex << limit.max << "]";
+  return limit;
+}
 
+Limit generateErrorLimit() {
+  Limit limit(limit_error, 0, 0);
+  auto error = generateError(fatal, unrecognizedLimit_AtHeader, 0);
+  limit.addError(error);
   return limit;
 }
 
@@ -51,5 +60,8 @@ void displayLimits(Limit limit) {
   } else {
     std::cout << "error limit";
   }
+}
+void Limit::displayError() {
+  // TODO
 }
 } // namespace antiwasm

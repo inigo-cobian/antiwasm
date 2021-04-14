@@ -2,18 +2,21 @@
 
 namespace antiwasm {
 Tabletype parseTableType(const uint8_t *tableTypeContent) {
-  Tabletype tabletype{};
-  tabletype.reftype = parseReftype(tableTypeContent[0]);
-  if (tabletype.reftype == invalid_reftype) {
+  Reftype reftypeAtTabletype = parseReftype(tableTypeContent[0]);
+  Limit limitAtTabletype = parseLimits(&tableTypeContent[1]);
+  Tabletype tabletype{reftypeAtTabletype, limitAtTabletype};
+
+  if (reftypeAtTabletype == invalid_reftype) {
     std::cout << "Error at reftype" << std::endl;
     tabletype.error = true;
     return tabletype;
   }
-  tabletype.limit = parseLimits(&tableTypeContent[1]);
-  if (tabletype.limit.error) {
+
+  if (limitAtTabletype.hasError()) {
     std::cout << "Error at limit" << std::endl;
     tabletype.error = true;
   }
+
   return tabletype;
 }
 

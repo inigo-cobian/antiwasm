@@ -3,11 +3,12 @@
 
 #include "limits.hpp"
 
+namespace antiwasm {
+
 struct Memtype {
   Limit limit;
 };
 
-namespace antiwasm {
 /**
  * Parses and generates the parsed memtype.
  * Adds error if cannot complete the parsing.

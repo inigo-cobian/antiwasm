@@ -15,7 +15,7 @@ BOOST_AUTO_TEST_CASE(parseMemType_doesNotCauseError) {
 
   Memtype returnVal = antiwasm::parseMemType(memtypeContent);
 
-  BOOST_CHECK_EQUAL(false, returnVal.limit.error);
+  BOOST_CHECK_EQUAL(false, returnVal.limit.hasError());
 }
 
 BOOST_AUTO_TEST_CASE(parseMemType_errorCase) {
@@ -26,7 +26,7 @@ BOOST_AUTO_TEST_CASE(parseMemType_errorCase) {
 
   Memtype returnVal = antiwasm::parseMemType(memtypeContent);
 
-  BOOST_CHECK_EQUAL(true, returnVal.limit.error);
+  BOOST_CHECK_EQUAL(true, returnVal.limit.hasError());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // memtype_test

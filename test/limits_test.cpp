@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(parseLimits_returnsAnErrorCodeWhenLimitsAreIncorrect) {
 
   Limit returnLimit = antiwasm::parseLimits(limitVec);
 
-  BOOST_CHECK_EQUAL(returnLimit.error, true);
+  BOOST_CHECK_EQUAL(true, returnLimit.hasError());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // limits_test

@@ -2,8 +2,8 @@
 
 namespace antiwasm {
 Memtype parseMemType(const uint8_t *memTypeContent) {
-  Memtype memtype{};
-  memtype.limit = parseLimits(memTypeContent);
+  Limit memtypeLimit = parseLimits(memTypeContent);
+  Memtype memtype{memtypeLimit};
   return memtype;
 }
 
