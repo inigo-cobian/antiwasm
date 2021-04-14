@@ -8,7 +8,7 @@
 
 namespace antiwasm {
 
-struct Resulttype : ContentBlock {
+struct Resulttype : public ContentBlock {
   std::vector<Valtype> valtypeVector;
   unsigned int nBytes = 0;
 

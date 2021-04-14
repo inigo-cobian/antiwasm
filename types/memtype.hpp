@@ -5,7 +5,7 @@
 
 namespace antiwasm {
 
-struct Memtype : ContentBlock {
+struct Memtype : public ContentBlock {
   Limit limit;
 
   Memtype(Limit p_limit) : limit(p_limit) {}
