@@ -38,4 +38,11 @@ BOOST_AUTO_TEST_CASE(displayError) {
   returnValtype.displayError();
 }
 
+BOOST_AUTO_TEST_CASE(displayValtype_whenError) {
+  uint8_t valtypeContent = 0xFF; // Incorrect valtype
+  auto returnValtype = antiwasm::parseValtype(valtypeContent);
+
+  returnValtype.displayError();
+}
+
 BOOST_AUTO_TEST_SUITE_END() // valttype_test

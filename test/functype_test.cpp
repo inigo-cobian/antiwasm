@@ -75,4 +75,14 @@ BOOST_AUTO_TEST_CASE(displayResulttype_ifError) {
   displayFunctype(returnFunctype);
 }
 
+BOOST_AUTO_TEST_CASE(displayError) {
+  uint8_t *functypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 6));
+  functypeContent[0] = FUNCTYPE_HEADER; // Invalid header
+  functypeContent[1] = 2, functypeContent[2] = Numtype::i32, functypeContent[3] = Reftype::funref;
+  functypeContent[4] = 1, functypeContent[5] = 0xAA; // Invalid value
+  auto returnFunctype = antiwasm::parseFunctype(functypeContent);
+
+  returnFunctype.displayError();
+}
+
 BOOST_AUTO_TEST_SUITE_END() // functype_test
