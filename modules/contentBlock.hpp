@@ -24,6 +24,8 @@ public:
    */
   bool hasError();
 
+  std::shared_ptr<ErrorAtWasm> getError();
+
   virtual void displayError() = 0;
 };
 

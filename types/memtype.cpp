@@ -4,6 +4,16 @@ namespace antiwasm {
 Memtype parseMemType(const uint8_t *memTypeContent) {
   Limit memtypeLimit = parseLimits(memTypeContent);
   Memtype memtype{memtypeLimit};
+  if(memtypeLimit.hasError()) {
+    if(memtypeLimit.getError()->errorType == unrecognizedLimit_AtHeader) {
+      auto error = generateError(fatal, unrecognizedTabletype_AtLimit_Header, 0);
+    } else if (memtypeLimit.getError()->errorType == unrecognizedLimit_MinGreaterThanMax) {
+      auto error = generateError(fatal, unrecognizedTabletype_AtLimit_Header, 0);
+    } else {
+      auto error = generateError(fatal, unknown, 0);
+      memtype.addError(error);
+    }
+  }
   return memtype;
 }
 
@@ -13,7 +23,10 @@ void displayMemtype(Memtype memtype) {
   } else if (memtype.limit.type == limit_min_max) {
     std::cout << "  memtype: [" << memtype.limit.min << "-" << memtype.limit.max << "]" << std::endl;
   } else {
-    std::cout << "  Error at current memtype" << std::endl;
+    memtype.displayError();
   }
+}
+void Memtype::displayError() {
+  // TODO
 }
 } // namespace antiwasm
