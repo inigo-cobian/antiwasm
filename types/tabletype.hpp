@@ -6,10 +6,12 @@
 
 namespace antiwasm {
 
-struct Tabletype {
+struct Tabletype : public ContentBlock {
   Reftype reftype;
   Limit limit;
-  bool error = false;
+
+  void displayError() override;
+  Tabletype(Reftype p_reftype, Limit p_limit) : reftype(p_reftype), limit(p_limit) {};
 };
 
 /**

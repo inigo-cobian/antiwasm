@@ -4,8 +4,8 @@ namespace antiwasm {
 Memtype parseMemType(const uint8_t *memTypeContent) {
   Limit memtypeLimit = parseLimits(memTypeContent);
   Memtype memtype{memtypeLimit};
-  if(memtypeLimit.hasError()) {
-    if(memtypeLimit.getError()->errorType == unrecognizedHeaderAtLimit) {
+  if (memtypeLimit.hasError()) {
+    if (memtypeLimit.getError()->errorType == unrecognizedHeaderAtLimit) {
       auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, 0);
       memtype.addError(error);
     } else if (memtypeLimit.getError()->errorType == unrecognizedMinGreaterThanMaxAtLimit) {

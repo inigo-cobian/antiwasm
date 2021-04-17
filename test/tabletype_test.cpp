@@ -14,7 +14,7 @@ BOOST_AUTO_TEST_CASE(parseTableType_caseCorrect) {
 
   auto returnTabletype = antiwasm::parseTableType(tabletypeContent);
 
-  BOOST_CHECK_EQUAL(false, returnTabletype.error);
+  BOOST_CHECK_EQUAL(false, returnTabletype.hasError());
 }
 
 BOOST_AUTO_TEST_CASE(parseTableType_caseErrorInReftype) {
@@ -25,7 +25,7 @@ BOOST_AUTO_TEST_CASE(parseTableType_caseErrorInReftype) {
 
   auto returnTabletype = antiwasm::parseTableType(tabletypeContent);
 
-  BOOST_CHECK_EQUAL(true, returnTabletype.error);
+  BOOST_CHECK_EQUAL(true, returnTabletype.hasError());
 }
 
 BOOST_AUTO_TEST_CASE(parseTableType_caseErrorInLimit) {
@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(parseTableType_caseErrorInLimit) {
 
   auto returnTabletype = antiwasm::parseTableType(tabletypeContent);
 
-  BOOST_CHECK_EQUAL(true, returnTabletype.error);
+  BOOST_CHECK_EQUAL(true, returnTabletype.hasError());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // tabletype_test
