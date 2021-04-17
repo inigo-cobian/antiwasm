@@ -10,7 +10,7 @@ Limit parseLimits(const uint8_t *limitSection) {
   if (limitSection[0] == limit_types::limit_min_max) {
     uint32_t min_ = transformLeb128ToUnsignedInt32(&limitSection[SIZE_OF_LIMIT_TYPE]);
     auto nBytes = sizeOfLeb128(&limitSection[SIZE_OF_LIMIT_TYPE]);
-    uint32_t max_ = transformLeb128ToUnsignedInt32(&limitSection[SIZE_OF_LIMIT_TYPE]);
+    uint32_t max_ = transformLeb128ToUnsignedInt32(&limitSection[SIZE_OF_LIMIT_TYPE+nBytes]);
     nBytes += sizeOfLeb128(&limitSection[SIZE_OF_LIMIT_TYPE + nBytes]);
 
     return parseLimitMinMax(min_, max_, nBytes);
