@@ -7,6 +7,9 @@ void ContentBlock::addError(std::shared_ptr<ErrorAtWasm> errorAtWasm) { errors_.
 bool ContentBlock::hasError() { return !errors_.empty(); }
 
 std::shared_ptr<ErrorAtWasm> ContentBlock::getError() {
+  if (errors_.empty()) {
+    return generateNoError();
+  }
   return errors_.front();
 }
 

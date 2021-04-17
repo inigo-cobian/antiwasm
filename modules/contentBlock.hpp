@@ -24,6 +24,11 @@ public:
    */
   bool hasError();
 
+  /**
+   * Returns the error of a content block with a single error.
+   * If there is no error it returns a default error.
+   * @return
+   */
   std::shared_ptr<ErrorAtWasm> getError();
 
   virtual void displayError() = 0;

@@ -9,4 +9,11 @@ std::shared_ptr<ErrorAtWasm> generateError(ErrorSeverity severity, ErrorTypes er
 
   return generatedError;
 }
+
+std::shared_ptr<ErrorAtWasm> generateNoError() {
+  auto generatedNoError = std::make_shared<ErrorAtWasm>();
+  generatedNoError->severity = noError;
+
+  return generatedNoError;
+}
 } // namespace antiwasm

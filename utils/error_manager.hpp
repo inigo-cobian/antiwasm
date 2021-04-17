@@ -26,7 +26,7 @@ enum ErrorTypes {
   unrecognizedMutAtGlobaltype
 };
 
-enum ErrorSeverity { fatal, warning };
+enum ErrorSeverity { fatal, warning, noError };
 
 struct ErrorAtWasm {
   ErrorSeverity severity;
@@ -35,6 +35,8 @@ struct ErrorAtWasm {
 };
 
 std::shared_ptr<ErrorAtWasm> generateError(ErrorSeverity severity, ErrorTypes errorType, unsigned int index);
+
+std::shared_ptr<ErrorAtWasm> generateNoError();
 
 } // namespace antiwasm
 
