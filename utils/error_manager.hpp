@@ -23,7 +23,7 @@ enum ErrorTypes {
   unrecognizedLimitHeaderAtTabletype,
   unrecognizedMinGreaterThanMaxLimitAtTabletype,
   unrecognizedValtypeAtGlobaltype,
-  unrecognizedMutAtTabletype
+  unrecognizedMutAtGlobaltype
 };
 
 enum ErrorSeverity { fatal, warning };

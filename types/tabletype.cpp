@@ -26,7 +26,7 @@ void displayTabletype(Tabletype tabletype) {
   if (tabletype.hasError()) {
     std::cout << "Error at tabletype" << std::endl;
     // TODO error
-   tabletype.displayError();
+    tabletype.displayError();
   }
   std::cout << "    [";
   displayReftype(tabletype.reftype);

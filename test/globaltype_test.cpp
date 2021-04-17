@@ -14,7 +14,7 @@ BOOST_AUTO_TEST_CASE(parseGlobaltype_caseCorrect) {
 
   auto returnGlobaltype = antiwasm::parseGlobaltype(globaltypeContent);
 
-  BOOST_CHECK_EQUAL(false, returnGlobaltype.error);
+  BOOST_CHECK_EQUAL(false, returnGlobaltype.hasError());
 }
 
 BOOST_AUTO_TEST_CASE(parseReftype_caseInvalidValtype) {
@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(parseReftype_caseInvalidValtype) {
 
   auto returnGlobaltype = antiwasm::parseGlobaltype(globaltypeContent);
 
-  BOOST_CHECK_EQUAL(true, returnGlobaltype.error);
+  BOOST_CHECK_EQUAL(true, returnGlobaltype.hasError());
 }
 
 BOOST_AUTO_TEST_CASE(parseReftype_caseInvalidMut) {
@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(parseReftype_caseInvalidMut) {
 
   auto returnGlobaltype = antiwasm::parseGlobaltype(globaltypeContent);
 
-  BOOST_CHECK_EQUAL(true, returnGlobaltype.error);
+  BOOST_CHECK_EQUAL(true, returnGlobaltype.hasError());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // globaltype_test

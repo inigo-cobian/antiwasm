@@ -5,13 +5,19 @@ Globaltype parseGlobaltype(const uint8_t *globaltypeContent) {
   Globaltype globaltype{};
   globaltype.valtype = parseValtype(globaltypeContent[0]);
   if (globaltype.valtype.hasError()) {
-    globaltype.error = true;
+    auto error = generateError(fatal, unrecognizedValtypeAtGlobaltype, 0);
+    globaltype.addError(error);
     return globaltype;
   }
   globaltype.mut = parseMut(globaltypeContent[1]);
   if (globaltype.mut == invalid_mut) {
-    globaltype.error = true;
+    auto error = generateError(fatal, unrecognizedMutAtGlobaltype, 0);
+    globaltype.addError(error);
   }
   return globaltype;
+}
+
+void Globaltype::displayError() {
+  // TODO
 }
 } // namespace antiwasm

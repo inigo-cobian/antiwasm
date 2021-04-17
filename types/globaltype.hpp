@@ -6,10 +6,11 @@
 
 namespace antiwasm {
 
-struct Globaltype {
+struct Globaltype : public ContentBlock {
   Valtype valtype;
   Mut mut;
-  bool error = false;
+
+  void displayError() override;
 };
 
 /**

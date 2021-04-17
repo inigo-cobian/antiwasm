@@ -11,7 +11,7 @@ struct Tabletype : public ContentBlock {
   Limit limit;
 
   void displayError() override;
-  Tabletype(Reftype p_reftype, Limit p_limit) : reftype(p_reftype), limit(p_limit) {};
+  Tabletype(Reftype p_reftype, Limit p_limit) : reftype(p_reftype), limit(p_limit){};
 };
 
 /**
