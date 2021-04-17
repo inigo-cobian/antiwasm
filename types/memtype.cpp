@@ -9,7 +9,7 @@ Memtype parseMemType(const uint8_t *memTypeContent) {
       auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, 0);
       memtype.addError(error);
     } else if (memtypeLimit.getError()->errorType == unrecognizedMinGreaterThanMaxAtLimit) {
-      auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, 0);
+      auto error = generateError(fatal, unrecognizedMinGreaterThanMaxLimitAtTabletype, 0);
       memtype.addError(error);
     } else {
       auto error = generateError(fatal, unknown, 0);
