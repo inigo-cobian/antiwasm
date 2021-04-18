@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(displayResulttype_doesNotFail) {
   resulttypeContent[3] = Numtype::f64;
   auto returnResulttype = antiwasm::parseResulttype(resulttypeContent);
 
-  displayResulttype(returnResulttype);
+  returnResulttype.displayContentInfo();
 }
 
 BOOST_AUTO_TEST_CASE(displayError_doesNotFail) {

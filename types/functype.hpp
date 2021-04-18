@@ -16,6 +16,7 @@ struct Functype : public ContentBlock {
   int nBytes = 0;
 
   void displayError() override;
+  void displayContentInfo() override;
 };
 
 const unsigned int BYTES_HEADER_FUNCTYPE = 1;
@@ -27,8 +28,6 @@ const unsigned int BYTES_HEADER_FUNCTYPE = 1;
  * @return
  */
 Functype parseFunctype(const uint8_t *funcTypeContent);
-
-void displayFunctype(Functype functype);
 } // namespace antiwasm
 
 #endif // ANTIWASM_FUNCTYPE_HPP

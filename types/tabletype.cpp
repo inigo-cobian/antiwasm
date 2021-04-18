@@ -22,16 +22,16 @@ Tabletype parseTableType(const uint8_t *tableTypeContent) {
   return tabletype;
 }
 
-void displayTabletype(Tabletype tabletype) {
-  if (tabletype.hasError()) {
+void Tabletype::displayContentInfo() {
+  if (hasError()) {
     std::cout << "Error at tabletype" << std::endl;
     // TODO error
-    tabletype.displayError();
+    displayError();
   }
   std::cout << "    [";
-  displayReftype(tabletype.reftype);
+  displayReftype(reftype);
   std::cout << "] ";
-  displayLimits(tabletype.limit);
+  limit.displayContentInfo();
   std::cout << std::endl;
 }
 

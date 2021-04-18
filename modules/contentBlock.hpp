@@ -29,7 +29,7 @@ public:
    * Adds a new error to the error_ vector.
    * @param pointer to ErrorAtWasm
    */
-  void addError(shared_ptr<ErrorAtWasm> errorAtWasm);
+  void addError(const shared_ptr<ErrorAtWasm>& errorAtWasm);
 
   /**
    * Checks the vector of errors and returns true if there is at least one.
@@ -51,7 +51,7 @@ public:
    */
   void displayContentBytes() const;
 
-  void displayContentInfo() {}; // TODO make virtual
+  virtual void displayContentInfo() = 0;
 };
 
 } // namespace antiwasm

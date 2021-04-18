@@ -76,6 +76,8 @@ public:
   virtual void displaySectionHeaderInfo();
 
   void displayError() override;
+
+  void displayContentInfo() override;
 };
 
 } // namespace antiwasm

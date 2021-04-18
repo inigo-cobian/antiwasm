@@ -20,7 +20,7 @@ void TableSection::displayTablesecContent() {
             << " (" << tabletypeVector.size() << ") tabletypes" << std::endl;
 
   for (auto tabletype : tabletypeVector) {
-    antiwasm::displayTabletype(tabletype);
+    tabletype.displayContentInfo();
   }
 }
 

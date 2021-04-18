@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(displayMemcase_errorCase) {
   memtypeContent[2] = 0x08;
   Memtype returnMemtype = antiwasm::parseMemType(memtypeContent);
 
-  displayMemtype(returnMemtype);
+  returnMemtype.displayContentInfo();
 }
 
 BOOST_AUTO_TEST_SUITE_END() // memtype_test

@@ -10,8 +10,10 @@ struct Tabletype : public ContentBlock {
   Reftype reftype;
   Limit limit;
 
-  void displayError() override;
   Tabletype(Reftype p_reftype, Limit p_limit) : reftype(p_reftype), limit(p_limit){};
+
+  void displayError() override;
+  void displayContentInfo() override;
 };
 
 /**
@@ -21,8 +23,6 @@ struct Tabletype : public ContentBlock {
  * @return
  */
 Tabletype parseTableType(const uint8_t *tableTypeContent);
-
-void displayTabletype(Tabletype tabletype);
 } // namespace antiwasm
 
 #endif // ANTIWASM_TABLETYPE_HPP

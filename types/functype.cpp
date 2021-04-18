@@ -30,17 +30,17 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
   return functype;
 }
 
-void displayFunctype(Functype functype) {
-  if (functype.hasError()) {
+void Functype::displayContentInfo() {
+  if (hasError()) {
     std::cout << "Error at current functype" << std::endl;
     return;
   }
 
   std::cout << "  Functype (rt1):" << std::endl;
-  displayResulttype(functype.parameterType);
+  parameterType.displayContentInfo();
 
   std::cout << "  Functype (rt2):" << std::endl;
-  displayResulttype(functype.returnType);
+  returnType.displayContentInfo();
 }
 
 void Functype::displayError() {

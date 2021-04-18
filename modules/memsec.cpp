@@ -22,7 +22,7 @@ void MemorySection::displayMemsecContent() {
             << memtypeVector.size() << ") memtypes" << std::endl;
 
   for (auto memtype : memtypeVector) {
-    antiwasm::displayMemtype(memtype);
+    memtype.displayContentInfo();
   }
 }
 

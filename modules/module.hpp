@@ -55,6 +55,7 @@ public:
   bool containsSection(SectionId sectionId);
 
   void displayError() override;
+  void displayContentInfo() override;
 };
 } // namespace antiwasm
 

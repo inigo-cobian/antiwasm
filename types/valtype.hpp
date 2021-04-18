@@ -16,6 +16,7 @@ struct Valtype : public ContentBlock {
   Reftype reftype;
 
   void displayError() override;
+  void displayContentInfo() override;
 };
 
 /**
@@ -25,8 +26,6 @@ struct Valtype : public ContentBlock {
  * @return
  */
 Valtype parseValtype(uint8_t valtypeContent);
-
-void displayValtype(Valtype valtype);
 
 } // namespace antiwasm
 #endif // ANTIWASM_VALTYPE_HPP

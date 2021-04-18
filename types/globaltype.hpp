@@ -11,6 +11,7 @@ struct Globaltype : public ContentBlock {
   Mut mut;
 
   void displayError() override;
+  void displayContentInfo() override;
 };
 
 /**

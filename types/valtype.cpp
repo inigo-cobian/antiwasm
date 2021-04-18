@@ -17,17 +17,18 @@ Valtype parseValtype(const uint8_t valtypeContent) {
   return valtype;
 }
 
-void displayValtype(Valtype valtype) {
-  if (valtype.type == valtype_numtype) {
-    displayNumtype(valtype.numtype);
-  } else if (valtype.type == valtype_reftype) {
-    displayReftype(valtype.reftype);
+void Valtype::displayContentInfo() {
+  if (type == valtype_numtype) {
+    displayNumtype(numtype);
+  } else if (type == valtype_reftype) {
+    displayReftype(reftype);
   } else {
-    std::cout << "Error at valtype" << std::endl;
+    displayError();
   }
 }
 
 void Valtype::displayError() {
   // TODO
+  std::cout << "Error at valtype" << std::endl;
 }
 } // namespace antiwasm

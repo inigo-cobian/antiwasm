@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(displayResulttype_ifCorrect) {
   functypeContent[4] = 1, functypeContent[5] = Numtype::f64;
   auto returnFunctype = antiwasm::parseFunctype(functypeContent);
 
-  displayFunctype(returnFunctype);
+  returnFunctype.displayContentInfo();
 }
 
 BOOST_AUTO_TEST_CASE(displayResulttype_ifError) {
@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE(displayResulttype_ifError) {
   functypeContent[4] = 1, functypeContent[5] = 0xAA; // Invalid value
   auto returnFunctype = antiwasm::parseFunctype(functypeContent);
 
-  displayFunctype(returnFunctype);
+  returnFunctype.displayContentInfo();
 }
 
 BOOST_AUTO_TEST_CASE(displayError) {

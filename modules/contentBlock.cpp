@@ -9,7 +9,7 @@ void ContentBlock::addContentBytes(shared_ptr<uint8_t> ptrToContentBytes, size_t
   indexOfContent = indexOfCurrentContent;
 }
 
-void ContentBlock::addError(shared_ptr<ErrorAtWasm> errorAtWasm) { errors_.push_back(errorAtWasm); }
+void ContentBlock::addError(const shared_ptr<ErrorAtWasm>& errorAtWasm) { errors_.push_back(errorAtWasm); }
 
 bool ContentBlock::hasError() { return !errors_.empty(); }
 

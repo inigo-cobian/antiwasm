@@ -10,6 +10,7 @@ struct Memtype : public ContentBlock {
 
   Memtype(Limit p_limit) : limit(p_limit) {}
   void displayError() override;
+  void displayContentInfo() override;
 };
 
 /**
@@ -19,8 +20,6 @@ struct Memtype : public ContentBlock {
  * @return
  */
 Memtype parseMemType(const uint8_t *memTypeContent);
-
-void displayMemtype(Memtype memtype);
 } // namespace antiwasm
 
 #endif // ANTIWASM_MEMTYPE_HPP

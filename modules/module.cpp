@@ -17,6 +17,13 @@ Section Module::getSection(SectionId sectionId) {
 int Module::getSize() { return size_; }
 
 bool Module::containsSection(SectionId sectionId) { return sections_.contains(sectionId); }
-void Module::displayError() {}
+
+void Module::displayError() {
+  // TODO
+}
+
+void Module::displayContentInfo() {
+  // TODO
+}
 
 } // namespace antiwasm

@@ -52,13 +52,13 @@ Limit generateErrorLimit() {
 
 bool checkIfLimitIsNotValid(const uint32_t min_, const uint32_t max_) { return min_ > max_; }
 
-void displayLimits(Limit limit) {
-  if (limit.type == limit_min) {
-    std::cout << "[" << std::hex << limit.min << "-MAX]";
-  } else if (limit.type == limit_min_max) {
-    std::cout << "[" << std::hex << limit.min << "-" << limit.max << "]";
+void Limit::displayContentInfo() {
+  if (type == limit_min) {
+    std::cout << "[" << std::hex << min << "-MAX]";
+  } else if (type == limit_min_max) {
+    std::cout << "[" << std::hex << min << "-" << max << "]";
   } else {
-    limit.displayError();
+    displayError();
   }
 }
 void Limit::displayError() {

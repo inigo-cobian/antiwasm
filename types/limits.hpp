@@ -38,6 +38,7 @@ struct Limit : public ContentBlock {
   Limit(limit_types p_limitTypes, uint32_t p_min, uint32_t p_max, int p_nBytes_)
       : type(p_limitTypes), min(p_min), max(p_max), nBytes(p_nBytes_) {}
   void displayError() override;
+  void displayContentInfo() override;
 };
 
 const unsigned int SIZE_OF_LIMIT_TYPE = 1;
@@ -81,8 +82,6 @@ Limit generateErrorLimit();
  * @return true if the limit is not valid, false if it is
  */
 bool checkIfLimitIsNotValid(const uint32_t min_, const uint32_t max_);
-
-void displayLimits(Limit limit);
 } // namespace antiwasm
 
 #endif

@@ -22,5 +22,8 @@ void Section::displaySectionHeaderInfo() {
             << size_ << std::endl;
 }
 void Section::displayError() {}
+void Section::displayContentInfo() {
+  // TODO
+}
 
 } // namespace antiwasm

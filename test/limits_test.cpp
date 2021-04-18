@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(displayLimit_minMaxCase) {
   limitVec[2] = 0x08;
   Limit returnLimit = antiwasm::parseLimits(limitVec);
 
-  displayLimits(returnLimit);
+  returnLimit.displayContentInfo();
 }
 
 BOOST_AUTO_TEST_CASE(displayLimit_errorCase) {
@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(displayLimit_errorCase) {
   limitVec[2] = 0x08;
   Limit returnLimit = antiwasm::parseLimits(limitVec);
 
-  displayLimits(returnLimit);
+  returnLimit.displayContentInfo();
 }
 
 BOOST_AUTO_TEST_SUITE_END() // limits_test

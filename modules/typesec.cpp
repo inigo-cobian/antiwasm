@@ -20,7 +20,7 @@ void TypeSection::displayTypesecContent() {
             << " (" << functypeVector.size() << ") functypes" << std::endl;
 
   for (const auto &functype : functypeVector) {
-    antiwasm::displayFunctype(functype);
+    functype.displayContentBytes();
   }
 }
 

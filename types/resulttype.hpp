@@ -13,6 +13,7 @@ struct Resulttype : public ContentBlock {
   unsigned int nBytes = 0;
 
   void displayError() override;
+  void displayContentInfo() override;
 };
 
 /**
@@ -22,8 +23,6 @@ struct Resulttype : public ContentBlock {
  * @return
  */
 Resulttype parseResulttype(const uint8_t *resultTypeContent);
-
-void displayResulttype(const Resulttype &resulttype);
 } // namespace antiwasm
 
 #endif // ANTIWASM_RESULTTYPE_HPP
