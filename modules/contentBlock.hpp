@@ -8,10 +8,19 @@ namespace antiwasm {
 
 class ContentBlock {
 protected:
-  // TODO store bytes
+  std::shared_ptr<uint8_t> contentBytes;
+  size_t indexOfContent;
   std::vector<std::shared_ptr<ErrorAtWasm>> errors_;
 
 public:
+  /**
+   * Gets the pointer to the content block the current content belongs (as bytes)
+   * and its position at the block.
+   * @param contentBytes
+   * @param indexOfContent
+   */
+  void addContentBytes(std::shared_ptr<uint8_t> ptrToContentBytes, size_t indexOfCurrentContent);
+
   /**
    * Adds a new error to the error_ vector.
    * @param pointer to ErrorAtWasm
