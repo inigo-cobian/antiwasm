@@ -9,15 +9,15 @@ TableSection::~TableSection() = default;
 
 void TableSection::addTabletype(Tabletype tabletype) { tabletypeVector.push_back(tabletype); }
 
-std::vector<Tabletype> TableSection::getTabletypeVector() { return std::vector<Tabletype>(); }
+vector<Tabletype> TableSection::getTabletypeVector() { return vector<Tabletype>(); }
 
 void TableSection::displaySectionHeaderInfo() {
-  std::cout << "   Table | start=" << (std::hex) << initialPos_ << " size=" << (std::hex) << size_ << std::endl;
+  cout << "   Table | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
 }
 
 void TableSection::displayTablesecContent() {
-  std::cout << "   Table | start=" << (std::hex) << initialPos_ << " size=" << (std::hex) << size_
-            << " (" << tabletypeVector.size() << ") tabletypes" << std::endl;
+  cout << "   Table | start=" << hex << initialPos_ << " size=" << hex << size_
+            << " (" << tabletypeVector.size() << ") tabletypes" << endl;
 
   for (auto tabletype : tabletypeVector) {
     tabletype.displayContentInfo();

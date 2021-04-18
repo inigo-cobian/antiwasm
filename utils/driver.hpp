@@ -15,6 +15,7 @@
 #include <string>
 #include <thread>
 
+using namespace std;
 namespace antiwasm {
 
 const int SIZE_OF_SECTION_ID = 1;
@@ -22,15 +23,15 @@ const int MAX_SIZE_OF_SECTION_HEADER = 6; // Section Id + max LEB128 for u32
 
 class Driver {
 private:
-  static std::shared_ptr<Driver> instance_;
-  static std::mutex mutex_;
+  static shared_ptr<Driver> instance_;
+  static mutex mutex_;
   static bool error_;
 
 protected:
   static size_t fileSize_;
   static size_t pointer_;
   static uint8_t *buffer_; // TODO which size?
-  static std::ifstream wasmFile_;
+  static ifstream wasmFile_;
   static bool isParsing_;
 
 public:
@@ -48,7 +49,7 @@ public:
    * Returns the single existing instance. If it doesn't exist, it is created.
    * @return the instance
    */
-  static std::shared_ptr<Driver> GetInstance();
+  static shared_ptr<Driver> GetInstance();
 
   /**
    * It returns the requested number of bytes

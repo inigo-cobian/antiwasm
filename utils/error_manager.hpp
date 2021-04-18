@@ -3,6 +3,8 @@
 
 #include <memory>
 
+using namespace std;
+
 namespace antiwasm {
 enum ErrorTypes {
   unknown,
@@ -34,9 +36,9 @@ struct ErrorAtWasm {
   unsigned int elementIndex;
 };
 
-std::shared_ptr<ErrorAtWasm> generateError(ErrorSeverity severity, ErrorTypes errorType, unsigned int index);
+shared_ptr<ErrorAtWasm> generateError(ErrorSeverity severity, ErrorTypes errorType, unsigned int index);
 
-std::shared_ptr<ErrorAtWasm> generateNoError();
+shared_ptr<ErrorAtWasm> generateNoError();
 
 } // namespace antiwasm
 

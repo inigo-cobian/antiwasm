@@ -6,7 +6,7 @@ bool checkMagicNumber(const uint8_t *header) {
     BOOST_LOG_TRIVIAL(debug) << "[header] Magic header found";
     return true;
   } else {
-    BOOST_LOG_TRIVIAL(error) << "[header] This file has no magic header." << std::endl << "Compilation failed.";
+    BOOST_LOG_TRIVIAL(error) << "[header] This file has no magic header." << endl << "Compilation failed.";
     printf("%02x %02x %02x %02x\n", header[0], header[1], header[2], header[3]);
     return false;
   }

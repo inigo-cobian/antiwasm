@@ -6,11 +6,13 @@
 #include "section.hpp"
 #include <vector>
 
+using namespace std;
+
 namespace antiwasm {
 
 class TableSection : public Section {
 private:
-  std::vector<Tabletype> tabletypeVector;
+  vector<Tabletype> tabletypeVector;
 
 public:
   /**
@@ -37,7 +39,7 @@ public:
    * Gets the tabletype vector
    * @return tabletypeVector
    */
-  std::vector<Tabletype> getTabletypeVector();
+  vector<Tabletype> getTabletypeVector();
 
   /**
    * Displays the header information for the table section.

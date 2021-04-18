@@ -9,6 +9,7 @@
 
 #define BOOST_LOG_WITHOUT_DEBUG_OUTPUT
 
+using namespace std;
 using namespace antiwasm;
 
 void init_logging(boost::log::trivial::severity_level severityLevel) { // TODO change the format of the log
@@ -34,7 +35,7 @@ int main(int argc, char **argv) {
   // Declare the supported options.
   boost::program_options::options_description argDescription("Allowed options for antiwasm");
   argDescription.add_options()("help", "produce this help message")(
-      "filename", boost::program_options::value<std::string>(),
+      "filename", boost::program_options::value<string>(),
       "route of the .wasm file")("debug", boost::program_options::value<char>(),
                                  "set the debugging tools on")("verbose",
                                                                "display relevant information about the decompiling "
@@ -48,7 +49,7 @@ int main(int argc, char **argv) {
   // If one of the options is set to 'help'...
   if (variablesMap.count("help")) {
     // Display the options_description
-    std::cout << argDescription << "\n";
+    cout << argDescription << "\n";
     return 0;
   }
 
@@ -77,7 +78,7 @@ int main(int argc, char **argv) {
       init_logging(boost::log::trivial::fatal);
       break;
     default:
-      std::cout << "Unknown option at debug level\n";
+      cout << "Unknown option at debug level\n";
       return 0;
     }
   } else {
@@ -93,10 +94,10 @@ int main(int argc, char **argv) {
   }
 
   if (variablesMap.count("filename")) {
-    std::cout << "Decoding \'" << variablesMap["filename"].as<std::string>() << "'\n";
-    antiwasm::parse(variablesMap["filename"].as<std::string>().c_str());
+    cout << "Decoding \'" << variablesMap["filename"].as<string>() << "'\n";
+    antiwasm::parse(variablesMap["filename"].as<string>().c_str());
   } else {
-    std::cout << "No filename set\n";
+    cout << "No filename set\n";
     return 0;
   }
 

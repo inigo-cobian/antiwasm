@@ -5,11 +5,13 @@
 #include "section.hpp"
 #include <vector>
 
+using namespace std;
+
 namespace antiwasm {
 
 class MemorySection : public Section {
 private:
-  std::vector<Memtype> memtypeVector;
+  vector<Memtype> memtypeVector;
 
 public:
   /**
@@ -36,7 +38,7 @@ public:
    * Gets the memtype vector
    * @return memtypeVector
    */
-  std::vector<Memtype> getMemtypeVector();
+  vector<Memtype> getMemtypeVector();
 
   /**
    * Displays the header information for the memory section.

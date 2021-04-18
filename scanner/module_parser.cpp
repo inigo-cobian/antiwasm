@@ -2,7 +2,7 @@
 
 namespace antiwasm {
 int parse(const char *classFile) {
-  std::shared_ptr<Driver> driver = Driver::GetInstance();
+  shared_ptr<Driver> driver = Driver::GetInstance();
   if (!driver->OpenFile(classFile)) {
     BOOST_LOG_TRIVIAL(error) << "[scanner] Cannot open file";
     return -1;
@@ -39,8 +39,8 @@ int parse(const char *classFile) {
     auto *nextSectionContent = driver->GetNextBytes(sectionSize);
     auto nextSection = parseNextSection(nextSectionHeader[0], sectionSize, nextSectionContent, sectionPosition);
 
-    BOOST_LOG_TRIVIAL(trace) << "[scanner] Id: " << std::hex << (int)nextSectionHeader[0];
-    BOOST_LOG_TRIVIAL(trace) << "[scanner] Size: " << std::hex << sectionSize;
+    BOOST_LOG_TRIVIAL(trace) << "[scanner] Id: " << hex << (int)nextSectionHeader[0];
+    BOOST_LOG_TRIVIAL(trace) << "[scanner] Size: " << hex << sectionSize;
 
     if (nextSection.getSectionId() != Error) {
       nextSection.displaySectionHeaderInfo();

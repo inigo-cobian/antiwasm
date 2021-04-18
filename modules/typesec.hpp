@@ -5,11 +5,13 @@
 #include "section.hpp"
 #include <vector>
 
+using namespace std;
+
 namespace antiwasm {
 
 class TypeSection : public Section {
 private:
-  std::vector<Functype> functypeVector;
+  vector<Functype> functypeVector;
 
 public:
   /**
@@ -36,7 +38,7 @@ public:
    * Gets the functype vector
    * @return functypeVector
    */
-  std::vector<Functype> getFunctypeVector();
+  vector<Functype> getFunctypeVector();
 
   /**
    * Displays the header information for the type section.

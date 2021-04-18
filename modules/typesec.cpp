@@ -9,15 +9,15 @@ TypeSection::~TypeSection() {}
 
 void TypeSection::addFunctype(Functype functype) { functypeVector.push_back(functype); }
 
-std::vector<Functype> TypeSection::getFunctypeVector() { return functypeVector; }
+vector<Functype> TypeSection::getFunctypeVector() { return functypeVector; }
 
 void TypeSection::displaySectionHeaderInfo() {
-  std::cout << "    Type | start=" << (std::hex) << initialPos_ << " size=" << (std::hex) << size_ << std::endl;
+  cout << "    Type | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
 }
 
 void TypeSection::displayTypesecContent() {
-  std::cout << "    Type | start=" << (std::hex) << initialPos_ << " size=" << (std::hex) << size_
-            << " (" << functypeVector.size() << ") functypes" << std::endl;
+  cout << "    Type | start=" << hex << initialPos_ << " size=" << hex << size_
+            << " (" << functypeVector.size() << ") functypes" << endl;
 
   for (const auto &functype : functypeVector) {
     functype.displayContentBytes();

@@ -1,6 +1,8 @@
 #include "reftype.hpp"
 
+using namespace std;
 namespace antiwasm {
+
 Reftype parseReftype(const uint8_t reftype) {
   if (reftype == funref) {
     return funref;
@@ -15,13 +17,13 @@ Reftype parseReftype(const uint8_t reftype) {
 void displayReftype(Reftype reftype) {
   switch (reftype) {
   case funref:
-    std::cout << "funref";
+    cout << "funref";
     break;
   case externref:
-    std::cout << "externref";
+    cout << "externref";
     break;
   case invalid_reftype:
-    std::cout << "error.reftype";
+    cout << "error.reftype";
     break;
   }
 }

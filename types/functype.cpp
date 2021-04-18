@@ -7,7 +7,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
   if (funcTypeContent[0] != FUNCTYPE_HEADER) {
     auto error = generateError(fatal, unrecognizedHeaderAtFunctype, 0);
     functype.addError(error);
-    std::cout << "Functype header not found: " << std::hex << (unsigned int)funcTypeContent[0] << std::endl;
+    cout << "Functype header not found: " << hex << (unsigned int)funcTypeContent[0] << endl;
     return functype;
   }
 
@@ -15,7 +15,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
   if (functype.parameterType.hasError()) {
     auto error = generateError(fatal, unrecognizedRT1Functype, 0);
     functype.addError(error);
-    std::cout << "Error at functype.parameterType" << std::endl;
+    cout << "Error at functype.parameterType" << endl;
     return functype;
   }
   auto indexReturnType = BYTES_HEADER_FUNCTYPE + functype.parameterType.nBytes;
@@ -23,7 +23,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
   if (functype.returnType.hasError()) {
     auto error = generateError(fatal, unrecognizedRT2Functype, 0);
     functype.addError(error);
-    std::cout << "Error at functype.returnType" << std::endl;
+    cout << "Error at functype.returnType" << endl;
   }
   functype.nBytes = BYTES_HEADER_FUNCTYPE + functype.parameterType.nBytes + functype.returnType.nBytes;
 
@@ -32,14 +32,14 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
 
 void Functype::displayContentInfo() {
   if (hasError()) {
-    std::cout << "Error at current functype" << std::endl;
+    cout << "Error at current functype" << endl;
     return;
   }
 
-  std::cout << "  Functype (rt1):" << std::endl;
+  cout << "  Functype (rt1):" << endl;
   parameterType.displayContentInfo();
 
-  std::cout << "  Functype (rt2):" << std::endl;
+  cout << "  Functype (rt2):" << endl;
   returnType.displayContentInfo();
 }
 

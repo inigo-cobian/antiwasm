@@ -3,6 +3,7 @@
 #include "driver.cpp"
 #include <boost/test/unit_test.hpp>
 
+using namespace std;
 using namespace antiwasm;
 
 BOOST_AUTO_TEST_SUITE(driver_test)
@@ -11,13 +12,13 @@ const static char *FILE_PATH = "../../test/files/00-empty.wasm";
 
 BOOST_AUTO_TEST_CASE(GetInstance_DoesCreateANotNullPtr) {
 
-  std::shared_ptr<Driver> driver = Driver::GetInstance();
+  shared_ptr<Driver> driver = Driver::GetInstance();
 
   BOOST_CHECK(driver != nullptr);
 }
 
 BOOST_AUTO_TEST_CASE(A_Recently_Created_File_Is_Not_Parsing) {
-  std::shared_ptr<Driver> driver = Driver::GetInstance();
+  shared_ptr<Driver> driver = Driver::GetInstance();
 
   bool isParsing = driver->IsCurrentlyParsing();
 
@@ -25,7 +26,7 @@ BOOST_AUTO_TEST_CASE(A_Recently_Created_File_Is_Not_Parsing) {
 }
 
 BOOST_AUTO_TEST_CASE(An_Existing_File_Can_Be_Opened) {
-  std::shared_ptr<Driver> driver = Driver::GetInstance();
+  shared_ptr<Driver> driver = Driver::GetInstance();
 
   bool isOpen = driver->OpenFile(FILE_PATH);
 
@@ -35,7 +36,7 @@ BOOST_AUTO_TEST_CASE(An_Existing_File_Can_Be_Opened) {
 
 BOOST_AUTO_TEST_CASE(A_non_existing_file_cannot_be_opened) {
   const char *filePath = "../../test/files/doesNotExists.wasm";
-  std::shared_ptr<Driver> driver = Driver::GetInstance();
+  shared_ptr<Driver> driver = Driver::GetInstance();
 
   bool isOpen = driver->OpenFile(filePath);
 
@@ -45,15 +46,15 @@ BOOST_AUTO_TEST_CASE(A_non_existing_file_cannot_be_opened) {
 
 BOOST_AUTO_TEST_CASE(GetInstance_always_returns_the_same_instance) {
 
-  std::shared_ptr<Driver> driver1 = Driver::GetInstance();
-  std::shared_ptr<Driver> driver2 = Driver::GetInstance();
+  shared_ptr<Driver> driver1 = Driver::GetInstance();
+  shared_ptr<Driver> driver2 = Driver::GetInstance();
 
   BOOST_CHECK_EQUAL(driver1, driver2);
 }
 
 BOOST_AUTO_TEST_CASE(GetNextBytes_ReturnsThatNumberOfBytes) {
   const char *filePath = "../../test/files/00-empty.wasm";
-  std::shared_ptr<Driver> driver = Driver::GetInstance();
+  shared_ptr<Driver> driver = Driver::GetInstance();
   driver->OpenFile(filePath);
   const size_t nBytes = 4;
   constexpr uint8_t expectedBytes[] = {0x00, 0x61, 0x73, 0x6D}; // Magic number
@@ -66,7 +67,7 @@ BOOST_AUTO_TEST_CASE(GetNextBytes_ReturnsThatNumberOfBytes) {
 
 BOOST_AUTO_TEST_CASE(GetNextSectionHeader_GetsMaxSizeOfSectionHeaderBytes) {
   const char *filePath = "../../test/files/00-empty.wasm";
-  std::shared_ptr<Driver> driver = Driver::GetInstance();
+  shared_ptr<Driver> driver = Driver::GetInstance();
   driver->OpenFile(filePath);
   constexpr uint8_t expectedBytes[] = {0x00, 0x61, 0x73, 0x6d, 0x01, 0x00}; // Start of magic number
   size_t sizeOfSectionHeader = MAX_SIZE_OF_SECTION_HEADER;

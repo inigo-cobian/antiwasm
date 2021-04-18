@@ -6,6 +6,8 @@
 #include <iostream>
 #include <memory>
 
+using namespace std;
+
 namespace antiwasm {
 
 enum SectionId {

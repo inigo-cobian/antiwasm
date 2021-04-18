@@ -20,12 +20,12 @@ Resulttype parseResulttype(const uint8_t *resultTypeContent) {
 }
 
 void Resulttype::displayContentInfo() {
-  std::cout << "    Resulttype[";
+  cout << "    Resulttype[";
   for (auto valtype : valtypeVector) {
     valtype.displayContentInfo();
-    std::cout << "-";
+    cout << "-";
   }
-  std::cout << "]" << std::endl;
+  cout << "]" << endl;
 }
 
 void Resulttype::displayError() {

@@ -8,12 +8,14 @@
 #include <memory>
 #include <vector>
 
+using namespace std;
+
 namespace antiwasm {
 class Module : public ContentBlock {
 private:
   int size_;
   // TODO version
-  std::map<const SectionId, Section> sections_;
+  map<const SectionId, Section> sections_;
 
 public:
   /**

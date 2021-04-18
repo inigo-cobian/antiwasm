@@ -3,6 +3,7 @@
 
 #include "limits.hpp"
 
+using namespace std;
 namespace antiwasm {
 
 struct Memtype : public ContentBlock {

@@ -7,14 +7,14 @@ Tabletype parseTableType(const uint8_t *tableTypeContent) {
   Tabletype tabletype{reftypeAtTabletype, limitAtTabletype};
 
   if (reftypeAtTabletype == invalid_reftype) {
-    std::cout << "Error at reftype" << std::endl;
+    cout << "Error at reftype" << endl;
     auto error = generateError(fatal, unrecognizedReftypeAtTabletype, 0);
     tabletype.addError(error);
     return tabletype;
   }
 
   if (limitAtTabletype.hasError()) {
-    std::cout << "Error at limit" << std::endl;
+    cout << "Error at limit" << endl;
     auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, 0);
     tabletype.addError(error);
   }
@@ -24,15 +24,15 @@ Tabletype parseTableType(const uint8_t *tableTypeContent) {
 
 void Tabletype::displayContentInfo() {
   if (hasError()) {
-    std::cout << "Error at tabletype" << std::endl;
+    cout << "Error at tabletype" << endl;
     // TODO error
     displayError();
   }
-  std::cout << "    [";
+  cout << "    [";
   displayReftype(reftype);
-  std::cout << "] ";
+  cout << "] ";
   limit.displayContentInfo();
-  std::cout << std::endl;
+  cout << endl;
 }
 
 void Tabletype::displayError() {

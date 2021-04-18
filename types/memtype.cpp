@@ -21,9 +21,9 @@ Memtype parseMemType(const uint8_t *memTypeContent) {
 
 void Memtype::displayContentInfo() {
   if (limit.type == limit_min) {
-    std::cout << "  memtype: [" << limit.min << "-MAX]" << std::endl;
+    cout << "  memtype: [" << limit.min << "-MAX]" << endl;
   } else if (limit.type == limit_min_max) {
-    std::cout << "  memtype: [" << limit.min << "-" << limit.max << "]" << std::endl;
+    cout << "  memtype: [" << limit.min << "-" << limit.max << "]" << endl;
   } else {
     displayError();
   }

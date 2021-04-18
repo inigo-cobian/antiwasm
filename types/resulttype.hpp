@@ -9,7 +9,7 @@
 namespace antiwasm {
 
 struct Resulttype : public ContentBlock {
-  std::vector<Valtype> valtypeVector;
+  vector<Valtype> valtypeVector;
   unsigned int nBytes = 0;
 
   void displayError() override;

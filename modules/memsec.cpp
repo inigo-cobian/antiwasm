@@ -11,15 +11,15 @@ MemorySection::~MemorySection() = default;
 
 void MemorySection::addMemtype(Memtype memtype) { memtypeVector.push_back(memtype); }
 
-std::vector<Memtype> MemorySection::getMemtypeVector() { return std::vector<Memtype>(); }
+vector<Memtype> MemorySection::getMemtypeVector() { return vector<Memtype>(); }
 
 void MemorySection::displaySectionHeaderInfo() {
-  std::cout << "  Memory | start=" << (std::hex) << initialPos_ << " size=" << (std::hex) << size_ << std::endl;
+  cout << "  Memory | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
 }
 
 void MemorySection::displayMemsecContent() {
-  std::cout << "  Memory | start=" << (std::hex) << initialPos_ << " size=" << (std::hex) << size_ << " ("
-            << memtypeVector.size() << ") memtypes" << std::endl;
+  cout << "  Memory | start=" << hex << initialPos_ << " size=" << hex << size_ << " ("
+            << memtypeVector.size() << ") memtypes" << endl;
 
   for (auto memtype : memtypeVector) {
     memtype.displayContentInfo();

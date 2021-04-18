@@ -4,8 +4,8 @@ namespace antiwasm {
 
 Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionContent, int sectionPos) {
 
-  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (std::hex) << (unsigned int)sectionId
-                           << "] with size " << (std::hex) << (unsigned int)sectionSize;
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << hex << (unsigned int)sectionId
+                           << "] with size " << hex << (unsigned int)sectionSize;
   switch (sectionId) {
   case (SectionId::Custom):
     parseCustomSection(sectionSize, sectionContent);
@@ -42,8 +42,8 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
     return Section(SectionId::Data, sectionSize, sectionContent, sectionPos);
   default:
     // TODO pretty error message
-    BOOST_LOG_TRIVIAL(error) << "[module_parser] Error at section " << std::hex << (unsigned int)sectionId
-                             << " with size " << (std::hex) << sectionSize;
+    BOOST_LOG_TRIVIAL(error) << "[module_parser] Error at section " << hex << (unsigned int)sectionId
+                             << " with size " << hex << sectionSize;
     Section section = Section(SectionId::Error, sectionSize, sectionContent, 0);
     auto error = generateError(fatal, wrongSectionId, 0);
     section.addError(error);
@@ -64,7 +64,7 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent) {
     typeSection.addFunctype(functype);
     pointer += functype.nBytes;
     if (functype.hasError()) {
-      std::cout << "ERROR parseTypeSection" << std::endl;
+      cout << "ERROR parseTypeSection" << endl;
       // TODO error case
       return typeSection;
     }
@@ -93,7 +93,7 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent) {
       pointer += REFTYPE_SIZE + tabletype.limit.nBytes;
     } else {
       // TODO error case
-      std::cout << "Error at parsing tabletype" << std::endl;
+      cout << "Error at parsing tabletype" << endl;
     }
     tableSection.addTabletype(tabletype);
   }

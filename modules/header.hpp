@@ -9,6 +9,8 @@
 #include <fstream>
 #include <iostream>
 
+using namespace std;
+
 namespace antiwasm {
 /**
  * Checks if the module has the magic number.

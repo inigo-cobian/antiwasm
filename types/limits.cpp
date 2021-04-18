@@ -16,7 +16,7 @@ Limit parseLimits(const uint8_t *limitSection) {
     return parseLimitMinMax(min_, max_, nBytes);
   } else {
     // TODO better error, ¿maybe get a msg?
-    std::cout << "limit raro" << std::endl;
+    cout << "limit raro" << endl;
     Limit limit = generateErrorLimit();
     return limit;
   }
@@ -25,7 +25,7 @@ Limit parseLimits(const uint8_t *limitSection) {
 Limit parseLimitMin(const uint32_t min_, const int nBytes) {
   Limit limit{limit_min, min_, nBytes};
 
-  BOOST_LOG_TRIVIAL(info) << "[limits] New limit [" << std::hex << limit.min << "-MAX]";
+  BOOST_LOG_TRIVIAL(info) << "[limits] New limit [" << hex << limit.min << "-MAX]";
   return limit;
 }
 
@@ -36,10 +36,10 @@ Limit parseLimitMinMax(const uint32_t min_, const uint32_t max_, const int nByte
     limit.addError(error);
   }
   if (limit.hasError()) {
-    std::cout << "Min-Max: " << (int)limit.min << "-" << (int)limit.max << std::endl;
+    cout << "Min-Max: " << (int)limit.min << "-" << (int)limit.max << endl;
   }
 
-  BOOST_LOG_TRIVIAL(info) << "[limits] New limit [" << std::hex << limit.min << "-" << std::hex << limit.max << "]";
+  BOOST_LOG_TRIVIAL(info) << "[limits] New limit [" << hex << limit.min << "-" << hex << limit.max << "]";
   return limit;
 }
 
@@ -54,9 +54,9 @@ bool checkIfLimitIsNotValid(const uint32_t min_, const uint32_t max_) { return m
 
 void Limit::displayContentInfo() {
   if (type == limit_min) {
-    std::cout << "[" << std::hex << min << "-MAX]";
+    cout << "[" << hex << min << "-MAX]";
   } else if (type == limit_min_max) {
-    std::cout << "[" << std::hex << min << "-" << max << "]";
+    cout << "[" << hex << min << "-" << max << "]";
   } else {
     displayError();
   }
