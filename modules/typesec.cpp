@@ -19,8 +19,8 @@ void TypeSection::displayTypesecContent() {
   cout << "    Type | start=" << hex << initialPos_ << " size=" << hex << size_
             << " (" << functypeVector.size() << ") functypes" << endl;
 
-  for (const auto &functype : functypeVector) {
-    functype.displayContentBytes();
+  for (auto functype : functypeVector) {
+    functype.displayContentInfo();
   }
 }
 
