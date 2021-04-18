@@ -35,7 +35,7 @@ uint8_t *Driver::GetNextBytes(size_t nBytesToBeRead) {
   }
 
   BOOST_LOG_TRIVIAL(debug) << "[Driver] Getting next " << (hex) << nBytesToBeRead << " bytes";
-  char *buffer = (char *)malloc(sizeof(char) * nBytesToBeRead + 1);
+  auto *buffer = new char[nBytesToBeRead + 1];
   instance_->wasmFile_.seekg(instance_->pointer_, ios::beg);
   instance_->pointer_ += nBytesToBeRead;
   instance_->wasmFile_.read(buffer, nBytesToBeRead);
@@ -60,7 +60,7 @@ uint8_t *Driver::GetNextSectionHeader() {
   }
 
   BOOST_LOG_TRIVIAL(debug) << "[Driver] Getting next section header";
-  auto *buffer = (char *)malloc(sizeof(char) * bytesToRead);
+  auto *buffer = new char[bytesToRead];
   instance_->wasmFile_.seekg(instance_->pointer_, ios::beg);
   instance_->wasmFile_.read(buffer, MAX_SIZE_OF_SECTION_HEADER);
   instance_->pointer_ += antiwasm::sizeOfLeb128(reinterpret_cast<uint8_t *>(&buffer[1])) + SIZE_OF_SECTION_ID;

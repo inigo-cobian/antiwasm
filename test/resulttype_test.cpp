@@ -9,7 +9,7 @@ BOOST_AUTO_TEST_SUITE(resulttype_test)
 
 BOOST_AUTO_TEST_CASE(parseResulttype_correctResultType) {
   auto sizeOfValtypeVec = 3;
-  auto *resulttypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 4));
+  auto *resulttypeContent = new uint8_t[4];
   resulttypeContent[0] = sizeOfValtypeVec;
   resulttypeContent[1] = Numtype::i32;
   resulttypeContent[2] = Reftype::externref;
@@ -25,7 +25,7 @@ BOOST_AUTO_TEST_CASE(parseResulttype_correctResultType) {
 
 BOOST_AUTO_TEST_CASE(parseResulttype_errorResultType) {
   auto sizeOfValtypeVec = 3;
-  auto *resulttypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 4));
+  auto *resulttypeContent = new uint8_t[4];
   resulttypeContent[0] = sizeOfValtypeVec;
   resulttypeContent[1] = Numtype::i32;
   resulttypeContent[2] = 0xCA; // invalid
@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(parseResulttype_errorResultType) {
 
 BOOST_AUTO_TEST_CASE(displayResulttype_doesNotFail) {
   auto sizeOfValtypeVec = 3;
-  auto *resulttypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 4));
+  auto *resulttypeContent = new uint8_t[4];
   resulttypeContent[0] = sizeOfValtypeVec;
   resulttypeContent[1] = Numtype::i32;
   resulttypeContent[2] = Reftype::externref;
@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE(displayResulttype_doesNotFail) {
 
 BOOST_AUTO_TEST_CASE(displayError_doesNotFail) {
   auto sizeOfValtypeVec = 3;
-  auto *resulttypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 4));
+  auto *resulttypeContent = new uint8_t[4];
   resulttypeContent[0] = sizeOfValtypeVec;
   resulttypeContent[1] = Numtype::i32;
   resulttypeContent[2] = 0xCA; // invalid

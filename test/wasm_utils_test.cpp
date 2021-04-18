@@ -10,7 +10,7 @@ BOOST_AUTO_TEST_SUITE(wasm_utils_test)
 
 BOOST_AUTO_TEST_CASE(bytesToHexChar_correctFormatting) {
   const int nIncomingBytes = 2;
-  auto *incomingBytes = (uint8_t *)malloc(sizeof(uint8_t) * nIncomingBytes);
+  auto *incomingBytes = new uint8_t[nIncomingBytes];
   incomingBytes[0] = 0x02;
   incomingBytes[1] = 0xC8;
 

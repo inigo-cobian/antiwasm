@@ -8,7 +8,7 @@ using namespace antiwasm;
 BOOST_AUTO_TEST_SUITE(tabletype_test)
 
 BOOST_AUTO_TEST_CASE(parseTableType_caseCorrect) {
-  auto *tabletypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 4));
+  auto *tabletypeContent = new uint8_t[4];
   tabletypeContent[0] = Reftype::funref;
   tabletypeContent[1] = limit_types::limit_min, tabletypeContent[2] = 0x05;
 
@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_CASE(parseTableType_caseCorrect) {
 }
 
 BOOST_AUTO_TEST_CASE(parseTableType_caseErrorInReftype) {
-  auto *tabletypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 4));
+  auto *tabletypeContent = new uint8_t[4];
   tabletypeContent[0] = 0xAA; // invalid
   tabletypeContent[1] = limit_types::limit_min,
   tabletypeContent[2] = 0x05; // should be ignored for this test
@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(parseTableType_caseErrorInReftype) {
 }
 
 BOOST_AUTO_TEST_CASE(parseTableType_caseErrorInLimit) {
-  auto *tabletypeContent = static_cast<uint8_t *>(malloc(sizeof(uint8_t) * 4));
+  auto *tabletypeContent = new uint8_t[4];
   tabletypeContent[0] = Reftype::funref;
   tabletypeContent[1] = 0xAA,
   tabletypeContent[2] = 0x05; // limit type is invalid
