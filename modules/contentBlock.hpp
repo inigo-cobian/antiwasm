@@ -3,14 +3,18 @@
 
 #include "error_manager.hpp"
 #include <vector>
+#include <iostream>
+
+using namespace std;
 
 namespace antiwasm {
 
 class ContentBlock {
 protected:
-  std::shared_ptr<uint8_t> contentBytes;
+  shared_ptr<uint8_t> contentBytes;
   size_t indexOfContent;
-  std::vector<std::shared_ptr<ErrorAtWasm>> errors_;
+  size_t nBytes;
+  vector<shared_ptr<ErrorAtWasm>> errors_;
 
 public:
   /**
@@ -19,13 +23,13 @@ public:
    * @param contentBytes
    * @param indexOfContent
    */
-  void addContentBytes(std::shared_ptr<uint8_t> ptrToContentBytes, size_t indexOfCurrentContent);
+  void addContentBytes(shared_ptr<uint8_t> ptrToContentBytes, size_t indexOfCurrentContent, size_t nBytesOfContent);
 
   /**
    * Adds a new error to the error_ vector.
    * @param pointer to ErrorAtWasm
    */
-  void addError(std::shared_ptr<ErrorAtWasm> errorAtWasm);
+  void addError(shared_ptr<ErrorAtWasm> errorAtWasm);
 
   /**
    * Checks the vector of errors and returns true if there is at least one.
@@ -38,9 +42,16 @@ public:
    * If there is no error it returns a default error.
    * @return
    */
-  std::shared_ptr<ErrorAtWasm> getError();
+  shared_ptr<ErrorAtWasm> getError();
 
   virtual void displayError() = 0;
+
+  /**
+   * Displays the bytes of the content block in hexadecimal notation.
+   */
+  void displayContentBytes() const;
+
+  void displayContentInfo() {}; // TODO make virtual
 };
 
 } // namespace antiwasm
