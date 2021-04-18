@@ -85,7 +85,7 @@ uint8_t *Driver::GetUTF8String() // TODO not ready to be used
 void Driver::CloseFile() { instance_->wasmFile_.close(); }
 
 bool Driver::HasReachedFileSize(size_t nextBytesSize) {
-  if (pointer_ <= fileSize_ + nextBytesSize)
+  if (pointer_ + nextBytesSize <= fileSize_)
     return false;
   return true;
 }
