@@ -17,6 +17,7 @@ struct Valtype : public ContentBlock {
 
   void displayError() override;
   void displayContentInfo() override;
+  string getAsText() const;
 };
 
 /**

@@ -35,4 +35,20 @@ void displayNumtype(Numtype numtype) {
     break;
   }
 }
+
+string getNumtypeAsText(Numtype numtype) {
+  switch (numtype) {
+  case i32:
+    return "i32";
+  case i64:
+    return "i64";
+  case f32:
+    return "f32";
+  case f64:
+    return "f64";
+  case invalid_numtype:
+    return "error.numtype";
+  }
+}
+
 } // namespace antiwasm

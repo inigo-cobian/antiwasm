@@ -31,4 +31,13 @@ void Valtype::displayError() {
   // TODO
   cout << "Error at valtype" << endl;
 }
+string Valtype::getAsText() const {
+  if (type == valtype_numtype) {
+    return getNumtypeAsText(numtype);
+  } else if (type == valtype_reftype) {
+    return getReftypeAsText(reftype);
+  } else {
+    return "error.valtype";
+  }
+}
 } // namespace antiwasm

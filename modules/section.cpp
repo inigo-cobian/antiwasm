@@ -21,9 +21,15 @@ void Section::displaySectionHeaderInfo() {
   cout << hex << "ID=" << sectionId_ << " | start=" << hex << initialPos_ << " size=" << hex
             << size_ << endl;
 }
-void Section::displayError() {}
+void Section::displayError() {
+  // TODO virtualize
+}
+
 void Section::displayContentInfo() {
-  // TODO
+  // TODO virtualize
+}
+void Section::displaySectionContentInfo() {
+  // TODO virtualize
 }
 
 } // namespace antiwasm

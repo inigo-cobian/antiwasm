@@ -15,13 +15,41 @@ void TypeSection::displaySectionHeaderInfo() {
   cout << "    Type | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
 }
 
-void TypeSection::displayTypesecContent() {
+void TypeSection::displaySectionContentInfo() {
   cout << "    Type | start=" << hex << initialPos_ << " size=" << hex << size_
             << " (" << functypeVector.size() << ") functypes" << endl;
 
-  for (auto functype : functypeVector) {
-    functype.displayContentInfo();
+  for (const auto& functype : functypeVector) {
+    stringstream functypeAsText;
+    bool isEmptyFunc = true;
+    functypeAsText << "( func ";
+    if (!functype.parameterType.valtypeVector.empty()) {
+      isEmptyFunc = false;
+      functypeAsText << getParamAsText(functype);
+      //getParamAsText(functype);
+    }
+    if (!functype.returnType.valtypeVector.empty()) {
+      isEmptyFunc = false;
+      functypeAsText << getResultAsText(functype);
+    }
+    functypeAsText << (isEmptyFunc ? ")" : "\n)");
+    cout << functypeAsText.str() << endl;
   }
+}
+string TypeSection::getParamAsText(const Functype &functype) const {
+  stringstream paramText;
+  for(const auto& paramValtype : functype.parameterType.valtypeVector) {
+    paramText << "\n ( param " + paramValtype.getAsText() + ")";
+  }
+  return paramText.str();
+}
+
+string TypeSection::getResultAsText(const Functype &functype) const {
+  stringstream resultText;
+  for(const auto& resultValtype : functype.parameterType.valtypeVector) {
+    resultText << "\n ( result " + resultValtype.getAsText() + ")";
+  }
+  return resultText.str();
 }
 
 } // namespace antiwasm

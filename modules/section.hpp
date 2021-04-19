@@ -80,6 +80,8 @@ public:
   void displayError() override;
 
   void displayContentInfo() override;
+
+  void displaySectionContentInfo();
 };
 
 } // namespace antiwasm

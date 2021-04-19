@@ -4,6 +4,7 @@
 #include "../types/functype.hpp"
 #include "section.hpp"
 #include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -12,6 +13,10 @@ namespace antiwasm {
 class TypeSection : public Section {
 private:
   vector<Functype> functypeVector;
+
+  void displayFunctypeVector();
+  string getParamAsText(const Functype &functype) const;
+  string getResultAsText(const Functype &functype) const;
 
 public:
   /**
@@ -43,9 +48,9 @@ public:
   /**
    * Displays the header information for the type section.
    */
-  void displaySectionHeaderInfo();
+  void displaySectionHeaderInfo() override;
 
-  void displayTypesecContent();
+  void displaySectionContentInfo(); // override
 };
 
 } // namespace antiwasm

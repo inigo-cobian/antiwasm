@@ -69,7 +69,7 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent) {
       return typeSection;
     }
   }
-  typeSection.displayTypesecContent();
+  typeSection.displaySectionContentInfo();
   return typeSection;
 }
 
