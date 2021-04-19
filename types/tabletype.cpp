@@ -1,31 +1,41 @@
 #include "tabletype.hpp"
 
 namespace antiwasm {
-    Tabletype parseTableType(const uint8_t *tableTypeContent) {
-        Tabletype tabletype{};
-        tabletype.reftype = parseReftype(tableTypeContent[0]);
-        if (tabletype.reftype == invalid_reftype) {
-            std::cout << "Error at reftype" << std::endl;
-            tabletype.error = true;
-            return tabletype;
-        }
-        tabletype.limit = parseLimits(&tableTypeContent[1]);
-        if (tabletype.limit.error) {
-            std::cout << "Error at limit" << std::endl;
-            tabletype.error = true;
-        }
-        return tabletype;
-    }
+Tabletype parseTableType(const uint8_t *tableTypeContent) {
+  Reftype reftypeAtTabletype = parseReftype(tableTypeContent[0]);
+  Limit limitAtTabletype = parseLimits(&tableTypeContent[1]);
+  Tabletype tabletype{reftypeAtTabletype, limitAtTabletype};
 
-    void displayTabletype(Tabletype tabletype) {
-        if (tabletype.error) {
-            std::cout << "Error at tabletype" << std::endl;
-            //TODO error
-        }
-        std::cout << "    [";
-        displayReftype(tabletype.reftype);
-        std::cout << "] ";
-        displayLimits(tabletype.limit);
-        std::cout << std::endl;
-    }
+  if (reftypeAtTabletype == invalid_reftype) {
+    cout << "Error at reftype" << endl;
+    auto error = generateError(fatal, unrecognizedReftypeAtTabletype, 0);
+    tabletype.addError(error);
+    return tabletype;
+  }
+
+  if (limitAtTabletype.hasError()) {
+    cout << "Error at limit" << endl;
+    auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, 0);
+    tabletype.addError(error);
+  }
+
+  return tabletype;
 }
+
+void Tabletype::displayContentInfo() {
+  if (hasError()) {
+    cout << "Error at tabletype" << endl;
+    // TODO error
+    displayError();
+  }
+  cout << "    [";
+  displayReftype(reftype);
+  cout << "] ";
+  limit.displayContentInfo();
+  cout << endl;
+}
+
+void Tabletype::displayError() {
+  // TODO
+}
+} // namespace antiwasm

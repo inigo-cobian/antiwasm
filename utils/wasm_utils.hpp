@@ -4,10 +4,13 @@
 #include <cstdint>
 #include <stdio.h>
 
+using namespace std;
+namespace antiwasm {
 char *bytesToHexChar(const char *signedLittleEndianBytes, int nBytes);
 
 void singleByteToTwoHexChar(const uint8_t byte, char *destHexChar);
 
 char getHexChar(uint8_t origin);
 
-#endif //ANTIWASM_WASM_UTILS_HPP
+} // namespace antiwasm
+#endif // ANTIWASM_WASM_UTILS_HPP

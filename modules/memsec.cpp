@@ -1,31 +1,29 @@
 #include "memsec.hpp"
 
-MemorySection::MemorySection(int size, uint8_t *content, int initialPos) :
-        Section(SectionId::Memory, size, content, initialPos) {
-    BOOST_LOG_TRIVIAL(debug) << "[memsec] Creating a Memory Section";
+namespace antiwasm {
+
+MemorySection::MemorySection(int size, uint8_t *content, int initialPos)
+    : Section(SectionId::Memory, size, content, initialPos) {
+  BOOST_LOG_TRIVIAL(debug) << "[memsec] Creating a Memory Section";
 }
 
 MemorySection::~MemorySection() = default;
 
-void MemorySection::addMemtype(Memtype memtype) {
-    memtypeVector.push_back(memtype);
-}
+void MemorySection::addMemtype(Memtype memtype) { memtypeVector.push_back(memtype); }
 
-std::vector<Memtype> MemorySection::getMemtypeVector() {
-    return std::vector<Memtype>();
-}
+vector<Memtype> MemorySection::getMemtypeVector() { return vector<Memtype>(); }
 
 void MemorySection::displaySectionHeaderInfo() {
-    std::cout << "  Memory | start=" << (std::hex) << initialPos_
-              << " size=" << (std::hex) << size_ << std::endl;
+  cout << "  Memory | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
 }
 
 void MemorySection::displayMemsecContent() {
-    std::cout << "  Memory | start=" << (std::hex) << initialPos_
-              << " size=" << (std::hex) << size_
-              << " (" << memtypeVector.size() <<") memtypes" << std::endl;
+  cout << "  Memory | start=" << hex << initialPos_ << " size=" << hex << size_ << " ("
+            << memtypeVector.size() << ") memtypes" << endl;
 
-    for(auto memtype : memtypeVector) {
-        antiwasm::displayMemtype(memtype);
-    }
+  for (auto memtype : memtypeVector) {
+    memtype.displayContentInfo();
+  }
 }
+
+} // namespace antiwasm

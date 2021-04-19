@@ -4,22 +4,25 @@
 #include "limits.hpp"
 #include "reftype.hpp"
 
-struct Tabletype {
-    Reftype reftype;
-    Limit limit;
-    bool error = false;
+namespace antiwasm {
+
+struct Tabletype : public ContentBlock {
+  Reftype reftype;
+  Limit limit;
+
+  Tabletype(Reftype p_reftype, Limit p_limit) : reftype(p_reftype), limit(p_limit){};
+
+  void displayError() override;
+  void displayContentInfo() override;
 };
 
-namespace antiwasm {
-    /**
-     * Parses and generates the parsed tabletype.
-     * Adds error if cannot complete the parsing.
-     * @param tableTypeContent
-     * @return
-     */
-    Tabletype parseTableType(const uint8_t *tableTypeContent);
+/**
+ * Parses and generates the parsed tabletype.
+ * Adds error if cannot complete the parsing.
+ * @param tableTypeContent
+ * @return
+ */
+Tabletype parseTableType(const uint8_t *tableTypeContent);
+} // namespace antiwasm
 
-    void displayTabletype(Tabletype tabletype);
-}
-
-#endif //ANTIWASM_TABLETYPE_HPP
+#endif // ANTIWASM_TABLETYPE_HPP

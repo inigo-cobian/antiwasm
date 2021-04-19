@@ -1,17 +1,27 @@
 #include "globaltype.hpp"
 
 namespace antiwasm {
-    Globaltype parseGlobaltype(const uint8_t *globaltypeContent) {
-        Globaltype globaltype{};
-        globaltype.valtype = parseValtype(globaltypeContent[0]);
-        if (globaltype.valtype.error) {
-            globaltype.error = true;
-            return globaltype;
-        }
-        globaltype.mut = parseMut(globaltypeContent[1]);
-        if (globaltype.mut == invalid_mut) {
-            globaltype.error = true;
-        }
-        return globaltype;
-    }
+Globaltype parseGlobaltype(const uint8_t *globaltypeContent) {
+  Globaltype globaltype{};
+  globaltype.valtype = parseValtype(globaltypeContent[0]);
+  if (globaltype.valtype.hasError()) {
+    auto error = generateError(fatal, unrecognizedValtypeAtGlobaltype, 0);
+    globaltype.addError(error);
+    return globaltype;
+  }
+  globaltype.mut = parseMut(globaltypeContent[1]);
+  if (globaltype.mut == invalid_mut) {
+    auto error = generateError(fatal, unrecognizedMutAtGlobaltype, 0);
+    globaltype.addError(error);
+  }
+  return globaltype;
 }
+
+void Globaltype::displayContentInfo() {
+  // TODO
+}
+
+void Globaltype::displayError() {
+  // TODO
+}
+} // namespace antiwasm

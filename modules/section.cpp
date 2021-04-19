@@ -1,30 +1,29 @@
 #include "section.hpp"
 
+namespace antiwasm {
+
 Section::Section(SectionId sectionId, int size, uint8_t *content, int initialPos) {
-    sectionId_ = sectionId;
-    size_ = size;
-    content_ = content;
-    initialPos_ = initialPos;
+  sectionId_ = sectionId;
+  size_ = size;
+  content_ = content;
+  initialPos_ = initialPos;
 }
 
-SectionId Section::getSectionId() {
-    return sectionId_;
-}
+SectionId Section::getSectionId() { return sectionId_; }
 
-int Section::getSize() const {
-    return size_;
-}
+int Section::getSize() const { return size_; }
 
-uint8_t *Section::getContent() {
-    return content_;
-}
+uint8_t *Section::getContent() { return content_; }
 
-int Section::getInitialPos() const {
-    return initialPos_;
-}
+int Section::getInitialPos() const { return initialPos_; }
 
 void Section::displaySectionHeaderInfo() {
-    std::cout << std::hex << "ID=" << sectionId_
-              << " | start=" << (std::hex) << initialPos_
-              << " size=" << (std::hex) << size_ << std::endl;
+  cout << hex << "ID=" << sectionId_ << " | start=" << hex << initialPos_ << " size=" << hex
+            << size_ << endl;
 }
+void Section::displayError() {}
+void Section::displayContentInfo() {
+  // TODO
+}
+
+} // namespace antiwasm

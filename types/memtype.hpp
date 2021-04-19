@@ -3,20 +3,24 @@
 
 #include "limits.hpp"
 
-struct Memtype {
-    Limit limit;
+using namespace std;
+namespace antiwasm {
+
+struct Memtype : public ContentBlock {
+  Limit limit;
+
+  Memtype(Limit p_limit) : limit(p_limit) {}
+  void displayError() override;
+  void displayContentInfo() override;
 };
 
-namespace antiwasm {
-    /**
-     * Parses and generates the parsed memtype.
-     * Adds error if cannot complete the parsing.
-     * @param memTypeContent
-     * @return
-     */
-    Memtype parseMemType(const uint8_t *memTypeContent);
+/**
+ * Parses and generates the parsed memtype.
+ * Adds error if cannot complete the parsing.
+ * @param memTypeContent
+ * @return
+ */
+Memtype parseMemType(const uint8_t *memTypeContent);
+} // namespace antiwasm
 
-    void displayMemtype(Memtype memtype);
-}
-
-#endif //ANTIWASM_MEMTYPE_HPP
+#endif // ANTIWASM_MEMTYPE_HPP
