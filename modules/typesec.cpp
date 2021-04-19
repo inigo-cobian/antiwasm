@@ -38,17 +38,21 @@ void TypeSection::displaySectionContentInfo() {
 }
 string TypeSection::getParamAsText(const Functype &functype) const {
   stringstream paramText;
+  paramText << "\n ( param ";
   for(const auto& paramValtype : functype.parameterType.valtypeVector) {
-    paramText << "\n ( param " + paramValtype.getAsText() + ")";
+    paramText << paramValtype.getAsText() << " ";
   }
+  paramText << ")";
   return paramText.str();
 }
 
 string TypeSection::getResultAsText(const Functype &functype) const {
   stringstream resultText;
+  resultText << "\n ( result ";
   for(const auto& resultValtype : functype.parameterType.valtypeVector) {
-    resultText << "\n ( result " + resultValtype.getAsText() + ")";
+    resultText << resultValtype.getAsText() + " ";
   }
+  resultText << ")";
   return resultText.str();
 }
 
