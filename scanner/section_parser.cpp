@@ -117,7 +117,7 @@ MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent) {
     }
     memorySection.addMemtype(memtype);
   }
-  memorySection.displayMemsecContent(); // TODO move to another place in the future
+  memorySection.displaySectionContentInfo(); // TODO move to another place in the future
   return memorySection;
 }
 

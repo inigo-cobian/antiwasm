@@ -4,8 +4,8 @@
 #include "../types/reftype.hpp"
 #include "../types/tabletype.hpp"
 #include "section.hpp"
-#include <vector>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -46,8 +46,6 @@ public:
    * Displays the header information for the table section.
    */
   void displaySectionHeaderInfo();
-
-  void displayTablesecContent();
 
   void displaySectionContentInfo(); // override
 };
