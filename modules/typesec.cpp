@@ -50,7 +50,7 @@ string TypeSection::getParamAsText(const Functype &functype) const {
 string TypeSection::getResultAsText(const Functype &functype) const {
   stringstream resultText;
   resultText << "\n ( result ";
-  for(const auto& resultValtype : functype.parameterType.valtypeVector) {
+  for(const auto& resultValtype : functype.returnType.valtypeVector) {
     resultText << resultValtype.getAsText() + " ";
   }
   resultText << ")";
