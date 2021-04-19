@@ -27,4 +27,15 @@ void displayReftype(Reftype reftype) {
     break;
   }
 }
+
+string getReftypeAsText(Reftype reftype) {
+  switch (reftype) {
+  case funref:
+    return "funref";
+  case externref:
+    return "externref";
+  default:
+    return "error.reftype";
+  }
+}
 } // namespace antiwasm

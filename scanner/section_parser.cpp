@@ -69,7 +69,7 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent) {
       return typeSection;
     }
   }
-  typeSection.displayTypesecContent();
+  typeSection.displaySectionContentInfo();
   return typeSection;
 }
 
@@ -97,7 +97,7 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent) {
     }
     tableSection.addTabletype(tabletype);
   }
-  tableSection.displayTablesecContent();
+  tableSection.displaySectionContentInfo();
   return tableSection;
 }
 
@@ -117,7 +117,7 @@ MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent) {
     }
     memorySection.addMemtype(memtype);
   }
-  memorySection.displayMemsecContent(); // TODO move to another place in the future
+  memorySection.displaySectionContentInfo(); // TODO move to another place in the future
   return memorySection;
 }
 

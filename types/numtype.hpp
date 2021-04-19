@@ -18,6 +18,9 @@ enum Numtype : int32_t { i32 = 0x7F, i64 = 0x7E, f32 = 0x7D, f64 = 0x7C, invalid
 Numtype parseNumType(uint8_t numtypeContent);
 
 void displayNumtype(Numtype numtype);
+
+string getNumtypeAsText(Numtype numtype);
+
 } // namespace antiwasm
 
 #endif // ANTIWASM_NUMTYPE_HPP

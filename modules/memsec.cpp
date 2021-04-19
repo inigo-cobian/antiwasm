@@ -17,12 +17,20 @@ void MemorySection::displaySectionHeaderInfo() {
   cout << "  Memory | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
 }
 
-void MemorySection::displayMemsecContent() {
+void MemorySection::displaySectionContentInfo() {
   cout << "  Memory | start=" << hex << initialPos_ << " size=" << hex << size_ << " ("
             << memtypeVector.size() << ") memtypes" << endl;
 
-  for (auto memtype : memtypeVector) {
-    memtype.displayContentInfo();
+  size_t index = 0;
+  for (const auto& memtype : memtypeVector) {
+    stringstream memtypeAsText;
+    memtypeAsText << "( memory $" << index++ << " ";
+    if(memtype.limit.type == limit_min) {
+      memtypeAsText << memtype.limit.min << " )\n";
+    } else if (memtype.limit.type == limit_min_max) {
+      memtypeAsText << memtype.limit.min << " " << memtype.limit.max << " )\n";
+    }
+    cout << memtypeAsText.str() << endl;
   }
 }
 

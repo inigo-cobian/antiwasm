@@ -3,6 +3,7 @@
 
 #include "../types/memtype.hpp"
 #include "section.hpp"
+#include <sstream>
 #include <vector>
 
 using namespace std;
@@ -48,7 +49,7 @@ public:
   /**
    * Displays the information of the memsec
    */
-  void displayMemsecContent();
+  void displaySectionContentInfo(); // override
 };
 
 } // namespace antiwasm

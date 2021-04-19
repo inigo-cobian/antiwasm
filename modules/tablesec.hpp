@@ -4,6 +4,7 @@
 #include "../types/reftype.hpp"
 #include "../types/tabletype.hpp"
 #include "section.hpp"
+#include <sstream>
 #include <vector>
 
 using namespace std;
@@ -46,7 +47,7 @@ public:
    */
   void displaySectionHeaderInfo();
 
-  void displayTablesecContent();
+  void displaySectionContentInfo(); // override
 };
 
 } // namespace antiwasm

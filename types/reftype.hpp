@@ -20,6 +20,9 @@ enum Reftype : uint32_t { funref = 0x70, externref = 0x6F, invalid_reftype = 0xF
 Reftype parseReftype(uint8_t reftype);
 
 void displayReftype(Reftype reftype);
+
+string getReftypeAsText(Reftype reftype);
+
 } // namespace antiwasm
 
 #endif // ANTIWASM_REFTYPE_HPP
