@@ -19,14 +19,14 @@ void TypeSection::displaySectionContentInfo() {
   cout << "    Type | start=" << hex << initialPos_ << " size=" << hex << size_
             << " (" << functypeVector.size() << ") functypes" << endl;
 
+  size_t index = 0;
   for (const auto& functype : functypeVector) {
     stringstream functypeAsText;
     bool isEmptyFunc = true;
-    functypeAsText << "( func ";
+    functypeAsText << "( func $" << index++ << " ";
     if (!functype.parameterType.valtypeVector.empty()) {
       isEmptyFunc = false;
       functypeAsText << getParamAsText(functype);
-      //getParamAsText(functype);
     }
     if (!functype.returnType.valtypeVector.empty()) {
       isEmptyFunc = false;
