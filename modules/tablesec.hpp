@@ -5,6 +5,7 @@
 #include "../types/tabletype.hpp"
 #include "section.hpp"
 #include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -47,6 +48,8 @@ public:
   void displaySectionHeaderInfo();
 
   void displayTablesecContent();
+
+  void displaySectionContentInfo(); // override
 };
 
 } // namespace antiwasm

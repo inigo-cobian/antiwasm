@@ -36,6 +36,7 @@ void TypeSection::displaySectionContentInfo() {
     cout << functypeAsText.str() << endl;
   }
 }
+
 string TypeSection::getParamAsText(const Functype &functype) const {
   stringstream paramText;
   paramText << "\n ( param ";

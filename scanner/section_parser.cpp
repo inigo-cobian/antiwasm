@@ -97,7 +97,7 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent) {
     }
     tableSection.addTabletype(tabletype);
   }
-  tableSection.displayTablesecContent();
+  tableSection.displaySectionContentInfo();
   return tableSection;
 }
 
