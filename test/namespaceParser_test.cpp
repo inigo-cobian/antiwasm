@@ -21,7 +21,7 @@ BOOST_AUTO_TEST_CASE(parseUTF8Name_SingleByteChar) {
 BOOST_AUTO_TEST_CASE(parseUTF8Name_MultipleByteChars) {
   auto *bytes = new uint8_t[4];
   bytes[0] = 0x49;
-  bytes[1] = 0xC3;
+  bytes[1] = 0xC3; // ñ
   bytes[2] = 0xB1;
   bytes[3] = 'i';
 
@@ -30,17 +30,26 @@ BOOST_AUTO_TEST_CASE(parseUTF8Name_MultipleByteChars) {
   BOOST_CHECK_EQUAL(utf8.name, "Iñi");
 }
 
-BOOST_AUTO_TEST_CASE(parseUTF8Name_errorChar) {
+BOOST_AUTO_TEST_CASE(parseUTF8Name_errorLeadingChar) {
   auto *bytes = new uint8_t[3];
   bytes[0] = 0x49;
-  bytes[1] = 0x83;
+  bytes[1] = 0x83; // Incorrect leading byte
   bytes[2] = 'i';
 
   auto utf8 = parseUTF8Name(bytes, 3);
-  BOOST_CHECK_EQUAL(unrecognizedUTF8Name, utf8.getError()->errorType);
 
-
+  BOOST_CHECK_EQUAL(unrecognizedUTF8LeadingByte, utf8.getError()->errorType);
 }
 
+BOOST_AUTO_TEST_CASE(parseUTF8Name_errorContChar) {
+  auto *bytes = new uint8_t[3];
+  bytes[0] = 0x49;
+  bytes[1] = 0xC3;
+  bytes[2] = 0x01; // Incorrect cont byte
+
+  auto utf8 = parseUTF8Name(bytes, 3);
+
+  BOOST_CHECK_EQUAL(unrecognizedUTF8ContByte, utf8.getError()->errorType);
+}
 
 BOOST_AUTO_TEST_SUITE_END() // nameParser_test
