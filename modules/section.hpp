@@ -2,6 +2,7 @@
 #define SECTION_HPP
 
 #include "contentBlock.hpp"
+#include "displayable.hpp"
 #include "error_manager.hpp"
 #include <iostream>
 #include <memory>
@@ -26,7 +27,7 @@ enum SectionId {
   Error = 0xFF
 };
 
-class Section : public ContentBlock { // TODO make virtual
+class Section : public ContentBlock, Displayable { // TODO make virtual
 protected:
   SectionId sectionId_;
   int size_;

@@ -21,21 +21,4 @@ Tabletype parseTableType(const uint8_t *tableTypeContent) {
 
   return tabletype;
 }
-
-void Tabletype::displayContentInfo() {
-  if (hasError()) {
-    cout << "Error at tabletype" << endl;
-    // TODO error
-    displayError();
-  }
-  cout << "    [";
-  displayReftype(reftype);
-  cout << "] ";
-  limit.displayContentInfo();
-  cout << endl;
-}
-
-void Tabletype::displayError() {
-  // TODO
-}
 } // namespace antiwasm

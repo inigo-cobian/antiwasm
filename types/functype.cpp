@@ -29,21 +29,4 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
 
   return functype;
 }
-
-void Functype::displayContentInfo() {
-  if (hasError()) {
-    cout << "Error at current functype" << endl;
-    return;
-  }
-
-  cout << "  Functype (rt1):" << endl;
-  parameterType.displayContentInfo();
-
-  cout << "  Functype (rt2):" << endl;
-  returnType.displayContentInfo();
-}
-
-void Functype::displayError() {
-  // TODO
-}
 } // namespace antiwasm

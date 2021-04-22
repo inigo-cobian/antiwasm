@@ -10,8 +10,6 @@ struct Memtype : public ContentBlock {
   Limit limit;
 
   Memtype(Limit p_limit) : limit(p_limit) {}
-  void displayError() override;
-  void displayContentInfo() override;
 };
 
 /**

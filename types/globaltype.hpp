@@ -9,9 +9,6 @@ namespace antiwasm {
 struct Globaltype : public ContentBlock {
   Valtype valtype;
   Mut mut;
-
-  void displayError() override;
-  void displayContentInfo() override;
 };
 
 /**

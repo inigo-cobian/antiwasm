@@ -17,11 +17,4 @@ Globaltype parseGlobaltype(const uint8_t *globaltypeContent) {
   return globaltype;
 }
 
-void Globaltype::displayContentInfo() {
-  // TODO
-}
-
-void Globaltype::displayError() {
-  // TODO
-}
 } // namespace antiwasm

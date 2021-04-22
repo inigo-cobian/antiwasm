@@ -2,6 +2,7 @@
 #define ANTIWASM_MODULE_HPP
 
 #include "contentBlock.hpp"
+#include "displayable.hpp"
 #include "error_manager.hpp"
 #include "section.hpp"
 #include <map>
@@ -11,7 +12,7 @@
 using namespace std;
 
 namespace antiwasm {
-class Module : public ContentBlock {
+class Module : public ContentBlock, Displayable { // TODO check if we should use ContentBlock
 private:
   int size_;
   // TODO version

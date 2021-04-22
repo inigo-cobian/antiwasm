@@ -18,17 +18,4 @@ Memtype parseMemType(const uint8_t *memTypeContent) {
   }
   return memtype;
 }
-
-void Memtype::displayContentInfo() {
-  if (limit.type == limit_min) {
-    cout << "  memtype: [" << limit.min << "-MAX]" << endl;
-  } else if (limit.type == limit_min_max) {
-    cout << "  memtype: [" << limit.min << "-" << limit.max << "]" << endl;
-  } else {
-    displayError();
-  }
-}
-void Memtype::displayError() {
-  // TODO
-}
 } // namespace antiwasm

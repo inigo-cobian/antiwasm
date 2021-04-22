@@ -2,6 +2,7 @@
 #define ANTIWASM_VALTYPE_HPP
 
 #include "contentBlock.hpp"
+#include "displayable.hpp"
 #include "numtype.hpp"
 #include "reftype.hpp"
 
@@ -9,7 +10,7 @@ namespace antiwasm {
 
 enum valtype_type { valtype_numtype, valtype_reftype, valtype_error };
 
-struct Valtype : public ContentBlock {
+struct Valtype : public ContentBlock, Displayable {
   valtype_type type;
   // TODO explain in the docs that they are two elements to keep the code Æ s t h e t i c
   Numtype numtype;

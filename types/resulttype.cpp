@@ -19,17 +19,4 @@ Resulttype parseResulttype(const uint8_t *resultTypeContent) {
   return resulttype;
 }
 
-void Resulttype::displayContentInfo() {
-  cout << "    Resulttype[";
-  for (auto valtype : valtypeVector) {
-    valtype.displayContentInfo();
-    cout << "-";
-  }
-  cout << "]" << endl;
-}
-
-void Resulttype::displayError() {
-  // TODO
-}
-
 } // namespace antiwasm

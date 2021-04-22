@@ -12,7 +12,7 @@ namespace antiwasm {
 class ContentBlock {
 protected:
   shared_ptr<uint8_t> contentBytes;
-  size_t indexOfContent;
+  size_t indexByte;
   size_t nBytes;
   vector<shared_ptr<ErrorAtWasm>> errors_;
 
@@ -38,20 +38,16 @@ public:
   bool hasError();
 
   /**
+   * Displays the bytes of the content block in hexadecimal notation.
+   */
+  void displayContentBytes() const;
+
+  /**
    * Returns the error of a content block with a single error.
    * If there is no error it returns a default error.
    * @return
    */
   shared_ptr<ErrorAtWasm> getError();
-
-  virtual void displayError() = 0;
-
-  /**
-   * Displays the bytes of the content block in hexadecimal notation.
-   */
-  void displayContentBytes() const;
-
-  virtual void displayContentInfo() = 0;
 };
 
 } // namespace antiwasm

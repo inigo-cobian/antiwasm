@@ -3,8 +3,9 @@
 
 #define BOOST_LOG_DYN_LINK 1
 
-#include "../utils/leb128.hpp"
+#include "leb128.hpp"
 #include "contentBlock.hpp"
+#include "displayable.hpp"
 #include <boost/log/trivial.hpp>
 #include <cstdint>
 #include <iostream>
@@ -13,7 +14,7 @@ namespace antiwasm {
 
 enum limit_types : uint32_t { limit_min = 0x00, limit_min_max = 0x01, limit_error = 0xFF };
 
-struct Limit : public ContentBlock {
+struct Limit : public ContentBlock, Displayable {
   limit_types type;
   uint32_t min;
   uint32_t max;
