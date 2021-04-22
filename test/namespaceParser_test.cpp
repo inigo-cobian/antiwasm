@@ -15,7 +15,7 @@ BOOST_AUTO_TEST_CASE(parseUTF8Name_SingleByteChar) {
 
   auto utf8 = parseUTF8Name(bytes, 2);
 
-  BOOST_CHECK_EQUAL(utf8, "I2");
+  BOOST_CHECK_EQUAL(utf8.name, "I2");
 }
 
 BOOST_AUTO_TEST_CASE(parseUTF8Name_MultipleByteChars) {
@@ -27,17 +27,19 @@ BOOST_AUTO_TEST_CASE(parseUTF8Name_MultipleByteChars) {
 
   auto utf8 = parseUTF8Name(bytes, 4);
 
-  BOOST_CHECK_EQUAL(utf8, "Iñi");
+  BOOST_CHECK_EQUAL(utf8.name, "Iñi");
 }
 
 BOOST_AUTO_TEST_CASE(parseUTF8Name_errorChar) {
   auto *bytes = new uint8_t[3];
   bytes[0] = 0x49;
   bytes[1] = 0x83;
-  bytes[3] = 'i';
+  bytes[2] = 'i';
 
-  auto utf8 = parseUTF8Name(bytes, 4);
-  // TODO fail BOOST_CHECK_EQUAL(utf8);
+  auto utf8 = parseUTF8Name(bytes, 3);
+  BOOST_CHECK_EQUAL(unrecognizedUTF8Name, utf8.getError()->errorType);
+
+
 }
 
 
