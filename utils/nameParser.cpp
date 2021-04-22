@@ -2,11 +2,11 @@
 
 namespace antiwasm {
 
-UTF8_Name parseUTF8Name(const uint8_t *bytes, uint32_t size) {
+UTF8Name parseUTF8Name(const uint8_t *bytes, uint32_t nBytes) {
   // Validate
-  UTF8_Name utf8Name;
-  utf8Name.name = string(reinterpret_cast<const char *>(bytes), size);
-  utf8Name.nBytes = size;
+  UTF8Name utf8Name;
+  utf8Name.name = string(reinterpret_cast<const char *>(bytes), nBytes);
+  utf8Name.nBytes = nBytes;
   unsigned int pos = 0;
   while (true) {
 
@@ -44,7 +44,7 @@ UTF8_Name parseUTF8Name(const uint8_t *bytes, uint32_t size) {
       return utf8Name;
     }
 
-    if (pos >= size) {
+    if (pos >= nBytes) {
       return utf8Name;
     }
   }
