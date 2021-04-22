@@ -14,4 +14,12 @@ BOOST_AUTO_TEST_CASE(errorsCanBeCreatedAndAccessed) {
   BOOST_CHECK_EQUAL(ErrorTypes::unknown, error->errorType);
 }
 
+BOOST_AUTO_TEST_CASE(generateNoErrorReturnsAMockError) {
+
+  auto error = generateNoError();
+
+  BOOST_CHECK_EQUAL(ErrorSeverity::noError, error->severity);
+}
+
+
 BOOST_AUTO_TEST_SUITE_END() // error_test
