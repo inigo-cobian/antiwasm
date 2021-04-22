@@ -22,7 +22,6 @@ UTF8_Name parseUTF8Name(const uint8_t *bytes, uint32_t size);
  */
 bool validateUTF8ContinuationByte(const uint8_t contByte);
 
-
 } // namespace antiwasm
 
 #endif // ANTIWASM_NAMEPARSER_HPP

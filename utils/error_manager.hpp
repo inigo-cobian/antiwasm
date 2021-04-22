@@ -27,7 +27,8 @@ enum ErrorTypes {
   unrecognizedValtypeAtGlobaltype,
   unrecognizedMutAtGlobaltype,
 
-  unrecognizedUTF8Name
+  unrecognizedUTF8LeadingByte,
+  unrecognizedUTF8ContByte
 };
 
 enum ErrorSeverity { fatal, warning, noError };
