@@ -25,98 +25,98 @@ namespace antiwasm {
 Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionContent, int sectionPos);
 
 /**
- * Parses a Custom section and generates its instance.
+ * Parses a CustomId section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
- * @return The parsed Custom section.
+ * @return The parsed CustomId section.
  */
 int parseCustomSection(int sizeOfSection, uint8_t *sectionContent);
 
 /**
- * Parses a Type section and generates its instance.
+ * Parses a TypeId section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
- * @return The parsed Type section.
+ * @return The parsed TypeId section.
  */
 TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent);
 
 /**
- * Parses an Import section and generates its instance.
+ * Parses an ImportId section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
- * @return The parsed Import section.
+ * @return The parsed ImportId section.
  */
 int parseImportSection(int sizeOfSection, uint8_t *sectionContent);
 
 /**
- * Parses a Function section and generates its instance.
+ * Parses a FunctionId section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
- * @return The parsed Function section.
+ * @return The parsed FunctionId section.
  */
 int parseFunctionSection(int sizeOfSection, uint8_t *sectionContent);
 
 /**
- * Parses a Table section and generates its instance.
+ * Parses a TableId section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
- * @return The parsed Table section.
+ * @return The parsed TableId section.
  */
 TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent);
 
 /**
- * Parses a Memory section and generates its instance.
+ * Parses a MemoryId section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
- * @return The parsed Memory section.
+ * @return The parsed MemoryId section.
  */
 MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent);
 
 /**
- * Parses a Global section and generates its instance.
+ * Parses a GlobalId section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
- * @return The parsed Global section.
+ * @return The parsed GlobalId section.
  */
 int parseGlobalSection(int sizeOfSection, uint8_t *sectionContent);
 
 /**
- * Parses an Export section and generates its instance.
+ * Parses an ExportId section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
- * @return The parsed Export section.
+ * @return The parsed ExportId section.
  */
 int parseExportSection(int sizeOfSection, uint8_t *sectionContent);
 
 /**
- * Parses a Start section and generates its instance.
+ * Parses a StartId section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
- * @return The parsed Start section.
+ * @return The parsed StartId section.
  */
 int parseStartSection(int sizeOfSection, uint8_t *sectionContent);
 
 /**
- * Parses an Element section and generates its instance.
+ * Parses an ElementId section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
- * @return The parsed Element section.
+ * @return The parsed ElementId section.
  */
 int parseElementSection(int sizeOfSection, uint8_t *sectionContent);
 
 /**
- * Parses a Code section and generates its instance.
+ * Parses a CodeId section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
- * @return The parsed Code section.
+ * @return The parsed CodeId section.
  */
 int parseCodeSection(int sizeOfSection, uint8_t *sectionContent);
 
 /**
- * Parses a Data section and generates its instance.
+ * Parses a DataId section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
- * @return The parsed Data section.
+ * @return The parsed DataId section.
  */
 int parseDataSection(int sizeOfSection, uint8_t *sectionContent);
 } // namespace antiwasm

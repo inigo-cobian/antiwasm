@@ -13,7 +13,7 @@ using namespace antiwasm;
 BOOST_AUTO_TEST_SUITE(module_parser_test)
 
 BOOST_AUTO_TEST_CASE(parseNextSection_canParseACorrectSection) {
-  SectionId sectionId = SectionId::Custom;
+  SectionId sectionId = SectionId::CustomId;
   int sizeOfSection = 1;
   auto *contentOfSection = new uint8_t[sizeOfSection]; // Does not matter
 
@@ -31,15 +31,15 @@ BOOST_AUTO_TEST_CASE(parseNextSection_createsABadSectionIfEncountersAnUnknownSec
 
   auto result = antiwasm::parseNextSection(nonExistingSectionId, sizeOfSection, contentOfSection, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Error, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::ErrorId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseCustomSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
 
-  auto result = antiwasm::parseNextSection(SectionId::Custom, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::CustomId, sizeOfSection, nullptr, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Custom, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::CustomId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseTypeSection_emptySectionReturnsOkey) {
@@ -47,25 +47,25 @@ BOOST_AUTO_TEST_CASE(parseTypeSection_emptySectionReturnsOkey) {
   auto *typeSectionContent = new uint8_t[1];
   typeSectionContent[0] = 0; // Número de types en la sección
 
-  auto result = antiwasm::parseNextSection(SectionId::Type, sizeOfSection, typeSectionContent, 0);
+  auto result = antiwasm::parseNextSection(SectionId::TypeId, sizeOfSection, typeSectionContent, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Type, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::TypeId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseImportSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
 
-  auto result = antiwasm::parseNextSection(SectionId::Import, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::ImportId, sizeOfSection, nullptr, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Import, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::ImportId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseFunctionSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
 
-  auto result = antiwasm::parseNextSection(SectionId::Function, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::FunctionId, sizeOfSection, nullptr, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Function, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::FunctionId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseTableSection_emptySectionReturnsOkey) {
@@ -73,9 +73,9 @@ BOOST_AUTO_TEST_CASE(parseTableSection_emptySectionReturnsOkey) {
   auto *tableSectionContent = new uint8_t[1];
   tableSectionContent[0] = 0; // Número de tabletypeVector en la sección
 
-  auto result = antiwasm::parseNextSection(SectionId::Table, sizeOfSection, tableSectionContent, 0);
+  auto result = antiwasm::parseNextSection(SectionId::TableId, sizeOfSection, tableSectionContent, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Table, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::TableId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseTableSection_realisticSectionReturnsOkey) {
@@ -87,9 +87,9 @@ BOOST_AUTO_TEST_CASE(parseTableSection_realisticSectionReturnsOkey) {
   tableSectionContent[7] = 0x0F;
   tableSectionContent[8] = Reftype::funref, tableSectionContent[9] = limit_min, tableSectionContent[10] = 0xCA;
 
-  auto result = antiwasm::parseNextSection(SectionId::Table, sizeOfSection, tableSectionContent, 0);
+  auto result = antiwasm::parseNextSection(SectionId::TableId, sizeOfSection, tableSectionContent, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Table, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::TableId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseMemorySection_emptySectionReturnsOkey) {
@@ -97,9 +97,9 @@ BOOST_AUTO_TEST_CASE(parseMemorySection_emptySectionReturnsOkey) {
   auto *memorySectionContent = new uint8_t[1];
   memorySectionContent[0] = 0; // Número de memtypes en la sección
 
-  auto result = antiwasm::parseNextSection(SectionId::Memory, sizeOfSection, memorySectionContent, 0);
+  auto result = antiwasm::parseNextSection(SectionId::MemoryId, sizeOfSection, memorySectionContent, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Memory, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::MemoryId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseMemorySection_realisticSectionReturnsOkey) {
@@ -110,57 +110,57 @@ BOOST_AUTO_TEST_CASE(parseMemorySection_realisticSectionReturnsOkey) {
   memorySectionContent[3] = limit_min_max, memorySectionContent[4] = 0x00, memorySectionContent[5] = 0x0F;
   memorySectionContent[6] = limit_min, memorySectionContent[7] = 0xCA;
 
-  auto result = antiwasm::parseNextSection(SectionId::Memory, sizeOfSection, memorySectionContent, 0);
+  auto result = antiwasm::parseNextSection(SectionId::MemoryId, sizeOfSection, memorySectionContent, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Memory, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::MemoryId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseGlobalSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
 
-  auto result = antiwasm::parseNextSection(SectionId::Global, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::GlobalId, sizeOfSection, nullptr, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Global, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::GlobalId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseExportSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
 
-  auto result = antiwasm::parseNextSection(SectionId::Export, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::ExportId, sizeOfSection, nullptr, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Export, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::ExportId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseStartSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
 
-  auto result = antiwasm::parseNextSection(SectionId::Start, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::StartId, sizeOfSection, nullptr, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Start, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::StartId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseElementSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
 
-  auto result = antiwasm::parseNextSection(SectionId::Element, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::ElementId, sizeOfSection, nullptr, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Element, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::ElementId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseCodeSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
 
-  auto result = antiwasm::parseNextSection(SectionId::Code, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::CodeId, sizeOfSection, nullptr, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Code, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::CodeId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseDataSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
 
-  auto result = antiwasm::parseNextSection(SectionId::Data, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::DataId, sizeOfSection, nullptr, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::Data, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::DataId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_SUITE_END()

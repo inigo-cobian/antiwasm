@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(GetNextSectionHeader_GetsMaxSizeOfSectionHeaderBytes) {
   const char *filePath = "../../test/files/00-empty.wasm";
   shared_ptr<Driver> driver = Driver::GetInstance();
   driver->OpenFile(filePath);
-  constexpr uint8_t expectedBytes[] = {0x00, 0x61, 0x73, 0x6d, 0x01, 0x00}; // Start of magic number
+  constexpr uint8_t expectedBytes[] = {0x00, 0x61, 0x73, 0x6d, 0x01, 0x00}; // StartId of magic number
   size_t sizeOfSectionHeader = MAX_SIZE_OF_SECTION_HEADER;
 
   auto *readBytes = driver->GetNextSectionHeader();

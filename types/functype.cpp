@@ -15,7 +15,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
   if (functype.parameterType.hasError()) {
     auto error = generateError(fatal, unrecognizedRT1Functype, 0);
     functype.addError(error);
-    cout << "Error at functype.parameterType" << endl;
+    cout << "ErrorId at functype.parameterType" << endl;
     return functype;
   }
   auto indexReturnType = BYTES_HEADER_FUNCTYPE + functype.parameterType.nBytes;
@@ -23,7 +23,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
   if (functype.returnType.hasError()) {
     auto error = generateError(fatal, unrecognizedRT2Functype, 0);
     functype.addError(error);
-    cout << "Error at functype.returnType" << endl;
+    cout << "ErrorId at functype.returnType" << endl;
   }
   functype.nBytes = BYTES_HEADER_FUNCTYPE + functype.parameterType.nBytes + functype.returnType.nBytes;
 

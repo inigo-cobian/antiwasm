@@ -7,44 +7,44 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
   BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << hex << (unsigned int)sectionId
                            << "] with size " << hex << (unsigned int)sectionSize;
   switch (sectionId) {
-  case (SectionId::Custom):
+  case (SectionId::CustomId):
     parseCustomSection(sectionSize, sectionContent);
-    return Section(SectionId::Custom, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Type):
+    return Section(SectionId::CustomId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::TypeId):
     return parseTypeSection(sectionSize, sectionContent);
-  case (SectionId::Import):
+  case (SectionId::ImportId):
     parseImportSection(sectionSize, sectionContent);
-    return Section(SectionId::Import, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Function):
+    return Section(SectionId::ImportId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::FunctionId):
     parseFunctionSection(sectionSize, sectionContent);
-    return Section(SectionId::Function, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Table):
+    return Section(SectionId::FunctionId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::TableId):
     return parseTableSection(sectionSize, sectionContent);
-  case (SectionId::Memory):
+  case (SectionId::MemoryId):
     return parseMemorySection(sectionSize, sectionContent);
-  case (SectionId::Global):
+  case (SectionId::GlobalId):
     parseGlobalSection(sectionSize, sectionContent);
-    return Section(SectionId::Global, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Export):
+    return Section(SectionId::GlobalId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::ExportId):
     parseExportSection(sectionSize, sectionContent);
-    return Section(SectionId::Export, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Start):
+    return Section(SectionId::ExportId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::StartId):
     parseStartSection(sectionSize, sectionContent);
-    return Section(SectionId::Start, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Element):
+    return Section(SectionId::StartId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::ElementId):
     parseElementSection(sectionSize, sectionContent);
-    return Section(SectionId::Element, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Code):
+    return Section(SectionId::ElementId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::CodeId):
     parseCodeSection(sectionSize, sectionContent);
-    return Section(SectionId::Code, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Data):
+    return Section(SectionId::CodeId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::DataId):
     parseDataSection(sectionSize, sectionContent);
-    return Section(SectionId::Data, sectionSize, sectionContent, sectionPos);
+    return Section(SectionId::DataId, sectionSize, sectionContent, sectionPos);
   default:
     // TODO pretty error message
-    BOOST_LOG_TRIVIAL(error) << "[module_parser] Error at section " << hex << (unsigned int)sectionId
+    BOOST_LOG_TRIVIAL(error) << "[module_parser] ErrorId at section " << hex << (unsigned int)sectionId
                              << " with size " << hex << sectionSize;
-    Section section = Section(SectionId::Error, sectionSize, sectionContent, 0);
+    Section section = Section(SectionId::ErrorId, sectionSize, sectionContent, 0);
     auto error = generateError(fatal, wrongSectionId, 0);
     section.addError(error);
     return section;
@@ -93,7 +93,7 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent) {
       pointer += REFTYPE_SIZE + tabletype.limit.nBytes;
     } else {
       // TODO error case
-      cout << "Error at parsing tabletype" << endl;
+      cout << "ErrorId at parsing tabletype" << endl;
     }
     tableSection.addTabletype(tabletype);
   }

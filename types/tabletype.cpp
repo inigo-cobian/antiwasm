@@ -7,14 +7,14 @@ Tabletype parseTableType(const uint8_t *tableTypeContent) {
   Tabletype tabletype{reftypeAtTabletype, limitAtTabletype};
 
   if (reftypeAtTabletype == invalid_reftype) {
-    cout << "Error at reftype" << endl;
+    cout << "ErrorId at reftype" << endl;
     auto error = generateError(fatal, unrecognizedReftypeAtTabletype, 0);
     tabletype.addError(error);
     return tabletype;
   }
 
   if (limitAtTabletype.hasError()) {
-    cout << "Error at limit" << endl;
+    cout << "ErrorId at limit" << endl;
     auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, 0);
     tabletype.addError(error);
   }

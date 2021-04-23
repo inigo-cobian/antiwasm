@@ -1,7 +1,7 @@
 #ifndef ANTIWASM_MEMSEC_HPP
 #define ANTIWASM_MEMSEC_HPP
 
-#include "../types/memtype.hpp"
+#include "memtype.hpp"
 #include "section.hpp"
 #include <sstream>
 #include <vector>
@@ -17,7 +17,7 @@ private:
 public:
   /**
    * Contructor.
-   * SectionId = SectionId::Memory
+   * SectionId = SectionId::MemoryId
    * @param size
    * @param content
    * @param initialPos

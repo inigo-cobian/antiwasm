@@ -1,7 +1,7 @@
 #ifndef ANTIWASM_TYPESEC_HPP
 #define ANTIWASM_TYPESEC_HPP
 
-#include "../types/functype.hpp"
+#include "functype.hpp"
 #include "section.hpp"
 #include <vector>
 #include <sstream>
@@ -21,7 +21,7 @@ private:
 public:
   /**
    * Contructor.
-   * SectionId = SectionId::Type
+   * SectionId = SectionId::TypeId
    * @param size
    * @param content
    * @param initialPos

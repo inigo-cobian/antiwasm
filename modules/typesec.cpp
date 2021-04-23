@@ -3,7 +3,7 @@
 namespace antiwasm {
 
 TypeSection::TypeSection(int size, uint8_t *content, int initialPos)
-    : Section(SectionId::Type, size, content, initialPos) {}
+    : Section(SectionId::TypeId, size, content, initialPos) {}
 
 TypeSection::~TypeSection() {}
 
@@ -12,11 +12,11 @@ void TypeSection::addFunctype(Functype functype) { functypeVector.push_back(func
 vector<Functype> TypeSection::getFunctypeVector() { return functypeVector; }
 
 void TypeSection::displaySectionHeaderInfo() {
-  cout << "    Type | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
+  cout << "    TypeId | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
 }
 
 void TypeSection::displaySectionContentInfo() {
-  cout << "    Type | start=" << hex << initialPos_ << " size=" << hex << size_
+  cout << "    TypeId | start=" << hex << initialPos_ << " size=" << hex << size_
             << " (" << functypeVector.size() << ") functypes" << endl;
 
   size_t index = 0;

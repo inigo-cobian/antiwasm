@@ -29,7 +29,7 @@ void Valtype::displayContentInfo() {
 
 void Valtype::displayError() {
   // TODO
-  cout << "Error at valtype" << endl;
+  cout << "ErrorId at valtype" << endl;
 }
 string Valtype::getAsText() const {
   if (type == valtype_numtype) {

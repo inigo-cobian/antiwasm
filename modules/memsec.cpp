@@ -3,8 +3,8 @@
 namespace antiwasm {
 
 MemorySection::MemorySection(int size, uint8_t *content, int initialPos)
-    : Section(SectionId::Memory, size, content, initialPos) {
-  BOOST_LOG_TRIVIAL(debug) << "[memsec] Creating a Memory Section";
+    : Section(SectionId::MemoryId, size, content, initialPos) {
+  BOOST_LOG_TRIVIAL(debug) << "[memsec] Creating a MemoryId Section";
 }
 
 MemorySection::~MemorySection() = default;
@@ -14,11 +14,11 @@ void MemorySection::addMemtype(Memtype memtype) { memtypeVector.push_back(memtyp
 vector<Memtype> MemorySection::getMemtypeVector() { return vector<Memtype>(); }
 
 void MemorySection::displaySectionHeaderInfo() {
-  cout << "  Memory | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
+  cout << "  MemoryId | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
 }
 
 void MemorySection::displaySectionContentInfo() {
-  cout << "  Memory | start=" << hex << initialPos_ << " size=" << hex << size_ << " ("
+  cout << "  MemoryId | start=" << hex << initialPos_ << " size=" << hex << size_ << " ("
             << memtypeVector.size() << ") memtypes" << endl;
 
   size_t index = 0;

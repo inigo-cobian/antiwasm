@@ -1,8 +1,8 @@
 #ifndef ANTIWASM_TABLESEC_HPP
 #define ANTIWASM_TABLESEC_HPP
 
-#include "../types/reftype.hpp"
-#include "../types/tabletype.hpp"
+#include "reftype.hpp"
+#include "tabletype.hpp"
 #include "section.hpp"
 #include <sstream>
 #include <vector>
@@ -18,7 +18,7 @@ private:
 public:
   /**
    * Contructor.
-   * SectionId = SectionId::Table
+   * SectionId = SectionId::TableId
    * @param size
    * @param content
    * @param initialPos
