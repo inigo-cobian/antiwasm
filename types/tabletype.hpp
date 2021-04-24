@@ -3,6 +3,7 @@
 
 #include "limits.hpp"
 #include "reftype.hpp"
+#include <utility>
 
 namespace antiwasm {
 
@@ -10,7 +11,7 @@ struct Tabletype : public ContentBlock {
   Reftype reftype;
   Limit limit;
 
-  Tabletype(Reftype p_reftype, Limit p_limit) : reftype(p_reftype), limit(p_limit){};
+  Tabletype(Reftype p_reftype, Limit p_limit) : reftype(p_reftype), limit(std::move(p_limit)){};
 };
 
 /**
