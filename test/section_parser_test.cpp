@@ -52,6 +52,19 @@ BOOST_AUTO_TEST_CASE(parseTypeSection_emptySectionReturnsOkey) {
   BOOST_CHECK_EQUAL(SectionId::TypeId, result.getSectionId());
 }
 
+BOOST_AUTO_TEST_CASE(parseTypeSection_realisticSectionReturnsOkey) {
+  int sizeOfSection = 0;
+  auto *typeSectionContent = new uint8_t[1];
+  typeSectionContent[0] = 0; // Número de types en la sección
+  typeSectionContent[1] = FUNCTYPE_HEADER;
+  typeSectionContent[2] = 2, typeSectionContent[3] = Numtype::i32, typeSectionContent[4] = Reftype::funref;
+  typeSectionContent[5] = 1, typeSectionContent[6] = Numtype::f64;
+
+  auto result = antiwasm::parseNextSection(SectionId::TypeId, sizeOfSection, typeSectionContent, 0);
+
+  BOOST_CHECK_EQUAL(SectionId::TypeId, result.getSectionId());
+}
+
 BOOST_AUTO_TEST_CASE(parseImportSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
 
