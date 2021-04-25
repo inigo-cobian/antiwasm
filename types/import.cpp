@@ -11,44 +11,90 @@ Import parseImport(const uint8_t *importContent) {
   // Parse name as UTF8
   auto sizeOfName = transformLeb128ToUnsignedInt32(&importContent[pointer]);
   pointer += sizeOfLeb128(importContent);
+  auto indexName = pointer;
   auto name = parseUTF8Name(&importContent[pointer], sizeOfName);
+  pointer += sizeOfName;
 
-  auto type = ImportDescType::ImportFunc; // TODO
-  auto desc = parseImportDesc(type, importContent); // TODO
+  auto type = parseImportDescType(importContent[pointer]);
 
-  Import import{mod, name, type, desc };
+  auto desc = parseImportDesc(type, importContent);
 
-  if(mod.hasError()) {
+  Import import{mod, name, type, desc};
+
+  if (mod.hasError()) {
     auto error = generateError(fatal, unrecognizedModAtImport, 0);
     import.addError(error);
   }
 
-  if(name.hasError()) {
-    auto error = generateError(fatal, unrecognizedNameAtImport, 1);
+  if (name.hasError()) {
+    auto error = generateError(fatal, unrecognizedNameAtImport, indexName);
     import.addError(error);
   }
 
-  // TODO error for ImportDesc
+  switch (type) {
+    // Case ImportFunc cannot be incorrect at this stage
+  case ImportTable:
+    if(import.importDesc.tabletype->hasError()) {
+      auto error = generateError(fatal, unrecognizedTabletypeAtImportDesc, indexName);
+      import.addError(error);
+    }
+  case ImportMemtype:
+    if(import.importDesc.memtype->hasError()) {
+      auto error = generateError(fatal, unrecognizedMemtypeAtImportDesc, indexName);
+      import.addError(error);
+    }
+  case ImportGlobaltype:
+    if(import.importDesc.globaltype->hasError()) {
+      auto error = generateError(fatal, unrecognizedGlobaltypeAtImportDesc, indexName);
+      import.addError(error);
+    }
+  case invalidImportDescType:
+    auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, indexName);
+    import.addError(error);
+  }
 
   return import;
 }
 
+ImportDescType parseImportDescType(const uint8_t importDescTypeContent) {
+  switch (importDescTypeContent) {
+  case ImportFunc:
+    return ImportFunc;
+  case ImportTable:
+    return ImportTable;
+  case ImportMemtype:
+    return ImportMemtype;
+  case ImportGlobaltype:
+    return ImportGlobaltype;
+  default:
+    return invalidImportDescType;
+  }
+}
 
 ImportDesc parseImportDesc(ImportDescType type, const uint8_t *importDescContent) {
-  ImportDesc importDesc;
-  switch (0) { // TODO
-  case ImportFunc:
-    break;
-  case ImportTable:
-    break;
-  case ImportMemtype:
-    break;
-  case ImportGlobaltype:
-    break;
-  default:
-    // TODO error
-    break;
+  ImportDesc importDesc{};
+  switch (type) {
+  case ImportFunc: {
+    importDesc.typeIdx = transformLeb128ToUnsignedInt32(importDescContent);
+    return importDesc;
   }
-    return ImportDesc{};
+  case ImportTable: { // TODO explain that the braces are to avoid crosses initialization of
+    auto tabletype = parseTableType(importDescContent);
+    importDesc.tabletype = new Tabletype(tabletype);
+    return importDesc;
   }
+  case ImportMemtype: {
+    auto memtype = parseMemType(importDescContent);
+    importDesc.memtype = new Memtype(memtype);
+    return importDesc;
+  }
+  case ImportGlobaltype: {
+    auto globaltype = parseGlobaltype(importDescContent);
+    importDesc.globaltype = new Globaltype(globaltype);
+    return importDesc;
+  }
+  case invalidImportDescType:
+    return importDesc; // Unused
+  }
+}
 } // namespace antiwasm
