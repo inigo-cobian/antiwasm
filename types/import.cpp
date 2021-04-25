@@ -15,6 +15,7 @@ Import parseImport(const uint8_t *importContent) {
   auto name = parseUTF8Name(&importContent[pointer], sizeOfName);
   pointer += sizeOfName;
 
+  auto indexImportDesc = pointer;
   auto type = parseImportDescType(importContent[pointer]);
 
   auto desc = parseImportDesc(type, importContent);
@@ -35,21 +36,21 @@ Import parseImport(const uint8_t *importContent) {
     // Case ImportFunc cannot be incorrect at this stage
   case ImportTable:
     if(import.importDesc.tabletype->hasError()) {
-      auto error = generateError(fatal, unrecognizedTabletypeAtImportDesc, indexName);
+      auto error = generateError(fatal, unrecognizedTabletypeAtImportDesc, indexImportDesc);
       import.addError(error);
     }
   case ImportMemtype:
     if(import.importDesc.memtype->hasError()) {
-      auto error = generateError(fatal, unrecognizedMemtypeAtImportDesc, indexName);
+      auto error = generateError(fatal, unrecognizedMemtypeAtImportDesc, indexImportDesc);
       import.addError(error);
     }
   case ImportGlobaltype:
     if(import.importDesc.globaltype->hasError()) {
-      auto error = generateError(fatal, unrecognizedGlobaltypeAtImportDesc, indexName);
+      auto error = generateError(fatal, unrecognizedGlobaltypeAtImportDesc, indexImportDesc);
       import.addError(error);
     }
   case invalidImportDescType:
-    auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, indexName);
+    auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, indexImportDesc);
     import.addError(error);
   }
 
