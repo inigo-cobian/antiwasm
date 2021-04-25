@@ -6,6 +6,7 @@
 #include "memtype.hpp"
 #include "nameParser.hpp"
 #include "tabletype.hpp"
+#include "leb128.hpp"
 #include <cstdint>
 #include <utility>
 
