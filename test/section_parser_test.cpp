@@ -1,6 +1,7 @@
 #define BOOST_TEST_DYN_LINK
 
 #include "contentBlock.cpp"
+#include "importsec.cpp"
 #include "memsec.cpp" //TODO remove if possible
 #include "reftype.cpp"
 #include "section_parser.cpp"
@@ -80,7 +81,8 @@ BOOST_AUTO_TEST_CASE(parseImportSection_realisticSectionReturnsOkey) { // TODO
   auto *importSectionContent = new uint8_t[12];
   importSectionContent[0] = 1; // Número de types en la sección
   importSectionContent[1] = 4;
-  importSectionContent[2] = 't', importSectionContent[3] = 'e', importSectionContent[4] = 's', importSectionContent[5] = 't';
+  importSectionContent[2] = 't', importSectionContent[3] = 'e', importSectionContent[4] = 's',
+  importSectionContent[5] = 't';
   importSectionContent[6] = 3;
   importSectionContent[7] = 'F', importSectionContent[8] = 'o', importSectionContent[9] = 'o';
   importSectionContent[10] = ImportFunc;

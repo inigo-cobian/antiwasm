@@ -2,8 +2,8 @@
 #define ANTIWASM_TABLESEC_HPP
 
 #include "reftype.hpp"
-#include "tabletype.hpp"
 #include "section.hpp"
+#include "tabletype.hpp"
 #include <sstream>
 #include <vector>
 

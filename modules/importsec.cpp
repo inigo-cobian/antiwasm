@@ -2,7 +2,7 @@
 namespace antiwasm {
 
 ImportSection::ImportSection(int size, uint8_t *content, int initialPos)
-    : Section(SectionId::MemoryId, size, content, initialPos) {
+    : Section(SectionId::ImportId, size, content, initialPos) {
   BOOST_LOG_TRIVIAL(debug) << "[importsec] Creating a Import Section";
 }
 

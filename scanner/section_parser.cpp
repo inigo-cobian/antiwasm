@@ -13,8 +13,7 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
   case (SectionId::TypeId):
     return parseTypeSection(sectionSize, sectionContent);
   case (SectionId::ImportId):
-    parseImportSection(sectionSize, sectionContent);
-    return Section(SectionId::ImportId, sectionSize, sectionContent, sectionPos);
+    return parseImportSection(sectionSize, sectionContent);
   case (SectionId::FunctionId):
     parseFunctionSection(sectionSize, sectionContent);
     return Section(SectionId::FunctionId, sectionSize, sectionContent, sectionPos);
@@ -42,8 +41,8 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
     return Section(SectionId::DataId, sectionSize, sectionContent, sectionPos);
   default:
     // TODO pretty error message
-    BOOST_LOG_TRIVIAL(error) << "[module_parser] ErrorId at section " << hex << (unsigned int)sectionId
-                             << " with size " << hex << sectionSize;
+    BOOST_LOG_TRIVIAL(error) << "[module_parser] ErrorId at section " << hex << (unsigned int)sectionId << " with size "
+                             << hex << sectionSize;
     Section section = Section(SectionId::ErrorId, sectionSize, sectionContent, 0);
     auto error = generateError(fatal, wrongSectionId, 0);
     section.addError(error);
@@ -73,8 +72,22 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent) {
   return typeSection;
 }
 
-int parseImportSection(int sizeOfSection, uint8_t *sectionContent) {
-  return 0; // TODO
+ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent) {
+  auto importsInVector = transformLeb128ToUnsignedInt32(sectionContent);
+  unsigned int pointer = sizeOfLeb128(sectionContent);
+  ImportSection importSection(sizeOfSection, sectionContent, 0); // TODO position
+  for (u_int32_t i = 0; i < importsInVector; i++) {
+    Import import = parseImport(&sectionContent[pointer]);
+    importSection.addImport(import);
+    pointer += import.nBytes;
+    if (import.hasError()) {
+      cout << "ERROR parseTypeSection" << endl;
+      // TODO error case
+      return importSection;
+    }
+  }
+  importSection.displaySectionContentInfo();
+  return importSection;
 }
 
 int parseFunctionSection(int sizeOfSection, uint8_t *sectionContent) {

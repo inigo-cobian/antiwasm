@@ -2,8 +2,8 @@
 #define ANTIWASM_CONTENT_BLOCK_HPP
 
 #include "error_manager.hpp"
-#include <vector>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -13,10 +13,14 @@ class ContentBlock {
 protected:
   shared_ptr<uint8_t> contentBytes;
   size_t indexByte;
-  size_t nBytes;
   vector<shared_ptr<ErrorAtWasm>> errors_;
 
 public:
+  /*
+   * Number of bytes at the content block
+   */
+  size_t nBytes;
+
   /**
    * Gets the pointer to the content block the current content belongs (as bytes)
    * and its position at the block.
@@ -29,7 +33,7 @@ public:
    * Adds a new error to the error_ vector.
    * @param pointer to ErrorAtWasm
    */
-  void addError(const shared_ptr<ErrorAtWasm>& errorAtWasm);
+  void addError(const shared_ptr<ErrorAtWasm> &errorAtWasm);
 
   /**
    * Checks the vector of errors and returns true if there is at least one.

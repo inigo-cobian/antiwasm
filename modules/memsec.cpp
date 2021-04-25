@@ -18,14 +18,14 @@ void MemorySection::displaySectionHeaderInfo() {
 }
 
 void MemorySection::displaySectionContentInfo() {
-  cout << "  MemoryId | start=" << hex << initialPos_ << " size=" << hex << size_ << " ("
-            << memtypeVector.size() << ") memtypes" << endl;
+  cout << "  MemoryId | start=" << hex << initialPos_ << " size=" << hex << size_ << " (" << memtypeVector.size()
+       << ") memtypes" << endl;
 
   size_t index = 0;
-  for (const auto& memtype : memtypeVector) {
+  for (const auto &memtype : memtypeVector) {
     stringstream memtypeAsText;
     memtypeAsText << "( memory $" << index++ << " ";
-    if(memtype.limit.type == limit_min) {
+    if (memtype.limit.type == limit_min) {
       memtypeAsText << memtype.limit.min << " )\n";
     } else if (memtype.limit.type == limit_min_max) {
       memtypeAsText << memtype.limit.min << " " << memtype.limit.max << " )\n";

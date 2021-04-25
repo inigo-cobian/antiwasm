@@ -3,8 +3,8 @@
 
 #include "functype.hpp"
 #include "section.hpp"
-#include <vector>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 

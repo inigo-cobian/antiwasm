@@ -16,14 +16,14 @@ void TableSection::displaySectionHeaderInfo() {
 }
 
 void TableSection::displaySectionContentInfo() {
-  cout << "   TableId | start=" << hex << initialPos_ << " size=" << hex << size_
-       << " (" << tabletypeVector.size() << ") tabletypes" << endl;
+  cout << "   TableId | start=" << hex << initialPos_ << " size=" << hex << size_ << " (" << tabletypeVector.size()
+       << ") tabletypes" << endl;
 
   size_t index = 0;
-  for (const auto& tabletype : tabletypeVector) {
+  for (const auto &tabletype : tabletypeVector) {
     stringstream tabletypeAsText;
     tabletypeAsText << "( table $" << index++ << " ";
-    if(tabletype.limit.type == limit_min) {
+    if (tabletype.limit.type == limit_min) {
       tabletypeAsText << tabletype.limit.min;
     } else if (tabletype.limit.type == limit_min_max) {
       tabletypeAsText << tabletype.limit.min << " " << tabletype.limit.max;

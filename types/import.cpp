@@ -35,17 +35,17 @@ Import parseImport(const uint8_t *importContent) {
   switch (type) {
     // Case ImportFunc cannot be incorrect at this stage
   case ImportTable:
-    if(import.importDesc.tabletype->hasError()) {
+    if (import.importDesc.tabletype->hasError()) {
       auto error = generateError(fatal, unrecognizedTabletypeAtImportDesc, indexImportDesc);
       import.addError(error);
     }
   case ImportMemtype:
-    if(import.importDesc.memtype->hasError()) {
+    if (import.importDesc.memtype->hasError()) {
       auto error = generateError(fatal, unrecognizedMemtypeAtImportDesc, indexImportDesc);
       import.addError(error);
     }
   case ImportGlobaltype:
-    if(import.importDesc.globaltype->hasError()) {
+    if (import.importDesc.globaltype->hasError()) {
       auto error = generateError(fatal, unrecognizedGlobaltypeAtImportDesc, indexImportDesc);
       import.addError(error);
     }

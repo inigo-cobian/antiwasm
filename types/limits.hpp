@@ -3,9 +3,9 @@
 
 #define BOOST_LOG_DYN_LINK 1
 
-#include "leb128.hpp"
 #include "contentBlock.hpp"
 #include "displayable.hpp"
+#include "leb128.hpp"
 #include <boost/log/trivial.hpp>
 #include <cstdint>
 #include <iostream>
