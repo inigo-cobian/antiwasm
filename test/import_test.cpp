@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE(parseImport_nameError) {
 
   auto import = parseImport(importContent);
 
-  BOOST_CHECK_EQUAL(ErrorTypes::unrecognizedModAtImport, import.getError()->errorType);
+  BOOST_CHECK_EQUAL(ErrorTypes::unrecognizedNameAtImport, import.getError()->errorType);
 }
 
 BOOST_AUTO_TEST_CASE(parseImport_importDescTabletypeError) {
