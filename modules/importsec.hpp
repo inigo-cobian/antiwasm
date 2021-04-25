@@ -1,8 +1,8 @@
 #ifndef ANTIWASM_IMPORTSEC_HPP
 #define ANTIWASM_IMPORTSEC_HPP
 
-#include "section.hpp"
 #include "import.hpp"
+#include "section.hpp"
 #include <sstream>
 #include <vector>
 
@@ -30,15 +30,15 @@ public:
   ~ImportSection();
 
   /**
- * Adds a new import to the vector
- * @param import
- */
+   * Adds a new import to the vector
+   * @param import
+   */
   void addImport(Import import);
 
   /**
- * Gets the import vector
- * @return importVector
- */
+   * Gets the import vector
+   * @return importVector
+   */
   vector<Memtype> getImportVector();
 
   /**
@@ -50,9 +50,7 @@ public:
    * Displays the information of the importsec
    */
   void displaySectionContentInfo(); // override
-
 };
 } // namespace antiwasm
-
 
 #endif // ANTIWASM_IMPORTSEC_HPP
