@@ -8,9 +8,8 @@ ImportSection::ImportSection(int size, uint8_t *content, int initialPos)
 
 ImportSection::~ImportSection() = default;
 
-void ImportSection::addImport(Import import) {
-  // TODO
-}
+void ImportSection::addImport(const Import &import) { importVector.push_back(import); }
+
 vector<Memtype> ImportSection::getImportVector() { return vector<Memtype>(); }
 
 void ImportSection::displaySectionHeaderInfo() {

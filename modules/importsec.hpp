@@ -33,7 +33,7 @@ public:
    * Adds a new import to the vector
    * @param import
    */
-  void addImport(Import import);
+  void addImport(const Import &import);
 
   /**
    * Gets the import vector
