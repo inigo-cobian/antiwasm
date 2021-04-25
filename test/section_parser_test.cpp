@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE(parseTypeSection_emptySectionReturnsOkey) {
 BOOST_AUTO_TEST_CASE(parseTypeSection_realisticSectionReturnsOkey) {
   int sizeOfSection = 0;
   auto *typeSectionContent = new uint8_t[1];
-  typeSectionContent[0] = 0; // Número de types en la sección
+  typeSectionContent[0] = 1; // Número de types en la sección
   typeSectionContent[1] = FUNCTYPE_HEADER;
   typeSectionContent[2] = 2, typeSectionContent[3] = Numtype::i32, typeSectionContent[4] = Reftype::funref;
   typeSectionContent[5] = 1, typeSectionContent[6] = Numtype::f64;
@@ -67,8 +67,26 @@ BOOST_AUTO_TEST_CASE(parseTypeSection_realisticSectionReturnsOkey) {
 
 BOOST_AUTO_TEST_CASE(parseImportSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
+  auto *importSectionContent = new uint8_t[1];
+  importSectionContent[0] = 0; // Número de types en la sección
 
-  auto result = antiwasm::parseNextSection(SectionId::ImportId, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::ImportId, sizeOfSection, importSectionContent, 0);
+
+  BOOST_CHECK_EQUAL(SectionId::ImportId, result.getSectionId());
+}
+
+BOOST_AUTO_TEST_CASE(parseImportSection_realisticSectionReturnsOkey) { // TODO
+  int sizeOfSection = 1;
+  auto *importSectionContent = new uint8_t[12];
+  importSectionContent[0] = 1; // Número de types en la sección
+  importSectionContent[1] = 4;
+  importSectionContent[2] = 't', importSectionContent[3] = 'e', importSectionContent[4] = 's', importSectionContent[5] = 't';
+  importSectionContent[6] = 3;
+  importSectionContent[7] = 'F', importSectionContent[8] = 'o', importSectionContent[9] = 'o';
+  importSectionContent[10] = ImportFunc;
+  importSectionContent[11] = 1;
+
+  auto result = antiwasm::parseNextSection(SectionId::ImportId, sizeOfSection, importSectionContent, 0);
 
   BOOST_CHECK_EQUAL(SectionId::ImportId, result.getSectionId());
 }
