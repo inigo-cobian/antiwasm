@@ -117,7 +117,7 @@ BOOST_AUTO_TEST_CASE(parseImport_importDescGlobaltypeError) {
   auto sizeOfMod = 4;
   auto sizeOfName = 3;
   auto typeidx = 0x01;
-  auto *importContent = new uint8_t[11];
+  auto *importContent = new uint8_t[12];
   importContent[0] = sizeOfMod;
   importContent[1] = 't', importContent[2] = 'e', importContent[3] = 's', importContent[4] = 't';
   importContent[5] = sizeOfName;
