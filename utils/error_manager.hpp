@@ -27,6 +27,14 @@ enum ErrorTypes {
   unrecognizedValtypeAtGlobaltype,
   unrecognizedMutAtGlobaltype,
 
+  unrecognizedModAtImport,
+  unrecognizedNameAtImport,
+  unrecognizedHeaderAtImportDesc,
+  unrecognizedTypeIdxAtImportDesc [[maybe_unused]],
+  unrecognizedTabletypeAtImportDesc,
+  unrecognizedMemtypeAtImportDesc,
+  unrecognizedGlobaltypeAtImportDesc,
+
   unrecognizedUTF8LeadingByte,
   unrecognizedUTF8ContByte
 };
