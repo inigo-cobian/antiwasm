@@ -12,11 +12,11 @@ void TypeSection::addFunctype(Functype functype) { functypeVector.push_back(func
 vector<Functype> TypeSection::getFunctypeVector() { return functypeVector; }
 
 void TypeSection::displaySectionHeaderInfo() {
-  cout << "    TypeId | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
+  cout << "    Type | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
 }
 
 void TypeSection::displaySectionContentInfo() {
-  cout << "    TypeId | start=" << hex << initialPos_ << " size=" << hex << size_ << " (" << functypeVector.size()
+  cout << "    Type | start=" << hex << initialPos_ << " size=" << hex << size_ << " (" << functypeVector.size()
        << ") functypes" << endl;
 
   size_t index = 0;

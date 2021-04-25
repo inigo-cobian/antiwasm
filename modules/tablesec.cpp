@@ -12,11 +12,11 @@ void TableSection::addTabletype(Tabletype tabletype) { tabletypeVector.push_back
 vector<Tabletype> TableSection::getTabletypeVector() { return vector<Tabletype>(); }
 
 void TableSection::displaySectionHeaderInfo() {
-  cout << "   TableId | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
+  cout << "   Table | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
 }
 
 void TableSection::displaySectionContentInfo() {
-  cout << "   TableId | start=" << hex << initialPos_ << " size=" << hex << size_ << " (" << tabletypeVector.size()
+  cout << "   Table | start=" << hex << initialPos_ << " size=" << hex << size_ << " (" << tabletypeVector.size()
        << ") tabletypes" << endl;
 
   size_t index = 0;
