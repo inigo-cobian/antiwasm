@@ -92,7 +92,6 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent) {
     Import import = parseImport(&sectionContent[pointer]);
     importSection.addImport(import);
     pointer += import.getNBytes();
-    cout << "$Import nBytes: " << (int) import.getNBytes() << endl;
     if (import.hasError()) {
       switch (import.getError()->errorType) {
       case unrecognizedModAtImport:
@@ -114,8 +113,7 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent) {
         cout << "ERROR parseImportSection at header byte" << endl;
         break;
       default:
-
-        cout << "memememememe" << endl;
+        cout << "$$$$Unknown Error" << endl;
       }
       return importSection;
     }
