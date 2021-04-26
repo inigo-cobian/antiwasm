@@ -9,7 +9,6 @@ namespace antiwasm {
 
 struct UTF8Name : public ContentBlock {
   string name;
-  uint32_t nBytes;
 };
 
 /**

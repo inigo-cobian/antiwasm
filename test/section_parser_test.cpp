@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE(parseImportSection_emptySectionReturnsOkey) {
   BOOST_CHECK_EQUAL(SectionId::ImportId, result.getSectionId());
 }
 
-BOOST_AUTO_TEST_CASE(parseImportSection_realisticSectionReturnsOkey) { // TODO
+BOOST_AUTO_TEST_CASE(parseImportSection_realisticSectionReturnsOkey) {
   int sizeOfSection = 1;
   auto *importSectionContent = new uint8_t[12];
   importSectionContent[0] = 1; // Número de types en la sección

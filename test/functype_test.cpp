@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(parseFunctype_caseIncorrectHeader) {
 
 BOOST_AUTO_TEST_CASE(parseFunctype_caseErrorAtParameters) {
   auto *functypeContent = new uint8_t[6];
-  functypeContent[0] = FUNCTYPE_HEADER; // Invalid header
+  functypeContent[0] = FUNCTYPE_HEADER;
   functypeContent[1] = 2, functypeContent[2] = Numtype::i32,
   functypeContent[3] = 0xAA; // Invalid value
   functypeContent[4] = 1,
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(parseFunctype_caseErrorAtParameters) {
 
 BOOST_AUTO_TEST_CASE(parseFunctype_caseErrorAtReturns) {
   auto *functypeContent = new uint8_t[6];
-  functypeContent[0] = FUNCTYPE_HEADER; // Invalid header
+  functypeContent[0] = FUNCTYPE_HEADER;
   functypeContent[1] = 2, functypeContent[2] = Numtype::i32, functypeContent[3] = Reftype::funref;
   functypeContent[4] = 1, functypeContent[5] = 0xAA; // Invalid value
 

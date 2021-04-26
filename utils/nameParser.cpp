@@ -6,7 +6,7 @@ UTF8Name parseUTF8Name(const uint8_t *bytes, uint32_t nBytes) {
   // Validate
   UTF8Name utf8Name;
   utf8Name.name = string(reinterpret_cast<const char *>(bytes), nBytes);
-  utf8Name.nBytes = nBytes;
+  utf8Name.setNBytes(nBytes);
   unsigned int pos = 0;
   while (true) {
 

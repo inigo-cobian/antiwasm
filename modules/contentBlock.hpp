@@ -14,13 +14,9 @@ protected:
   shared_ptr<uint8_t> contentBytes;
   size_t indexByte;
   vector<shared_ptr<ErrorAtWasm>> errors_;
-
-public:
-  /*
-   * Number of bytes at the content block
-   */
   size_t nBytes;
 
+public:
   /**
    * Gets the pointer to the content block the current content belongs (as bytes)
    * and its position at the block.
@@ -52,6 +48,10 @@ public:
    * @return
    */
   shared_ptr<ErrorAtWasm> getError();
+
+  uint32_t getNBytes() const { return nBytes; };
+
+  void setNBytes(uint32_t p_nBytes) { nBytes = p_nBytes; };
 };
 
 } // namespace antiwasm

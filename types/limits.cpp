@@ -2,7 +2,10 @@
 
 namespace antiwasm {
 Limit parseLimits(const uint8_t *limitSection) {
+  BOOST_LOG_TRIVIAL(debug) << "[Limit] Parsing a new Limit";
+
   if (limitSection[0] == limit_types::limit_min) {
+    BOOST_LOG_TRIVIAL(debug) << "[Tabletype] Parsing a new Tabletype";
     uint32_t min_ = transformLeb128ToUnsignedInt32(&limitSection[SIZE_OF_LIMIT_TYPE]);
     auto nBytes = sizeOfLeb128(&limitSection[SIZE_OF_LIMIT_TYPE]);
     return parseLimitMin(min_, nBytes);
@@ -22,15 +25,16 @@ Limit parseLimits(const uint8_t *limitSection) {
   }
 }
 
-Limit parseLimitMin(const uint32_t min_, const int nBytes) {
-  Limit limit{limit_min, min_, nBytes};
+Limit parseLimitMin(const uint32_t min_, const uint32_t p_nBytes) {
+  Limit limit{limit_min, min_, p_nBytes};
 
-  BOOST_LOG_TRIVIAL(info) << "[limits] New limit [" << hex << limit.min << "-MAX]";
+  BOOST_LOG_TRIVIAL(debug) << "[Limit] New limit [" << hex << limit.min << "-MAX]";
+  BOOST_LOG_TRIVIAL(debug) << "[Limit] nBytes: " << limit.getNBytes();
   return limit;
 }
 
-Limit parseLimitMinMax(const uint32_t min_, const uint32_t max_, const int nBytes) {
-  Limit limit{limit_min_max, min_, max_, nBytes};
+Limit parseLimitMinMax(const uint32_t min_, const uint32_t max_, const uint32_t p_nBytes) {
+  Limit limit{limit_min_max, min_, max_, p_nBytes};
   if (checkIfLimitIsNotValid(min_, max_)) {
     auto error = generateError(fatal, unrecognizedMinGreaterThanMaxAtLimit, 0);
     limit.addError(error);
@@ -39,7 +43,8 @@ Limit parseLimitMinMax(const uint32_t min_, const uint32_t max_, const int nByte
     cout << "Min-Max: " << (int)limit.min << "-" << (int)limit.max << endl;
   }
 
-  BOOST_LOG_TRIVIAL(info) << "[limits] New limit [" << hex << limit.min << "-" << hex << limit.max << "]";
+  BOOST_LOG_TRIVIAL(debug) << "[limits] New limit [" << hex << limit.min << "-" << hex << limit.max << "]";
+  BOOST_LOG_TRIVIAL(debug) << "[Limit] nBytes: " << limit.getNBytes();
   return limit;
 }
 

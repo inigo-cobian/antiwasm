@@ -26,8 +26,8 @@ struct Limit : public ContentBlock, Displayable {
    * @param p_min
    * @param p_nBytes_
    */
-  Limit(limit_types p_limitTypes, uint32_t p_min, int p_nBytes_)
-      : type(p_limitTypes), min(p_min), max(0), nBytes(p_nBytes_) {}
+  Limit(limit_types p_limitTypes, uint32_t p_min, uint32_t p_nBytes_)
+      : type(p_limitTypes), min(p_min), max(0) { setNBytes(p_nBytes_); }
 
   /**
    * Constructor for limits with type min-max
@@ -36,8 +36,8 @@ struct Limit : public ContentBlock, Displayable {
    * @param p_max
    * @param p_nBytes_
    */
-  Limit(limit_types p_limitTypes, uint32_t p_min, uint32_t p_max, int p_nBytes_)
-      : type(p_limitTypes), min(p_min), max(p_max), nBytes(p_nBytes_) {}
+  Limit(limit_types p_limitTypes, uint32_t p_min, uint32_t p_max, uint32_t p_nBytes_)
+      : type(p_limitTypes), min(p_min), max(p_max) { setNBytes(p_nBytes_); }
   void displayError() override;
   void displayContentInfo() override;
 };
@@ -59,7 +59,7 @@ Limit parseLimits(const uint8_t *limitSection);
  * @param min_
  * @return
  */
-Limit parseLimitMin(const uint32_t min_, const int nBytes);
+Limit parseLimitMin(uint32_t min_, uint32_t p_nBytes);
 
 /**
  * Generates a limit [min-max].
@@ -68,7 +68,7 @@ Limit parseLimitMin(const uint32_t min_, const int nBytes);
  * @param max_
  * @return
  */
-Limit parseLimitMinMax(uint32_t min_, const uint32_t max_, const int nBytes);
+Limit parseLimitMinMax(uint32_t min_, uint32_t max_, uint32_t p_nBytes);
 
 /**
  * Generates a limit with error type.
@@ -82,7 +82,7 @@ Limit generateErrorLimit();
  * @param max_
  * @return true if the limit is not valid, false if it is
  */
-bool checkIfLimitIsNotValid(const uint32_t min_, const uint32_t max_);
+bool checkIfLimitIsNotValid(uint32_t min_, uint32_t max_);
 } // namespace antiwasm
 
 #endif

@@ -61,10 +61,22 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent) {
   for (u_int32_t i = 0; i < typesInVector; i++) {
     Functype functype = parseFunctype(&sectionContent[pointer]);
     typeSection.addFunctype(functype);
-    pointer += functype.nBytes;
+    pointer += functype.getNBytes();
     if (functype.hasError()) {
-      cout << "ERROR parseTypeSection" << endl;
-      // TODO error case
+      switch (functype.getError()->errorType) {
+      case unrecognizedHeaderAtFunctype:
+        cout << "ERROR parseTypeSection at header" << endl;
+        break;
+      case unrecognizedRT1Functype:
+        cout << "ERROR parseTypeSection at RT1" << endl;
+        break;
+      case unrecognizedRT2Functype:
+        cout << "ERROR parseTypeSection at RT2" << endl;
+        break;
+      default:
+        cout << "ERROR parseTypeSection due to unknown reason" << endl;
+        break;
+      }
       return typeSection;
     }
   }
@@ -79,10 +91,32 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent) {
   for (u_int32_t i = 0; i < importsInVector; i++) {
     Import import = parseImport(&sectionContent[pointer]);
     importSection.addImport(import);
-    pointer += import.nBytes;
+    pointer += import.getNBytes();
+    cout << "$Import nBytes: " << (int) import.getNBytes() << endl;
     if (import.hasError()) {
-      cout << "ERROR parseTypeSection" << endl;
-      // TODO error case
+      switch (import.getError()->errorType) {
+      case unrecognizedModAtImport:
+        cout << "ERROR parseImportSection at mod" << endl;
+        break;
+      case unrecognizedNameAtImport:
+        cout << "ERROR parseImportSection at name" << endl;
+        break;
+      case unrecognizedTabletypeAtImportDesc:
+        cout << "ERROR parseImportSection at tabletype" << endl;
+        break;
+      case unrecognizedMemtypeAtImportDesc:
+        cout << "ERROR parseImportSection at memtype" << endl;
+        break;
+      case unrecognizedGlobaltypeAtImportDesc:
+        cout << "ERROR parseImportSection at globaltype" << endl;
+        break;
+      case unrecognizedHeaderAtImportDesc:
+        cout << "ERROR parseImportSection at header byte" << endl;
+        break;
+      default:
+
+        cout << "memememememe" << endl;
+      }
       return importSection;
     }
   }
@@ -101,9 +135,9 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent) {
   for (u_int32_t i = 0; i < tablesInVector; i++) {
     Tabletype tabletype = parseTableType(&sectionContent[pointer]);
     if (tabletype.limit.type == limit_min) {
-      pointer += REFTYPE_SIZE + tabletype.limit.nBytes;
+      pointer += REFTYPE_SIZE + tabletype.limit.getNBytes();
     } else if (tabletype.limit.type == limit_min_max) {
-      pointer += REFTYPE_SIZE + tabletype.limit.nBytes;
+      pointer += REFTYPE_SIZE + tabletype.limit.getNBytes();
     } else {
       // TODO error case
       cout << "ErrorId at parsing tabletype" << endl;

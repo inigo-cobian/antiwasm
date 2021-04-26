@@ -29,8 +29,8 @@ enum ErrorTypes {
 
   unrecognizedModAtImport,
   unrecognizedNameAtImport,
-  unrecognizedHeaderAtImportDesc,
-  unrecognizedTypeIdxAtImportDesc [[maybe_unused]],
+  unrecognizedHeaderAtImportDesc, // TODO use
+  unrecognizedTypeIdxAtImportDesc,
   unrecognizedTabletypeAtImportDesc,
   unrecognizedMemtypeAtImportDesc,
   unrecognizedGlobaltypeAtImportDesc,
