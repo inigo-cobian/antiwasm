@@ -18,7 +18,7 @@ private:
 public:
   /**
    * Contructor.
-   * SectionId = SectionId::TableId
+   * SectionId = SectionId::Table
    * @param size
    * @param content
    * @param initialPos

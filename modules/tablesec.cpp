@@ -9,7 +9,7 @@ TableSection::~TableSection() = default;
 
 void TableSection::addTabletype(Tabletype tabletype) { tabletypeVector.push_back(tabletype); }
 
-vector<Tabletype> TableSection::getTabletypeVector() { return vector<Tabletype>(); }
+vector<Tabletype> TableSection::getTabletypeVector() { return tabletypeVector; }
 
 void TableSection::displaySectionHeaderInfo() {
   cout << "   Table | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
