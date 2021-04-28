@@ -15,8 +15,7 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
   case (SectionId::ImportId):
     return parseImportSection(sectionSize, sectionContent);
   case (SectionId::FunctionId):
-    parseFunctionSection(sectionSize, sectionContent);
-    return Section(SectionId::FunctionId, sectionSize, sectionContent, sectionPos);
+    return parseFunctionSection(sectionSize, sectionContent);
   case (SectionId::TableId):
     return parseTableSection(sectionSize, sectionContent);
   case (SectionId::MemoryId):
@@ -122,8 +121,17 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent) {
   return importSection;
 }
 
-int parseFunctionSection(int sizeOfSection, uint8_t *sectionContent) {
-  return 0; // TODO
+FuncSection parseFunctionSection(int sizeOfSection, uint8_t *sectionContent) {
+  u_int32_t typeidxInVector = sectionContent[0];
+  unsigned int pointer = 1;
+  FuncSection funcSection(sizeOfSection, sectionContent, 0); // TODO position
+  for (u_int32_t i = 0; i < typeidxInVector; i++) {
+    uint32_t typeidx = transformLeb128ToUnsignedInt32(&sectionContent[pointer]);
+    pointer += sizeOfLeb128(&sectionContent[pointer]);
+    funcSection.addTypeidx(typeidx);
+  }
+  funcSection.displaySectionContentInfo();
+  return funcSection;
 }
 
 TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent) {

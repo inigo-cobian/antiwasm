@@ -4,6 +4,7 @@
 #define BOOST_LOG_DYN_LINK 1
 
 #include "contentBlock.hpp"
+#include "funcsec.cpp"
 #include "importsec.hpp"
 #include "leb128.hpp"
 #include "memsec.hpp"
@@ -55,7 +56,7 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent);
  * @param sectionContent
  * @return The parsed Function section.
  */
-int parseFunctionSection(int sizeOfSection, uint8_t *sectionContent);
+FuncSection parseFunctionSection(int sizeOfSection, uint8_t *sectionContent);
 
 /**
  * Parses a TableId section and generates its instance.

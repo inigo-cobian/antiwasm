@@ -2,8 +2,8 @@
 #define ANTIWASM_FUNCSEC_HPP
 
 #include "section.hpp"
-namespace antiwasm {
 
+namespace antiwasm {
 class FuncSection : public Section {
 private:
   vector<uint32_t> typeidxVector;
@@ -43,6 +43,6 @@ public:
   void displaySectionContentInfo(); // override
 };
 
-}
+} // namespace antiwasm
 
 #endif // ANTIWASM_FUNCSEC_HPP
