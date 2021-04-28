@@ -34,7 +34,7 @@ void ImportSection::displaySectionContentInfo() {
       importAsText << " " << import.importDesc.tabletype->getAsText() << "\n";
       break;
     case ImportMemtype:
-      // importAsText << " " << import.importDesc.memtype->getAsText() << "\n";
+      importAsText << " " << import.importDesc.memtype->getAsText() << "\n";
       break;
     case ImportGlobaltype:
       // importAsText << " " << import.importDesc.globaltype->getAsText() << "\n";

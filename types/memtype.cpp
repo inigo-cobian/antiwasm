@@ -18,4 +18,15 @@ Memtype parseMemType(const uint8_t *memTypeContent) {
   }
   return memtype;
 }
+string Memtype::getAsText() const {
+  stringstream memtypeAsText;
+  memtypeAsText << "( memory $index" << " "; // TODO index
+  if (limit.type == limit_min) {
+    memtypeAsText << limit.min << " )\n";
+  } else if (limit.type == limit_min_max) {
+    memtypeAsText << limit.min << " " << limit.max << " )\n";
+  }
+  cout << memtypeAsText.str() << endl;
+
+}
 } // namespace antiwasm
