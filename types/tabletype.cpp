@@ -32,4 +32,15 @@ Tabletype parseTableType(const uint8_t *tableTypeContent) {
 
   return tabletype;
 }
+string Tabletype::getAsText() const {
+  stringstream tabletypeAsText;
+  tabletypeAsText << "( table $index" << " "; // TODO ¿index?
+  if (limit.type == limit_min) {
+    tabletypeAsText << limit.min;
+  } else if (limit.type == limit_min_max) {
+    tabletypeAsText << limit.min << " " << limit.max;
+  }
+  tabletypeAsText << " " << getReftypeAsText(reftype) << " )\n";
+  return tabletypeAsText.str();
+}
 } // namespace antiwasm
