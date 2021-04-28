@@ -5,31 +5,26 @@ Import parseImport(const uint8_t *importContent) {
   // Parse mod as UTF8
   auto sizeOfMod = transformLeb128ToUnsignedInt32(importContent);
   size_t pointer = sizeOfLeb128(importContent);
-  cout << "$Imp.Mod.Vec: " << pointer << endl;
   auto mod = parseUTF8Name(&importContent[pointer], sizeOfMod);
   pointer += sizeOfMod;
-  cout << "$Imp.Mod.Str: " << dec << pointer << endl;
-  cout << "$Mod: " << mod.name << endl;
+  BOOST_LOG_TRIVIAL(debug) << "[Import] Mod: " << mod.name;
 
   // Parse name as UTF8
   auto sizeOfName = transformLeb128ToUnsignedInt32(&importContent[pointer]);
   pointer += sizeOfLeb128(importContent);
-  cout << "$Imp.Name.Vec: " << pointer << endl;
   auto indexName = pointer;
   auto name = parseUTF8Name(&importContent[pointer], sizeOfName);
   pointer += sizeOfName;
-  cout << "$Imp.Name.Str: " << pointer << endl;
-  cout << "$Name: " << name.name << endl;
+  BOOST_LOG_TRIVIAL(debug) << "[Import] Name: " << name.name;
 
   auto indexImportDesc = pointer;
   auto type = parseImportDescType(importContent[pointer]);
   pointer++;
-  cout << "type: " << type << endl;
-  cout << "typepos: " << dec << pointer << endl;
+  BOOST_LOG_TRIVIAL(debug) << "[Import] type: " << type;
 
   Import import{mod, name};
 
-  import.setNBytes(pointer); // TODO move to a global var ?
+  import.setNBytes(pointer);
 
   import.addImportDesc(type, importContent);
 
@@ -68,7 +63,7 @@ Import parseImport(const uint8_t *importContent) {
     import.addError(error);
   }
 
-  cout << "$import.nBytes: " << import.getNBytes() << endl << endl << endl;
+  cout << "[Import] nBytes: " << import.getNBytes();
 
   return import;
 }
@@ -84,7 +79,7 @@ ImportDescType parseImportDescType(const uint8_t importDescTypeContent) {
   case ImportGlobaltype:
     return ImportGlobaltype;
   default:
-    cout << "Unrecognized: " << hex << (int)importDescTypeContent << endl;
+    BOOST_LOG_TRIVIAL(debug) << "[Import] Unrecognized: " << hex << (int)importDescTypeContent;
     return invalidImportDescType;
   }
 }
@@ -93,9 +88,7 @@ void Import::addImportDesc(ImportDescType type, const uint8_t *importDescContent
   switch (type) {
   case ImportFunc: {
     importDesc.typeIdx = transformLeb128ToUnsignedInt32(importDescContent);
-    cout << "before: " << getNBytes() << endl;
     setNBytes(getNBytes() + sizeOfLeb128(importDescContent));
-    cout << "after: " << getNBytes() << endl;
   } break;
   case ImportTable: { // TODO explain that the braces are to avoid crosses initialization of
     auto tabletype = parseTableType(importDescContent);
