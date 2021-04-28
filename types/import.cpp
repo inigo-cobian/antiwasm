@@ -26,7 +26,7 @@ Import parseImport(const uint8_t *importContent) {
 
   import.setNBytes(pointer);
 
-  import.addImportDesc(type, importContent);
+  import.addImportDesc(type, &importContent[pointer]);
 
   if (mod.hasError()) {
     auto error = generateError(fatal, unrecognizedModAtImport, 0);
