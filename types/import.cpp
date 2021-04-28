@@ -63,7 +63,7 @@ Import parseImport(const uint8_t *importContent) {
     import.addError(error);
   }
 
-  cout << "[Import] nBytes: " << import.getNBytes();
+  BOOST_LOG_TRIVIAL(debug) << "[Import] nBytes: " << import.getNBytes();
 
   return import;
 }
