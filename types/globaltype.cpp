@@ -17,11 +17,14 @@ Globaltype parseGlobaltype(const uint8_t *globaltypeContent) {
   return globaltype;
 }
 
-void Globaltype::displayContentInfo() {
-  // TODO
-}
+string Globaltype::getAsText() const {
+  stringstream globalAsText;
+  globalAsText << "( global (" ;
+  if(mut == var_) {
+    globalAsText << "mut ";
+  } // constants are implicit
+  globalAsText << valtype.getAsText() << " ) )";
 
-void Globaltype::displayError() {
-  // TODO
+  return globalAsText.str();
 }
 } // namespace antiwasm

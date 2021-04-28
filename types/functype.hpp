@@ -13,10 +13,6 @@ struct Functype : public ContentBlock {
   Resulttype parameterType;
   // TODO check if this name has the same meaning in the docs
   Resulttype returnType;
-  int nBytes = 0;
-
-  void displayError() override;
-  void displayContentInfo() override;
 };
 
 const unsigned int BYTES_HEADER_FUNCTYPE = 1;

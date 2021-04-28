@@ -7,44 +7,43 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
   BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << hex << (unsigned int)sectionId
                            << "] with size " << hex << (unsigned int)sectionSize;
   switch (sectionId) {
-  case (SectionId::Custom):
+  case (SectionId::CustomId):
     parseCustomSection(sectionSize, sectionContent);
-    return Section(SectionId::Custom, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Type):
+    return Section(SectionId::CustomId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::TypeId):
     return parseTypeSection(sectionSize, sectionContent);
-  case (SectionId::Import):
-    parseImportSection(sectionSize, sectionContent);
-    return Section(SectionId::Import, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Function):
+  case (SectionId::ImportId):
+    return parseImportSection(sectionSize, sectionContent);
+  case (SectionId::FunctionId):
     parseFunctionSection(sectionSize, sectionContent);
-    return Section(SectionId::Function, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Table):
+    return Section(SectionId::FunctionId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::TableId):
     return parseTableSection(sectionSize, sectionContent);
-  case (SectionId::Memory):
+  case (SectionId::MemoryId):
     return parseMemorySection(sectionSize, sectionContent);
-  case (SectionId::Global):
+  case (SectionId::GlobalId):
     parseGlobalSection(sectionSize, sectionContent);
-    return Section(SectionId::Global, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Export):
+    return Section(SectionId::GlobalId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::ExportId):
     parseExportSection(sectionSize, sectionContent);
-    return Section(SectionId::Export, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Start):
+    return Section(SectionId::ExportId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::StartId):
     parseStartSection(sectionSize, sectionContent);
-    return Section(SectionId::Start, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Element):
+    return Section(SectionId::StartId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::ElementId):
     parseElementSection(sectionSize, sectionContent);
-    return Section(SectionId::Element, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Code):
+    return Section(SectionId::ElementId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::CodeId):
     parseCodeSection(sectionSize, sectionContent);
-    return Section(SectionId::Code, sectionSize, sectionContent, sectionPos);
-  case (SectionId::Data):
+    return Section(SectionId::CodeId, sectionSize, sectionContent, sectionPos);
+  case (SectionId::DataId):
     parseDataSection(sectionSize, sectionContent);
-    return Section(SectionId::Data, sectionSize, sectionContent, sectionPos);
+    return Section(SectionId::DataId, sectionSize, sectionContent, sectionPos);
   default:
     // TODO pretty error message
-    BOOST_LOG_TRIVIAL(error) << "[module_parser] Error at section " << hex << (unsigned int)sectionId
-                             << " with size " << hex << sectionSize;
-    Section section = Section(SectionId::Error, sectionSize, sectionContent, 0);
+    BOOST_LOG_TRIVIAL(error) << "[module_parser] ErrorId at section " << hex << (unsigned int)sectionId << " with size "
+                             << hex << sectionSize;
+    Section section = Section(SectionId::ErrorId, sectionSize, sectionContent, 0);
     auto error = generateError(fatal, wrongSectionId, 0);
     section.addError(error);
     return section;
@@ -62,10 +61,22 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent) {
   for (u_int32_t i = 0; i < typesInVector; i++) {
     Functype functype = parseFunctype(&sectionContent[pointer]);
     typeSection.addFunctype(functype);
-    pointer += functype.nBytes;
+    pointer += functype.getNBytes();
     if (functype.hasError()) {
-      cout << "ERROR parseTypeSection" << endl;
-      // TODO error case
+      switch (functype.getError()->errorType) {
+      case unrecognizedHeaderAtFunctype:
+        cout << "ERROR parseTypeSection at header" << endl;
+        break;
+      case unrecognizedRT1Functype:
+        cout << "ERROR parseTypeSection at RT1" << endl;
+        break;
+      case unrecognizedRT2Functype:
+        cout << "ERROR parseTypeSection at RT2" << endl;
+        break;
+      default:
+        cout << "ERROR parseTypeSection due to unknown reason" << endl;
+        break;
+      }
       return typeSection;
     }
   }
@@ -73,8 +84,42 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent) {
   return typeSection;
 }
 
-int parseImportSection(int sizeOfSection, uint8_t *sectionContent) {
-  return 0; // TODO
+ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent) {
+  auto importsInVector = transformLeb128ToUnsignedInt32(sectionContent);
+  unsigned int pointer = sizeOfLeb128(sectionContent);
+  ImportSection importSection(sizeOfSection, sectionContent, 0); // TODO position
+  for (u_int32_t i = 0; i < importsInVector; i++) {
+    Import import = parseImport(&sectionContent[pointer]);
+    importSection.addImport(import);
+    pointer += import.getNBytes();
+    if (import.hasError()) {
+      switch (import.getError()->errorType) {
+      case unrecognizedModAtImport:
+        cout << "ERROR parseImportSection at mod" << endl;
+        break;
+      case unrecognizedNameAtImport:
+        cout << "ERROR parseImportSection at name" << endl;
+        break;
+      case unrecognizedTabletypeAtImportDesc:
+        cout << "ERROR parseImportSection at tabletype" << endl;
+        break;
+      case unrecognizedMemtypeAtImportDesc:
+        cout << "ERROR parseImportSection at memtype" << endl;
+        break;
+      case unrecognizedGlobaltypeAtImportDesc:
+        cout << "ERROR parseImportSection at globaltype" << endl;
+        break;
+      case unrecognizedHeaderAtImportDesc:
+        cout << "ERROR parseImportSection at header byte" << endl;
+        break;
+      default:
+        cout << "$$$$Unknown Error" << endl;
+      }
+      return importSection;
+    }
+  }
+  importSection.displaySectionContentInfo();
+  return importSection;
 }
 
 int parseFunctionSection(int sizeOfSection, uint8_t *sectionContent) {
@@ -88,12 +133,12 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent) {
   for (u_int32_t i = 0; i < tablesInVector; i++) {
     Tabletype tabletype = parseTableType(&sectionContent[pointer]);
     if (tabletype.limit.type == limit_min) {
-      pointer += REFTYPE_SIZE + tabletype.limit.nBytes;
+      pointer += REFTYPE_SIZE + tabletype.limit.getNBytes();
     } else if (tabletype.limit.type == limit_min_max) {
-      pointer += REFTYPE_SIZE + tabletype.limit.nBytes;
+      pointer += REFTYPE_SIZE + tabletype.limit.getNBytes();
     } else {
       // TODO error case
-      cout << "Error at parsing tabletype" << endl;
+      cout << "ErrorId at parsing tabletype" << endl;
     }
     tableSection.addTabletype(tabletype);
   }

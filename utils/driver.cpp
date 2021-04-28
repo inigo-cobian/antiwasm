@@ -69,19 +69,6 @@ uint8_t *Driver::GetNextSectionHeader() {
   return reinterpret_cast<uint8_t *>(buffer);
 }
 
-uint8_t *Driver::GetUTF8String() // TODO not ready to be used
-{
-  BOOST_LOG_TRIVIAL(debug) << "[Driver] Getting a UTF8 String";
-  uint8_t delimiter = 0x03;
-  string temp;
-
-  instance_->wasmFile_.seekg(instance_->pointer_, ios::beg);
-  istream &stream = instance_->wasmFile_;
-  getline(stream, temp);
-
-  return nullptr;
-}
-
 void Driver::CloseFile() { instance_->wasmFile_.close(); }
 
 bool Driver::HasReachedFileSize(size_t nextBytesSize) {

@@ -10,7 +10,7 @@ Section Module::getSection(SectionId sectionId) {
   if (sections_.contains(sectionId)) {
     return sections_.at(sectionId);
   } else {
-    return Section(SectionId::Error, 0, nullptr, 0);
+    return Section(SectionId::ErrorId, 0, nullptr, 0);
   }
 }
 

@@ -10,7 +10,7 @@ BOOST_AUTO_TEST_SUITE(section_test)
 BOOST_AUTO_TEST_CASE(Section_canBeCreated) {
   int sectionSize = 20;
   int sectionIndex = 128;
-  SectionId sectionId = SectionId::Type;
+  SectionId sectionId = SectionId::TypeId;
   auto *sectionContentMock = new uint8_t[20];
 
   Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(Section_canBeCreated) {
 BOOST_AUTO_TEST_CASE(getSectionId_returnsCorrectSectionId) {
   int sectionSize = 20;
   int sectionIndex = 128;
-  SectionId sectionId = SectionId::Type;
+  SectionId sectionId = SectionId::TypeId;
   auto *sectionContentMock = new uint8_t[20];
   Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
 
@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE(getSectionId_returnsCorrectSectionId) {
 BOOST_AUTO_TEST_CASE(getSize_returnsCorrectSize) {
   int sectionSize = 20;
   int sectionIndex = 128;
-  SectionId sectionId = SectionId::Type;
+  SectionId sectionId = SectionId::TypeId;
   auto *sectionContentMock = new uint8_t[20];
   Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
 
@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(getSize_returnsCorrectSize) {
 BOOST_AUTO_TEST_CASE(getContent_returnsAPointerWithTheSameInfo) {
   int sectionSize = 4;
   int sectionIndex = 128;
-  SectionId sectionId = SectionId::Type;
+  SectionId sectionId = SectionId::TypeId;
   auto *sectionContent = new uint8_t[sectionSize];
   sectionContent[0] = 0xCA;
   sectionContent[1] = 0xFE;
@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_CASE(getContent_returnsAPointerWithTheSameInfo) {
 BOOST_AUTO_TEST_CASE(getContent_returnsAPointerToTheSameDirection) {
   int sectionSize = 4;
   int sectionIndex = 128;
-  SectionId sectionId = SectionId::Type;
+  SectionId sectionId = SectionId::TypeId;
   auto *sectionContent = new uint8_t[sectionSize];
   sectionContent[0] = 0xCA;
   sectionContent[1] = 0xFE;
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE(getContent_returnsAPointerToTheSameDirection) {
 BOOST_AUTO_TEST_CASE(getInitialPos_returnsTheValue) {
   int sectionSize = 4;
   int sectionIndex = 128;
-  SectionId sectionId = SectionId::Type;
+  SectionId sectionId = SectionId::TypeId;
   auto *sectionContent = new uint8_t[sectionSize];
   Section section(sectionId, sectionSize, sectionContent, sectionIndex);
 
@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE(getInitialPos_returnsTheValue) {
 BOOST_AUTO_TEST_CASE(errorsCanBeAdded) {
   int sectionSize = 20;
   int sectionIndex = 128;
-  SectionId sectionId = SectionId::Type;
+  SectionId sectionId = SectionId::TypeId;
   auto *sectionContentMock = new uint8_t[20];
   Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
   auto mockError = generateError(ErrorSeverity::warning, ErrorTypes::unknown, 0);
@@ -102,7 +102,7 @@ BOOST_AUTO_TEST_CASE(errorsCanBeAdded) {
 BOOST_AUTO_TEST_CASE(displayError) {
   int sectionSize = 20;
   int sectionIndex = 128;
-  SectionId sectionId = SectionId::Type;
+  SectionId sectionId = SectionId::TypeId;
   auto *sectionContentMock = new uint8_t[20];
   Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
 
@@ -112,7 +112,7 @@ BOOST_AUTO_TEST_CASE(displayError) {
 BOOST_AUTO_TEST_CASE(displaySectionHeaderInfo) {
   int sectionSize = 20;
   int sectionIndex = 128;
-  SectionId sectionId = SectionId::Type;
+  SectionId sectionId = SectionId::TypeId;
   auto *sectionContentMock = new uint8_t[20];
   Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
 

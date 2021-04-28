@@ -25,7 +25,18 @@ enum ErrorTypes {
   unrecognizedLimitHeaderAtTabletype,
   unrecognizedMinGreaterThanMaxLimitAtTabletype,
   unrecognizedValtypeAtGlobaltype,
-  unrecognizedMutAtGlobaltype
+  unrecognizedMutAtGlobaltype,
+
+  unrecognizedModAtImport,
+  unrecognizedNameAtImport,
+  unrecognizedHeaderAtImportDesc, // TODO use
+  unrecognizedTypeIdxAtImportDesc,
+  unrecognizedTabletypeAtImportDesc,
+  unrecognizedMemtypeAtImportDesc,
+  unrecognizedGlobaltypeAtImportDesc,
+
+  unrecognizedUTF8LeadingByte,
+  unrecognizedUTF8ContByte
 };
 
 enum ErrorSeverity { fatal, warning, noError };

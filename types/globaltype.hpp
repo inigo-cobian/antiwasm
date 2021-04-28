@@ -3,6 +3,7 @@
 
 #include "mut.hpp"
 #include "valtype.hpp"
+#include <sstream>
 
 namespace antiwasm {
 
@@ -10,8 +11,7 @@ struct Globaltype : public ContentBlock {
   Valtype valtype;
   Mut mut;
 
-  void displayError() override;
-  void displayContentInfo() override;
+  string getAsText() const;
 };
 
 /**

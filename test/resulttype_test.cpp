@@ -36,28 +36,4 @@ BOOST_AUTO_TEST_CASE(parseResulttype_errorResultType) {
   BOOST_CHECK_EQUAL(true, returnResulttype.hasError());
 }
 
-BOOST_AUTO_TEST_CASE(displayResulttype_doesNotFail) {
-  auto sizeOfValtypeVec = 3;
-  auto *resulttypeContent = new uint8_t[4];
-  resulttypeContent[0] = sizeOfValtypeVec;
-  resulttypeContent[1] = Numtype::i32;
-  resulttypeContent[2] = Reftype::externref;
-  resulttypeContent[3] = Numtype::f64;
-  auto returnResulttype = antiwasm::parseResulttype(resulttypeContent);
-
-  returnResulttype.displayContentInfo();
-}
-
-BOOST_AUTO_TEST_CASE(displayError_doesNotFail) {
-  auto sizeOfValtypeVec = 3;
-  auto *resulttypeContent = new uint8_t[4];
-  resulttypeContent[0] = sizeOfValtypeVec;
-  resulttypeContent[1] = Numtype::i32;
-  resulttypeContent[2] = 0xCA; // invalid
-  resulttypeContent[3] = Numtype::f64;
-  auto returnResulttype = antiwasm::parseResulttype(resulttypeContent);
-
-  returnResulttype.displayError();
-}
-
 BOOST_AUTO_TEST_SUITE_END() // resulttype_test

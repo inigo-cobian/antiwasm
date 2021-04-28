@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_CASE(Module_returnsItsSize) {
 
 BOOST_AUTO_TEST_CASE(Module_returnsASectionWithTheRequestedId) {
   Module module(20);
-  SectionId sectionId = SectionId::Type;
+  SectionId sectionId = SectionId::TypeId;
   Section section(sectionId, 10, nullptr, 0);
   module.addSection(section);
 
@@ -30,14 +30,14 @@ BOOST_AUTO_TEST_CASE(Module_returnsASectionWithTheRequestedId) {
 BOOST_AUTO_TEST_CASE(Module_returnsAnErrorSectionIfNotDefinedtCreated) {
   Module module(20);
 
-  auto returnValue = module.getSection(SectionId::Type);
+  auto returnValue = module.getSection(SectionId::TypeId);
 
-  BOOST_CHECK_EQUAL(SectionId::Error, returnValue.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::ErrorId, returnValue.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(containsSection_returnsTrueIfSectionExists) {
   Module module(20);
-  SectionId sectionId = SectionId::Type;
+  SectionId sectionId = SectionId::TypeId;
   Section section(sectionId, 10, nullptr, 0);
   module.addSection(section);
 
@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE(containsSection_returnsTrueIfSectionExists) {
 BOOST_AUTO_TEST_CASE(containsSection_returnsFalseIfSectionDoesNotExist) {
   Module module(20);
 
-  auto returnValue = module.containsSection(SectionId::Type);
+  auto returnValue = module.containsSection(SectionId::TypeId);
 
   BOOST_CHECK_EQUAL(false, returnValue);
 }

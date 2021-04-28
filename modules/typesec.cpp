@@ -3,7 +3,7 @@
 namespace antiwasm {
 
 TypeSection::TypeSection(int size, uint8_t *content, int initialPos)
-    : Section(SectionId::Type, size, content, initialPos) {}
+    : Section(SectionId::TypeId, size, content, initialPos) {}
 
 TypeSection::~TypeSection() {}
 
@@ -16,11 +16,11 @@ void TypeSection::displaySectionHeaderInfo() {
 }
 
 void TypeSection::displaySectionContentInfo() {
-  cout << "    Type | start=" << hex << initialPos_ << " size=" << hex << size_
-            << " (" << functypeVector.size() << ") functypes" << endl;
+  cout << "    Type | start=" << hex << initialPos_ << " size=" << hex << size_ << " (" << functypeVector.size()
+       << ") functypes" << endl;
 
   size_t index = 0;
-  for (const auto& functype : functypeVector) {
+  for (const auto &functype : functypeVector) {
     stringstream functypeAsText;
     bool isEmptyFunc = true;
     functypeAsText << "( func $" << index++ << " ";
@@ -40,7 +40,7 @@ void TypeSection::displaySectionContentInfo() {
 string TypeSection::getParamAsText(const Functype &functype) const {
   stringstream paramText;
   paramText << "\n ( param ";
-  for(const auto& paramValtype : functype.parameterType.valtypeVector) {
+  for (const auto &paramValtype : functype.parameterType.valtypeVector) {
     paramText << paramValtype.getAsText() << " ";
   }
   paramText << ")";
@@ -50,7 +50,7 @@ string TypeSection::getParamAsText(const Functype &functype) const {
 string TypeSection::getResultAsText(const Functype &functype) const {
   stringstream resultText;
   resultText << "\n ( result ";
-  for(const auto& resultValtype : functype.returnType.valtypeVector) {
+  for (const auto &resultValtype : functype.returnType.valtypeVector) {
     resultText << resultValtype.getAsText() + " ";
   }
   resultText << ")";

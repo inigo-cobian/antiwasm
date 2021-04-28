@@ -2,6 +2,7 @@
 #define ANTIWASM_MEMTYPE_HPP
 
 #include "limits.hpp"
+#include <sstream>
 
 using namespace std;
 namespace antiwasm {
@@ -10,8 +11,7 @@ struct Memtype : public ContentBlock {
   Limit limit;
 
   Memtype(Limit p_limit) : limit(p_limit) {}
-  void displayError() override;
-  void displayContentInfo() override;
+  string getAsText() const;
 };
 
 /**

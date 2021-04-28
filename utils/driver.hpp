@@ -67,12 +67,6 @@ public:
   static uint8_t *GetNextSectionHeader();
 
   /**
-   * TODO
-   * @return
-   */
-  static uint8_t *GetUTF8String();
-
-  /**
    * Opens the file at the given position.
    * @param fileName
    * @return true if the file exists, false if it doesn't.

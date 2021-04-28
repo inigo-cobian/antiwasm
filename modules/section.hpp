@@ -2,6 +2,7 @@
 #define SECTION_HPP
 
 #include "contentBlock.hpp"
+#include "displayable.hpp"
 #include "error_manager.hpp"
 #include <iostream>
 #include <memory>
@@ -11,22 +12,22 @@ using namespace std;
 namespace antiwasm {
 
 enum SectionId {
-  Custom = 0x00,
-  Type = 0x01,
-  Import = 0x02,
-  Function = 0x03,
-  Table = 0x04,
-  Memory = 0x05,
-  Global = 0x06,
-  Export = 0x07,
-  Start = 0x08,
-  Element = 0x09,
-  Code = 0x0A,
-  Data = 0x0B,
-  Error = 0xFF
+  CustomId = 0x00,
+  TypeId = 0x01,
+  ImportId = 0x02,
+  FunctionId = 0x03,
+  TableId = 0x04,
+  MemoryId = 0x05,
+  GlobalId = 0x06,
+  ExportId = 0x07,
+  StartId = 0x08,
+  ElementId = 0x09,
+  CodeId = 0x0A,
+  DataId = 0x0B,
+  ErrorId = 0xFF
 };
 
-class Section : public ContentBlock { // TODO make virtual
+class Section : public ContentBlock, Displayable { // TODO make virtual
 protected:
   SectionId sectionId_;
   int size_;

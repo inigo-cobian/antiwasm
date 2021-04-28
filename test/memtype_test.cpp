@@ -40,14 +40,4 @@ BOOST_AUTO_TEST_CASE(parseMemType_errorCaseMinGreaterThanMax) {
   BOOST_CHECK_EQUAL(true, returnMemtype.hasError());
 }
 
-BOOST_AUTO_TEST_CASE(displayMemcase_errorCase) {
-  auto *memtypeContent = new uint8_t[3];
-  memtypeContent[0] = 0xCF; // Does not exist
-  memtypeContent[1] = 0x05;
-  memtypeContent[2] = 0x08;
-  Memtype returnMemtype = antiwasm::parseMemType(memtypeContent);
-
-  returnMemtype.displayContentInfo();
-}
-
 BOOST_AUTO_TEST_SUITE_END() // memtype_test
