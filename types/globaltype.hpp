@@ -3,12 +3,15 @@
 
 #include "mut.hpp"
 #include "valtype.hpp"
+#include <sstream>
 
 namespace antiwasm {
 
 struct Globaltype : public ContentBlock {
   Valtype valtype;
   Mut mut;
+
+  string getAsText() const;
 };
 
 /**

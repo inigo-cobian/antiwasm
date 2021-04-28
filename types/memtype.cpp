@@ -26,7 +26,6 @@ string Memtype::getAsText() const {
   } else if (limit.type == limit_min_max) {
     memtypeAsText << limit.min << " " << limit.max << " )\n";
   }
-  cout << memtypeAsText.str() << endl;
-
+  return memtypeAsText.str();
 }
 } // namespace antiwasm
