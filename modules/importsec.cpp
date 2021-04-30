@@ -10,7 +10,7 @@ ImportSection::~ImportSection() = default;
 
 void ImportSection::addImport(const Import &import) { importVector.push_back(import); }
 
-vector<Memtype> ImportSection::getImportVector() { return vector<Memtype>(); }
+vector<Import> ImportSection::getImportVector() { return importVector; }
 
 void ImportSection::displaySectionHeaderInfo() {
   cout << "  Import | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;

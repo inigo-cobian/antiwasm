@@ -39,7 +39,7 @@ public:
    * Gets the import vector
    * @return importVector
    */
-  vector<Memtype> getImportVector();
+  vector<Import> getImportVector();
 
   /**
    * Displays the header information for the import section.
