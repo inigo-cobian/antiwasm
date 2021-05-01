@@ -11,7 +11,7 @@ MemorySection::~MemorySection() = default;
 
 void MemorySection::addMemtype(Memtype memtype) { memtypeVector.push_back(memtype); }
 
-vector<Memtype> MemorySection::getMemtypeVector() { return vector<Memtype>(); }
+vector<Memtype> MemorySection::getMemtypeVector() { return memtypeVector; }
 
 void MemorySection::displaySectionHeaderInfo() {
   cout << "  Memory | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
