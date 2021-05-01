@@ -10,10 +10,12 @@ BOOST_AUTO_TEST_SUITE(tablesec_test)
 uint8_t *validTabletypeGenerator() {
   auto limitType = limit_types::limit_min_max;
 
-  auto *memtypeContent = new uint8_t[3];
-  memtypeContent[0] = limitType;
-  memtypeContent[1] = 0x12, memtypeContent[2] = 0x5F;
-  return memtypeContent;
+  auto *tabletypeContent = new uint8_t[4];
+  tabletypeContent[0] = limitType;
+  tabletypeContent[1] = 0x12, tabletypeContent[2] = 0x5F;
+  tabletypeContent[3] = Reftype::externref;
+
+  return tabletypeContent;
 }
 
 BOOST_AUTO_TEST_CASE(tablesec_constructor) {
@@ -45,7 +47,6 @@ BOOST_AUTO_TEST_CASE(displaySectionHeaderInfo_doesNotFail) {
   TableSection tableSection(size, content, initialPos);
 
   tableSection.displaySectionHeaderInfo();
-
 }
 
 BOOST_AUTO_TEST_CASE(displaySectionContentInfo_doesNotFail) {
@@ -55,7 +56,6 @@ BOOST_AUTO_TEST_CASE(displaySectionContentInfo_doesNotFail) {
   TableSection tableSection(size, content, initialPos);
 
   tableSection.displaySectionHeaderInfo();
-
 }
 
 BOOST_AUTO_TEST_SUITE_END() // tablesec_test

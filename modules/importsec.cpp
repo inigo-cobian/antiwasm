@@ -37,7 +37,7 @@ void ImportSection::displaySectionContentInfo() {
       importAsText << " " << import.importDesc.memtype->getAsText() << "\n";
       break;
     case ImportGlobaltype:
-       importAsText << " " << import.importDesc.globaltype->getAsText() << "\n";
+      importAsText << " " << import.importDesc.globaltype->getAsText() << "\n";
       break;
     default:
       cout << "error"; // TODO

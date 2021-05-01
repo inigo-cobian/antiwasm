@@ -19,8 +19,8 @@ Globaltype parseGlobaltype(const uint8_t *globaltypeContent) {
 
 string Globaltype::getAsText() const {
   stringstream globalAsText;
-  globalAsText << "( global (" ;
-  if(mut == var_) {
+  globalAsText << "( global (";
+  if (mut == var_) {
     globalAsText << "mut ";
   } // constants are implicit
   globalAsText << valtype.getAsText() << " ) )";

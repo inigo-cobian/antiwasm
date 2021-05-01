@@ -45,7 +45,6 @@ BOOST_AUTO_TEST_CASE(displaySectionHeaderInfo_doesNotFail) {
   MemorySection memorySection(size, content, initialPos);
 
   memorySection.displaySectionHeaderInfo();
-
 }
 
 BOOST_AUTO_TEST_CASE(displaySectionContentInfo_doesNotFail) {
@@ -55,7 +54,6 @@ BOOST_AUTO_TEST_CASE(displaySectionContentInfo_doesNotFail) {
   MemorySection memorySection(size, content, initialPos);
 
   memorySection.displaySectionHeaderInfo();
-
 }
 
 BOOST_AUTO_TEST_SUITE_END() // memsec_test

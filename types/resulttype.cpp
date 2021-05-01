@@ -22,7 +22,7 @@ Resulttype parseResulttype(const uint8_t *resultTypeContent) {
     }
     pointer++;
   }
-  resulttype.setNBytes( sizeOfLeb128(resultTypeContent) + elementsInResulttype );
+  resulttype.setNBytes(sizeOfLeb128(resultTypeContent) + elementsInResulttype);
   BOOST_LOG_TRIVIAL(debug) << "[Resulttype] nBytes: " << resulttype.getNBytes();
 
   return resulttype;

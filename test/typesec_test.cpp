@@ -45,7 +45,6 @@ BOOST_AUTO_TEST_CASE(displaySectionHeaderInfo_doesNotFail) {
   TypeSection typeSection(size, content, initialPos);
 
   typeSection.displaySectionHeaderInfo();
-
 }
 
 BOOST_AUTO_TEST_CASE(displaySectionContentInfo_doesNotFail) {
@@ -55,7 +54,6 @@ BOOST_AUTO_TEST_CASE(displaySectionContentInfo_doesNotFail) {
   TypeSection typeSection(size, content, initialPos);
 
   typeSection.displaySectionHeaderInfo();
-
 }
 
 BOOST_AUTO_TEST_SUITE_END() // typesec_test
