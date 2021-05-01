@@ -58,7 +58,7 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent, int sec
   auto typesInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
   TypeSection typeSection(sizeOfSection, sectionContent, sectionPos); // TODO position
-  for (u_int32_t i = 0; i < typesInVector; i++) {
+  for (uint32_t i = 0; i < typesInVector; i++) {
     Functype functype = parseFunctype(&sectionContent[pointer]);
     typeSection.addFunctype(functype);
     pointer += functype.getNBytes();
@@ -88,7 +88,7 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent, int
   auto importsInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
   ImportSection importSection(sizeOfSection, sectionContent, sectionPos); // TODO position
-  for (u_int32_t i = 0; i < importsInVector; i++) {
+  for (uint32_t i = 0; i < importsInVector; i++) {
     Import import = parseImport(&sectionContent[pointer]);
     importSection.addImport(import);
     pointer += import.getNBytes();
@@ -126,7 +126,7 @@ FuncSection parseFunctionSection(int sizeOfSection, uint8_t *sectionContent, int
   uint32_t typeidxInVector = sectionContent[0];
   unsigned int pointer = 1;
   FuncSection funcSection(sizeOfSection, sectionContent, sectionPos); // TODO position
-  for (u_int32_t i = 0; i < typeidxInVector; i++) {
+  for (uint32_t i = 0; i < typeidxInVector; i++) {
     uint32_t typeidx = transformLeb128ToUnsignedInt32(&sectionContent[pointer]);
     pointer += sizeOfLeb128(&sectionContent[pointer]);
     funcSection.addTypeidx(typeidx);
@@ -156,11 +156,11 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent, int s
 }
 
 MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
-  u_int32_t memsInVector = sectionContent[0];
+  uint32_t memsInVector = sectionContent[0];
   unsigned int pointer = 1;
   MemorySection memorySection(sizeOfSection, sectionContent, sectionPos);
 
-  for (u_int32_t i = 0; i < memsInVector; i++) {
+  for (uint32_t i = 0; i < memsInVector; i++) {
     Memtype memtype = parseMemType(&sectionContent[pointer]);
     if (memtype.limit.type == limit_min) {
       pointer += BYTES_LIMIT_MIN;
