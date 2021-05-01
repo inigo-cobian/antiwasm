@@ -1,22 +1,10 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "tablesec.hpp"
-#include <boost/test/unit_test.hpp>
+#include "tablesec_test.hpp"
 
 using namespace antiwasm;
 
 BOOST_AUTO_TEST_SUITE(tablesec_test)
-
-uint8_t *validTabletypeGenerator() {
-  auto limitType = limit_types::limit_min_max;
-
-  auto *tabletypeContent = new uint8_t[4];
-  tabletypeContent[0] = limitType;
-  tabletypeContent[1] = 0x12, tabletypeContent[2] = 0x5F;
-  tabletypeContent[3] = Reftype::externref;
-
-  return tabletypeContent;
-}
 
 BOOST_AUTO_TEST_CASE(tablesec_constructor) {
   int size = 8;

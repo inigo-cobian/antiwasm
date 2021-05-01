@@ -1,20 +1,10 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "memsec.hpp"
-#include <boost/test/unit_test.hpp>
+#include "memsec_test.hpp"
 
 using namespace antiwasm;
 
 BOOST_AUTO_TEST_SUITE(memsec_test)
-
-uint8_t *validMemtypeGenerator() {
-  auto limitType = limit_types::limit_min_max;
-
-  auto *memtypeContent = new uint8_t[3];
-  memtypeContent[0] = limitType;
-  memtypeContent[1] = 0x12, memtypeContent[2] = 0x5F;
-  return memtypeContent;
-}
 
 BOOST_AUTO_TEST_CASE(memsec_constructor) {
   int size = 8;
