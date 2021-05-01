@@ -1,6 +1,8 @@
 #include "tabletype.hpp"
 
+using namespace std;
 namespace antiwasm {
+
 Tabletype parseTableType(const uint8_t *tableTypeContent) {
   BOOST_LOG_TRIVIAL(debug) << "[Tabletype] Parsing a new Tabletype";
 

@@ -9,14 +9,12 @@
 #include <memory>
 #include <vector>
 
-using namespace std;
-
 namespace antiwasm {
 class Module : public ContentBlock, Displayable { // TODO check if we should use ContentBlock
 private:
   int size_;
   // TODO version
-  map<const SectionId, Section> sections_;
+  std::map<const SectionId, Section> sections_;
 
 public:
   /**

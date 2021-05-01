@@ -1,5 +1,6 @@
 #include "functype.hpp"
 
+using namespace std;
 namespace antiwasm {
 
 Functype parseFunctype(const uint8_t *funcTypeContent) {

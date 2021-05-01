@@ -1,5 +1,6 @@
 #include "driver.hpp"
 
+using namespace std;
 namespace antiwasm {
 shared_ptr<Driver> Driver::instance_;
 mutex Driver::mutex_;

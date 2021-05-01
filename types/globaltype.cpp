@@ -1,5 +1,6 @@
 #include "globaltype.hpp"
 
+using namespace std;
 namespace antiwasm {
 Globaltype parseGlobaltype(const uint8_t *globaltypeContent) {
   Globaltype globaltype{};

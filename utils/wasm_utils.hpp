@@ -4,7 +4,6 @@
 #include <cstdint>
 #include <stdio.h>
 
-using namespace std;
 namespace antiwasm {
 char *bytesToHexChar(const char *signedLittleEndianBytes, int nBytes);
 

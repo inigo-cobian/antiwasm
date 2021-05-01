@@ -4,7 +4,6 @@
 #include "logging_levels.hpp"
 #include <iostream>
 
-using namespace std;
 namespace antiwasm {
 
 class Displayer { // TODO general
@@ -12,7 +11,7 @@ private:
   static LoggingLevel loggingLevel_;
 
 public:
-  static void Log(LoggingLevel minLoggingLevel, const string &logMessage);
+  static void Log(LoggingLevel minLoggingLevel, const std::string &logMessage);
 
   static void SetLoggingLevel(LoggingLevel loggingLevel);
 

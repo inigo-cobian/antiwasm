@@ -1,5 +1,6 @@
 #include "funcsec.hpp"
 
+using namespace std;
 namespace antiwasm {
 
 FuncSection::FuncSection(int size, uint8_t *content, int initialPos)

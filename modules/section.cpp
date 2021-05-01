@@ -1,5 +1,6 @@
 #include "section.hpp"
 
+using namespace std;
 namespace antiwasm {
 
 Section::Section(SectionId sectionId, int size, uint8_t *content, int initialPos) {

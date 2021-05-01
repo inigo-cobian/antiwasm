@@ -1,6 +1,8 @@
 #include "import.hpp"
 
+using namespace std;
 namespace antiwasm {
+
 Import parseImport(const uint8_t *importContent) {
   // Parse mod as UTF8
   auto sizeOfMod = transformLeb128ToUnsignedInt32(importContent);

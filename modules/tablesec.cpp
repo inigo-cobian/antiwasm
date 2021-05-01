@@ -1,5 +1,6 @@
 #include "tablesec.hpp"
 
+using namespace std;
 namespace antiwasm {
 
 TableSection::TableSection(int size, uint8_t *content, int initialPos)

@@ -1,5 +1,6 @@
 #include "memsec.hpp"
 
+using namespace std;
 namespace antiwasm {
 
 MemorySection::MemorySection(int size, uint8_t *content, int initialPos)
@@ -9,7 +10,7 @@ MemorySection::MemorySection(int size, uint8_t *content, int initialPos)
 
 MemorySection::~MemorySection() = default;
 
-void MemorySection::addMemtype(Memtype memtype) { memtypeVector.push_back(memtype); }
+void MemorySection::addMemtype(const Memtype& memtype) { memtypeVector.push_back(memtype); }
 
 vector<Memtype> MemorySection::getMemtypeVector() { return memtypeVector; }
 

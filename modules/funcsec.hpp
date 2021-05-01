@@ -2,16 +2,19 @@
 #define ANTIWASM_FUNCSEC_HPP
 
 #include "section.hpp"
+#include <cstdint>
+#include <sstream>
+#include <vector>
 
 namespace antiwasm {
 class FuncSection : public Section {
 private:
-  vector<uint32_t> typeidxVector;
+  std::vector<uint32_t> typeidxVector;
 
 public:
   /**
    * Contructor.
-   * SectionId = SectionId::Func
+   * SectionId = SectionId::FuncId
    * @param size
    * @param content
    * @param initialPos
@@ -33,7 +36,7 @@ public:
    * Gets the typeidx vector
    * @return typeidxVector
    */
-  vector<uint32_t> getTypeidxVector();
+  std::vector<uint32_t> getTypeidxVector();
 
   /**
    * Displays the header information for the table section.

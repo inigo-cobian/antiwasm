@@ -4,7 +4,6 @@
 #include <cstdint>
 #include <iostream>
 
-using namespace std;
 namespace antiwasm {
 
 const auto REFTYPE_SIZE = 1;
@@ -21,7 +20,7 @@ Reftype parseReftype(uint8_t reftype);
 
 void displayReftype(Reftype reftype);
 
-string getReftypeAsText(Reftype reftype);
+std::string getReftypeAsText(Reftype reftype);
 
 } // namespace antiwasm
 

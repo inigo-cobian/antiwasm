@@ -4,11 +4,10 @@
 #include "contentBlock.hpp"
 #include <string>
 
-using namespace std;
 namespace antiwasm {
 
 struct UTF8Name : public ContentBlock {
-  string name;
+  std::string name;
 };
 
 /**

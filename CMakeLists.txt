@@ -5,7 +5,7 @@ project(antiwasm)
 #codecov.io for code coverage
 set(--coverage)
 
-include_directories(init instructions scanner types modules utils)
+include_directories(init instructions modules scanner types utils)
 
 # Boost (logging + unit test)
 find_package(Boost 1.70 REQUIRED COMPONENTS filesystem)
@@ -18,8 +18,8 @@ add_subdirectory(test)
 
 file(GLOB INIT "init/*.cpp")
 file(GLOB INSTRUCTIONS "instructions/*.cpp")
-file(GLOB SCANNER "scanner/*.cpp")
 file(GLOB MODULES "modules/*.cpp")
+file(GLOB SCANNER "scanner/*.cpp")
 file(GLOB TYPES "types/*.cpp")
 file(GLOB UTILS "utils/*.cpp")
 

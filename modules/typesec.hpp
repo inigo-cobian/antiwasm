@@ -6,17 +6,14 @@
 #include <sstream>
 #include <vector>
 
-using namespace std;
-
 namespace antiwasm {
 
 class TypeSection : public Section {
 private:
-  vector<Functype> functypeVector;
+  std::vector<Functype> functypeVector;
 
-  void displayFunctypeVector();
-  string getParamAsText(const Functype &functype) const;
-  string getResultAsText(const Functype &functype) const;
+  std::string getParamAsText(const Functype &functype) const;
+  std::string getResultAsText(const Functype &functype) const;
 
 public:
   /**
@@ -43,7 +40,7 @@ public:
    * Gets the functype vector
    * @return functypeVector
    */
-  vector<Functype> getFunctypeVector();
+  std::vector<Functype> getFunctypeVector();
 
   /**
    * Displays the header information for the type section.

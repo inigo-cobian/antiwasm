@@ -1,5 +1,6 @@
 #include "nameParser.hpp"
 
+using namespace std;
 namespace antiwasm {
 
 UTF8Name parseUTF8Name(const uint8_t *bytes, uint32_t nBytes) {

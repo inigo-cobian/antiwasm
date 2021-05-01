@@ -1,5 +1,6 @@
 #include "numtype.hpp"
 
+using namespace std;
 namespace antiwasm {
 Numtype parseNumType(const uint8_t numtypeContent) {
   if (numtypeContent == i32) {
@@ -47,6 +48,7 @@ string getNumtypeAsText(Numtype numtype) {
   case f64:
     return "f64";
   case invalid_numtype:
+  default:
     return "error.numtype";
   }
 }

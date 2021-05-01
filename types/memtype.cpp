@@ -1,5 +1,6 @@
 #include "memtype.hpp"
 
+using namespace std;
 namespace antiwasm {
 Memtype parseMemType(const uint8_t *memTypeContent) {
   Limit memtypeLimit = parseLimits(memTypeContent);

@@ -1,4 +1,6 @@
 #include "importsec.hpp"
+
+using namespace std;
 namespace antiwasm {
 
 ImportSection::ImportSection(int size, uint8_t *content, int initialPos)

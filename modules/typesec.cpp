@@ -1,5 +1,6 @@
 #include "typesec.hpp"
 
+using namespace std;
 namespace antiwasm {
 
 TypeSection::TypeSection(int size, uint8_t *content, int initialPos)
