@@ -7,6 +7,8 @@
 
 namespace antiwasm {
 
+const static size_t BYTES_GLOBALTYPE = 2;
+
 struct Globaltype : public ContentBlock {
   Valtype valtype;
   Mut mut;

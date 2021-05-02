@@ -34,7 +34,7 @@ public:
    * Adds a new globaltype to the vector
    * @param globaltype
    */
-  void addImport(const Globaltype &globaltype);
+  void addGlobaltype(const Globaltype &globaltype);
 
   /**
    * Gets the globaltype vector

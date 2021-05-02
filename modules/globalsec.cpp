@@ -10,7 +10,7 @@ GlobalSection::GlobalSection(int size, uint8_t *content, int initialPos)
 
 GlobalSection::~GlobalSection() = default;
 
-void GlobalSection::addImport(const Globaltype &globaltype) { globaltypeVector.push_back(globaltype); }
+void GlobalSection::addGlobaltype(const Globaltype &globaltype) { globaltypeVector.push_back(globaltype); }
 
 vector<Globaltype> GlobalSection::getGlobaltypeVector() { return globaltypeVector; }
 
