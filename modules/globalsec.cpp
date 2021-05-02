@@ -24,8 +24,9 @@ void GlobalSection::displaySectionContentInfo() {
 
   size_t index = 0;
   for (const auto &globaltype : globaltypeVector) {
-    // TODO
+    cout << globaltype.getAsText() << endl;
   }
+  cout << endl;
 }
 
 } // namespace antiwasm
