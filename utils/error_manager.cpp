@@ -1,5 +1,6 @@
 #include "error_manager.hpp"
 
+using namespace std;
 namespace antiwasm {
 shared_ptr<ErrorAtWasm> generateError(ErrorSeverity severity, ErrorTypes errorType, unsigned int index) {
   auto generatedError = make_shared<ErrorAtWasm>();

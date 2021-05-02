@@ -21,5 +21,4 @@ BOOST_AUTO_TEST_CASE(generateNoErrorReturnsAMockError) {
   BOOST_CHECK_EQUAL(ErrorSeverity::noError, error->severity);
 }
 
-
 BOOST_AUTO_TEST_SUITE_END() // error_test

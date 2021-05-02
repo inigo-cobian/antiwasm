@@ -6,13 +6,11 @@
 #include <sstream>
 #include <vector>
 
-using namespace std;
-
 namespace antiwasm {
 
 class MemorySection : public Section {
 private:
-  vector<Memtype> memtypeVector;
+  std::vector<Memtype> memtypeVector;
 
 public:
   /**
@@ -33,13 +31,13 @@ public:
    * Adds a new memtype to the vector
    * @param memtype
    */
-  void addMemtype(Memtype memtype);
+  void addMemtype(const Memtype& memtype);
 
   /**
    * Gets the memtype vector
    * @return memtypeVector
    */
-  vector<Memtype> getMemtypeVector();
+  std::vector<Memtype> getMemtypeVector();
 
   /**
    * Displays the header information for the memory section.

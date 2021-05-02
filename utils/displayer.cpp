@@ -1,5 +1,6 @@
 #include "displayer.hpp"
 
+using namespace std;
 namespace antiwasm {
 
 LoggingLevel Displayer::loggingLevel_;

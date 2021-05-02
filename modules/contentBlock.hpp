@@ -5,15 +5,13 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
 namespace antiwasm {
 
 class ContentBlock {
 protected:
-  shared_ptr<uint8_t> contentBytes;
+  std::shared_ptr<uint8_t> contentBytes;
   size_t indexByte;
-  vector<shared_ptr<ErrorAtWasm>> errors_;
+  std::vector<std::shared_ptr<ErrorAtWasm>> errors_;
   size_t nBytes;
 
 public:
@@ -23,13 +21,13 @@ public:
    * @param contentBytes
    * @param indexOfContent
    */
-  void addContentBytes(shared_ptr<uint8_t> ptrToContentBytes, size_t indexOfCurrentContent, size_t nBytesOfContent);
+  void addContentBytes(std::shared_ptr<uint8_t> ptrToContentBytes, size_t indexOfCurrentContent, size_t nBytesOfContent);
 
   /**
    * Adds a new error to the error_ vector.
    * @param pointer to ErrorAtWasm
    */
-  void addError(const shared_ptr<ErrorAtWasm> &errorAtWasm);
+  void addError(const std::shared_ptr<ErrorAtWasm> &errorAtWasm);
 
   /**
    * Checks the vector of errors and returns true if there is at least one.
@@ -47,7 +45,7 @@ public:
    * If there is no error it returns a default error.
    * @return
    */
-  shared_ptr<ErrorAtWasm> getError();
+  std::shared_ptr<ErrorAtWasm> getError();
 
   uint32_t getNBytes() const { return nBytes; };
 

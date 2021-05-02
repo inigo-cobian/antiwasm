@@ -4,6 +4,7 @@
 #define BOOST_LOG_DYN_LINK 1
 
 #include "contentBlock.hpp"
+#include "funcsec.hpp"
 #include "importsec.hpp"
 #include "leb128.hpp"
 #include "memsec.hpp"
@@ -31,7 +32,7 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
  * @param sectionContent
  * @return The parsed Custom section.
  */
-int parseCustomSection(int sizeOfSection, uint8_t *sectionContent);
+int parseCustomSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses a TypeId section and generates its instance.
@@ -39,7 +40,7 @@ int parseCustomSection(int sizeOfSection, uint8_t *sectionContent);
  * @param sectionContent
  * @return The parsed Type section.
  */
-TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent);
+TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses an ImportId section and generates its instance.
@@ -47,7 +48,7 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent);
  * @param sectionContent
  * @return The parsed Import section.
  */
-ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent);
+ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses a FunctionId section and generates its instance.
@@ -55,7 +56,7 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent);
  * @param sectionContent
  * @return The parsed Function section.
  */
-int parseFunctionSection(int sizeOfSection, uint8_t *sectionContent);
+FuncSection parseFunctionSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses a TableId section and generates its instance.
@@ -63,7 +64,7 @@ int parseFunctionSection(int sizeOfSection, uint8_t *sectionContent);
  * @param sectionContent
  * @return The parsed Table section.
  */
-TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent);
+TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses a MemoryId section and generates its instance.
@@ -71,7 +72,7 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent);
  * @param sectionContent
  * @return The parsed Memory section.
  */
-MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent);
+MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses a GlobalId section and generates its instance.
@@ -79,7 +80,7 @@ MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent);
  * @param sectionContent
  * @return The parsed Global section.
  */
-int parseGlobalSection(int sizeOfSection, uint8_t *sectionContent);
+int parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses an ExportId section and generates its instance.
@@ -87,7 +88,7 @@ int parseGlobalSection(int sizeOfSection, uint8_t *sectionContent);
  * @param sectionContent
  * @return The parsed Export section.
  */
-int parseExportSection(int sizeOfSection, uint8_t *sectionContent);
+int parseExportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses a StartId section and generates its instance.
@@ -95,7 +96,7 @@ int parseExportSection(int sizeOfSection, uint8_t *sectionContent);
  * @param sectionContent
  * @return The parsed Start section.
  */
-int parseStartSection(int sizeOfSection, uint8_t *sectionContent);
+int parseStartSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses an ElementId section and generates its instance.
@@ -103,7 +104,7 @@ int parseStartSection(int sizeOfSection, uint8_t *sectionContent);
  * @param sectionContent
  * @return The parsed Element section.
  */
-int parseElementSection(int sizeOfSection, uint8_t *sectionContent);
+int parseElementSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses a CodeId section and generates its instance.
@@ -111,7 +112,7 @@ int parseElementSection(int sizeOfSection, uint8_t *sectionContent);
  * @param sectionContent
  * @return The parsed Code section.
  */
-int parseCodeSection(int sizeOfSection, uint8_t *sectionContent);
+int parseCodeSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses a DataId section and generates its instance.
@@ -119,7 +120,7 @@ int parseCodeSection(int sizeOfSection, uint8_t *sectionContent);
  * @param sectionContent
  * @return The parsed Data section.
  */
-int parseDataSection(int sizeOfSection, uint8_t *sectionContent);
+int parseDataSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 } // namespace antiwasm
 
 #endif // SECTION_PARSER_HPP

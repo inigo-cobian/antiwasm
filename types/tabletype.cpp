@@ -1,6 +1,8 @@
 #include "tabletype.hpp"
 
+using namespace std;
 namespace antiwasm {
+
 Tabletype parseTableType(const uint8_t *tableTypeContent) {
   BOOST_LOG_TRIVIAL(debug) << "[Tabletype] Parsing a new Tabletype";
 
@@ -24,17 +26,17 @@ Tabletype parseTableType(const uint8_t *tableTypeContent) {
     tabletype.addError(error);
   }
 
-  if(!tabletype.hasError()) {
+  if (!tabletype.hasError()) {
     tabletype.setNBytes(REFTYPE_SIZE + limitAtTabletype.getNBytes());
     BOOST_LOG_TRIVIAL(error) << "[Resulttype] nBytes: " << tabletype.getNBytes();
-
   }
 
   return tabletype;
 }
 string Tabletype::getAsText() const {
   stringstream tabletypeAsText;
-  tabletypeAsText << "( table $index" << " "; // TODO ¿index?
+  tabletypeAsText << "( table $index"
+                  << " "; // TODO ¿index?
   if (limit.type == limit_min) {
     tabletypeAsText << limit.min;
   } else if (limit.type == limit_min_max) {

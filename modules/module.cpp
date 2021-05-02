@@ -1,5 +1,6 @@
 #include "module.hpp"
 
+using namespace std;
 namespace antiwasm {
 
 Module::Module(int size) { size_ = size; }

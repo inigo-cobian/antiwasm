@@ -1,6 +1,8 @@
 #include "limits.hpp"
 
+using namespace std;
 namespace antiwasm {
+
 Limit parseLimits(const uint8_t *limitSection) {
   BOOST_LOG_TRIVIAL(debug) << "[Limit] Parsing a new Limit";
 

@@ -1,5 +1,6 @@
 #include "contentBlock.hpp"
 
+using namespace std;
 namespace antiwasm {
 
 void ContentBlock::addContentBytes(shared_ptr<uint8_t> ptrToContentBytes, size_t indexOfCurrentContent,

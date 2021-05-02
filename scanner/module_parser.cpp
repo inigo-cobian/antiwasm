@@ -1,6 +1,8 @@
 #include "module_parser.hpp"
 
+using namespace std;
 namespace antiwasm {
+
 int parse(const char *classFile) {
   shared_ptr<Driver> driver = Driver::GetInstance();
   if (!driver->OpenFile(classFile)) {

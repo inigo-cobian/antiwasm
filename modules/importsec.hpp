@@ -6,13 +6,11 @@
 #include <sstream>
 #include <vector>
 
-using namespace std;
-
 namespace antiwasm {
 
 class ImportSection : public Section {
 private:
-  vector<Import> importVector;
+  std::vector<Import> importVector;
 
 public:
   /**
@@ -39,7 +37,7 @@ public:
    * Gets the import vector
    * @return importVector
    */
-  vector<Memtype> getImportVector();
+  std::vector<Import> getImportVector();
 
   /**
    * Displays the header information for the import section.

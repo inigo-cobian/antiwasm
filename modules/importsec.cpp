@@ -1,4 +1,6 @@
 #include "importsec.hpp"
+
+using namespace std;
 namespace antiwasm {
 
 ImportSection::ImportSection(int size, uint8_t *content, int initialPos)
@@ -10,7 +12,7 @@ ImportSection::~ImportSection() = default;
 
 void ImportSection::addImport(const Import &import) { importVector.push_back(import); }
 
-vector<Memtype> ImportSection::getImportVector() { return vector<Memtype>(); }
+vector<Import> ImportSection::getImportVector() { return importVector; }
 
 void ImportSection::displaySectionHeaderInfo() {
   cout << "  Import | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
@@ -37,7 +39,7 @@ void ImportSection::displaySectionContentInfo() {
       importAsText << " " << import.importDesc.memtype->getAsText() << "\n";
       break;
     case ImportGlobaltype:
-       importAsText << " " << import.importDesc.globaltype->getAsText() << "\n";
+      importAsText << " " << import.importDesc.globaltype->getAsText() << "\n";
       break;
     default:
       cout << "error"; // TODO

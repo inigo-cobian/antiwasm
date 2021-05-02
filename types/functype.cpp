@@ -1,5 +1,6 @@
 #include "functype.hpp"
 
+using namespace std;
 namespace antiwasm {
 
 Functype parseFunctype(const uint8_t *funcTypeContent) {
@@ -30,7 +31,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
     functype.addError(error);
     cout << "ErrorId at functype.returnType" << endl;
   }
-  functype.setNBytes( BYTES_HEADER_FUNCTYPE + functype.parameterType.getNBytes() + functype.returnType.getNBytes() );
+  functype.setNBytes(BYTES_HEADER_FUNCTYPE + functype.parameterType.getNBytes() + functype.returnType.getNBytes());
   BOOST_LOG_TRIVIAL(debug) << "[Functype] nBytes: " << functype.getNBytes();
 
   return functype;

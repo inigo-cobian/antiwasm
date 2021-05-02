@@ -1,5 +1,6 @@
 #include "valtype.hpp"
 
+using namespace std;
 namespace antiwasm {
 Valtype parseValtype(const uint8_t valtypeContent) {
   Valtype valtype;

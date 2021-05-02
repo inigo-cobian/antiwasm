@@ -7,18 +7,16 @@
 #include <sstream>
 #include <vector>
 
-using namespace std;
-
 namespace antiwasm {
 
 class TableSection : public Section {
 private:
-  vector<Tabletype> tabletypeVector;
+  std::vector<Tabletype> tabletypeVector;
 
 public:
   /**
    * Contructor.
-   * SectionId = SectionId::TableId
+   * SectionId = SectionId::Table
    * @param size
    * @param content
    * @param initialPos
@@ -40,7 +38,7 @@ public:
    * Gets the tabletype vector
    * @return tabletypeVector
    */
-  vector<Tabletype> getTabletypeVector();
+  std::vector<Tabletype> getTabletypeVector();
 
   /**
    * Displays the header information for the table section.

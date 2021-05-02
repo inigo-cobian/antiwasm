@@ -1,5 +1,6 @@
 #include "header.hpp"
 
+using namespace std;
 namespace antiwasm {
 bool checkMagicNumber(const uint8_t *header) {
   if (header[0] == 0x00 && header[1] == 0x61 && header[2] == 0x73 && header[3] == 0x6D) {

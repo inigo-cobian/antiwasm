@@ -11,7 +11,7 @@ struct Globaltype : public ContentBlock {
   Valtype valtype;
   Mut mut;
 
-  string getAsText() const;
+  std::string getAsText() const;
 };
 
 /**
