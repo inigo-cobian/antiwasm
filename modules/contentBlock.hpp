@@ -11,8 +11,8 @@ class ContentBlock {
 protected:
   std::shared_ptr<uint8_t> contentBytes;
   size_t indexByte;
-  std::vector<std::shared_ptr<ErrorAtWasm>> errors_;
   size_t nBytes;
+  std::vector<std::shared_ptr<ErrorAtWasm>> errors_;
 
 public:
   /**

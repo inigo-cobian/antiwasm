@@ -4,7 +4,7 @@
 #define BOOST_LOG_DYN_LINK 1
 
 #include "section.hpp"
-#include "globaltype.hpp"
+#include "global.hpp"
 #include <boost/log/trivial.hpp>
 #include <cstdint>
 #include <vector>
@@ -13,7 +13,7 @@ namespace antiwasm {
 
 class GlobalSection : public Section {
 private:
-  std::vector<Globaltype> globaltypeVector;
+  std::vector<Global> globalVector;
 
 public:
   /**
@@ -31,16 +31,16 @@ public:
   ~GlobalSection();
 
   /**
-   * Adds a new globaltype to the vector
-   * @param globaltype
+   * Adds a new global to the vector
+   * @param global
    */
-  void addGlobaltype(const Globaltype &globaltype);
+  void addGlobal(const Global &global);
 
   /**
-   * Gets the globaltype vector
-   * @return globaltypeVector
+   * Gets the global vector
+   * @return globalVector
    */
-  std::vector<Globaltype> getGlobaltypeVector();
+  std::vector<Global> getGlobalVector();
 
   /**
    * Displays the header information for the global section.

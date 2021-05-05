@@ -6,10 +6,13 @@
 namespace antiwasm {
 enum ErrorTypes {
   unknown,
+
+  // Module
   unrecognizedHeader,
   unrecognizedVersion,
   wrongSectionId,
 
+  // Types
   unrecognizedNumtype [[maybe_unused]],
   unrecognizedReftype [[maybe_unused]],
   unrecognizedValtype,
@@ -25,6 +28,7 @@ enum ErrorTypes {
   unrecognizedValtypeAtGlobaltype,
   unrecognizedMutAtGlobaltype,
 
+  // Imports
   unrecognizedModAtImport,
   unrecognizedNameAtImport,
   unrecognizedHeaderAtImportDesc, // TODO use
@@ -33,8 +37,12 @@ enum ErrorTypes {
   unrecognizedMemtypeAtImportDesc,
   unrecognizedGlobaltypeAtImportDesc,
 
+  // UTF8
   unrecognizedUTF8LeadingByte,
-  unrecognizedUTF8ContByte
+  unrecognizedUTF8ContByte,
+
+  // Instructions
+  unrecognizedInstruction
 };
 
 enum ErrorSeverity { fatal, warning, noError };

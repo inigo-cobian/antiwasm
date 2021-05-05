@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-enum instruction_set : uint8_t {
+enum InstructionSet : uint8_t {
   Unreachable = 0x00,
   Nop = 0x01,
   Block = 0x02,

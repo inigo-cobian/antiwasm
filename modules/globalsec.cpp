@@ -10,21 +10,21 @@ GlobalSection::GlobalSection(int size, uint8_t *content, int initialPos)
 
 GlobalSection::~GlobalSection() = default;
 
-void GlobalSection::addGlobaltype(const Globaltype &globaltype) { globaltypeVector.push_back(globaltype); }
+void GlobalSection::addGlobal(const Global &global) { globalVector.push_back(global); }
 
-vector<Globaltype> GlobalSection::getGlobaltypeVector() { return globaltypeVector; }
+vector<Global> GlobalSection::getGlobalVector() { return globalVector; }
 
 void GlobalSection::displaySectionHeaderInfo() {
   cout << "  Global | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
 }
 
 void GlobalSection::displaySectionContentInfo() {
-  cout << "  Global | start=" << hex << initialPos_ << " size=" << hex << size_ << " (" << globaltypeVector.size()
+  cout << "  Global | start=" << hex << initialPos_ << " size=" << hex << size_ << " (" << globalVector.size()
        << ") globals" << endl;
 
   size_t index = 0;
-  for (const auto &globaltype : globaltypeVector) {
-    cout << globaltype.getAsText() << endl;
+  for (const auto &globaltype : globalVector) {
+    // TODO
   }
   cout << endl;
 }

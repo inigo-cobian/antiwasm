@@ -6,12 +6,12 @@
 
 class Instruction {
 protected:
-  instruction_set instructionCode_;
+  InstructionSet instructionCode_;
 
 public:
   virtual ~Instruction() {}
 
-  instruction_set getInstructionCode() { return instructionCode_; };
+  virtual InstructionSet getInstructionCode() { return instructionCode_; };
 };
 
 #endif // ANTIWASM_INSTRUCTION_HPP

@@ -13,7 +13,7 @@ struct Globaltype : public ContentBlock {
   Valtype valtype;
   Mut mut;
 
-  std::string getAsText() const;
+  [[nodiscard]] std::string getAsText() const;
 };
 
 /**
