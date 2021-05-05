@@ -163,11 +163,26 @@ BOOST_AUTO_TEST_CASE(parseMemorySection_realisticSectionReturnsOkey) {
 
 BOOST_AUTO_TEST_CASE(parseGlobalSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
+  auto *globalSectionContent = new uint8_t[1];
+  globalSectionContent[0] = 0; // Número de globals en la sección
 
-  auto result = antiwasm::parseNextSection(SectionId::GlobalId, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::GlobalId, sizeOfSection, globalSectionContent, 0);
 
   BOOST_CHECK_EQUAL(SectionId::GlobalId, result.getSectionId());
 }
+
+BOOST_AUTO_TEST_CASE(parseGlobalSection_realisticSectionReturnsOkey) {
+  /** TODO define expr to pass this test
+  int sizeOfSection = 0;
+  auto *globalSectionContent = new uint8_t[1];
+  globalSectionContent[0] = 3; // Número de globals en la sección
+
+  auto result = antiwasm::parseNextSection(SectionId::MemoryId, sizeOfSection, memorySectionContent, 0);
+
+  BOOST_CHECK_EQUAL(SectionId::GlobalId, result.getSectionId());
+   */
+}
+
 
 BOOST_AUTO_TEST_CASE(parseExportSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
