@@ -1,7 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "globaltype.cpp"
-#include <boost/test/unit_test.hpp>
+#include "globaltype_test.hpp"
 
 using namespace antiwasm;
 

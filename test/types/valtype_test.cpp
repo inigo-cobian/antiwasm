@@ -1,7 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "valtype.cpp"
-#include <boost/test/unit_test.hpp>
+#include "valtype_test.hpp"
 
 using namespace antiwasm;
 

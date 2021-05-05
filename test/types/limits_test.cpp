@@ -1,7 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "limits.cpp"
-#include <boost/test/unit_test.hpp>
+#include "limits_test.hpp"
 
 using namespace antiwasm;
 

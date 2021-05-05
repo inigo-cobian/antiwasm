@@ -1,7 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "tabletype.cpp"
-#include <boost/test/unit_test.hpp>
+#include "tabletype_test.hpp"
 
 using namespace antiwasm;
 

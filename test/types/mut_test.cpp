@@ -1,7 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "mut.cpp"
-#include <boost/test/unit_test.hpp>
+#include "mut_test.hpp"
 
 using namespace antiwasm;
 

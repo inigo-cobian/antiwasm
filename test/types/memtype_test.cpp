@@ -1,7 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "../types/memtype.cpp"
-#include <boost/test/unit_test.hpp>
+#include "memtype_test.hpp"
 
 using namespace antiwasm;
 
