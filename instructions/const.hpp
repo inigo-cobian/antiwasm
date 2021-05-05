@@ -12,7 +12,7 @@ private:
 
 public:
   I32Const(uint8_t *operands) {
-    instructionCode_ = instruction_set::i32_const;
+    instructionCode_ = InstructionSet::i32_const;
     getI32Const(operands);
   };
 };
@@ -25,7 +25,7 @@ private:
 
 public:
   I64Const(uint8_t *operands) {
-    instructionCode_ = instruction_set::i64_const;
+    instructionCode_ = InstructionSet::i64_const;
     getI64Const(operands);
   };
 };
@@ -38,7 +38,7 @@ private:
 
 public:
   F32Const(uint8_t *operands) {
-    instructionCode_ = instruction_set::f32_const;
+    instructionCode_ = InstructionSet::f32_const;
     getF32Const(operands);
   };
 };
@@ -51,7 +51,7 @@ private:
 
 public:
   F64Const(uint8_t *operands) {
-    instructionCode_ = instruction_set::f64_const;
+    instructionCode_ = InstructionSet::f64_const;
     getF64Const(operands);
   };
 };

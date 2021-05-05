@@ -1,0 +1,4 @@
+#ifndef ANTIWASM_LOOP_HPP
+#define ANTIWASM_LOOP_HPP
+
+#endif // ANTIWASM_LOOP_HPP

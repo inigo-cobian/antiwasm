@@ -15,6 +15,8 @@ public:
   void addInstruction(Instruction instr);
 };
 
-}
+Expression parseExpression(const uint8_t *expressionContent);
+
+} // namespace antiwasm
 
 #endif // ANTIWASM_EXPRESSION_HPP

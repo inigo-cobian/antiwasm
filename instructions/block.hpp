@@ -1,0 +1,4 @@
+#ifndef ANTIWASM_BLOCK_HPP
+#define ANTIWASM_BLOCK_HPP
+
+#endif // ANTIWASM_BLOCK_HPP
