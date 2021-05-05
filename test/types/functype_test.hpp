@@ -7,7 +7,7 @@
 using namespace std;
 using namespace antiwasm;
 
-uint8_t* generateFunctypeContent() {
+uint8_t *generateFunctypeContent() {
   auto *functypeContent = new uint8_t[6];
   functypeContent[0] = FUNCTYPE_HEADER;
   functypeContent[1] = 2, functypeContent[2] = Numtype::i32, functypeContent[3] = Reftype::funref;
