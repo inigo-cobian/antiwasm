@@ -94,11 +94,13 @@ Instruction *parseInstruction(const uint8_t *instructionContent) {
     break;
 
   case i32_const:
+    return new I32Const{&instructionContent[1]};
   case i64_const:
+    return new I64Const{&instructionContent[1]};
   case f32_const:
+    return new F32Const{&instructionContent[1]};
   case f64_const:
-    // TODO constInstruction
-    break;
+    return new F64Const{&instructionContent[1]};
 
   case i32_eqz:
   case i32_eq:

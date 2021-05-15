@@ -6,6 +6,7 @@ project(antiwasm)
 set(--coverage)
 
 include_directories(init instructions modules scanner types utils)
+include_directories(instructions/const)
 
 # Boost (logging + unit test)
 find_package(Boost 1.70 REQUIRED COMPONENTS filesystem)
@@ -23,6 +24,9 @@ file(GLOB SCANNER "scanner/*.cpp")
 file(GLOB TYPES "types/*.cpp")
 file(GLOB UTILS "utils/*.cpp")
 
-add_executable(antiwasm ${INIT} ${INSTRUCTIONS} ${SCANNER} ${MODULES} ${TYPES} ${UTILS})
+file(GLOB CONST "instructions/const*.cpp")
+
+add_executable(antiwasm ${INIT} ${INSTRUCTIONS} ${SCANNER} ${MODULES} ${TYPES} ${UTILS}
+        ${CONST})
 
 target_link_libraries(antiwasm pthread boost_log boost_program_options boost_thread)
