@@ -7,13 +7,9 @@
 namespace antiwasm {
 class UnreachableInstr : public Instruction {
 public:
+  explicit UnreachableInstr();
   virtual ~UnreachableInstr() = default;
 };
 
-/**
- * Returns an unreachable instruction.
- * @return
- */
-UnreachableInstr parseUnreachable();
 } // namespace antiwasm
 #endif // ANTIWASM_UNREACHABLE_HPP

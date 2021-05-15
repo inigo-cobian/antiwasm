@@ -1,5 +1,8 @@
 #include "unreachable.hpp"
 
 namespace antiwasm {
-UnreachableInstr parseUnreachable() { return UnreachableInstr{}; }
+UnreachableInstr::UnreachableInstr() {
+  instructionCode = Unreachable;
+  nBytes = 1;
+}
 } // namespace antiwasm

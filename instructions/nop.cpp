@@ -1,5 +1,8 @@
 #include "nop.hpp"
 
 namespace antiwasm {
-NopInstr parseNop() { return NopInstr{}; }
+NopInstr::NopInstr() {
+  instructionCode = Nop;
+  nBytes = 1;
+}
 } // namespace antiwasm

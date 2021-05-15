@@ -6,14 +6,9 @@
 namespace antiwasm {
 class NopInstr : public Instruction {
 public:
+  explicit NopInstr();
   virtual ~NopInstr() = default;
 };
-
-/**
- * Returns No Operation instruction.
- * @return
- */
-NopInstr parseNop();
 } // namespace antiwasm
 
 #endif // ANTIWASM_NOP_HPP

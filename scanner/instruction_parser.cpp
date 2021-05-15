@@ -1,15 +1,12 @@
 #include "instruction_parser.hpp"
 
 namespace antiwasm {
-Instruction parseInstruction(const uint8_t *instructionContent) {
-  Instruction instr;
+Instruction *parseInstruction(const uint8_t *instructionContent) {
   switch (instructionContent[0]) {
   case Unreachable:
-    instr = parseUnreachable();
-    break;
+    return new UnreachableInstr();
   case Nop:
-    instr = parseNop();
-    break;
+    return new NopInstr();
   case Block:
     // TODO
     break;
