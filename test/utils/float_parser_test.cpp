@@ -14,7 +14,6 @@ BOOST_AUTO_TEST_CASE(transformf32ToFloat_test) {
 
   auto returnVal = transformf32ToFloat(f32Val);
 
-  // Converted to int so precision errors can be avoided
   BOOST_CHECK_EQUAL(expected, returnVal);
 }
 
@@ -27,7 +26,6 @@ BOOST_AUTO_TEST_CASE(transformf64ToDouble_test) {
 
   auto returnVal = transformf64ToDouble(f64Val);
 
-  // Converted to int so precision errors can be avoided
   BOOST_CHECK_EQUAL(expected, returnVal);
 }
 
