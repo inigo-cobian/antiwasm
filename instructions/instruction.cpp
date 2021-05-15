@@ -1,3 +1,7 @@
-//
-// Created by cosmos on 5/5/21.
-//
+#include "instruction.hpp"
+
+namespace antiwasm {
+
+InstructionSet Instruction::getInstructionCode() { return instructionCode; }
+
+} // namespace antiwasm

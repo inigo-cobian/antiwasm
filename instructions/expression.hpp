@@ -3,6 +3,7 @@
 
 #include "contentBlock.hpp"
 #include "instruction.hpp"
+#include "instruction_parser.hpp"
 #include <vector>
 
 namespace antiwasm {
@@ -12,7 +13,7 @@ private:
 
 public:
   std::vector<Instruction> getInstructionVector();
-  void addInstruction(Instruction instr);
+  void addInstruction(const Instruction &instr);
 };
 
 Expression parseExpression(const uint8_t *expressionContent);

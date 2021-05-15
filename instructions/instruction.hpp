@@ -4,14 +4,16 @@
 #include "lexems.hpp"
 #include <cstdint>
 
-class Instruction {
+namespace antiwasm {
+class Instruction : public ContentBlock {
 protected:
-  InstructionSet instructionCode_;
+  InstructionSet instructionCode;
 
 public:
-  virtual ~Instruction() {}
-
-  virtual InstructionSet getInstructionCode() { return instructionCode_; };
+  Instruction() { instructionCode = End; };
+  ~Instruction() {;};
+  InstructionSet getInstructionCode();
 };
 
+} // namespace antiwasm
 #endif // ANTIWASM_INSTRUCTION_HPP

@@ -47,7 +47,7 @@ public:
    */
   std::shared_ptr<ErrorAtWasm> getError();
 
-  uint32_t getNBytes() const { return nBytes; };
+  [[nodiscard]] uint32_t getNBytes() const { return nBytes; };
 
   void setNBytes(uint32_t p_nBytes) { nBytes = p_nBytes; };
 };
