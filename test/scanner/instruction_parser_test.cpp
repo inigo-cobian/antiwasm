@@ -30,4 +30,41 @@ BOOST_AUTO_TEST_CASE(parseNop_test) {
   BOOST_CHECK_EQUAL(Nop, result->getInstructionCode());
 }
 
+BOOST_AUTO_TEST_CASE(parsei32const_test) {
+  uint8_t instrContent[] = {InstructionSet::i32_const, 0x0F};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i32_const, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parsei64const_test) {
+  uint8_t instrContent[] = {InstructionSet::i64_const, 0x0F};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i64_const, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parsef32const_test) {
+  auto *instrContent = new uint8_t[5];
+  instrContent[0] = InstructionSet::f32_const;
+  instrContent[1] = 0x3f, instrContent[2] = 0x9d, instrContent[3] = 0xf3, instrContent[4] = 0xb6;
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(f32_const, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parsef64const_test) {
+  auto *instrContent = new uint8_t[9];
+  instrContent[0] = InstructionSet::f64_const;
+  instrContent[1] = 0x40, instrContent[2] = 0x50, instrContent[3] = 0x5b, instrContent[4] = 0x85;
+  instrContent[5] = 0x1e, instrContent[6] = 0xb8, instrContent[7] = 0x51, instrContent[8] = 0xec;
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(f64_const, result->getInstructionCode());
+}
+
 BOOST_AUTO_TEST_SUITE_END() // limits_test
