@@ -1,6 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "../utils/leb128.cpp"
+#include "leb128.cpp"
 #include <boost/test/unit_test.hpp>
 
 using namespace antiwasm;

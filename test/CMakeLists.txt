@@ -6,7 +6,8 @@ include_directories(${Boost_INCLUDE_DIRS})
 file(GLOB TESTS "*.cpp")
 file(GLOB MODULES_TESTS "modules/*.cpp")
 file(GLOB TYPES_TESTS "types/*.cpp")
+file(GLOB UTILS_TEST "utils/*.cpp")
 
-add_executable(Boost_Tests_run ${TESTS} ${MODULES_TESTS} ${TYPES_TESTS})
+add_executable(Boost_Tests_run ${TESTS} ${MODULES_TESTS} ${TYPES_TESTS} ${UTILS_TEST})
 
 target_link_libraries(Boost_Tests_run pthread boost_log ${Boost_LIBRARIES})

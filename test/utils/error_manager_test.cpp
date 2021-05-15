@@ -1,6 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "../utils/error_manager.cpp"
+#include "error_manager.cpp"
 #include <boost/test/unit_test.hpp>
 
 using namespace antiwasm;
