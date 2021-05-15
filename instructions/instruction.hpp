@@ -2,6 +2,7 @@
 #define ANTIWASM_INSTRUCTION_HPP
 
 #include "lexems.hpp"
+#include "contentBlock.hpp"
 #include <cstdint>
 
 namespace antiwasm {
@@ -11,7 +12,7 @@ protected:
 
 public:
   Instruction() { instructionCode = End; };
-  ~Instruction() {;};
+  ~Instruction() { };
   InstructionSet getInstructionCode();
 };
 

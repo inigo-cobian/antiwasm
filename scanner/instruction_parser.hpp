@@ -3,6 +3,7 @@
 
 #include "instruction.hpp"
 #include "lexems.hpp"
+#include "nop.hpp"
 #include "unreachable.hpp"
 
 namespace antiwasm {

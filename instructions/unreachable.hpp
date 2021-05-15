@@ -12,9 +12,8 @@ public:
 
 /**
  * Returns an unreachable instruction.
- * @param content
  * @return
  */
-UnreachableInstr parseUnreachable(const uint8_t *content);
+UnreachableInstr parseUnreachable();
 } // namespace antiwasm
 #endif // ANTIWASM_UNREACHABLE_HPP

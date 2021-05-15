@@ -1,7 +1,5 @@
 #include "unreachable.hpp"
 
 namespace antiwasm {
-UnreachableInstr parseUnreachable(const uint8_t *content) {
-  return UnreachableInstr{};
-}
+UnreachableInstr parseUnreachable() { return UnreachableInstr{}; }
 } // namespace antiwasm

@@ -5,10 +5,10 @@ Instruction parseInstruction(const uint8_t *instructionContent) {
   Instruction instr;
   switch (instructionContent[0]) {
   case Unreachable:
-    instr = parseUnreachable(&instructionContent[0]);
+    instr = parseUnreachable();
     break;
   case Nop:
-    // TODO
+    instr = parseNop();
     break;
   case Block:
     // TODO
