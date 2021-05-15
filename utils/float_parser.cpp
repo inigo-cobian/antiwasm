@@ -14,5 +14,4 @@ double transformf64ToDouble(const uint8_t *f64) {
   memcpy(&d, &asChar, 8);
   return d;
 }
-
 } // namespace antiwasm

@@ -6,5 +6,4 @@ F32Const::F32Const(const uint8_t *f32Const) {
   constant = transformf32ToFloat(f32Const);
   nBytes = 5; // Instruction code + size of f32
 }
-}
 } // namespace antiwasm

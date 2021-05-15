@@ -276,6 +276,6 @@ Instruction *parseInstruction(const uint8_t *instructionContent) {
       // TODO unknown or invalid value
       ;
   }
-  return instr;
+  return new Instruction{};
 }
 }

@@ -6,3 +6,4 @@ I64Const::I64Const(const uint8_t *i64Const) {
   constant = transformLeb128ToSignedInt64(i64Const);
   nBytes = 1 + sizeOfLeb128(i64Const);
 }
+} // namespace antiwasm
