@@ -13,6 +13,7 @@
 #include "memory/memory_grow.cpp"
 #include "memory/memory_size.cpp"
 #include "memory/memory_init.cpp"
+#include "memory/data_drop.cpp"
 #include "nop.cpp"
 #include "unreachable.cpp"
 #include "variable/global_get.cpp"
@@ -222,6 +223,14 @@ BOOST_AUTO_TEST_CASE(parseMemoryInit_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(Memory_init, result->getSecondByte());
+}
+
+BOOST_AUTO_TEST_CASE(parseDataDrop_test) {
+  uint8_t instrContent[] = {InstructionSet::double_byte_instr, SecondByteSet::Data_drop, 0x0A};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Data_drop, result->getSecondByte());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
