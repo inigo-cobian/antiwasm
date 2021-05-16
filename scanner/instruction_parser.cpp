@@ -42,20 +42,15 @@ Instruction *parseInstruction(const uint8_t *instructionContent) {
     break;
 
   case Local_get:
-    // TODO
-    break;
+    return new LocalGet(instructionContent+1);
   case Local_set:
-    // TODO
-    break;
+    return new LocalSet(instructionContent+1);
   case Local_tee:
-    // TODO
-    break;
+    return new LocalTee(instructionContent+1);
   case Global_get:
-    // TODO
-    break;
+    return new GlobalGet(instructionContent+1);
   case Global_set:
-    // TODO
-    break;
+    return new GlobalSet(instructionContent+1);
 
   case i32_load:
   case i64_load:
@@ -94,13 +89,13 @@ Instruction *parseInstruction(const uint8_t *instructionContent) {
     break;
 
   case i32_const:
-    return new I32Const{&instructionContent[1]};
+    return new I32Const{instructionContent+1};
   case i64_const:
-    return new I64Const{&instructionContent[1]};
+    return new I64Const{instructionContent+1};
   case f32_const:
-    return new F32Const{&instructionContent[1]};
+    return new F32Const{instructionContent+1};
   case f64_const:
-    return new F64Const{&instructionContent[1]};
+    return new F64Const{instructionContent+1};
 
   case i32_eqz:
   case i32_eq:
