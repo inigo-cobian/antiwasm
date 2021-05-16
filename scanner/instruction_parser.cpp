@@ -61,7 +61,9 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case f64_load:
     return std::make_unique<Instruction>(F64Load{instructionContent+1});
   case i32_load8_s:
+    return std::make_unique<Instruction>(I32Load8s{instructionContent+1});
   case i32_load8_u:
+    return std::make_unique<Instruction>(I32Load8u{instructionContent+1});
   case i32_load16_s:
   case i32_load16_u:
   case i64_load8_s:

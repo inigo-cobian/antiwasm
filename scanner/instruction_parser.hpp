@@ -18,6 +18,8 @@
 #include "memory/load/i64_load.hpp"
 #include "memory/load/f32_load.hpp"
 #include "memory/load/f64_load.hpp"
+#include "memory/load/i32_load_8s.hpp"
+#include "memory/load/i32_load_8u.hpp"
 #include <memory>
 
 namespace antiwasm {
