@@ -42,28 +42,22 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     break;
 
   case Local_get:
-    return std::make_unique<Instruction>(LocalGet{instructionContent+1});
+    return std::make_unique<Instruction>(LocalGet{instructionContent + 1});
   case Local_set:
-    return std::make_unique<Instruction>(LocalSet{instructionContent+1});
+    return std::make_unique<Instruction>(LocalSet{instructionContent + 1});
   case Local_tee:
-    return std::make_unique<Instruction>(LocalTee{instructionContent+1});
+    return std::make_unique<Instruction>(LocalTee{instructionContent + 1});
   case Global_get:
-    return std::make_unique<Instruction>(GlobalGet{instructionContent+1});
+    return std::make_unique<Instruction>(GlobalGet{instructionContent + 1});
   case Global_set:
-    return std::make_unique<Instruction>(GlobalSet{instructionContent+1});
+    return std::make_unique<Instruction>(GlobalSet{instructionContent + 1});
 
   case i32_load:
-    return std::make_unique<Instruction>(I32Load{instructionContent+1});
   case i64_load:
-    return std::make_unique<Instruction>(I64Load{instructionContent+1});
   case f32_load:
-    return std::make_unique<Instruction>(F32Load{instructionContent+1});
   case f64_load:
-    return std::make_unique<Instruction>(F64Load{instructionContent+1});
   case i32_load8_s:
-    return std::make_unique<Instruction>(I32Load8s{instructionContent+1});
   case i32_load8_u:
-    return std::make_unique<Instruction>(I32Load8u{instructionContent+1});
   case i32_load16_s:
   case i32_load16_u:
   case i64_load8_s:
@@ -72,8 +66,8 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i64_load16_u:
   case i64_load32_s:
   case i64_load32_u:
+    return std::make_unique<Instruction>(LoadInstr{instructionContent});
     // TODO parseLoadInstruction
-    break;
 
   case i32_store:
   case i64_store:
@@ -95,13 +89,13 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     break;
 
   case i32_const:
-    return std::make_unique<Instruction>(I32Const{instructionContent+1});
+    return std::make_unique<Instruction>(I32Const{instructionContent + 1});
   case i64_const:
-    return std::make_unique<Instruction>(I64Const{instructionContent+1});
+    return std::make_unique<Instruction>(I64Const{instructionContent + 1});
   case f32_const:
-    return std::make_unique<Instruction>(F32Const{instructionContent+1});
+    return std::make_unique<Instruction>(F32Const{instructionContent + 1});
   case f64_const:
-    return std::make_unique<Instruction>(F64Const{instructionContent+1});
+    return std::make_unique<Instruction>(F64Const{instructionContent + 1});
 
   case i32_eqz:
   case i32_eq:
@@ -279,4 +273,4 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   }
   return std::make_unique<Instruction>(Instruction{});
 }
-}
+} // namespace antiwasm
