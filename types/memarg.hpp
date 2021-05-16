@@ -10,7 +10,7 @@ struct MemArg : public ContentBlock {
   uint32_t offset;
   uint32_t align;
 
-  explicit MemArg(uint8_t *content);
+  explicit MemArg(const uint8_t *content);
   ~MemArg() = default;
 };
 } // namespace antiwasm

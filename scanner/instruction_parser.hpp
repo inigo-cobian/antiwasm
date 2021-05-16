@@ -14,6 +14,8 @@
 #include "variable/local_get.hpp"
 #include "variable/local_set.hpp"
 #include "variable/local_tee.hpp"
+#include "memory/load/i32_load.hpp"
+#include "memory/load/i64_load.hpp"
 #include <memory>
 
 namespace antiwasm {
