@@ -8,6 +8,8 @@
 #include "instruction_parser.cpp"
 #include "memory/load/i32_load.cpp"
 #include "memory/load/i64_load.cpp"
+#include "memory/load/f32_load.cpp"
+#include "memory/load/f64_load.cpp"
 #include "nop.cpp"
 #include "unreachable.cpp"
 #include "variable/global_get.cpp"
@@ -128,6 +130,22 @@ BOOST_AUTO_TEST_CASE(parseI64Load_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(i64_load, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseF32Load_test) {
+  uint8_t instrContent[] = {InstructionSet::f32_load, 0x0F, 0x0A};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(f32_load, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseF64Load_test) {
+  uint8_t instrContent[] = {InstructionSet::f64_load, 0x0F, 0x0A};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(f64_load, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // limits_test
