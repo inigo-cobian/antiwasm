@@ -1,12 +1,12 @@
 #include "instruction_parser.hpp"
 
 namespace antiwasm {
-Instruction *parseInstruction(const uint8_t *instructionContent) {
+std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent) {
   switch (instructionContent[0]) {
   case Unreachable:
-    return new UnreachableInstr();
+    return std::make_unique<Instruction>(UnreachableInstr{});
   case Nop:
-    return new NopInstr();
+    return std::make_unique<Instruction>(NopInstr{});
   case Block:
     // TODO
     break;
@@ -42,15 +42,15 @@ Instruction *parseInstruction(const uint8_t *instructionContent) {
     break;
 
   case Local_get:
-    return new LocalGet(instructionContent+1);
+    return std::make_unique<Instruction>(LocalGet{instructionContent+1});
   case Local_set:
-    return new LocalSet(instructionContent+1);
+    return std::make_unique<Instruction>(LocalSet{instructionContent+1});
   case Local_tee:
-    return new LocalTee(instructionContent+1);
+    return std::make_unique<Instruction>(LocalTee{instructionContent+1});
   case Global_get:
-    return new GlobalGet(instructionContent+1);
+    return std::make_unique<Instruction>(GlobalGet{instructionContent+1});
   case Global_set:
-    return new GlobalSet(instructionContent+1);
+    return std::make_unique<Instruction>(GlobalSet{instructionContent+1});
 
   case i32_load:
   case i64_load:
@@ -89,13 +89,13 @@ Instruction *parseInstruction(const uint8_t *instructionContent) {
     break;
 
   case i32_const:
-    return new I32Const{instructionContent+1};
+    return std::make_unique<Instruction>(I32Const{instructionContent+1});
   case i64_const:
-    return new I64Const{instructionContent+1};
+    return std::make_unique<Instruction>(I64Const{instructionContent+1});
   case f32_const:
-    return new F32Const{instructionContent+1};
+    return std::make_unique<Instruction>(F32Const{instructionContent+1});
   case f64_const:
-    return new F64Const{instructionContent+1};
+    return std::make_unique<Instruction>(F64Const{instructionContent+1});
 
   case i32_eqz:
   case i32_eq:
@@ -271,6 +271,6 @@ Instruction *parseInstruction(const uint8_t *instructionContent) {
       // TODO unknown or invalid value
       ;
   }
-  return new Instruction{};
+  return std::make_unique<Instruction>(Instruction{});
 }
 }
