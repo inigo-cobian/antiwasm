@@ -172,15 +172,15 @@ BOOST_AUTO_TEST_CASE(parseGlobalSection_emptySectionReturnsOkey) {
 }
 
 BOOST_AUTO_TEST_CASE(parseGlobalSection_realisticSectionReturnsOkey) {
-  /** TODO define expr to pass this test
   int sizeOfSection = 0;
-  auto *globalSectionContent = new uint8_t[1];
-  globalSectionContent[0] = 3; // Número de globals en la sección
+  auto *globalSectionContent = new uint8_t[5];
+  globalSectionContent[0] = 1; // Número de globals en la sección
+  globalSectionContent[1] = Reftype::funref, globalSectionContent[2] = Mut::var_;
+  globalSectionContent[3] = InstructionSet::Nop, globalSectionContent[4] = InstructionSet::End;
 
-  auto result = antiwasm::parseNextSection(SectionId::MemoryId, sizeOfSection, memorySectionContent, 0);
+  auto result = antiwasm::parseNextSection(SectionId::GlobalId, sizeOfSection, globalSectionContent, 0);
 
   BOOST_CHECK_EQUAL(SectionId::GlobalId, result.getSectionId());
-   */
 }
 
 
