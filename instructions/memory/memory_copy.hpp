@@ -4,7 +4,7 @@
 #include "instruction.hpp"
 
 namespace antiwasm {
-class MemoryCopy : public Instruction, DoubleByteInstruction {
+class MemoryCopy : public Instruction {
 
 public:
   explicit MemoryCopy();

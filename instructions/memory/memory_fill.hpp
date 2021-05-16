@@ -4,7 +4,7 @@
 #include "instruction.hpp"
 
 namespace antiwasm {
-class MemoryFill : public Instruction, DoubleByteInstruction {
+class MemoryFill : public Instruction {
 
 public:
   explicit MemoryFill();

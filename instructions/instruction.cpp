@@ -2,8 +2,8 @@
 
 namespace antiwasm {
 
-SecondByteSet DoubleByteInstruction::getSecondByte() { return secondCode; }
-
 InstructionSet Instruction::getInstructionCode() { return instructionCode; }
+
+SecondByteSet Instruction::getSecondByte() { return secondCode; }
 
 } // namespace antiwasm
