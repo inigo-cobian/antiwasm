@@ -207,7 +207,32 @@ enum InstructionSet : uint8_t {
   i32_reinterpret_f32 = 0xBC,
   i64_reinterpret_f64 = 0xBD,
   f32_reinterpret_i32 = 0xBE,
-  f64_reinterpret_i64 = 0xBF
+  f64_reinterpret_i64 = 0xBF,
+
+  double_byte_instr = 0xFC
 };
+
+enum SecondByteSet : uint8_t {
+  i32_trunc_sat_f32_s = 0x00,
+  i32_trunc_sat_f32_u = 0x01,
+  i32_trunc_sat_f64_s = 0x02,
+  i32_trunc_sat_f64_u = 0x03,
+  i64_trunc_sat_f32_s = 0x04,
+  i64_trunc_sat_f32_u = 0x05,
+  i64_trunc_sat_f64_s = 0x06,
+  i64_trunc_sat_f64_u = 0x07,
+
+  memory_init = 0x08,
+  data_drop = 0x09,
+  memory_copy = 0x0A,
+  memory_fill = 0x0B,
+  table_init = 0x0C,
+  elem_drop = 0x0D,
+  table_copy = 0x0E,
+  table_grow = 0x0F,
+  table_size = 0x10,
+  table_fill = 0x11
+};
+
 
 #endif
