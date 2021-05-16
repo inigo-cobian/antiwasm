@@ -80,11 +80,9 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     return std::make_unique<Instruction>(StoreInstr{instructionContent});
 
   case Memory_size:
-    // TODO
-    break;
+    return std::make_unique<Instruction>(MemorySize{});
   case Memory_grow:
-    // TODO
-    break;
+    return std::make_unique<Instruction>(MemoryGrow{});
 
   case i32_const:
     return std::make_unique<Instruction>(I32Const{instructionContent + 1});
@@ -275,9 +273,13 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     case i64_trunc_sat_f64_u:
 
     case memory_init:
+      // TODO return std::make_unique<Instruction>(MemoryInit{instructionContent+2});
     case data_drop:
+      // TODO return std::make_unique<Instruction>(DataDrop{instructionContent+2});
     case memory_copy:
+      return std::make_unique<Instruction>(MemoryCopy{});
     case memory_fill:
+      return std::make_unique<Instruction>(MemoryFill{});
     case table_init:
     case elem_drop:
     case table_copy:
@@ -286,6 +288,9 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     case table_fill:
       // TODO
       break;
+    default:
+      // TODO unknown or invalid value
+      ;
     }
 
   case Else:

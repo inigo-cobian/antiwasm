@@ -6,6 +6,14 @@
 #include <cstdint>
 
 namespace antiwasm {
+class DoubleByteInstruction {
+protected:
+  SecondByteSet secondCode;
+
+public:
+  virtual SecondByteSet getSecondByte();
+};
+
 class Instruction : public ContentBlock {
 protected:
   InstructionSet instructionCode;
