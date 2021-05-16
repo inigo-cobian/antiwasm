@@ -263,6 +263,31 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     // TODO change type
     break;
 
+  case double_byte_instr:
+    switch(instructionContent[1]) {
+    case i32_trunc_sat_f32_s:
+    case i32_trunc_sat_f32_u:
+    case i32_trunc_sat_f64_s:
+    case i32_trunc_sat_f64_u:
+    case i64_trunc_sat_f32_s:
+    case i64_trunc_sat_f32_u:
+    case i64_trunc_sat_f64_s:
+    case i64_trunc_sat_f64_u:
+
+    case memory_init:
+    case data_drop:
+    case memory_copy:
+    case memory_fill:
+    case table_init:
+    case elem_drop:
+    case table_copy:
+    case table_grow:
+    case table_size:
+    case table_fill:
+      // TODO
+      break;
+    }
+
   case Else:
     // TODO unlinked else
   default:
