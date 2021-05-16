@@ -24,9 +24,10 @@ file(GLOB SCANNER "scanner/*.cpp")
 file(GLOB TYPES "types/*.cpp")
 file(GLOB UTILS "utils/*.cpp")
 
-file(GLOB CONST "instructions/const*.cpp")
+file(GLOB CONST "instructions/const/*.cpp")
+file(GLOB VARIABLE "instructions/variable/*.cpp")
 
 add_executable(antiwasm ${INIT} ${INSTRUCTIONS} ${SCANNER} ${MODULES} ${TYPES} ${UTILS}
-        ${CONST})
+        ${CONST} ${VARIABLE})
 
 target_link_libraries(antiwasm pthread boost_log boost_program_options boost_thread)
