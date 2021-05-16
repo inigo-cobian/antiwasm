@@ -272,13 +272,13 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     case i64_trunc_sat_f64_s:
     case i64_trunc_sat_f64_u:
 
-    case memory_init:
-      // TODO return std::make_unique<Instruction>(MemoryInit{instructionContent+2});
+    case Memory_init:
+      return std::make_unique<Instruction>(MemoryInit{instructionContent + 1});
     case data_drop:
       // TODO return std::make_unique<Instruction>(DataDrop{instructionContent+2});
-    case memory_copy:
+    case Memory_copy:
       return std::make_unique<Instruction>(MemoryCopy{});
-    case memory_fill:
+    case Memory_fill:
       return std::make_unique<Instruction>(MemoryFill{});
     case table_init:
     case elem_drop:

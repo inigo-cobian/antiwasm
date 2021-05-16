@@ -222,10 +222,10 @@ enum SecondByteSet : uint8_t {
   i64_trunc_sat_f64_s = 0x06,
   i64_trunc_sat_f64_u = 0x07,
 
-  memory_init = 0x08,
+  Memory_init = 0x08,
   data_drop = 0x09,
-  memory_copy = 0x0A,
-  memory_fill = 0x0B,
+  Memory_copy = 0x0A,
+  Memory_fill = 0x0B,
   table_init = 0x0C,
   elem_drop = 0x0D,
   table_copy = 0x0E,

@@ -3,7 +3,7 @@
 namespace antiwasm {
 MemoryFill::MemoryFill() {
   instructionCode = double_byte_instr;
-  secondCode = memory_fill;
+  secondCode = Memory_fill;
   nBytes = 2;
 }
 } // namespace antiwasm

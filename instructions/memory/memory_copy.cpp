@@ -3,7 +3,7 @@
 namespace antiwasm {
 MemoryCopy::MemoryCopy() {
   instructionCode = double_byte_instr;
-  secondCode = memory_copy;
+  secondCode = Memory_copy;
   nBytes = 2;
 }
 } // namespace antiwasm

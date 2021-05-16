@@ -14,8 +14,8 @@ protected:
 public:
   Instruction() {};
   ~Instruction() = default;
-  virtual InstructionSet getInstructionCode();
-  virtual SecondByteSet getSecondByte();
+  InstructionSet getInstructionCode();
+  SecondByteSet getSecondByte();
 };
 
 } // namespace antiwasm
