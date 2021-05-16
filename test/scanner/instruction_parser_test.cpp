@@ -1,13 +1,18 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "f32_const.cpp"
-#include "f64_const.cpp"
-#include "i32_const.cpp"
-#include "i64_const.cpp"
+#include "const/f32_const.cpp"
+#include "const/f64_const.cpp"
+#include "const/i32_const.cpp"
+#include "const/i64_const.cpp"
 #include "instruction.cpp"
 #include "instruction_parser.cpp"
 #include "nop.cpp"
 #include "unreachable.cpp"
+#include "variable/global_get.cpp"
+#include "variable/global_set.cpp"
+#include "variable/local_get.cpp"
+#include "variable/local_set.cpp"
+#include "variable/local_tee.cpp"
 #include <boost/test/unit_test.hpp>
 
 using namespace antiwasm;
@@ -65,6 +70,46 @@ BOOST_AUTO_TEST_CASE(parsef64const_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(f64_const, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseLocalGet_test) {
+  uint8_t instrContent[] = {InstructionSet::Local_get, 0x0F};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Local_get, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseLocalSet_test) {
+  uint8_t instrContent[] = {InstructionSet::Local_set, 0x0F};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Local_set, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseLocalTee_test) {
+  uint8_t instrContent[] = {InstructionSet::Local_tee, 0x0F};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Local_tee, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseGlobalGet_test) {
+  uint8_t instrContent[] = {InstructionSet::Global_get, 0x0F};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Global_get, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseGlobalSet_test) {
+  uint8_t instrContent[] = {InstructionSet::Global_set, 0x0F};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Global_set, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // limits_test
