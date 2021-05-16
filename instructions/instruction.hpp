@@ -12,7 +12,7 @@ protected:
 
 public:
   Instruction() { instructionCode = End; };
-  ~Instruction() { };
+  ~Instruction() = default;
   InstructionSet getInstructionCode();
 };
 

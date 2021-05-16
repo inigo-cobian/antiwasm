@@ -42,7 +42,10 @@ enum ErrorTypes {
   unrecognizedUTF8ContByte,
 
   // Instructions
-  unrecognizedInstruction
+  unrecognizedInstruction,
+
+  // Expression
+  invalidInstructionAtExpression
 };
 
 enum ErrorSeverity { fatal, warning, noError };
