@@ -14,6 +14,7 @@
 #include "memory/memory_grow.hpp"
 #include "memory/memory_size.hpp"
 #include "memory/memory_init.hpp"
+#include "memory/data_drop.hpp"
 #include "nop.hpp"
 #include "unreachable.hpp"
 #include "variable/global_get.hpp"

@@ -274,18 +274,18 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
 
     case Memory_init:
       return std::make_unique<Instruction>(MemoryInit{instructionContent + 1});
-    case data_drop:
-      // TODO return std::make_unique<Instruction>(DataDrop{instructionContent+2});
+    case Data_drop:
+      return std::make_unique<Instruction>(DataDrop{instructionContent+2});
     case Memory_copy:
       return std::make_unique<Instruction>(MemoryCopy{});
     case Memory_fill:
       return std::make_unique<Instruction>(MemoryFill{});
-    case table_init:
-    case elem_drop:
-    case table_copy:
-    case table_grow:
-    case table_size:
-    case table_fill:
+    case Table_init:
+    case Elem_drop:
+    case Table_copy:
+    case Table_grow:
+    case Table_size:
+    case Table_fill:
       // TODO
       break;
     default:
