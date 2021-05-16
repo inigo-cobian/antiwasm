@@ -8,6 +8,10 @@
 #include "instruction_parser.cpp"
 #include "memory/load.cpp"
 #include "memory/store.cpp"
+#include "memory/memory_copy.cpp"
+#include "memory/memory_fill.cpp"
+#include "memory/memory_grow.cpp"
+#include "memory/memory_size.cpp"
 #include "nop.cpp"
 #include "unreachable.cpp"
 #include "variable/global_get.cpp"
@@ -168,6 +172,47 @@ BOOST_AUTO_TEST_CASE(parseStore_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(i64_store32, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseDoubleByteInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::double_byte_instr, SecondByteSet::memory_copy};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(double_byte_instr, result->getInstructionCode());
+}
+
+
+BOOST_AUTO_TEST_CASE(parseMemoryCopy_test) {
+  uint8_t instrContent[] = {InstructionSet::double_byte_instr, SecondByteSet::memory_copy};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(memory_copy, result->getSecondByte());
+}
+
+BOOST_AUTO_TEST_CASE(parseMemoryFill_test) {
+  uint8_t instrContent[] = {InstructionSet::double_byte_instr, SecondByteSet::memory_fill};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(memory_fill, result->getSecondByte());
+}
+
+BOOST_AUTO_TEST_CASE(parseMemoryGrow_test) {
+  uint8_t instrContent[] = {InstructionSet::Memory_grow};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Memory_grow, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseMemorySize_test) {
+  uint8_t instrContent[] = {InstructionSet::Memory_size};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Memory_size, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // limits_test
