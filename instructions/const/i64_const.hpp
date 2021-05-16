@@ -1,6 +1,10 @@
 #ifndef ANTIWASM_I64CONST_HPP
 #define ANTIWASM_I64CONST_HPP
 
+#include <cstdint>
+#include "instruction.hpp"
+#include "leb128.hpp"
+
 namespace antiwasm {
 class I64Const : public Instruction {
   int64_t constant;
