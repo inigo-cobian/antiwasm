@@ -67,7 +67,6 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i64_load32_s:
   case i64_load32_u:
     return std::make_unique<Instruction>(LoadInstr{instructionContent});
-    // TODO parseLoadInstruction
 
   case i32_store:
   case i64_store:
@@ -78,8 +77,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i64_store8:
   case i64_store16:
   case i64_store32:
-    // TODO parseStoreInstruction
-    break;
+    return std::make_unique<Instruction>(StoreInstr{instructionContent});
 
   case Memory_size:
     // TODO

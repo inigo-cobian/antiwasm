@@ -9,7 +9,7 @@ class StoreInstr : public Instruction {
   MemArg memArg;
 
 public:
-  explicit LoadInstr(const uint8_t *storeInstrContent);
+  explicit StoreInstr(const uint8_t *storeInstrContent);
   virtual ~StoreInstr() = default;
 };
 } // namespace antiwasm

@@ -8,6 +8,7 @@
 #include "instruction.hpp"
 #include "lexems.hpp"
 #include "memory/load.hpp"
+#include "memory/store.hpp"
 #include "nop.hpp"
 #include "unreachable.hpp"
 #include "variable/global_get.hpp"
