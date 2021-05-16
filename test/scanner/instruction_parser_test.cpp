@@ -6,6 +6,8 @@
 #include "const/i64_const.cpp"
 #include "instruction.cpp"
 #include "instruction_parser.cpp"
+#include "memory/load/i32_load.cpp"
+#include "memory/load/i64_load.cpp"
 #include "nop.cpp"
 #include "unreachable.cpp"
 #include "variable/global_get.cpp"
@@ -110,6 +112,22 @@ BOOST_AUTO_TEST_CASE(parseGlobalSet_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(Global_set, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseI32Load_test) {
+  uint8_t instrContent[] = {InstructionSet::i32_load, 0x0F, 0x0A};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i32_load, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseI64Load_test) {
+  uint8_t instrContent[] = {InstructionSet::i64_load, 0x0F, 0x0A};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i64_load, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // limits_test
