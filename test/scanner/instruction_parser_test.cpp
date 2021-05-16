@@ -7,6 +7,7 @@
 #include "instruction.cpp"
 #include "instruction_parser.cpp"
 #include "memory/load.cpp"
+#include "memory/store.cpp"
 #include "nop.cpp"
 #include "unreachable.cpp"
 #include "variable/global_get.cpp"
@@ -159,6 +160,14 @@ BOOST_AUTO_TEST_CASE(parseI32Load8u_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(i32_load8_u, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseStore_test) {
+  uint8_t instrContent[] = {InstructionSet::i64_store32, 0x0F, 0x0A};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i64_store32, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // limits_test
