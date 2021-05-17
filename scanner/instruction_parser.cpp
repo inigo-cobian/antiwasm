@@ -147,8 +147,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i32_div_u:
   case i32_rem_s:
   case i32_rem_u:
-    // TODO i32 arithmetic
-    break;
+    return std::make_unique<Instruction>(I32Arithmetic{instructionContent});
 
   case i32_and:
   case i32_or:
@@ -176,7 +175,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i64_div_u:
   case i64_rem_s:
   case i64_rem_u:
-    // TODO i64 arithmetic
+    return std::make_unique<Instruction>(I64Arithmetic{instructionContent});
     break;
 
   case i64_and:
@@ -199,15 +198,23 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case f32_floor:
   case f32_trunc:
   case f32_nearest:
+    // TODO f32 round
+    break;
+
   case f32_sqrt:
   case f32_add:
   case f32_sub:
   case f32_mul:
   case f32_div:
+    return std::make_unique<Instruction>(F32Arithmetic{instructionContent});
+
   case f32_min:
   case f32_max:
+    // TODO f32 min_max
+    break;
+
   case f32_copysign:
-    // TODO f32 math
+    // TODO f32 othermath
     break;
 
   case f64_abs:
@@ -216,15 +223,20 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case f64_floor:
   case f64_trunc:
   case f64_nearest:
+    // TODO f32 round
+    break;
+
   case f64_sqrt:
   case f64_add:
   case f64_sub:
   case f64_mul:
   case f64_div:
+    return std::make_unique<Instruction>(F64Arithmetic{instructionContent});
+
   case f64_min:
   case f64_max:
   case f64_copysign:
-    // TODO f64 math
+    // TODO f64 othermath
     break;
 
   case i32_wrap_i64:
