@@ -26,10 +26,10 @@ file(GLOB UTILS "utils/*.cpp")
 
 file(GLOB CONST "instructions/const/*.cpp")
 file(GLOB VARIABLE "instructions/variable/*.cpp")
-
+file(GLOB COMPARISON "instructions/comparison/*.cpp")
 file(GLOB MEMORY "instructions/memory/*.cpp")
 
 add_executable(antiwasm ${INIT} ${INSTRUCTIONS} ${SCANNER} ${MODULES} ${TYPES} ${UTILS}
-        ${CONST} ${VARIABLE} ${MEMORY})
+        ${CONST} ${VARIABLE} ${MEMORY} ${COMPARISON})
 
 target_link_libraries(antiwasm pthread boost_log boost_program_options boost_thread)
