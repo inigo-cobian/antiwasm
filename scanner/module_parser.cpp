@@ -15,7 +15,7 @@ int parse(const char *classFile) {
 
   // Magic header
   auto uBuffer = driver->GetNextBytes(4);
-  if (!checkMagicNumber(uBuffer.get())) {
+  if (!checkMagicNumber(std::move(uBuffer))) {
     auto error = generateError(fatal, unrecognizedHeader, 0);
     module.addError(error);
     return -1;
@@ -23,7 +23,7 @@ int parse(const char *classFile) {
 
   // Version number
   uBuffer = driver->GetNextBytes(4);
-  if (!checkVersion(uBuffer.get())) {
+  if (!checkVersion(std::move(uBuffer))) {
     auto error = generateError(fatal, unrecognizedVersion, 4);
     module.addError(error);
     return -1;
@@ -35,7 +35,8 @@ int parse(const char *classFile) {
     auto nextSectionHeader = driver->GetNextSectionHeader();
     auto sectionSize = transformLeb128ToUnsignedInt32(nextSectionHeader.get() + 1);
     auto nextSectionContent = driver->GetNextBytes(sectionSize);
-    auto nextSection = parseNextSection(nextSectionHeader.get()[0], sectionSize, nextSectionContent.get(), sectionPosition);
+    auto nextSection =
+        parseNextSection(nextSectionHeader.get()[0], sectionSize, nextSectionContent.get(), sectionPosition);
 
     BOOST_LOG_TRIVIAL(trace) << "[scanner] Id: " << hex << (int)(nextSectionHeader.get()[0]);
     BOOST_LOG_TRIVIAL(trace) << "[scanner] Size: " << hex << sectionSize;

@@ -263,7 +263,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     break;
 
   case double_byte_instr:
-    switch(instructionContent[1]) {
+    switch (instructionContent[1]) {
     case i32_trunc_sat_f32_s:
     case i32_trunc_sat_f32_u:
     case i32_trunc_sat_f64_s:
@@ -276,7 +276,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     case Memory_init:
       return std::make_unique<Instruction>(MemoryInit{instructionContent + 1});
     case Data_drop:
-      return std::make_unique<Instruction>(DataDrop{instructionContent+2});
+      return std::make_unique<Instruction>(DataDrop{instructionContent + 2});
     case Memory_copy:
       return std::make_unique<Instruction>(MemoryCopy{});
     case Memory_fill:
@@ -290,8 +290,8 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
       // TODO
       break;
     default:
-      // TODO unknown or invalid value
-      ;
+        // TODO unknown or invalid value
+        ;
     }
 
   case Else:
