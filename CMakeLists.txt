@@ -24,12 +24,11 @@ file(GLOB SCANNER "scanner/*.cpp")
 file(GLOB TYPES "types/*.cpp")
 file(GLOB UTILS "utils/*.cpp")
 
-file(GLOB CONST "instructions/const/*.cpp")
 file(GLOB VARIABLE "instructions/variable/*.cpp")
 file(GLOB MEMORY "instructions/memory/*.cpp")
 file(GLOB NUMERIC "instructions/numeric/*.cpp")
 
 add_executable(antiwasm ${INIT} ${INSTRUCTIONS} ${SCANNER} ${MODULES} ${TYPES} ${UTILS}
-        ${CONST} ${VARIABLE} ${MEMORY} ${NUMERIC})
+        ${VARIABLE} ${MEMORY} ${NUMERIC})
 
 target_link_libraries(antiwasm pthread boost_log boost_program_options boost_thread)

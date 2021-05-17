@@ -104,7 +104,6 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i32_le_u:
   case i32_ge_s:
   case i32_ge_u:
-    return std::make_unique<Instruction>(I32Comp{instructionContent});
 
   case i64_eqz:
   case i64_eq:
@@ -117,7 +116,6 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i64_le_u:
   case i64_ge_s:
   case i64_ge_u:
-    return std::make_unique<Instruction>(I64Comp{instructionContent});
 
   case f32_eq:
   case f32_ne:
@@ -125,7 +123,6 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case f32_gt:
   case f32_le:
   case f32_ge:
-    return std::make_unique<Instruction>(F32Comp{instructionContent});
 
   case f64_eq:
   case f64_ne:
@@ -133,12 +130,10 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case f64_gt:
   case f64_le:
   case f64_ge:
-    return std::make_unique<Instruction>(F64Comp{instructionContent});
 
   case i32_clz:
   case i32_ctz:
   case i32_popcnt:
-    return std::make_unique<Instruction>(I32BitOp{instructionContent});
 
   case i32_add:
   case i32_sub:
@@ -147,25 +142,20 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i32_div_u:
   case i32_rem_s:
   case i32_rem_u:
-    return std::make_unique<Instruction>(I32Arithmetic{instructionContent});
 
   case i32_and:
   case i32_or:
   case i32_xor:
-    return std::make_unique<Instruction>(I32Logic{instructionContent});
 
   case i32_shl:
   case i32_shr_s:
   case i32_shr_u:
   case i32_rotl:
   case i32_rotr:
-    // TODO i32 shift
-    break;
 
   case i64_clz:
   case i64_ctz:
   case i64_popcnt:
-    return std::make_unique<Instruction>(I64BitOp{instructionContent});
 
   case i64_add:
   case i64_sub:
@@ -174,20 +164,16 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i64_div_u:
   case i64_rem_s:
   case i64_rem_u:
-    return std::make_unique<Instruction>(I64Arithmetic{instructionContent});
 
   case i64_and:
   case i64_or:
   case i64_xor:
-    return std::make_unique<Instruction>(I64Logic{instructionContent});
 
   case i64_shl:
   case i64_shr_s:
   case i64_shr_u:
   case i64_rotl:
   case i64_rotr:
-    // TODO i64 shift
-    break;
 
   case f32_abs:
   case f32_neg:
@@ -195,24 +181,16 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case f32_floor:
   case f32_trunc:
   case f32_nearest:
-    // TODO f32 round
-    break;
 
   case f32_sqrt:
   case f32_add:
   case f32_sub:
   case f32_mul:
   case f32_div:
-    return std::make_unique<Instruction>(F32Arithmetic{instructionContent});
 
   case f32_min:
   case f32_max:
-    // TODO f32 min_max
-    break;
-
   case f32_copysign:
-    // TODO f32 othermath
-    break;
 
   case f64_abs:
   case f64_neg:
@@ -220,21 +198,17 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case f64_floor:
   case f64_trunc:
   case f64_nearest:
-    // TODO f32 round
-    break;
 
   case f64_sqrt:
   case f64_add:
   case f64_sub:
   case f64_mul:
   case f64_div:
-    return std::make_unique<Instruction>(F64Arithmetic{instructionContent});
 
   case f64_min:
   case f64_max:
   case f64_copysign:
-    // TODO f64 othermath
-    break;
+    return std::make_unique<Instruction>(NumericInstr{instructionContent});
 
   case i32_wrap_i64:
   case i32_trunc_f32_s:

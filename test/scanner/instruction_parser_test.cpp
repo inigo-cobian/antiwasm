@@ -1,9 +1,5 @@
 #define BOOST_TEST_DYN_LINK
 
-#include "const/f32_const.cpp"
-#include "const/f64_const.cpp"
-#include "const/i32_const.cpp"
-#include "const/i64_const.cpp"
 #include "instruction.cpp"
 #include "instruction_parser.cpp"
 #include "memory/data_drop.cpp"
@@ -15,18 +11,11 @@
 #include "memory/memory_size.cpp"
 #include "memory/store.cpp"
 #include "nop.cpp"
-#include "numeric/f32_arithmetic.cpp"
-#include "numeric/f32_comparison.cpp"
-#include "numeric/f64_arithmetic.cpp"
-#include "numeric/f64_comparison.cpp"
-#include "numeric/i32_arithmetic.cpp"
-#include "numeric/i32_bitop.cpp"
-#include "numeric/i32_comparison.cpp"
-#include "numeric/i32_logic.cpp"
-#include "numeric/i64_arithmetic.cpp"
-#include "numeric/i64_bitop.cpp"
-#include "numeric/i64_comparison.cpp"
-#include "numeric/i64_logic.cpp"
+#include "numeric/f32_const.cpp"
+#include "numeric/f64_const.cpp"
+#include "numeric/i32_const.cpp"
+#include "numeric/i64_const.cpp"
+#include "numeric/numericInstr.cpp"
 #include "unreachable.cpp"
 #include "variable/global_get.cpp"
 #include "variable/global_set.cpp"
@@ -244,99 +233,12 @@ BOOST_AUTO_TEST_CASE(parseDataDrop_test) {
   BOOST_CHECK_EQUAL(Data_drop, result->getSecondByte());
 }
 
-BOOST_AUTO_TEST_CASE(parseI32Comp_test) {
-  uint8_t instrContent[] = {InstructionSet::i32_eq};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(i32_eq, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseI64Comp_test) {
-  uint8_t instrContent[] = {InstructionSet::i64_ge_s};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(i64_ge_s, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseF32Comp_test) {
-  uint8_t instrContent[] = {InstructionSet::f32_lt};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(f32_lt, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseF64Comp_test) {
-  uint8_t instrContent[] = {InstructionSet::f64_lt};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(f64_lt, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseI32BitOp_test) {
-  uint8_t instrContent[] = {InstructionSet::i32_clz};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(i32_clz, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseI64BitOp_test) {
-  uint8_t instrContent[] = {InstructionSet::i64_ctz};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(i64_ctz, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseI32Arithmetic_test) {
-  uint8_t instrContent[] = {InstructionSet::i32_add};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(i32_add, result->getInstructionCode());
-}
-BOOST_AUTO_TEST_CASE(parseI64Arithmetic_test) {
-  uint8_t instrContent[] = {InstructionSet::i64_sub};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(i64_sub, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseF32Arithmetic_test) {
-  uint8_t instrContent[] = {InstructionSet::f32_mul};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(f32_mul, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseF64Arithmetic_test) {
-  uint8_t instrContent[] = {InstructionSet::f64_div};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(f64_div, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseI32Logic_test) {
+BOOST_AUTO_TEST_CASE(parseNumericInstr_test) {
   uint8_t instrContent[] = {InstructionSet::i32_and};
 
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(i32_and, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseI64Logic_test) {
-  uint8_t instrContent[] = {InstructionSet::i64_or};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(i64_or, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
