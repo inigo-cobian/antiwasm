@@ -1,19 +1,23 @@
 #define BOOST_TEST_DYN_LINK
 
+#include "comparison/f32_comparison.cpp"
+#include "comparison/f64_comparison.cpp"
+#include "comparison/i32_comparison.cpp"
+#include "comparison/i64_comparison.cpp"
 #include "const/f32_const.cpp"
 #include "const/f64_const.cpp"
 #include "const/i32_const.cpp"
 #include "const/i64_const.cpp"
 #include "instruction.cpp"
 #include "instruction_parser.cpp"
+#include "memory/data_drop.cpp"
 #include "memory/load.cpp"
-#include "memory/store.cpp"
 #include "memory/memory_copy.cpp"
 #include "memory/memory_fill.cpp"
 #include "memory/memory_grow.cpp"
-#include "memory/memory_size.cpp"
 #include "memory/memory_init.cpp"
-#include "memory/data_drop.cpp"
+#include "memory/memory_size.cpp"
+#include "memory/store.cpp"
 #include "nop.cpp"
 #include "unreachable.cpp"
 #include "variable/global_get.cpp"
@@ -21,7 +25,6 @@
 #include "variable/local_get.cpp"
 #include "variable/local_set.cpp"
 #include "variable/local_tee.cpp"
-#include "comparison/i32_comparison.cpp"
 #include <boost/test/unit_test.hpp>
 
 using namespace antiwasm;
@@ -185,7 +188,6 @@ BOOST_AUTO_TEST_CASE(parseDoubleByteInstr_test) {
   BOOST_CHECK_EQUAL(double_byte_instr, result->getInstructionCode());
 }
 
-
 BOOST_AUTO_TEST_CASE(parseMemoryCopy_test) {
   uint8_t instrContent[] = {InstructionSet::double_byte_instr, SecondByteSet::Memory_copy};
 
@@ -232,6 +234,38 @@ BOOST_AUTO_TEST_CASE(parseDataDrop_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(Data_drop, result->getSecondByte());
+}
+
+BOOST_AUTO_TEST_CASE(parseI32Comp_test) {
+  uint8_t instrContent[] = {InstructionSet::i32_eq};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i32_eq, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseI64Comp_test) {
+  uint8_t instrContent[] = {InstructionSet::i64_ge_s};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i64_ge_s, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseF32Comp_test) {
+  uint8_t instrContent[] = {InstructionSet::f32_lt};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(f32_lt, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseF64Comp_test) {
+  uint8_t instrContent[] = {InstructionSet::f64_lt};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(f64_lt, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
