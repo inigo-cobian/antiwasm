@@ -152,6 +152,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i32_and:
   case i32_or:
   case i32_xor:
+    return std::make_unique<Instruction>(I32Logic{instructionContent});
     // TODO i32 logic
     break;
 
