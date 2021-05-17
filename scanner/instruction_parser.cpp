@@ -153,8 +153,6 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i32_or:
   case i32_xor:
     return std::make_unique<Instruction>(I32Logic{instructionContent});
-    // TODO i32 logic
-    break;
 
   case i32_shl:
   case i32_shr_s:
@@ -177,13 +175,11 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i64_rem_s:
   case i64_rem_u:
     return std::make_unique<Instruction>(I64Arithmetic{instructionContent});
-    break;
 
   case i64_and:
   case i64_or:
   case i64_xor:
-    // TODO i64 logic
-    break;
+    return std::make_unique<Instruction>(I64Logic{instructionContent});
 
   case i64_shl:
   case i64_shr_s:
