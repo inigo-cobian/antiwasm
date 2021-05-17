@@ -1,7 +1,10 @@
 #ifndef ANTIWASM_INSTRUCTION_PARSER_HPP
 #define ANTIWASM_INSTRUCTION_PARSER_HPP
 
+#include "comparison/f32_comparison.hpp"
+#include "comparison/f64_comparison.hpp"
 #include "comparison/i32_comparison.hpp"
+#include "comparison/i64_comparison.hpp"
 #include "const/f32_const.hpp"
 #include "const/f64_const.hpp"
 #include "const/i32_const.hpp"

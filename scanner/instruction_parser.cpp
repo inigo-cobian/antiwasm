@@ -105,8 +105,6 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i32_ge_s:
   case i32_ge_u:
     return std::make_unique<Instruction>(I32Comp{instructionContent});
-    // TODO i32comparisonInstruction
-    break;
 
   case i64_eqz:
   case i64_eq:
@@ -119,8 +117,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i64_le_u:
   case i64_ge_s:
   case i64_ge_u:
-    // TODO i64comparisonInstruction
-    break;
+    return std::make_unique<Instruction>(I64Comp{instructionContent});
 
   case f32_eq:
   case f32_ne:
@@ -128,8 +125,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case f32_gt:
   case f32_le:
   case f32_ge:
-    // TODO f32comparisonInstruction
-    break;
+    return std::make_unique<Instruction>(F32Comp{instructionContent});
 
   case f64_eq:
   case f64_ne:
@@ -137,8 +133,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case f64_gt:
   case f64_le:
   case f64_ge:
-    // TODO f64comparisonInstruction
-    break;
+    return std::make_unique<Instruction>(F64Comp{instructionContent});
 
   case i32_clz:
   case i32_ctz:
