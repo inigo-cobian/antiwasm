@@ -1,5 +1,9 @@
 #define BOOST_TEST_DYN_LINK
 
+#include "arithmetic/f32_arithmetic.cpp"
+#include "arithmetic/f64_arithmetic.cpp"
+#include "arithmetic/i32_arithmetic.cpp"
+#include "arithmetic/i64_arithmetic.cpp"
 #include "comparison/f32_comparison.cpp"
 #include "comparison/f64_comparison.cpp"
 #include "comparison/i32_comparison.cpp"
@@ -284,6 +288,37 @@ BOOST_AUTO_TEST_CASE(parseI64BitOp_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(i64_ctz, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseI32Arithmetic_test) {
+  uint8_t instrContent[] = {InstructionSet::i32_add};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i32_add, result->getInstructionCode());
+}
+BOOST_AUTO_TEST_CASE(parseI64Arithmetic_test) {
+  uint8_t instrContent[] = {InstructionSet::i64_sub};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i64_sub, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseF32Arithmetic_test) {
+  uint8_t instrContent[] = {InstructionSet::f32_mul};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(f32_mul, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseF64Arithmetic_test) {
+  uint8_t instrContent[] = {InstructionSet::f64_div};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(f64_div, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
