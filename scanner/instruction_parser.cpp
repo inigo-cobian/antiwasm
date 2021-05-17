@@ -138,8 +138,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i32_clz:
   case i32_ctz:
   case i32_popcnt:
-    // TODO
-    break;
+    return std::make_unique<Instruction>(I32BitOp{instructionContent});
 
   case i32_add:
   case i32_sub:
@@ -168,8 +167,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i64_clz:
   case i64_ctz:
   case i64_popcnt:
-    // TODO
-    break;
+    return std::make_unique<Instruction>(I64BitOp{instructionContent});
 
   case i64_add:
   case i64_sub:
