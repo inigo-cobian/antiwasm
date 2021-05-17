@@ -22,9 +22,11 @@
 #include "numeric/i32_arithmetic.cpp"
 #include "numeric/i32_bitop.cpp"
 #include "numeric/i32_comparison.cpp"
+#include "numeric/i32_logic.cpp"
 #include "numeric/i64_arithmetic.cpp"
 #include "numeric/i64_bitop.cpp"
 #include "numeric/i64_comparison.cpp"
+#include "numeric/i64_logic.cpp"
 #include "unreachable.cpp"
 #include "variable/global_get.cpp"
 #include "variable/global_set.cpp"
@@ -319,6 +321,22 @@ BOOST_AUTO_TEST_CASE(parseF64Arithmetic_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(f64_div, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseI32Logic_test) {
+  uint8_t instrContent[] = {InstructionSet::i32_and};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i32_and, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseI64Logic_test) {
+  uint8_t instrContent[] = {InstructionSet::i64_or};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i64_or, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
