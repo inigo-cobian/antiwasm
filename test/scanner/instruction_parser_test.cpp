@@ -21,6 +21,7 @@
 #include "variable/local_get.cpp"
 #include "variable/local_set.cpp"
 #include "variable/local_tee.cpp"
+#include "comparison/i32_comparison.cpp"
 #include <boost/test/unit_test.hpp>
 
 using namespace antiwasm;

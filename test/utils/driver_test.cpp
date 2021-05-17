@@ -59,10 +59,10 @@ BOOST_AUTO_TEST_CASE(GetNextBytes_ReturnsThatNumberOfBytes) {
   const size_t nBytes = 4;
   constexpr uint8_t expectedBytes[] = {0x00, 0x61, 0x73, 0x6D}; // Magic number
 
-  auto *readBytes = driver->GetNextBytes(4);
+  auto readBytes = driver->GetNextBytes(4);
 
   driver->CloseFile();
-  BOOST_CHECK_EQUAL_COLLECTIONS(readBytes, readBytes + nBytes, expectedBytes, expectedBytes + nBytes);
+  BOOST_CHECK_EQUAL_COLLECTIONS(readBytes.get(), readBytes.get() + nBytes, expectedBytes, expectedBytes + nBytes);
 }
 
 BOOST_AUTO_TEST_CASE(GetNextSectionHeader_GetsMaxSizeOfSectionHeaderBytes) {
@@ -72,10 +72,10 @@ BOOST_AUTO_TEST_CASE(GetNextSectionHeader_GetsMaxSizeOfSectionHeaderBytes) {
   constexpr uint8_t expectedBytes[] = {0x00, 0x61, 0x73, 0x6d, 0x01, 0x00}; // StartId of magic number
   size_t sizeOfSectionHeader = MAX_SIZE_OF_SECTION_HEADER;
 
-  auto *readBytes = driver->GetNextSectionHeader();
+  auto readBytes = driver->GetNextSectionHeader();
 
   driver->CloseFile();
-  BOOST_CHECK_EQUAL_COLLECTIONS(readBytes, readBytes + sizeOfSectionHeader, expectedBytes,
+  BOOST_CHECK_EQUAL_COLLECTIONS(readBytes.get(), readBytes.get() + sizeOfSectionHeader, expectedBytes,
                                 expectedBytes + sizeOfSectionHeader);
 }
 
