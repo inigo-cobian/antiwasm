@@ -29,7 +29,7 @@ private:
 protected:
   static size_t fileSize_;
   static size_t pointer_;
-  static uint8_t *buffer_; // TODO which size?
+  // TODO which size?
   static std::ifstream wasmFile_;
   static bool isParsing_;
 
@@ -56,14 +56,14 @@ public:
    * @return The bytes from the current position of the pointer until
    * nBytesToBeRead.
    */
-  static uint8_t *GetNextBytes(size_t nBytesToBeRead);
+  static std::unique_ptr<uint8_t> GetNextBytes(size_t nBytesToBeRead);
 
   /**
    * Returns the next 2 bytes. Alias of GetNextBytes when it is used for section
    * headers.
    * @return The next 2 bytes
    */
-  static uint8_t *GetNextSectionHeader();
+  static std::unique_ptr<uint8_t> GetNextSectionHeader();
 
   /**
    * Opens the file at the given position.

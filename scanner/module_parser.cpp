@@ -14,34 +14,30 @@ int parse(const char *classFile) {
   Module module(driver->GetFileSize());
 
   // Magic header
-  uint8_t *uBuffer = driver->GetNextBytes(4);
-  if (!checkMagicNumber(uBuffer)) {
+  auto uBuffer = driver->GetNextBytes(4);
+  if (!checkMagicNumber(uBuffer.get())) {
     auto error = generateError(fatal, unrecognizedHeader, 0);
     module.addError(error);
     return -1;
   }
 
-  free(uBuffer);
-
   // Version number
   uBuffer = driver->GetNextBytes(4);
-  if (!checkVersion(uBuffer)) {
+  if (!checkVersion(uBuffer.get())) {
     auto error = generateError(fatal, unrecognizedVersion, 4);
     module.addError(error);
     return -1;
   }
 
-  free(uBuffer);
-
   // Sections
   while (!driver->HasReachedFileSize(2)) {
     auto sectionPosition = driver->GetCurrentPos();
-    auto *nextSectionHeader = driver->GetNextSectionHeader();
-    auto sectionSize = transformLeb128ToUnsignedInt32(&nextSectionHeader[1]);
-    auto *nextSectionContent = driver->GetNextBytes(sectionSize);
-    auto nextSection = parseNextSection(nextSectionHeader[0], sectionSize, nextSectionContent, sectionPosition);
+    auto nextSectionHeader = driver->GetNextSectionHeader();
+    auto sectionSize = transformLeb128ToUnsignedInt32(nextSectionHeader.get() + 1);
+    auto nextSectionContent = driver->GetNextBytes(sectionSize);
+    auto nextSection = parseNextSection(nextSectionHeader.get()[0], sectionSize, nextSectionContent.get(), sectionPosition);
 
-    BOOST_LOG_TRIVIAL(trace) << "[scanner] Id: " << hex << (int)nextSectionHeader[0];
+    BOOST_LOG_TRIVIAL(trace) << "[scanner] Id: " << hex << (int)(nextSectionHeader.get()[0]);
     BOOST_LOG_TRIVIAL(trace) << "[scanner] Size: " << hex << sectionSize;
 
     if (nextSection.getSectionId() != ErrorId) {

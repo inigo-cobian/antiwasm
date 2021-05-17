@@ -3,12 +3,6 @@
 using namespace std;
 namespace antiwasm {
 
-void ContentBlock::addContentBytes(shared_ptr<uint8_t> ptrToContentBytes, size_t indexOfCurrentContent,
-                                   size_t nBytesOfContent) {
-  contentBytes = move(ptrToContentBytes);
-  indexByte = indexOfCurrentContent;
-}
-
 void ContentBlock::addError(const shared_ptr<ErrorAtWasm> &errorAtWasm) { errors_.push_back(errorAtWasm); }
 
 bool ContentBlock::hasError() { return !errors_.empty(); }

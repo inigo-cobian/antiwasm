@@ -22,6 +22,7 @@
 #include "variable/local_get.hpp"
 #include "variable/local_set.hpp"
 #include "variable/local_tee.hpp"
+#include "comparison/i32_comparison.hpp"
 #include <memory>
 
 namespace antiwasm {

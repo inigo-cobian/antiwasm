@@ -16,14 +16,6 @@ protected:
 
 public:
   /**
-   * Gets the pointer to the content block the current content belongs (as bytes)
-   * and its position at the block.
-   * @param contentBytes
-   * @param indexOfContent
-   */
-  void addContentBytes(std::shared_ptr<uint8_t> ptrToContentBytes, size_t indexOfCurrentContent, size_t nBytesOfContent);
-
-  /**
    * Adds a new error to the error_ vector.
    * @param pointer to ErrorAtWasm
    */

@@ -104,6 +104,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i32_le_u:
   case i32_ge_s:
   case i32_ge_u:
+    return std::make_unique<Instruction>(I32Comp{instructionContent});
     // TODO i32comparisonInstruction
     break;
 
