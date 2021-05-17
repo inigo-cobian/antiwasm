@@ -18,6 +18,8 @@
 #include "memory/memory_init.cpp"
 #include "memory/memory_size.cpp"
 #include "memory/store.cpp"
+#include "bitop/i32_bitop.cpp"
+#include "bitop/i64_bitop.cpp"
 #include "nop.cpp"
 #include "unreachable.cpp"
 #include "variable/global_get.cpp"
@@ -266,6 +268,22 @@ BOOST_AUTO_TEST_CASE(parseF64Comp_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(f64_lt, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseI32BitOp_test) {
+  uint8_t instrContent[] = {InstructionSet::i32_clz};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i32_clz, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseI64BitOp_test) {
+  uint8_t instrContent[] = {InstructionSet::i64_ctz};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i64_ctz, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
