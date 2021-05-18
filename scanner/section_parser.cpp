@@ -184,7 +184,9 @@ GlobalSection parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int
 
   GlobalSection globalSection(sizeOfSection, sectionContent, sectionPos);
   for (uint32_t i = 0; i < globalsInVector; i++) {
-    // TODO
+    auto global = parseGlobal(&sectionContent[pointer]);
+    pointer += global.getNBytes();
+    globalSection.addGlobal(global);
   }
 
   globalSection.displaySectionContentInfo(); // TODO move to another place in the future

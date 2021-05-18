@@ -11,6 +11,7 @@ struct Global : public ContentBlock {
   Globaltype globaltype;
   Expression expr;
 
+  Global(Globaltype globaltype_, Expression expr_);
   [[nodiscard]] std::string getAsText() const;
 };
 

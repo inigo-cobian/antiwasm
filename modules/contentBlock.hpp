@@ -42,6 +42,8 @@ public:
   [[nodiscard]] uint32_t getNBytes() const { return nBytes; };
 
   void setNBytes(uint32_t p_nBytes) { nBytes = p_nBytes; };
+
+  void addNBytes(uint32_t p_nBytes) { nBytes += p_nBytes; };
 };
 
 } // namespace antiwasm

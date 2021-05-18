@@ -15,7 +15,9 @@ Globaltype parseGlobaltype(const uint8_t *globaltypeContent) {
     auto error = generateError(fatal, unrecognizedMutAtGlobaltype, 0);
     globaltype.addError(error);
   }
-  return globaltype;
+
+  globaltype.setNBytes(2);
+    return globaltype;
 }
 
 string Globaltype::getAsText() const {
