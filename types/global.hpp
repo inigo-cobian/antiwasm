@@ -12,9 +12,15 @@ struct Global : public ContentBlock {
   Expression expr;
 
   Global(Globaltype globaltype_, Expression expr_);
-  [[nodiscard]] std::string getAsText() const;
+  [[nodiscard]] static std::string getAsText();
 };
 
+/**
+ * Parses and generates the parsed global.
+ * Adds error if cannot complete the parsing.
+ * @param globalContent
+ * @return
+ */
 Global parseGlobal(const uint8_t *globalContent);
 
 } // namespace antiwasm

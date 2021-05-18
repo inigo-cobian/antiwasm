@@ -3,8 +3,8 @@
 
 #define BOOST_LOG_DYN_LINK 1
 
-#include "section.hpp"
 #include "global.hpp"
+#include "section.hpp"
 #include <boost/log/trivial.hpp>
 #include <cstdint>
 #include <vector>

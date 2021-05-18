@@ -9,8 +9,8 @@ namespace antiwasm {
 struct Memtype : public ContentBlock {
   Limit limit;
 
-  Memtype(Limit p_limit) : limit(p_limit) {}
-  std::string getAsText() const;
+  explicit Memtype(Limit p_limit);
+  [[nodiscard]] std::string getAsText() const;
 };
 
 /**

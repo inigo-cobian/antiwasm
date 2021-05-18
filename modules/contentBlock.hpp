@@ -39,10 +39,22 @@ public:
    */
   std::shared_ptr<ErrorAtWasm> getError();
 
+  /**
+   * Gets the number of bytes of the content block
+   * @return
+   */
   [[nodiscard]] uint32_t getNBytes() const { return nBytes; };
 
+  /**
+   * Sets the number of bytes of the content block
+   * @param p_nBytes
+   */
   void setNBytes(uint32_t p_nBytes) { nBytes = p_nBytes; };
 
+  /**
+   * Adds the argument to the number of bytes of the content block
+   * @param p_nBytes
+   */
   void addNBytes(uint32_t p_nBytes) { nBytes += p_nBytes; };
 };
 

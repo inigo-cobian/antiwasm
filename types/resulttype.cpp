@@ -1,6 +1,5 @@
 #include "resulttype.hpp"
 
-using namespace std;
 namespace antiwasm {
 Resulttype parseResulttype(const uint8_t *resultTypeContent) {
   Resulttype resulttype;

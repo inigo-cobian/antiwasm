@@ -10,9 +10,12 @@ struct MemArg : public ContentBlock {
   uint32_t offset;
   uint32_t align;
 
-  explicit MemArg(const uint8_t *content);
+  MemArg(uint32_t offset_, uint32_t align_);
   ~MemArg() = default;
 };
+
+MemArg parseMemArg(const uint8_t *memTypeContent);
+
 } // namespace antiwasm
 
 #endif // ANTIWASM_MEMARG_HPP

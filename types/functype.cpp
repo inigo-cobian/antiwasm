@@ -1,6 +1,5 @@
 #include "functype.hpp"
 
-using namespace std;
 namespace antiwasm {
 
 Functype parseFunctype(const uint8_t *funcTypeContent) {
@@ -10,7 +9,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
     auto error = generateError(fatal, unrecognizedHeaderAtFunctype, 0);
     functype.addError(error);
     BOOST_LOG_TRIVIAL(debug) << "[Functype] Incorrect header";
-    cout << "Functype header not found: " << hex << (unsigned int)funcTypeContent[0] << endl;
+    std::cout << "Functype header not found: " << std::hex << (unsigned int)funcTypeContent[0] << std::endl;
     return functype;
   }
 
@@ -19,7 +18,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
   if (functype.parameterType.hasError()) {
     auto error = generateError(fatal, unrecognizedRT1Functype, 0);
     functype.addError(error);
-    cout << "ErrorId at functype.parameterType" << endl;
+    std::cout << "ErrorId at functype.parameterType" << std::endl;
     return functype;
   }
 
@@ -29,7 +28,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
   if (functype.returnType.hasError()) {
     auto error = generateError(fatal, unrecognizedRT2Functype, 0);
     functype.addError(error);
-    cout << "ErrorId at functype.returnType" << endl;
+    std::cout << "ErrorId at functype.returnType" << std::endl;
   }
   functype.setNBytes(BYTES_HEADER_FUNCTYPE + functype.parameterType.getNBytes() + functype.returnType.getNBytes());
   BOOST_LOG_TRIVIAL(debug) << "[Functype] nBytes: " << functype.getNBytes();

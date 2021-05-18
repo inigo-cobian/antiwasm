@@ -12,7 +12,7 @@ protected:
   SecondByteSet secondCode;
 
 public:
-  Instruction() {};
+  Instruction(){};
   ~Instruction() = default;
   InstructionSet getInstructionCode();
   SecondByteSet getSecondByte();

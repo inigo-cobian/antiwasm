@@ -1,6 +1,5 @@
 #include "tabletype.hpp"
 
-using namespace std;
 namespace antiwasm {
 
 Tabletype parseTableType(const uint8_t *tableTypeContent) {
@@ -12,7 +11,7 @@ Tabletype parseTableType(const uint8_t *tableTypeContent) {
   Tabletype tabletype{reftypeAtTabletype, limitAtTabletype};
 
   if (reftypeAtTabletype == invalid_reftype) {
-    cout << "ErrorId at reftype" << endl;
+    std::cout << "ErrorId at reftype" << std::endl;
     BOOST_LOG_TRIVIAL(error) << "[Resulttype] Incorrect Reftype with value: " << tableTypeContent[0];
     auto error = generateError(fatal, unrecognizedReftypeAtTabletype, 0);
     tabletype.addError(error);
@@ -20,7 +19,7 @@ Tabletype parseTableType(const uint8_t *tableTypeContent) {
   }
 
   if (limitAtTabletype.hasError()) {
-    cout << "ErrorId at limit" << endl;
+    std::cout << "ErrorId at limit" << std::endl;
     BOOST_LOG_TRIVIAL(error) << "[Resulttype] Incorrect Limit";
     auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, 1);
     tabletype.addError(error);
@@ -33,8 +32,8 @@ Tabletype parseTableType(const uint8_t *tableTypeContent) {
 
   return tabletype;
 }
-string Tabletype::getAsText() const {
-  stringstream tabletypeAsText;
+std::string Tabletype::getAsText() const {
+  std::stringstream tabletypeAsText;
   tabletypeAsText << "( table $index"
                   << " "; // TODO ¿index?
   if (limit.type == limit_min) {

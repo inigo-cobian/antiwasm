@@ -56,8 +56,20 @@ struct ErrorAtWasm {
   unsigned int elementIndex;
 };
 
+/**
+ * Generates an error according to the parameters provided.
+ * @param severity
+ * @param errorType
+ * @param index
+ * @return
+ */
 std::shared_ptr<ErrorAtWasm> generateError(ErrorSeverity severity, ErrorTypes errorType, unsigned int index);
 
+/**
+ * Generates and returns a "No error".
+ * Used to represent the absence of error.
+ * @return
+ */
 std::shared_ptr<ErrorAtWasm> generateNoError();
 
 } // namespace antiwasm

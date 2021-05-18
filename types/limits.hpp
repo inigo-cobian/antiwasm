@@ -26,9 +26,7 @@ struct Limit : public ContentBlock, Displayable {
    * @param p_min
    * @param p_nBytes_
    */
-  Limit(limit_types p_limitTypes, uint32_t p_min, uint32_t p_nBytes_) : type(p_limitTypes), min(p_min), max(0) {
-    setNBytes(p_nBytes_);
-  }
+  Limit(limit_types p_limitTypes, uint32_t p_min, uint32_t p_nBytes_);
 
   /**
    * Constructor for limits with type min-max
@@ -37,10 +35,8 @@ struct Limit : public ContentBlock, Displayable {
    * @param p_max
    * @param p_nBytes_
    */
-  Limit(limit_types p_limitTypes, uint32_t p_min, uint32_t p_max, uint32_t p_nBytes_)
-      : type(p_limitTypes), min(p_min), max(p_max) {
-    setNBytes(p_nBytes_);
-  }
+  Limit(limit_types p_limitTypes, uint32_t p_min, uint32_t p_max, uint32_t p_nBytes_);
+
   void displayError() override;
   void displayContentInfo() override;
 };

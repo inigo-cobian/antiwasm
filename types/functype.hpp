@@ -11,7 +11,6 @@ const uint8_t FUNCTYPE_HEADER = 0x60;
 
 struct Functype : public ContentBlock {
   Resulttype parameterType;
-  // TODO check if this name has the same meaning in the docs
   Resulttype returnType;
 };
 

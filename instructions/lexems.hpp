@@ -234,5 +234,4 @@ enum SecondByteSet : uint8_t {
   Table_fill = 0x11
 };
 
-
 #endif
