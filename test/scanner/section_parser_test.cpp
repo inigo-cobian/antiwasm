@@ -4,6 +4,8 @@
 #include "importsec.cpp"
 #include "memsec.cpp" //TODO remove if possible
 #include "reftype.cpp"
+#include "global.cpp"
+#include "expression.cpp"
 #include "section_parser.cpp"
 #include "tablesec.cpp"
 #include "typesec.cpp"

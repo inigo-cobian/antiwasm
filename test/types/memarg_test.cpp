@@ -8,7 +8,7 @@ BOOST_AUTO_TEST_SUITE(memarg_test)
 BOOST_AUTO_TEST_CASE(parseMemarg_offset) {
     uint8_t memargContent[] = { 0x0A, 0x0B };
 
-    auto result = antiwasm::MemArg(memargContent);
+    auto result = antiwasm::parseMemArg(memargContent);
 
     BOOST_CHECK_EQUAL(result.offset, 0x0A);
 }
@@ -16,7 +16,7 @@ BOOST_AUTO_TEST_CASE(parseMemarg_offset) {
 BOOST_AUTO_TEST_CASE(parseMemarg_align) {
   uint8_t memargContent[] = { 0x0A, 0x0B };
 
-    auto result = antiwasm::MemArg(memargContent);
+    auto result = antiwasm::parseMemArg(memargContent);
 
     BOOST_CHECK_EQUAL(result.align, 0x0B);
 }
