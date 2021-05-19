@@ -17,6 +17,8 @@
 #include "numeric/i64_const.cpp"
 #include "numeric/numericInstr.cpp"
 #include "numeric/saturating_truc.cpp"
+#include "numeric/type_conversion.cpp"
+#include "numeric/extension.cpp"
 #include "table/elem_drop.cpp"
 #include "table/table_copy.cpp"
 #include "table/table_fill.cpp"
@@ -320,6 +322,22 @@ BOOST_AUTO_TEST_CASE(parseTableFill_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(Table_fill, result->getSecondByte());
+}
+
+BOOST_AUTO_TEST_CASE(parseTypeConversion_test) {
+  uint8_t instrContent[] = {InstructionSet::f64_convert_i32_s};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(f64_convert_i32_s, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseExtension_test) {
+  uint8_t instrContent[] = {InstructionSet::i64_extend16_s};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i64_extend16_s, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
