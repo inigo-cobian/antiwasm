@@ -8,38 +8,27 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case Nop:
     return std::make_unique<Instruction>(NopInstr{});
   case Block:
-    // TODO
-    break;
+    // return std::make_unique<Instruction>(BlockInstr{instructionContent});
   case Loop:
-    // TODO
-    break;
+    // return std::make_unique<Instruction>(LoopInstr{instructionContent});
   case If:
-    // TODO
-    break;
+    // return std::make_unique<Instruction>(IfInstr{instructionContent});
   case Br:
-    // TODO
-    break;
+    return std::make_unique<Instruction>(BrInstr{instructionContent});
   case Br_if:
-    // TODO
-    break;
+    return std::make_unique<Instruction>(BrIfInstr{instructionContent});
   case Br_table:
-    // TODO
-    break;
+    return std::make_unique<Instruction>(BrTableInstr{instructionContent});
   case Return:
-    // TODO
-    break;
+    return std::make_unique<Instruction>(ReturnInstr{});
   case Call:
-    // TODO
-    break;
+    return std::make_unique<Instruction>(CallInstr{instructionContent});
   case Call_indirect:
-    // TODO
-    break;
+    return std::make_unique<Instruction>(CallIndirectInstr{instructionContent});
   case Drop:
-    // TODO
-    break;
+    // return std::make_unique<Instruction>(DropInstr{instructionContent});
   case Select:
-    // TODO
-    break;
+    // return std::make_unique<Instruction>(SelectInstr{instructionContent});
 
   case Local_get:
     return std::make_unique<Instruction>(LocalGet{instructionContent});

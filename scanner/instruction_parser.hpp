@@ -37,6 +37,12 @@
 #include "variable/local_get.hpp"
 #include "variable/local_set.hpp"
 #include "variable/local_tee.hpp"
+#include "control/return.hpp"
+#include "control/br.hpp"
+#include "control/br_if.hpp"
+#include "control/br_table.hpp"
+#include "control/call.hpp"
+#include "control/call_indirect.hpp"
 #include <memory>
 
 namespace antiwasm {
