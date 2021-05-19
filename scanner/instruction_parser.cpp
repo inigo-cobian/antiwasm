@@ -240,9 +240,14 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i64_reinterpret_f64:
   case f32_reinterpret_i32:
   case f64_reinterpret_i64:
+    return std::make_unique<Instruction>(TypeConversion{instructionContent});
 
-    // TODO change type
-    break;
+  case i32_extend8_s:
+  case i32_extend16_s:
+  case i64_extend8_s:
+  case i64_extend16_s:
+  case i64_extend32_s:
+    return std::make_unique<Instruction>(ExtensionInstr{instructionContent});
 
   case double_byte_instr:
     switch (instructionContent[1]) {
@@ -276,6 +281,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
       return std::make_unique<Instruction>(TableSize{instructionContent});
     case Table_fill:
       return std::make_unique<Instruction>(TableFill{instructionContent});
+
     default:
         // TODO unknown or invalid value
         ;

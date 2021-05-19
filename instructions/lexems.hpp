@@ -212,6 +212,12 @@ enum InstructionSet : uint8_t {
   f32_reinterpret_i32 = 0xBE,
   f64_reinterpret_i64 = 0xBF,
 
+  i32_extend8_s = 0xC0,
+  i32_extend16_s = 0xC1,
+  i64_extend8_s = 0xC2,
+  i64_extend16_s = 0xC3,
+  i64_extend32_s = 0xC4,
+
   double_byte_instr = 0xFC
 };
 
