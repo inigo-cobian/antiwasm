@@ -16,6 +16,7 @@
 #include "numeric/i32_const.cpp"
 #include "numeric/i64_const.cpp"
 #include "numeric/numericInstr.cpp"
+#include "numeric/saturating_truc.cpp"
 #include "unreachable.cpp"
 #include "variable/global_get.cpp"
 #include "variable/global_set.cpp"
@@ -239,6 +240,14 @@ BOOST_AUTO_TEST_CASE(parseNumericInstr_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(i32_and, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseSaturatingTrunc_test) {
+  uint8_t instrContent[] = {InstructionSet::double_byte_instr, SecondByteSet::i64_trunc_sat_f64_u};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(i64_trunc_sat_f64_u, result->getSecondByte());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
