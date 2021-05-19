@@ -19,6 +19,9 @@
 #include "numeric/saturating_truc.cpp"
 #include "numeric/type_conversion.cpp"
 #include "numeric/extension.cpp"
+#include <reference/ref_null.cpp>
+#include <reference/ref_is_null.cpp>
+#include <reference/ref_func.cpp>
 #include "table/elem_drop.cpp"
 #include "table/table_copy.cpp"
 #include "table/table_fill.cpp"
@@ -338,6 +341,30 @@ BOOST_AUTO_TEST_CASE(parseExtension_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(i64_extend16_s, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseRefNull_test) {
+  uint8_t instrContent[] = {InstructionSet::Ref_null};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Ref_null, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseRefIsNull_test) {
+  uint8_t instrContent[] = {InstructionSet::Ref_is_null};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Ref_is_null, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseRefFunc_test) {
+  uint8_t instrContent[] = {InstructionSet::Ref_func};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Ref_func, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
