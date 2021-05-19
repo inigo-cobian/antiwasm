@@ -17,6 +17,14 @@
 #include "numeric/i64_const.cpp"
 #include "numeric/numericInstr.cpp"
 #include "numeric/saturating_truc.cpp"
+#include "table/elem_drop.cpp"
+#include "table/table_copy.cpp"
+#include "table/table_fill.cpp"
+#include "table/table_get.cpp"
+#include "table/table_grow.cpp"
+#include "table/table_init.cpp"
+#include "table/table_set.cpp"
+#include "table/table_size.cpp"
 #include "unreachable.cpp"
 #include "variable/global_get.cpp"
 #include "variable/global_set.cpp"
@@ -248,6 +256,70 @@ BOOST_AUTO_TEST_CASE(parseSaturatingTrunc_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(i64_trunc_sat_f64_u, result->getSecondByte());
+}
+
+BOOST_AUTO_TEST_CASE(parseTableGet_test) {
+  uint8_t instrContent[] = {InstructionSet::Table_get, 0x04};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Table_get, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseTableSet_test) {
+  uint8_t instrContent[] = {InstructionSet::Table_set, 0x04};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Table_set, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseTableInit_test) {
+  uint8_t instrContent[] = {InstructionSet::double_byte_instr, SecondByteSet::Table_init, 0x04, 0x10};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Table_init, result->getSecondByte());
+}
+
+BOOST_AUTO_TEST_CASE(parseElemDrop_test) {
+  uint8_t instrContent[] = {InstructionSet::double_byte_instr, SecondByteSet::Elem_drop, 0x04};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Elem_drop, result->getSecondByte());
+}
+
+BOOST_AUTO_TEST_CASE(parseTableCopy_test) {
+  uint8_t instrContent[] = {InstructionSet::double_byte_instr, SecondByteSet::Table_copy, 0x04, 0x10};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Table_copy, result->getSecondByte());
+}
+
+BOOST_AUTO_TEST_CASE(parseTableGrow_test) {
+  uint8_t instrContent[] = {InstructionSet::double_byte_instr, SecondByteSet::Table_grow, 0x04};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Table_grow, result->getSecondByte());
+}
+
+BOOST_AUTO_TEST_CASE(parseTableSize_test) {
+  uint8_t instrContent[] = {InstructionSet::double_byte_instr, SecondByteSet::Table_size, 0x04};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Table_size, result->getSecondByte());
+}
+
+BOOST_AUTO_TEST_CASE(parseTableFill_test) {
+  uint8_t instrContent[] = {InstructionSet::double_byte_instr, SecondByteSet::Table_fill, 0x04};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Table_fill, result->getSecondByte());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
