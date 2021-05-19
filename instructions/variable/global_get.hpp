@@ -9,7 +9,7 @@ class GlobalGet : public Instruction {
   uint32_t globalIdx;
 
 public:
-  explicit GlobalGet(const uint8_t *globalIdx_);
+  explicit GlobalGet(const uint8_t *instrContent);
   virtual ~GlobalGet() = default;
 };
 } // namespace antiwasm

@@ -9,7 +9,7 @@ class LocalGet : public Instruction {
   uint32_t localidx;
 
 public:
-  explicit LocalGet(const uint8_t *localidx_);
+  explicit LocalGet(const uint8_t *instrContent);
   virtual ~LocalGet() = default;
 };
 } // namespace antiwasm

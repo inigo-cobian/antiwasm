@@ -42,20 +42,20 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     break;
 
   case Local_get:
-    return std::make_unique<Instruction>(LocalGet{instructionContent + 1});
+    return std::make_unique<Instruction>(LocalGet{instructionContent});
   case Local_set:
-    return std::make_unique<Instruction>(LocalSet{instructionContent + 1});
+    return std::make_unique<Instruction>(LocalSet{instructionContent});
   case Local_tee:
-    return std::make_unique<Instruction>(LocalTee{instructionContent + 1});
+    return std::make_unique<Instruction>(LocalTee{instructionContent});
   case Global_get:
-    return std::make_unique<Instruction>(GlobalGet{instructionContent + 1});
+    return std::make_unique<Instruction>(GlobalGet{instructionContent});
   case Global_set:
-    return std::make_unique<Instruction>(GlobalSet{instructionContent + 1});
+    return std::make_unique<Instruction>(GlobalSet{instructionContent});
 
   case Table_get:
-    return std::make_unique<Instruction>(TableGet{instructionContent + 1});
+    return std::make_unique<Instruction>(TableGet{instructionContent});
   case Table_set:
-    return std::make_unique<Instruction>(TableSet{instructionContent + 1});
+    return std::make_unique<Instruction>(TableSet{instructionContent});
 
   case i32_load:
   case i64_load:
@@ -90,13 +90,13 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     return std::make_unique<Instruction>(MemoryGrow{});
 
   case i32_const:
-    return std::make_unique<Instruction>(I32Const{instructionContent + 1});
+    return std::make_unique<Instruction>(I32Const{instructionContent});
   case i64_const:
-    return std::make_unique<Instruction>(I64Const{instructionContent + 1});
+    return std::make_unique<Instruction>(I64Const{instructionContent});
   case f32_const:
-    return std::make_unique<Instruction>(F32Const{instructionContent + 1});
+    return std::make_unique<Instruction>(F32Const{instructionContent});
   case f64_const:
-    return std::make_unique<Instruction>(F64Const{instructionContent + 1});
+    return std::make_unique<Instruction>(F64Const{instructionContent});
 
   case i32_eqz:
   case i32_eq:
@@ -266,12 +266,12 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     case i64_trunc_sat_f32_u:
     case i64_trunc_sat_f64_s:
     case i64_trunc_sat_f64_u:
-      return std::make_unique<Instruction>(SaturatingTrunc{instructionContent + 1});
+      return std::make_unique<Instruction>(SaturatingTrunc{instructionContent});
 
     case Memory_init:
-      return std::make_unique<Instruction>(MemoryInit{instructionContent + 1});
+      return std::make_unique<Instruction>(MemoryInit{instructionContent});
     case Data_drop:
-      return std::make_unique<Instruction>(DataDrop{instructionContent + 2});
+      return std::make_unique<Instruction>(DataDrop{instructionContent});
     case Memory_copy:
       return std::make_unique<Instruction>(MemoryCopy{});
     case Memory_fill:

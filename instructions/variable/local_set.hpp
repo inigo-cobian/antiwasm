@@ -9,7 +9,7 @@ class LocalSet : public Instruction {
   uint32_t localidx;
 
 public:
-  explicit LocalSet(const uint8_t *localidx_);
+  explicit LocalSet(const uint8_t *instrContent);
   virtual ~LocalSet() = default;
 };
 } // namespace antiwasm

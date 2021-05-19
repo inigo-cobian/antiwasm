@@ -6,7 +6,7 @@ class TableSet : public Instruction {
   uint32_t tableidx;
 
 public:
-  explicit TableSet(const uint8_t *instructionContent);
+  explicit TableSet(const uint8_t *instrContent);
   virtual ~TableSet() = default;
 };
 } // namespace antiwasm

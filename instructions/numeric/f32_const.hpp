@@ -9,7 +9,7 @@ class F32Const : public Instruction {
   float constant;
 
 public:
-  explicit F32Const(const uint8_t *f32Const);
+  explicit F32Const(const uint8_t *instrContent);
   virtual ~F32Const() = default;
 };
 } // namespace antiwasm

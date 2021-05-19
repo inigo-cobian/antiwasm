@@ -6,7 +6,7 @@ class TableGet : public Instruction {
   uint32_t tableidx;
 
 public:
-  explicit TableGet(const uint8_t *instructionContent);
+  explicit TableGet(const uint8_t *instrContent);
   virtual ~TableGet() = default;
 };
 } // namespace antiwasm

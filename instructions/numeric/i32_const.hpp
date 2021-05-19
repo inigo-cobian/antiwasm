@@ -9,7 +9,7 @@ class I32Const : public Instruction {
   int32_t constant;
 
 public:
-  explicit I32Const(const uint8_t *i32Const);
+  explicit I32Const(const uint8_t *instrContent);
   virtual ~I32Const() = default;
 };
 } // namespace antiwasm

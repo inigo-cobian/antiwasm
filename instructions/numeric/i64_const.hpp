@@ -10,7 +10,7 @@ class I64Const : public Instruction {
   int64_t constant;
 
 public:
-  explicit I64Const(const uint8_t *i64Const);
+  explicit I64Const(const uint8_t *instrContent);
   virtual ~I64Const() = default;
 };
 } // namespace antiwasm

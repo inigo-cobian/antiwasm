@@ -9,7 +9,7 @@ class GlobalSet : public Instruction {
   uint32_t globalIdx;
 
 public:
-  explicit GlobalSet(const uint8_t *globalIdx_);
+  explicit GlobalSet(const uint8_t *instrContent);
   virtual ~GlobalSet() = default;
 };
 } // namespace antiwasm

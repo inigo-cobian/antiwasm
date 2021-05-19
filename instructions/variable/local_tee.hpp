@@ -9,7 +9,7 @@ class LocalTee : public Instruction {
   uint32_t localidx;
 
 public:
-  explicit LocalTee(const uint8_t *localidx_);
+  explicit LocalTee(const uint8_t *instrContent);
   virtual ~LocalTee() = default;
 };
 } // namespace antiwasm

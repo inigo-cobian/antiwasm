@@ -9,7 +9,7 @@ class DataDrop : public Instruction {
   uint32_t dataidx;
 
 public:
-  explicit DataDrop(const uint8_t * dataidx_);
+  explicit DataDrop(const uint8_t * instrContent);
   virtual ~DataDrop() = default;
 };
 } // namespace antiwasm

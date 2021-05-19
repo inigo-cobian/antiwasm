@@ -1,9 +1,9 @@
 #include "local_tee.hpp"
 
 namespace antiwasm {
-LocalTee::LocalTee(const uint8_t *localidx_) {
+LocalTee::LocalTee(const uint8_t *instrContent) {
   instructionCode = Local_tee;
-  localidx = transformLeb128ToUnsignedInt32(localidx_);
-  nBytes = 1 + sizeOfLeb128(localidx_);
+  localidx = transformLeb128ToUnsignedInt32(instrContent + 1);
+  nBytes = 1 + sizeOfLeb128(instrContent + 1);
 }
 } // namespace antiwasm

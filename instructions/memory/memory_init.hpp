@@ -9,7 +9,7 @@ class MemoryInit : public Instruction {
   uint32_t dataidx;
 
 public:
-  explicit MemoryInit(const uint8_t * dataidx_);
+  explicit MemoryInit(const uint8_t * instrContent);
   virtual ~MemoryInit() = default;
 };
 } // namespace antiwasm
