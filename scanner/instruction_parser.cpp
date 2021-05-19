@@ -235,6 +235,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i64_reinterpret_f64:
   case f32_reinterpret_i32:
   case f64_reinterpret_i64:
+
     // TODO change type
     break;
 
@@ -248,7 +249,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     case i64_trunc_sat_f32_u:
     case i64_trunc_sat_f64_s:
     case i64_trunc_sat_f64_u:
-      //return std::make_unique<Instruction>(SaturatingTrunc{instructionContent + 2});
+      return std::make_unique<Instruction>(SaturatingTrunc{instructionContent + 1});
 
     case Memory_init:
       return std::make_unique<Instruction>(MemoryInit{instructionContent + 1});

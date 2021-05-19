@@ -17,6 +17,7 @@
 #include "numeric/i32_const.hpp"
 #include "numeric/i64_const.hpp"
 #include "numeric/numericInstr.hpp"
+#include "numeric/saturating_truc.hpp"
 #include "unreachable.hpp"
 #include "variable/global_get.hpp"
 #include "variable/global_set.hpp"
