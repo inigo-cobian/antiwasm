@@ -1,5 +1,11 @@
 #define BOOST_TEST_DYN_LINK
 
+#include "control/br.cpp"
+#include "control/br_if.cpp"
+#include "control/br_table.cpp"
+#include "control/call.cpp"
+#include "control/call_indirect.cpp"
+#include "control/return.cpp"
 #include "instruction.cpp"
 #include "instruction_parser.cpp"
 #include "memory/data_drop.cpp"
@@ -11,6 +17,7 @@
 #include "memory/memory_size.cpp"
 #include "memory/store.cpp"
 #include "nop.cpp"
+#include "numeric/extension.cpp"
 #include "numeric/f32_const.cpp"
 #include "numeric/f64_const.cpp"
 #include "numeric/i32_const.cpp"
@@ -18,10 +25,6 @@
 #include "numeric/numericInstr.cpp"
 #include "numeric/saturating_truc.cpp"
 #include "numeric/type_conversion.cpp"
-#include "numeric/extension.cpp"
-#include <reference/ref_null.cpp>
-#include <reference/ref_is_null.cpp>
-#include <reference/ref_func.cpp>
 #include "table/elem_drop.cpp"
 #include "table/table_copy.cpp"
 #include "table/table_fill.cpp"
@@ -37,6 +40,9 @@
 #include "variable/local_set.cpp"
 #include "variable/local_tee.cpp"
 #include <boost/test/unit_test.hpp>
+#include <reference/ref_func.cpp>
+#include <reference/ref_is_null.cpp>
+#include <reference/ref_null.cpp>
 
 using namespace antiwasm;
 
@@ -134,7 +140,6 @@ BOOST_AUTO_TEST_CASE(parseGlobalSet_test) {
 
   BOOST_CHECK_EQUAL(Global_set, result->getInstructionCode());
 }
-
 
 BOOST_AUTO_TEST_CASE(parseI32Load8s_test) {
   uint8_t instrContent[] = {InstructionSet::i32_load8_s, 0x0F, 0x0A};
@@ -326,6 +331,54 @@ BOOST_AUTO_TEST_CASE(parseRefFunc_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(Ref_func, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseBrInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::Br};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Br, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseBrIfInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::Br_if};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Br_if, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseBrTableInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::Br_table};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Br_table, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseReturnInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::Return};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Return, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseCallInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::Call};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Call, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseCallIndirectInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::Call_indirect};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Call_indirect, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
