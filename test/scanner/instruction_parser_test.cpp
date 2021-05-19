@@ -135,37 +135,6 @@ BOOST_AUTO_TEST_CASE(parseGlobalSet_test) {
   BOOST_CHECK_EQUAL(Global_set, result->getInstructionCode());
 }
 
-BOOST_AUTO_TEST_CASE(parseI32Load_test) {
-  uint8_t instrContent[] = {InstructionSet::i32_load, 0x0F, 0x0A};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(i32_load, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseI64Load_test) {
-  uint8_t instrContent[] = {InstructionSet::i64_load, 0x0F, 0x0A};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(i64_load, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseF32Load_test) {
-  uint8_t instrContent[] = {InstructionSet::f32_load, 0x0F, 0x0A};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(f32_load, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseF64Load_test) {
-  uint8_t instrContent[] = {InstructionSet::f64_load, 0x0F, 0x0A};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(f64_load, result->getInstructionCode());
-}
 
 BOOST_AUTO_TEST_CASE(parseI32Load8s_test) {
   uint8_t instrContent[] = {InstructionSet::i32_load8_s, 0x0F, 0x0A};
@@ -173,14 +142,6 @@ BOOST_AUTO_TEST_CASE(parseI32Load8s_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(i32_load8_s, result->getInstructionCode());
-}
-
-BOOST_AUTO_TEST_CASE(parseI32Load8u_test) {
-  uint8_t instrContent[] = {InstructionSet::i32_load8_u, 0x0F, 0x0A};
-
-  auto result = parseInstruction(instrContent);
-
-  BOOST_CHECK_EQUAL(i32_load8_u, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_CASE(parseStore_test) {
