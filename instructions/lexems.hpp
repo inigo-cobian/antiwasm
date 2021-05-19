@@ -26,6 +26,9 @@ enum InstructionSet : uint8_t {
   Global_get = 0x23,
   Global_set = 0x24,
 
+  Table_get = 0x25,
+  Table_set = 0x26,
+
   i32_load = 0x28,
   i64_load = 0x29,
   f32_load = 0x2A,

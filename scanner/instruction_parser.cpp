@@ -52,6 +52,11 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case Global_set:
     return std::make_unique<Instruction>(GlobalSet{instructionContent + 1});
 
+  case Table_get:
+    return std::make_unique<Instruction>(TableGet{instructionContent + 1});
+  case Table_set:
+    return std::make_unique<Instruction>(TableSet{instructionContent + 1});
+
   case i32_load:
   case i64_load:
   case f32_load:
@@ -260,13 +265,17 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
     case Memory_fill:
       return std::make_unique<Instruction>(MemoryFill{});
     case Table_init:
+      return std::make_unique<Instruction>(TableInit{instructionContent});
     case Elem_drop:
+      return std::make_unique<Instruction>(ElemDrop{instructionContent});
     case Table_copy:
+      return std::make_unique<Instruction>(TableCopy{instructionContent});
     case Table_grow:
+      return std::make_unique<Instruction>(TableGrow{instructionContent});
     case Table_size:
+      return std::make_unique<Instruction>(TableSize{instructionContent});
     case Table_fill:
-      // TODO
-      break;
+      return std::make_unique<Instruction>(TableFill{instructionContent});
     default:
         // TODO unknown or invalid value
         ;
