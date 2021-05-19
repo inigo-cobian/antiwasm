@@ -7,7 +7,7 @@ BrTableInstr::BrTableInstr(const uint8_t *instrContent) {
   uint32_t pos = 2;
   nBytes = 2;
 
-  for(uint32_t i = 0; i < labelidxVecSize; i++) {
+  for (uint32_t i = 0; i < labelidxVecSize; i++) {
     labelidxVec.push_back(transformLeb128ToUnsignedInt32(instrContent + pos));
     pos += sizeOfLeb128(instrContent + pos);
     nBytes += sizeOfLeb128(instrContent + pos);

@@ -3,8 +3,8 @@
 
 #include "instruction.hpp"
 #include "leb128.hpp"
-#include <cstdint>
 #include <array>
+#include <cstdint>
 
 namespace antiwasm {
 class BrTableInstr : public Instruction {
