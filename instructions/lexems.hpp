@@ -218,6 +218,10 @@ enum InstructionSet : uint8_t {
   i64_extend16_s = 0xC3,
   i64_extend32_s = 0xC4,
 
+  Ref_null = 0xD0,
+  Ref_is_null = 0xD1,
+  Ref_func = 0xD2,
+
   double_byte_instr = 0xFC
 };
 

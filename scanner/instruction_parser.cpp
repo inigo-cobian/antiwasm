@@ -249,6 +249,13 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case i64_extend32_s:
     return std::make_unique<Instruction>(ExtensionInstr{instructionContent});
 
+  case Ref_null:
+    return std::make_unique<Instruction>(RefNull{instructionContent});
+  case Ref_is_null:
+    return std::make_unique<Instruction>(RefIsNull{instructionContent});
+  case Ref_func:
+    return std::make_unique<Instruction>(RefFunc{instructionContent});
+
   case double_byte_instr:
     switch (instructionContent[1]) {
     case i32_trunc_sat_f32_s:

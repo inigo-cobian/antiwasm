@@ -20,6 +20,9 @@
 #include "numeric/numericInstr.hpp"
 #include "numeric/saturating_truc.hpp"
 #include "numeric/type_conversion.hpp"
+#include <reference/ref_null.hpp>
+#include <reference/ref_is_null.hpp>
+#include <reference/ref_func.hpp>
 #include "table/elem_drop.hpp"
 #include "table/table_copy.hpp"
 #include "table/table_fill.hpp"
