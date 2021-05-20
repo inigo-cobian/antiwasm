@@ -1,6 +1,7 @@
 #define BOOST_TEST_DYN_LINK
 
 #include "control/block.cpp"
+#include "control/loop.cpp"
 #include "control/br.cpp"
 #include "control/br_if.cpp"
 #include "control/br_table.cpp"
@@ -71,6 +72,15 @@ BOOST_AUTO_TEST_CASE(parseBlockInstr_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(Block, result->getInstructionCode());
+  BOOST_CHECK_EQUAL(4, result->getNBytes());
+}
+
+BOOST_AUTO_TEST_CASE(parseLoopInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::Loop, 0x40, InstructionSet::Nop, InstructionSet::End};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Loop, result->getInstructionCode());
   BOOST_CHECK_EQUAL(4, result->getNBytes());
 }
 
