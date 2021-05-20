@@ -47,4 +47,4 @@ BOOST_AUTO_TEST_CASE(checkVersion_incorrect) {
   BOOST_CHECK_EQUAL(isCorrect, false);
 }
 
-BOOST_AUTO_TEST_SUITE_END() // driver_test
+BOOST_AUTO_TEST_SUITE_END() // header_test
