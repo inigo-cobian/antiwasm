@@ -1,5 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
+#include "control/block.cpp"
 #include "control/br.cpp"
 #include "control/br_if.cpp"
 #include "control/br_table.cpp"
@@ -26,6 +27,9 @@
 #include "numeric/numericInstr.cpp"
 #include "numeric/saturating_truc.cpp"
 #include "numeric/type_conversion.cpp"
+#include "reference/ref_func.cpp"
+#include "reference/ref_is_null.cpp"
+#include "reference/ref_null.cpp"
 #include "table/elem_drop.cpp"
 #include "table/table_copy.cpp"
 #include "table/table_fill.cpp"
@@ -40,9 +44,6 @@
 #include "variable/local_set.cpp"
 #include "variable/local_tee.cpp"
 #include <boost/test/unit_test.hpp>
-#include <reference/ref_func.cpp>
-#include <reference/ref_is_null.cpp>
-#include <reference/ref_null.cpp>
 
 using namespace antiwasm;
 
@@ -62,6 +63,15 @@ BOOST_AUTO_TEST_CASE(parseNop_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(Nop, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseBlockInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::Block, 0x40, InstructionSet::Nop, InstructionSet::End};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Block, result->getInstructionCode());
+  BOOST_CHECK_EQUAL(4, result->getNBytes());
 }
 
 BOOST_AUTO_TEST_CASE(parsei32const_test) {

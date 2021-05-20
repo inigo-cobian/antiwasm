@@ -1,11 +1,11 @@
 #define BOOST_TEST_DYN_LINK
 
 #include "contentBlock.cpp"
+#include "expression.cpp"
+#include "global.cpp"
 #include "importsec.cpp"
 #include "memsec.cpp" //TODO remove if possible
 #include "reftype.cpp"
-#include "global.cpp"
-#include "expression.cpp"
 #include "section_parser.cpp"
 #include "tablesec.cpp"
 #include "typesec.cpp"
@@ -184,7 +184,6 @@ BOOST_AUTO_TEST_CASE(parseGlobalSection_realisticSectionReturnsOkey) {
 
   BOOST_CHECK_EQUAL(SectionId::GlobalId, result.getSectionId());
 }
-
 
 BOOST_AUTO_TEST_CASE(parseExportSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
