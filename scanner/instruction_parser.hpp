@@ -44,8 +44,10 @@
 #include <reference/ref_func.hpp>
 #include <reference/ref_is_null.hpp>
 #include <reference/ref_null.hpp>
+#include "control/block.hpp"
 
 namespace antiwasm {
 std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent);
+std::vector<std::unique_ptr<Instruction>> parseInstructionSet(const uint8_t *instructionsContent, uint32_t &nBytes);
 }
 #endif // ANTIWASM_INSTRUCTION_PARSER_HPP

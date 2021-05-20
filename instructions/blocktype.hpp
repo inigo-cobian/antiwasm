@@ -10,7 +10,7 @@ namespace antiwasm {
 enum Blocktype_type { emptyBlocktype, valtypeBlocktype, typeidxBlocktype };
 
 struct Blocktype : public ContentBlock {
-  Blocktype_type type;
+  Blocktype_type type{};
   Valtype valtype{};
   uint32_t typeidx{};
 };
@@ -22,6 +22,6 @@ struct Blocktype : public ContentBlock {
  * @return
  */
 Blocktype parseBlocktype(const uint8_t *blocktypeContent);
-}
+} // namespace antiwasm
 
 #endif // ANTIWASM_BLOCKTYPE_HPP

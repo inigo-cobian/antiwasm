@@ -43,6 +43,7 @@ enum ErrorTypes {
 
   // Instructions
   unrecognizedInstruction,
+  unrecognizedInstructionAtBlock,
 
   // Expression
   invalidInstructionAtExpression

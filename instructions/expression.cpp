@@ -12,8 +12,10 @@ Expression parseExpression(const uint8_t *expressionContent) {
   Expression expr{};
   size_t pointer = 0;
   int nInstr = 0;
+
+
   while (expressionContent[pointer] != InstructionSet::End) {
-    BOOST_LOG_TRIVIAL(debug) << "[expression] Next intruction has code: " << std::hex
+    BOOST_LOG_TRIVIAL(debug) << "[expression] Next instruction has code: " << std::hex
                              << (int)expressionContent[pointer];
 
     auto instr = parseInstruction(&expressionContent[pointer]);

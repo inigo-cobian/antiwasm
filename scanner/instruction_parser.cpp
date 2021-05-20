@@ -8,7 +8,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case Nop:
     return std::make_unique<Instruction>(NopInstr{});
   case Block:
-    // return std::make_unique<Instruction>(BlockInstr{instructionContent});
+    return std::make_unique<Instruction>(BlockInstr{instructionContent});
   case Loop:
     // return std::make_unique<Instruction>(LoopInstr{instructionContent});
   case If:
@@ -290,5 +290,27 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
       ;
   }
   return std::make_unique<Instruction>(Instruction{});
+}
+
+std::vector<std::unique_ptr<Instruction>> parseInstructionSet(const uint8_t *instructionsContent, uint32_t &nBytes)
+{
+  std::vector<std::unique_ptr<Instruction>> instrVec;
+
+  uint32_t pos = 0;
+  while(instructionsContent[pos] != 0x0B) {
+    std::unique_ptr<Instruction> instr = parseInstruction(instructionsContent + pos);
+
+    if(instr->hasError()) {
+      auto error = generateError(fatal, unrecognizedInstructionAtBlock, instrVec.size());
+      instrVec.push_back(std::move(instr));
+      break;
+    }
+
+    pos += instr->getNBytes();
+    instrVec.push_back(std::move(instr));
+  }
+  // TODO add EndInstr ?
+  nBytes = pos + 2; // 0x0B byte and correction pos to size
+  return instrVec;
 }
 } // namespace antiwasm
