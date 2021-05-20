@@ -5,6 +5,7 @@
 #include "control/br_if.hpp"
 #include "control/br_table.hpp"
 #include "control/call.hpp"
+#include "control/loop.hpp"
 #include "control/call_indirect.hpp"
 #include "control/nop.hpp"
 #include "control/return.hpp"

@@ -10,7 +10,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case Block:
     return std::make_unique<Instruction>(BlockInstr{instructionContent});
   case Loop:
-    // return std::make_unique<Instruction>(LoopInstr{instructionContent});
+    return std::make_unique<Instruction>(LoopInstr{instructionContent});
   case If:
     // return std::make_unique<Instruction>(IfInstr{instructionContent});
   case Br:
