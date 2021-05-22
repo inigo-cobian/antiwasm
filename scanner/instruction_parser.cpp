@@ -314,13 +314,16 @@ std::vector<std::unique_ptr<Instruction>> parseInstructionSet(const uint8_t *ins
 }
 
 std::vector<std::unique_ptr<Instruction>> parseIfInstructionSet(const uint8_t *instructionsContent, uint32_t &nBytes) {
+  BOOST_LOG_TRIVIAL(debug) << "[instruction_parser] Parsing if instruction set";
   std::vector<std::unique_ptr<Instruction>> instrVec;
 
   uint32_t pos = 0;
-  while (instructionsContent[pos] != InstructionSet::End || instructionsContent[pos] != InstructionSet::Else) {
+  while (instructionsContent[pos] != InstructionSet::End && instructionsContent[pos] != InstructionSet::Else) {
     std::unique_ptr<Instruction> instr = parseInstruction(instructionsContent + pos);
+    BOOST_LOG_TRIVIAL(debug) << "[instruction_parser] Parsing instr set at pos [" << (int)pos << "]";
 
     if (instr->hasError()) {
+      BOOST_LOG_TRIVIAL(debug) << "[instruction_parser] Unrecognized instruction";
       auto error = generateError(fatal, unrecognizedInstructionAtBlock, instrVec.size());
       instrVec.push_back(std::move(instr));
       break;
@@ -330,11 +333,16 @@ std::vector<std::unique_ptr<Instruction>> parseIfInstructionSet(const uint8_t *i
     instrVec.push_back(std::move(instr));
   }
   if (instructionsContent[pos] == InstructionSet::Else) {
+    BOOST_LOG_TRIVIAL(debug) << "[instruction_parser] Else instr at pos [" << (int)pos << "]";
 
     std::unique_ptr<Instruction> instr = std::make_unique<Instruction>(ElseInstr{instructionsContent + pos});
+    pos += instr->getNBytes();
+    instrVec.push_back(std::move(instr));
   }
   // TODO add EndInstr ?
-  nBytes = pos + 2; // 0x0B or 0x0E byte and correction pos to size
+  nBytes = pos + 1; // 0x0B end byte
+
+  BOOST_LOG_TRIVIAL(debug) << "[instruction_parser] Final pos while parsing if at [" << (int)pos << "]";
   return instrVec;
 }
 } // namespace antiwasm
