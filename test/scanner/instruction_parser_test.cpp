@@ -16,6 +16,7 @@
 #include "instruction_parser.cpp"
 #include "parametric/drop.cpp"
 #include "parametric/select.cpp"
+#include "parametric/select_vecValtype.cpp"
 #include "memory/data_drop.cpp"
 #include "memory/load.cpp"
 #include "memory/memory_copy.cpp"
@@ -439,6 +440,16 @@ BOOST_AUTO_TEST_CASE(parseSelectInstr_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(Select, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseSelectValtypeInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::Select_vecValtype, 0x03,
+                            Numtype::i32, Reftype::funref, Numtype::f64};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Select_vecValtype, result->getInstructionCode());
+  BOOST_CHECK_EQUAL(5, result->getNBytes());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
