@@ -1,12 +1,14 @@
 #define BOOST_TEST_DYN_LINK
 
 #include "control/block.cpp"
-#include "control/loop.cpp"
 #include "control/br.cpp"
 #include "control/br_if.cpp"
 #include "control/br_table.cpp"
 #include "control/call.cpp"
 #include "control/call_indirect.cpp"
+#include "control/else.cpp"
+#include "control/if.cpp"
+#include "control/loop.cpp"
 #include "control/nop.cpp"
 #include "control/return.cpp"
 #include "control/unreachable.cpp"
@@ -82,6 +84,26 @@ BOOST_AUTO_TEST_CASE(parseLoopInstr_test) {
 
   BOOST_CHECK_EQUAL(Loop, result->getInstructionCode());
   BOOST_CHECK_EQUAL(4, result->getNBytes());
+}
+
+BOOST_AUTO_TEST_CASE(parseIfInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::Loop, 0x40, InstructionSet::Nop, InstructionSet::End};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Loop, result->getInstructionCode());
+  BOOST_CHECK_EQUAL(4, result->getNBytes());
+}
+
+BOOST_AUTO_TEST_CASE(parseIfElseInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::If, 0x40, InstructionSet::Nop,
+                            InstructionSet::Else, 0x40, InstructionSet::Nop,
+                            InstructionSet::End};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(If, result->getInstructionCode());
+  BOOST_CHECK_EQUAL(7, result->getNBytes());
 }
 
 BOOST_AUTO_TEST_CASE(parsei32const_test) {
