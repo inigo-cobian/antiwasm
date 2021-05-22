@@ -14,6 +14,8 @@
 #include "control/unreachable.cpp"
 #include "instruction.cpp"
 #include "instruction_parser.cpp"
+#include "parametric/drop.cpp"
+#include "parametric/select.cpp"
 #include "memory/data_drop.cpp"
 #include "memory/load.cpp"
 #include "memory/memory_copy.cpp"
@@ -421,6 +423,22 @@ BOOST_AUTO_TEST_CASE(parseCallIndirectInstr_test) {
   auto result = parseInstruction(instrContent);
 
   BOOST_CHECK_EQUAL(Call_indirect, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseDropInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::Drop};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Drop, result->getInstructionCode());
+}
+
+BOOST_AUTO_TEST_CASE(parseSelectInstr_test) {
+  uint8_t instrContent[] = {InstructionSet::Select};
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Select, result->getInstructionCode());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
