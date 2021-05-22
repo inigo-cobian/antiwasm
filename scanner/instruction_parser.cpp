@@ -26,9 +26,11 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case Call_indirect:
     return std::make_unique<Instruction>(CallIndirectInstr{instructionContent});
   case Drop:
-    // return std::make_unique<Instruction>(DropInstr{instructionContent});
+    return std::make_unique<Instruction>(DropInstr{});
   case Select:
-    // return std::make_unique<Instruction>(SelectInstr{instructionContent});
+    return std::make_unique<Instruction>(SelectInstr{});
+  case Select_vecValtype:
+    // return std::make_unique<Instruction>(SelectValtypeInstr{instructionContent});
 
   case Local_get:
     return std::make_unique<Instruction>(LocalGet{instructionContent});

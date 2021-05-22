@@ -19,6 +19,7 @@ enum InstructionSet : uint8_t {
   Call_indirect = 0x11,
   Drop = 0x1A,
   Select = 0x1B,
+  Select_vecValtype = 0x1C,
 
   Local_get = 0x20,
   Local_set = 0x21,

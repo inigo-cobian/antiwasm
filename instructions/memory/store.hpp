@@ -14,5 +14,4 @@ public:
 };
 } // namespace antiwasm
 
-
 #endif // ANTIWASM_STORE_HPP

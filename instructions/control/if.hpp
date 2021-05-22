@@ -1,12 +1,12 @@
 #ifndef ANTIWASM_IF_HPP
 #define ANTIWASM_IF_HPP
 
+#include "blocktype.hpp"
 #include "instruction.hpp"
 #include "instruction_parser.hpp"
-#include "blocktype.hpp"
-#include <vector>
 #include <cstdint>
 #include <memory>
+#include <vector>
 
 namespace antiwasm {
 class IfInstr : public Instruction {

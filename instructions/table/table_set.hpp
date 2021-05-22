@@ -1,6 +1,10 @@
 #ifndef ANTIWASM_TABLE_SET_HPP
 #define ANTIWASM_TABLE_SET_HPP
 
+#include "instruction.hpp"
+#include "leb128.hpp"
+#include <cstdint>
+
 namespace antiwasm {
 class TableSet : public Instruction {
   uint32_t tableidx;

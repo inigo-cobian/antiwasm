@@ -1,12 +1,12 @@
 #ifndef ANTIWASM_LOOP_HPP
 #define ANTIWASM_LOOP_HPP
 
+#include "blocktype.hpp"
 #include "instruction.hpp"
 #include "instruction_parser.hpp"
-#include "blocktype.hpp"
-#include <vector>
 #include <cstdint>
 #include <memory>
+#include <vector>
 
 namespace antiwasm {
 class LoopInstr : public Instruction {

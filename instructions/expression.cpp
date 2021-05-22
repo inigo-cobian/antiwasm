@@ -13,7 +13,6 @@ Expression parseExpression(const uint8_t *expressionContent) {
   size_t pointer = 0;
   int nInstr = 0;
 
-
   while (expressionContent[pointer] != InstructionSet::End) {
     BOOST_LOG_TRIVIAL(debug) << "[expression] Next instruction has code: " << std::hex
                              << (int)expressionContent[pointer];

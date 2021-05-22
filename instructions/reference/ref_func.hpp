@@ -2,6 +2,7 @@
 #define ANTIWASM_REF_FUNC_HPP
 
 #include "instruction.hpp"
+#include "leb128.hpp"
 #include <cstdint>
 
 namespace antiwasm {
