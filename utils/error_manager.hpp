@@ -44,6 +44,7 @@ enum ErrorTypes {
   // Instructions
   unrecognizedInstruction,
   unrecognizedInstructionAtBlock,
+  unrecognizedValtypeAtSelectInstr,
 
   // Expression
   invalidInstructionAtExpression

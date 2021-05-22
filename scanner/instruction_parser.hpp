@@ -33,6 +33,8 @@
 #include "numeric/type_conversion.hpp"
 #include "parametric/drop.hpp"
 #include "parametric/select.hpp"
+#include "parametric/select.hpp"
+#include "parametric/select_vecValtype.hpp"
 #include "reference/ref_func.hpp"
 #include "reference/ref_is_null.hpp"
 #include "reference/ref_null.hpp"
