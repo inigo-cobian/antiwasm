@@ -12,7 +12,7 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   case Loop:
     return std::make_unique<Instruction>(LoopInstr{instructionContent});
   case If:
-    // return std::make_unique<Instruction>(IfInstr{instructionContent});
+    return std::make_unique<Instruction>(IfInstr{instructionContent});
   case Br:
     return std::make_unique<Instruction>(BrInstr{instructionContent});
   case Br_if:
@@ -292,15 +292,14 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
   return std::make_unique<Instruction>(Instruction{});
 }
 
-std::vector<std::unique_ptr<Instruction>> parseInstructionSet(const uint8_t *instructionsContent, uint32_t &nBytes)
-{
+std::vector<std::unique_ptr<Instruction>> parseInstructionSet(const uint8_t *instructionsContent, uint32_t &nBytes) {
   std::vector<std::unique_ptr<Instruction>> instrVec;
 
   uint32_t pos = 0;
-  while(instructionsContent[pos] != 0x0B) {
+  while (instructionsContent[pos] != InstructionSet::End) {
     std::unique_ptr<Instruction> instr = parseInstruction(instructionsContent + pos);
 
-    if(instr->hasError()) {
+    if (instr->hasError()) {
       auto error = generateError(fatal, unrecognizedInstructionAtBlock, instrVec.size());
       instrVec.push_back(std::move(instr));
       break;
@@ -311,6 +310,31 @@ std::vector<std::unique_ptr<Instruction>> parseInstructionSet(const uint8_t *ins
   }
   // TODO add EndInstr ?
   nBytes = pos + 2; // 0x0B byte and correction pos to size
+  return instrVec;
+}
+
+std::vector<std::unique_ptr<Instruction>> parseIfInstructionSet(const uint8_t *instructionsContent, uint32_t &nBytes) {
+  std::vector<std::unique_ptr<Instruction>> instrVec;
+
+  uint32_t pos = 0;
+  while (instructionsContent[pos] != InstructionSet::End || instructionsContent[pos] != InstructionSet::Else) {
+    std::unique_ptr<Instruction> instr = parseInstruction(instructionsContent + pos);
+
+    if (instr->hasError()) {
+      auto error = generateError(fatal, unrecognizedInstructionAtBlock, instrVec.size());
+      instrVec.push_back(std::move(instr));
+      break;
+    }
+
+    pos += instr->getNBytes();
+    instrVec.push_back(std::move(instr));
+  }
+  if (instructionsContent[pos] == InstructionSet::Else) {
+
+    std::unique_ptr<Instruction> instr = std::make_unique<Instruction>(ElseInstr{instructionsContent + pos});
+  }
+  // TODO add EndInstr ?
+  nBytes = pos + 2; // 0x0B or 0x0E byte and correction pos to size
   return instrVec;
 }
 } // namespace antiwasm

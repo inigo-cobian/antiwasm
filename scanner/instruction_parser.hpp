@@ -1,12 +1,15 @@
 #ifndef ANTIWASM_INSTRUCTION_PARSER_HPP
 #define ANTIWASM_INSTRUCTION_PARSER_HPP
 
+#include "control/block.hpp"
 #include "control/br.hpp"
 #include "control/br_if.hpp"
 #include "control/br_table.hpp"
 #include "control/call.hpp"
-#include "control/loop.hpp"
 #include "control/call_indirect.hpp"
+#include "control/else.hpp"
+#include "control/if.hpp"
+#include "control/loop.hpp"
 #include "control/nop.hpp"
 #include "control/return.hpp"
 #include "control/unreachable.hpp"
@@ -45,10 +48,10 @@
 #include <reference/ref_func.hpp>
 #include <reference/ref_is_null.hpp>
 #include <reference/ref_null.hpp>
-#include "control/block.hpp"
 
 namespace antiwasm {
 std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent);
 std::vector<std::unique_ptr<Instruction>> parseInstructionSet(const uint8_t *instructionsContent, uint32_t &nBytes);
-}
+std::vector<std::unique_ptr<Instruction>> parseIfInstructionSet(const uint8_t *instructionsContent, uint32_t &nBytes);
+} // namespace antiwasm
 #endif // ANTIWASM_INSTRUCTION_PARSER_HPP

@@ -1,5 +1,5 @@
-#ifndef ANTIWASM_IF_HPP
-#define ANTIWASM_IF_HPP
+#ifndef ANTIWASM_ELSE_HPP
+#define ANTIWASM_ELSE_HPP
 
 #include "instruction.hpp"
 #include "instruction_parser.hpp"
@@ -9,14 +9,14 @@
 #include <memory>
 
 namespace antiwasm {
-class IfInstr : public Instruction {
+class ElseInstr : public Instruction {
   Blocktype blocktype;
   std::vector<std::unique_ptr<Instruction>> instructionSet;
 
 public:
-  explicit IfInstr(const uint8_t *instrContent);
-  virtual ~IfInstr() = default;
+  explicit ElseInstr(const uint8_t *instrContent);
+  virtual ~ElseInstr() = default;
 };
 } // namespace antiwasm
 
-#endif // ANTIWASM_IF_HPP
+#endif // ANTIWASM_ELSE_HPP
