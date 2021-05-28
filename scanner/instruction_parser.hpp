@@ -1,6 +1,7 @@
 #ifndef ANTIWASM_INSTRUCTION_PARSER_HPP
 #define ANTIWASM_INSTRUCTION_PARSER_HPP
 
+#include "errorInstr.hpp"
 #include "control/block.hpp"
 #include "control/br.hpp"
 #include "control/br_if.hpp"

@@ -223,7 +223,9 @@ enum InstructionSet : uint8_t {
   Ref_is_null = 0xD1,
   Ref_func = 0xD2,
 
-  double_byte_instr = 0xFC
+  double_byte_instr = 0xFC,
+
+  error_instr = 0xFF // returned if there is no instr with this code
 };
 
 enum SecondByteSet : uint8_t {
