@@ -24,23 +24,29 @@ BOOST_AUTO_TEST_CASE(getInstructionVector_empty) {
 
 BOOST_AUTO_TEST_CASE(addInstruction_consti32Case) {
   Expression expr{};
-  uint8_t instrContent[] = {i32_const, 0x05};
-  I32Const instr{instrContent};
+  Instruction instr{};
 
   expr.addInstruction(instr);
 
   BOOST_CHECK_EQUAL(false, expr.getInstructionVector().empty());
-  BOOST_CHECK_EQUAL(2, expr.getNBytes());
 }
 
-BOOST_AUTO_TEST_CASE(addInstruction_instrHasErrorCase) {
-  Expression expr{};
-  Instruction instr{};
-  // TODO
+BOOST_AUTO_TEST_CASE(parseExpression_validCase) {
+  auto * content = new uint8_t[3];
+  content[0] = i32_const, content[1] = 0x05, content[2] = End;
 
-  expr.addInstruction(instr);
+  Expression expr = parseExpression(content);
 
-  // BOOST_CHECK_EQUAL(true, expr.hasError()); FIXME
+  BOOST_CHECK_EQUAL(false, expr.hasError());
+}
+
+BOOST_AUTO_TEST_CASE(parseExpression_errorCase) {
+  auto * content = new uint8_t[3];
+  content[0] = error_instr, content[1] = 0x05, content[2] = End;
+
+  Expression expr = parseExpression(content);
+
+  BOOST_CHECK_EQUAL(true, expr.hasError());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // expression_test

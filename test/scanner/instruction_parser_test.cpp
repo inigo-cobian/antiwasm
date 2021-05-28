@@ -12,11 +12,9 @@
 #include "control/nop.cpp"
 #include "control/return.cpp"
 #include "control/unreachable.cpp"
+#include "errorInstr.cpp"
 #include "instruction.cpp"
 #include "instruction_parser.cpp"
-#include "parametric/drop.cpp"
-#include "parametric/select.cpp"
-#include "parametric/select_vecValtype.cpp"
 #include "memory/data_drop.cpp"
 #include "memory/load.cpp"
 #include "memory/memory_copy.cpp"
@@ -33,6 +31,9 @@
 #include "numeric/numericInstr.cpp"
 #include "numeric/saturating_truc.cpp"
 #include "numeric/type_conversion.cpp"
+#include "parametric/drop.cpp"
+#include "parametric/select.cpp"
+#include "parametric/select_vecValtype.cpp"
 #include "reference/ref_func.cpp"
 #include "reference/ref_is_null.cpp"
 #include "reference/ref_null.cpp"
@@ -99,7 +100,7 @@ BOOST_AUTO_TEST_CASE(parseIfInstr_test) {
 }
 
 BOOST_AUTO_TEST_CASE(parseIfElseInstr_test) {
-  uint8_t instrContent[] = {InstructionSet::If, 0x40, InstructionSet::Nop,
+  uint8_t instrContent[] = {InstructionSet::If,   0x40, InstructionSet::Nop,
                             InstructionSet::Else, 0x40, InstructionSet::Nop,
                             InstructionSet::End};
 
@@ -443,8 +444,7 @@ BOOST_AUTO_TEST_CASE(parseSelectInstr_test) {
 }
 
 BOOST_AUTO_TEST_CASE(parseSelectValtypeInstr_test) {
-  uint8_t instrContent[] = {InstructionSet::Select_vecValtype, 0x03,
-                            Numtype::i32, Reftype::funref, Numtype::f64};
+  uint8_t instrContent[] = {InstructionSet::Select_vecValtype, 0x03, Numtype::i32, Reftype::funref, Numtype::f64};
 
   auto result = parseInstruction(instrContent);
 
@@ -453,8 +453,8 @@ BOOST_AUTO_TEST_CASE(parseSelectValtypeInstr_test) {
 }
 
 BOOST_AUTO_TEST_CASE(parseSelectValtypeInstr_errorTest) {
-  uint8_t instrContent[] = {InstructionSet::Select_vecValtype, 0x03,
-                            Numtype::i32, Reftype::funref, 0xAF}; // Last one will fail
+  uint8_t instrContent[] = {InstructionSet::Select_vecValtype, 0x03, Numtype::i32, Reftype::funref,
+                            0xAF}; // Last one will fail
 
   auto result = parseInstruction(instrContent);
 
