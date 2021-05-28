@@ -1,6 +1,5 @@
 #include "memsec.hpp"
 
-using namespace std;
 namespace antiwasm {
 
 MemorySection::MemorySection(int size, uint8_t *content, int initialPos)
@@ -12,26 +11,26 @@ MemorySection::~MemorySection() = default;
 
 void MemorySection::addMemtype(const Memtype &memtype) { memtypeVector.push_back(memtype); }
 
-vector<Memtype> MemorySection::getMemtypeVector() { return memtypeVector; }
+std::vector<Memtype> MemorySection::getMemtypeVector() { return memtypeVector; }
 
 void MemorySection::displaySectionHeaderInfo() {
-  cout << "  Memory | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
+  std::cout << "  Memory | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << std::endl;
 }
 
 void MemorySection::displaySectionContentInfo() {
-  cout << "  Memory | start=" << hex << initialPos_ << " size=" << hex << size_ << " (" << memtypeVector.size()
-       << ") memtypes" << endl;
+  std::cout << "  Memory | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " (" << memtypeVector.size()
+       << ") memtypes" << std::endl;
 
   size_t index = 0;
   for (const auto &memtype : memtypeVector) {
-    stringstream memtypeAsText;
+    std::stringstream memtypeAsText;
     memtypeAsText << "( memory $" << index++ << " ";
     if (memtype.limit.type == limit_min) {
       memtypeAsText << memtype.limit.min << " )\n";
     } else if (memtype.limit.type == limit_min_max) {
       memtypeAsText << memtype.limit.min << " " << memtype.limit.max << " )\n";
     }
-    cout << memtypeAsText.str() << endl;
+    std::cout << memtypeAsText.str() << std::endl;
   }
 }
 

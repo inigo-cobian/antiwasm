@@ -1,6 +1,5 @@
 #include "importsec.hpp"
 
-using namespace std;
 namespace antiwasm {
 
 ImportSection::ImportSection(int size, uint8_t *content, int initialPos)
@@ -12,19 +11,19 @@ ImportSection::~ImportSection() = default;
 
 void ImportSection::addImport(const Import &import) { importVector.push_back(import); }
 
-vector<Import> ImportSection::getImportVector() { return importVector; }
+std::vector<Import> ImportSection::getImportVector() { return importVector; }
 
 void ImportSection::displaySectionHeaderInfo() {
-  cout << "  Import | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
+  std::cout << "  Import | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << std::endl;
 }
 
 void ImportSection::displaySectionContentInfo() {
-  cout << "  Import | start=" << hex << initialPos_ << " size=" << hex << size_ << " (" << importVector.size()
-       << ") imports" << endl;
+  std::cout << "  Import | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " (" << importVector.size()
+       << ") imports" << std::endl;
 
   size_t index = 0;
   for (const auto &import : importVector) {
-    stringstream importAsText;
+    std::stringstream importAsText;
     importAsText << "( import \"" << import.module.name << "\" \"" << import.name.name << "\"\n";
 
     switch (import.importDescType) {
@@ -42,11 +41,11 @@ void ImportSection::displaySectionContentInfo() {
       importAsText << " " << import.importDesc.globaltype->getAsText() << "\n";
       break;
     default:
-      cout << "error"; // TODO
+      std::cout << "error"; // TODO
     }
 
     importAsText << ")";
-    cout << importAsText.str() << endl;
+    std::cout << importAsText.str() << std::endl;
   }
 }
 
