@@ -1,17 +1,22 @@
 #ifndef ANTIWASM_INSTRUCTION_HPP
 #define ANTIWASM_INSTRUCTION_HPP
 
+#include "contentBlock.hpp"
 #include "lexems.hpp"
 #include <cstdint>
 
-class Instruction {
+namespace antiwasm {
+class Instruction : public ContentBlock {
 protected:
-  instruction_set instructionCode_;
+  InstructionSet instructionCode;
+  SecondByteSet secondCode;
 
 public:
-  virtual ~Instruction() {}
-
-  instruction_set getInstructionCode() { return instructionCode_; };
+  Instruction(){};
+  ~Instruction() = default;
+  InstructionSet getInstructionCode();
+  SecondByteSet getSecondByte();
 };
 
+} // namespace antiwasm
 #endif // ANTIWASM_INSTRUCTION_HPP

@@ -13,7 +13,7 @@ struct Tabletype : public ContentBlock {
   Limit limit;
 
   Tabletype(Reftype p_reftype, Limit p_limit) : reftype(p_reftype), limit(std::move(p_limit)){};
-  std::string getAsText() const;
+  [[nodiscard]] std::string getAsText() const;
 };
 
 /**

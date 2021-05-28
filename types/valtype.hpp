@@ -18,7 +18,7 @@ struct Valtype : public ContentBlock, Displayable {
 
   void displayError() override;
   void displayContentInfo() override;
-  std::string getAsText() const;
+  [[nodiscard]] std::string getAsText() const;
 };
 
 /**

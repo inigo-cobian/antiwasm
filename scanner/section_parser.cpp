@@ -16,14 +16,14 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
   case (SectionId::ImportId):
     return parseImportSection(sectionSize, sectionContent, sectionPos);
   case (SectionId::FunctionId):
-    return parseFunctionSection(sectionSize, sectionContent, sectionPos);;
+    return parseFunctionSection(sectionSize, sectionContent, sectionPos);
+    ;
   case (SectionId::TableId):
     return parseTableSection(sectionSize, sectionContent, sectionPos);
   case (SectionId::MemoryId):
     return parseMemorySection(sectionSize, sectionContent, sectionPos);
   case (SectionId::GlobalId):
-    parseGlobalSection(sectionSize, sectionContent, sectionPos);
-    return Section(SectionId::GlobalId, sectionSize, sectionContent, sectionPos);
+    return parseGlobalSection(sectionSize, sectionContent, sectionPos);
   case (SectionId::ExportId):
     parseExportSection(sectionSize, sectionContent, sectionPos);
     return Section(SectionId::ExportId, sectionSize, sectionContent, sectionPos);
@@ -113,7 +113,7 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent, int
         cout << "ERROR parseImportSection at header byte" << endl;
         break;
       default:
-        cout << "$$$$Unknown Error" << endl;
+        cout << "Unknown Error" << endl;
       }
       return importSection;
     }
@@ -122,10 +122,10 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent, int
   return importSection;
 }
 
-
 FuncSection parseFunctionSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
-  uint32_t typeidxInVector = sectionContent[0];
-  unsigned int pointer = 1;
+  auto typeidxInVector = transformLeb128ToUnsignedInt32(sectionContent);
+  unsigned int pointer = sizeOfLeb128(sectionContent);
+
   FuncSection funcSection(sizeOfSection, sectionContent, sectionPos);
   for (uint32_t i = 0; i < typeidxInVector; i++) {
     uint32_t typeidx = transformLeb128ToUnsignedInt32(&sectionContent[pointer]);
@@ -137,8 +137,9 @@ FuncSection parseFunctionSection(int sizeOfSection, uint8_t *sectionContent, int
 }
 
 TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
-  uint32_t tablesInVector = sectionContent[0];
-  unsigned int pointer = 1;
+  auto tablesInVector = transformLeb128ToUnsignedInt32(sectionContent);
+  unsigned int pointer = sizeOfLeb128(sectionContent);
+
   TableSection tableSection(sizeOfSection, sectionContent, sectionPos);
   for (uint32_t i = 0; i < tablesInVector; i++) {
     Tabletype tabletype = parseTableType(&sectionContent[pointer]);
@@ -157,8 +158,9 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent, int s
 }
 
 MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
-  uint32_t memsInVector = sectionContent[0];
-  unsigned int pointer = 1;
+  auto memsInVector = transformLeb128ToUnsignedInt32(sectionContent);
+  unsigned int pointer = sizeOfLeb128(sectionContent);
+
   MemorySection memorySection(sizeOfSection, sectionContent, sectionPos);
 
   for (uint32_t i = 0; i < memsInVector; i++) {
@@ -176,8 +178,20 @@ MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int
   return memorySection;
 }
 
-int parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
-  return 0; // TODO
+GlobalSection parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
+  auto globalsInVector = transformLeb128ToUnsignedInt32(sectionContent);
+  unsigned int pointer = sizeOfLeb128(sectionContent);
+
+  GlobalSection globalSection(sizeOfSection, sectionContent, sectionPos);
+  for (uint32_t i = 0; i < globalsInVector; i++) {
+    auto global = parseGlobal(&sectionContent[pointer]);
+    pointer += global.getNBytes();
+    globalSection.addGlobal(global);
+  }
+
+  globalSection.displaySectionContentInfo(); // TODO move to another place in the future
+
+  return globalSection; // TODO
 }
 
 int parseExportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {

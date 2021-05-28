@@ -1,7 +1,14 @@
 #include "limits.hpp"
 
-using namespace std;
 namespace antiwasm {
+Limit::Limit(limit_types p_limitTypes, uint32_t p_min, uint32_t p_nBytes_) : type(p_limitTypes), min(p_min), max(0) {
+  setNBytes(p_nBytes_);
+}
+
+Limit::Limit(limit_types p_limitTypes, uint32_t p_min, uint32_t p_max, uint32_t p_nBytes_)
+    : type(p_limitTypes), min(p_min), max(p_max) {
+  setNBytes(p_nBytes_);
+}
 
 Limit parseLimits(const uint8_t *limitSection) {
   BOOST_LOG_TRIVIAL(debug) << "[Limit] Parsing a new Limit";
@@ -21,7 +28,7 @@ Limit parseLimits(const uint8_t *limitSection) {
     return parseLimitMinMax(min_, max_, nBytes);
   } else {
     // TODO better error, ¿maybe get a msg?
-    cout << "limit raro" << endl;
+    std::cout << "limit raro" << std::endl;
     Limit limit = generateErrorLimit();
     return limit;
   }
@@ -30,7 +37,7 @@ Limit parseLimits(const uint8_t *limitSection) {
 Limit parseLimitMin(const uint32_t min_, const uint32_t p_nBytes) {
   Limit limit{limit_min, min_, p_nBytes};
 
-  BOOST_LOG_TRIVIAL(debug) << "[Limit] New limit [" << hex << limit.min << "-MAX]";
+  BOOST_LOG_TRIVIAL(debug) << "[Limit] New limit [" << std::hex << limit.min << "-MAX]";
   BOOST_LOG_TRIVIAL(debug) << "[Limit] nBytes: " << limit.getNBytes();
   return limit;
 }
@@ -42,10 +49,10 @@ Limit parseLimitMinMax(const uint32_t min_, const uint32_t max_, const uint32_t 
     limit.addError(error);
   }
   if (limit.hasError()) {
-    cout << "Min-Max: " << (int)limit.min << "-" << (int)limit.max << endl;
+    std::cout << "Min-Max: " << (int)limit.min << "-" << (int)limit.max << std::endl;
   }
 
-  BOOST_LOG_TRIVIAL(debug) << "[limits] New limit [" << hex << limit.min << "-" << hex << limit.max << "]";
+  BOOST_LOG_TRIVIAL(debug) << "[limits] New limit [" << std::hex << limit.min << "-" << std::hex << limit.max << "]";
   BOOST_LOG_TRIVIAL(debug) << "[Limit] nBytes: " << limit.getNBytes();
   return limit;
 }
@@ -61,9 +68,9 @@ bool checkIfLimitIsNotValid(const uint32_t min_, const uint32_t max_) { return m
 
 void Limit::displayContentInfo() {
   if (type == limit_min) {
-    cout << "[" << hex << min << "-MAX]";
+    std::cout << "[" << std::hex << min << "-MAX]";
   } else if (type == limit_min_max) {
-    cout << "[" << hex << min << "-" << max << "]";
+    std::cout << "[" << std::hex << min << "-" << max << "]";
   } else {
     displayError();
   }

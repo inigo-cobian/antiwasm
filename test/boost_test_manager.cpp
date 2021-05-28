@@ -1,6 +1,8 @@
 #define BOOST_TEST_DYN_LINK
 
 #include <boost/test/unit_test.hpp>
+#include "funcsec.cpp"
+#include "globalsec.cpp"
 
 // initialization function:
 bool init_unit_test() { return true; }

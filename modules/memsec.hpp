@@ -31,7 +31,7 @@ public:
    * Adds a new memtype to the vector
    * @param memtype
    */
-  void addMemtype(const Memtype& memtype);
+  void addMemtype(const Memtype &memtype);
 
   /**
    * Gets the memtype vector

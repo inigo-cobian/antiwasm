@@ -11,18 +11,10 @@ class ContentBlock {
 protected:
   std::shared_ptr<uint8_t> contentBytes;
   size_t indexByte;
-  std::vector<std::shared_ptr<ErrorAtWasm>> errors_;
   size_t nBytes;
+  std::vector<std::shared_ptr<ErrorAtWasm>> errors_;
 
 public:
-  /**
-   * Gets the pointer to the content block the current content belongs (as bytes)
-   * and its position at the block.
-   * @param contentBytes
-   * @param indexOfContent
-   */
-  void addContentBytes(std::shared_ptr<uint8_t> ptrToContentBytes, size_t indexOfCurrentContent, size_t nBytesOfContent);
-
   /**
    * Adds a new error to the error_ vector.
    * @param pointer to ErrorAtWasm
@@ -47,9 +39,23 @@ public:
    */
   std::shared_ptr<ErrorAtWasm> getError();
 
-  uint32_t getNBytes() const { return nBytes; };
+  /**
+   * Gets the number of bytes of the content block
+   * @return
+   */
+  [[nodiscard]] uint32_t getNBytes() const { return nBytes; };
 
+  /**
+   * Sets the number of bytes of the content block
+   * @param p_nBytes
+   */
   void setNBytes(uint32_t p_nBytes) { nBytes = p_nBytes; };
+
+  /**
+   * Adds the argument to the number of bytes of the content block
+   * @param p_nBytes
+   */
+  void addNBytes(uint32_t p_nBytes) { nBytes += p_nBytes; };
 };
 
 } // namespace antiwasm

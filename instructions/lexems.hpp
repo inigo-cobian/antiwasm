@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-enum instruction_set : uint8_t {
+enum InstructionSet : uint8_t {
   Unreachable = 0x00,
   Nop = 0x01,
   Block = 0x02,
@@ -19,12 +19,16 @@ enum instruction_set : uint8_t {
   Call_indirect = 0x11,
   Drop = 0x1A,
   Select = 0x1B,
+  Select_vecValtype = 0x1C,
 
   Local_get = 0x20,
   Local_set = 0x21,
   Local_tee = 0x22,
   Global_get = 0x23,
   Global_set = 0x24,
+
+  Table_get = 0x25,
+  Table_set = 0x26,
 
   i32_load = 0x28,
   i64_load = 0x29,
@@ -207,7 +211,41 @@ enum instruction_set : uint8_t {
   i32_reinterpret_f32 = 0xBC,
   i64_reinterpret_f64 = 0xBD,
   f32_reinterpret_i32 = 0xBE,
-  f64_reinterpret_i64 = 0xBF
+  f64_reinterpret_i64 = 0xBF,
+
+  i32_extend8_s = 0xC0,
+  i32_extend16_s = 0xC1,
+  i64_extend8_s = 0xC2,
+  i64_extend16_s = 0xC3,
+  i64_extend32_s = 0xC4,
+
+  Ref_null = 0xD0,
+  Ref_is_null = 0xD1,
+  Ref_func = 0xD2,
+
+  double_byte_instr = 0xFC
+};
+
+enum SecondByteSet : uint8_t {
+  i32_trunc_sat_f32_s = 0x00,
+  i32_trunc_sat_f32_u = 0x01,
+  i32_trunc_sat_f64_s = 0x02,
+  i32_trunc_sat_f64_u = 0x03,
+  i64_trunc_sat_f32_s = 0x04,
+  i64_trunc_sat_f32_u = 0x05,
+  i64_trunc_sat_f64_s = 0x06,
+  i64_trunc_sat_f64_u = 0x07,
+
+  Memory_init = 0x08,
+  Data_drop = 0x09,
+  Memory_copy = 0x0A,
+  Memory_fill = 0x0B,
+  Table_init = 0x0C,
+  Elem_drop = 0x0D,
+  Table_copy = 0x0E,
+  Table_grow = 0x0F,
+  Table_size = 0x10,
+  Table_fill = 0x11
 };
 
 #endif

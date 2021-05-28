@@ -36,11 +36,8 @@ struct Import : public ContentBlock {
   ImportDescType importDescType{};
   ImportDesc importDesc{};
 
-  Import(UTF8Name p_module, UTF8Name p_name, ImportDescType p_importDescType, ImportDesc p_importDesc)
-      : module(std::move(p_module)), name(std::move(p_name)), importDescType(p_importDescType),
-        importDesc(p_importDesc) {}
-
-  Import(UTF8Name p_module, UTF8Name p_name) : module(std::move(p_module)), name(std::move(p_name)) {}
+  Import(UTF8Name p_module, UTF8Name p_name);
+  Import(UTF8Name p_module, UTF8Name p_name, ImportDescType p_importDescType, ImportDesc p_importDesc);
 
   void addImportDesc(ImportDescType type, const uint8_t *importDescContent);
 };

@@ -1,7 +1,8 @@
 #include "memtype.hpp"
 
-using namespace std;
 namespace antiwasm {
+Memtype::Memtype(Limit p_limit) : limit(p_limit) {}
+
 Memtype parseMemType(const uint8_t *memTypeContent) {
   Limit memtypeLimit = parseLimits(memTypeContent);
   Memtype memtype{memtypeLimit};
@@ -19,8 +20,8 @@ Memtype parseMemType(const uint8_t *memTypeContent) {
   }
   return memtype;
 }
-string Memtype::getAsText() const {
-  stringstream memtypeAsText;
+std::string Memtype::getAsText() const {
+  std::stringstream memtypeAsText;
   memtypeAsText << "( memory $index"
                 << " "; // TODO index
   if (limit.type == limit_min) {

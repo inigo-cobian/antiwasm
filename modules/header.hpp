@@ -16,7 +16,7 @@ namespace antiwasm {
  * @param header
  * @return true if has the magic number, false if it does not.
  */
-bool checkMagicNumber(const uint8_t *header);
+bool checkMagicNumber(const std::unique_ptr<uint8_t> header);
 
 /**
  * Checks if the module is of the current version (1.0)
@@ -24,7 +24,7 @@ bool checkMagicNumber(const uint8_t *header);
  * @param version
  * @return true if has the version is recognized, false if it is not.
  */
-bool checkVersion(const uint8_t *version);
+bool checkVersion(const std::unique_ptr<uint8_t> version);
 } // namespace antiwasm
 
 #endif

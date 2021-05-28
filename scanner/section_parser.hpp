@@ -5,6 +5,7 @@
 
 #include "contentBlock.hpp"
 #include "funcsec.hpp"
+#include "globalsec.hpp"
 #include "importsec.hpp"
 #include "leb128.hpp"
 #include "memsec.hpp"
@@ -80,7 +81,7 @@ MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int
  * @param sectionContent
  * @return The parsed Global section.
  */
-int parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
+GlobalSection parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses an ExportId section and generates its instance.

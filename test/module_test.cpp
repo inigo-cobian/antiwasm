@@ -69,4 +69,4 @@ BOOST_AUTO_TEST_CASE(displayError) {
   module.displayError();
 }
 
-BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END() // module_test

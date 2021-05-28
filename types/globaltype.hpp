@@ -7,11 +7,14 @@
 
 namespace antiwasm {
 
+const static size_t BYTES_GLOBALTYPE = 2;
+
 struct Globaltype : public ContentBlock {
   Valtype valtype;
   Mut mut;
 
-  std::string getAsText() const;
+  Globaltype(Valtype valtype_, Mut mut_);
+  [[nodiscard]] std::string getAsText() const;
 };
 
 /**

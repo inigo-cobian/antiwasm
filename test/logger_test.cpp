@@ -58,4 +58,4 @@ BOOST_AUTO_TEST_CASE(loggerDoesNotPrintMessagesWithLowerLevel) {
   // BOOST_CHECK_EQUAL(, "Don't be evil"); TODO check if it has been logged
 }
 
-BOOST_AUTO_TEST_SUITE_END() // limits_test
+BOOST_AUTO_TEST_SUITE_END() // logger_test

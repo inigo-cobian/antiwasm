@@ -10,7 +10,7 @@ MemorySection::MemorySection(int size, uint8_t *content, int initialPos)
 
 MemorySection::~MemorySection() = default;
 
-void MemorySection::addMemtype(const Memtype& memtype) { memtypeVector.push_back(memtype); }
+void MemorySection::addMemtype(const Memtype &memtype) { memtypeVector.push_back(memtype); }
 
 vector<Memtype> MemorySection::getMemtypeVector() { return memtypeVector; }
 

@@ -1,7 +1,12 @@
 #include "import.hpp"
 
-using namespace std;
 namespace antiwasm {
+
+Import::Import(UTF8Name p_module, UTF8Name p_name) : module(std::move(p_module)), name(std::move(p_name)) {}
+
+Import::Import(UTF8Name p_module, UTF8Name p_name, ImportDescType p_importDescType, ImportDesc p_importDesc)
+    : module(std::move(p_module)), name(std::move(p_name)), importDescType(p_importDescType), importDesc(p_importDesc) {
+}
 
 Import parseImport(const uint8_t *importContent) {
   // Parse mod as UTF8
@@ -81,7 +86,7 @@ ImportDescType parseImportDescType(const uint8_t importDescTypeContent) {
   case ImportGlobaltype:
     return ImportGlobaltype;
   default:
-    BOOST_LOG_TRIVIAL(debug) << "[Import] Unrecognized: " << hex << (int)importDescTypeContent;
+    BOOST_LOG_TRIVIAL(debug) << "[Import] Unrecognized: " << std::hex << (int)importDescTypeContent;
     return invalidImportDescType;
   }
 }
@@ -109,5 +114,4 @@ void Import::addImportDesc(ImportDescType type, const uint8_t *importDescContent
   } break;
   }
 }
-
 } // namespace antiwasm

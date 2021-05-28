@@ -1,6 +1,5 @@
 #include "valtype.hpp"
 
-using namespace std;
 namespace antiwasm {
 Valtype parseValtype(const uint8_t valtypeContent) {
   Valtype valtype;
@@ -30,9 +29,9 @@ void Valtype::displayContentInfo() {
 
 void Valtype::displayError() {
   // TODO
-  cout << "ErrorId at valtype" << endl;
+  std::cout << "ErrorId at valtype" << std::endl;
 }
-string Valtype::getAsText() const {
+std::string Valtype::getAsText() const {
   if (type == valtype_numtype) {
     return getNumtypeAsText(numtype);
   } else if (type == valtype_reftype) {
