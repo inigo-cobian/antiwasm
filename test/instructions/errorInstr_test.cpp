@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(getInvalidInstrByte_caseUnrecognizedInstruction) {
 
   ErrorInstr errorInstr(content);
 
-  // BOOST_CHECK_EQUAL(errorInstr., emptyBlocktype); TODO
+  BOOST_CHECK_EQUAL(error_instr, errorInstr.getInvalidInstrByte());
 }
 
 BOOST_AUTO_TEST_CASE(getInvalidInstrByte_caseUnrecognizedDoubleByteInstruction) {
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(getInvalidInstrByte_caseUnrecognizedDoubleByteInstruction) 
 
   ErrorInstr errorInstr(content);
 
-  // BOOST_CHECK_EQUAL(errorInstr., emptyBlocktype); TODO
+  BOOST_CHECK_EQUAL(error_instr, errorInstr.getInvalidInstrByte());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // errorInstr_test
