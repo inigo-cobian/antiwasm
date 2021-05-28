@@ -3,6 +3,7 @@
 
 #include "instruction.hpp"
 #include "memarg.hpp"
+#include "valtype.hpp"
 
 namespace antiwasm {
 class SelectValtypeInstr : public Instruction {
