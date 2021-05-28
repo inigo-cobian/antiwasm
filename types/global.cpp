@@ -3,9 +3,17 @@
 #include <utility>
 
 namespace antiwasm {
-std::string Global::getAsText() {
+std::string Global::getAsText() const{
   // TODO global
-  return std::string();
+  std::stringstream globalAsText;
+
+  globalAsText << "( global \n "
+               << globaltype.getAsText()
+               // TODO << " " << expr.getAsText();
+               << "\n foo_expr "
+               << "\n)";
+
+  return globalAsText.str();
 }
 Global::Global(Globaltype globaltype_, Expression expr_) : globaltype(std::move(globaltype_)), expr(std::move(expr_)) {
   nBytes = globaltype_.getNBytes() + expr_.getNBytes();

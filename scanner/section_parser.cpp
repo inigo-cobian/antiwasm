@@ -113,7 +113,7 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent, int
         cout << "ERROR parseImportSection at header byte" << endl;
         break;
       default:
-        cout << "$$$$Unknown Error" << endl;
+        cout << "Unknown Error" << endl;
       }
       return importSection;
     }

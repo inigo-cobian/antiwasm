@@ -12,7 +12,7 @@ struct Global : public ContentBlock {
   Expression expr;
 
   Global(Globaltype globaltype_, Expression expr_);
-  [[nodiscard]] static std::string getAsText();
+  [[nodiscard]] std::string getAsText() const;
 };
 
 /**
