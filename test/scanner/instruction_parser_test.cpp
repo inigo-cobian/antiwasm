@@ -452,4 +452,14 @@ BOOST_AUTO_TEST_CASE(parseSelectValtypeInstr_test) {
   BOOST_CHECK_EQUAL(5, result->getNBytes());
 }
 
+BOOST_AUTO_TEST_CASE(parseSelectValtypeInstr_errorTest) {
+  uint8_t instrContent[] = {InstructionSet::Select_vecValtype, 0x03,
+                            Numtype::i32, Reftype::funref, 0xAF}; // Last one will fail
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(Select_vecValtype, result->getInstructionCode());
+  BOOST_CHECK_EQUAL(true, result->hasError());
+}
+
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test
