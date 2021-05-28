@@ -12,7 +12,7 @@
 
 namespace antiwasm {
 
-enum limit_types : uint32_t { limit_min = 0x00, limit_min_max = 0x01, limit_error = 0xFF };
+enum limit_types : uint8_t { limit_min = 0x00, limit_min_max = 0x01, limit_error = 0xFF };
 
 struct Limit : public ContentBlock, Displayable {
   limit_types type;

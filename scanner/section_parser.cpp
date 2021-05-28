@@ -17,7 +17,6 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
     return parseImportSection(sectionSize, sectionContent, sectionPos);
   case (SectionId::FunctionId):
     return parseFunctionSection(sectionSize, sectionContent, sectionPos);
-    ;
   case (SectionId::TableId):
     return parseTableSection(sectionSize, sectionContent, sectionPos);
   case (SectionId::MemoryId):

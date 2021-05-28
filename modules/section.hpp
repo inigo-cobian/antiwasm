@@ -9,7 +9,7 @@
 
 namespace antiwasm {
 
-enum SectionId {
+enum SectionId : uint8_t {
   CustomId = 0x00,
   TypeId = 0x01,
   ImportId = 0x02,
