@@ -24,4 +24,5 @@ ErrorInstr::ErrorInstr(const uint8_t *instrContent) {
     nBytes = 1;
   }
 }
+uint8_t ErrorInstr::getInvalidInstrByte() const { return invalidInstrByte; }
 } // namespace antiwasm

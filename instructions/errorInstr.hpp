@@ -11,6 +11,7 @@ class ErrorInstr : public Instruction {
 public:
   explicit ErrorInstr(const uint8_t *instrContent);
   virtual ~ErrorInstr() = default;
+  uint8_t getInvalidInstrByte() const;
 };
 } // namespace antiwasm
 
