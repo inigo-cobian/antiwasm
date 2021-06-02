@@ -37,6 +37,11 @@ enum ErrorTypes {
   unrecognizedMemtypeAtImportDesc,
   unrecognizedGlobaltypeAtImportDesc,
 
+  // Data
+  unrecognizedDataHeader,
+  invalidExpressionAtData,
+  invalidMemidxAtData, // TODO
+
   // UTF8
   unrecognizedUTF8LeadingByte,
   unrecognizedUTF8ContByte,
