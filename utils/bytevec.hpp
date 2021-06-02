@@ -5,10 +5,11 @@
 
 namespace antiwasm {
 struct ByteVec {
-  uint32_t size;
-  uint8_t *bytes;
+  uint32_t size{};
+  uint8_t *bytes{};
 
-  explicit ByteVec(uint8_t *byteVecContent);
+  explicit ByteVec(const uint8_t *byteVecContent);
+  ByteVec() = default;
 };
 
 } // namespace antiwasm
