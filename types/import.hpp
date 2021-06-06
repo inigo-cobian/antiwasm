@@ -36,15 +36,13 @@ struct Import : public ContentBlock {
   ImportDescType importDescType{};
   ImportDesc importDesc{};
 
-  Import(UTF8Name p_module, UTF8Name p_name);
   Import(UTF8Name p_module, UTF8Name p_name, ImportDescType p_importDescType, ImportDesc p_importDesc);
 
-  void addImportDesc(ImportDescType type, const uint8_t *importDescContent);
 };
 
-ImportDescType parseImportDescType(const uint8_t importDescTypeContent);
-
 Import parseImport(const uint8_t *importContent);
+ImportDescType parseImportDescType(const uint8_t importDescTypeContent);
+ImportDesc parseImportDesc(ImportDescType type, const uint8_t *importDescContent);
 } // namespace antiwasm
 
 #endif // ANTIWASM_IMPORT_HPP

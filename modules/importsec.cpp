@@ -28,7 +28,6 @@ void ImportSection::displaySectionContentInfo() {
 
     switch (import.importDescType) {
     case ImportFunc:
-      // TODO wasm-objdump gives names to the functions
       importAsText << " ( func $" << import.importDesc.typeIdx << " )\n";
       break;
     case ImportTable:
