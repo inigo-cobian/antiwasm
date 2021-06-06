@@ -25,4 +25,13 @@ BOOST_AUTO_TEST_CASE(constructor_regularVec) {
   BOOST_CHECK_EQUAL(12, byteVec.size);
 }
 
+BOOST_AUTO_TEST_CASE(getAsText_regularVec) {
+  auto *content = new uint8_t[12];
+  content[0] = 12; // El resto de bytes no tienen relevancia
+  ByteVec byteVec(content);
+
+  byteVec.getAsText();
+
+}
+
 BOOST_AUTO_TEST_SUITE_END() // bytevec_test
