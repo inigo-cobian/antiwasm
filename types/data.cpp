@@ -8,13 +8,13 @@ std::string Data::getAsText() const {
 
   switch (dataType) {
   case modeActive_mem0:
-    dataAsText << "mem0 ";
+    dataAsText << "mem0 "; // TODO << expr.getAsText();
     break;
   case modePassive:
     dataAsText << "passive ";
     break;
   case modeActive_memX:
-    dataAsText << "mem" << std::hex << memidx << " ";
+    dataAsText << "mem" << std::hex << memidx << " "; // TODO << expr.getAsText();
     break;
   case error_data_type:
     dataAsText << "error )\n";
