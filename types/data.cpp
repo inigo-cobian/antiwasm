@@ -1,14 +1,27 @@
 #include "data.hpp"
 
-#include <utility>
-
 namespace antiwasm {
 std::string Data::getAsText() const {
   std::stringstream dataAsText;
 
-  dataAsText << "( data \n "
-             // TODO
-             << "\n)";
+  dataAsText << "( data ";
+
+  switch (dataType) {
+  case modeActive_mem0:
+    dataAsText << "mem0 ";
+    break;
+  case modePassive:
+    dataAsText << "passive ";
+    break;
+  case modeActive_memX:
+    dataAsText << "mem" << std::hex << memidx << " ";
+    break;
+  case error_data_type:
+    dataAsText << "error )\n";
+    return dataAsText.str();
+  }
+
+  dataAsText << bytes.getAsText() << "\n)";
 
   return dataAsText.str();
 }
