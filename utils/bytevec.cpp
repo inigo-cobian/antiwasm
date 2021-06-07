@@ -4,9 +4,10 @@ namespace antiwasm {
 ByteVec::ByteVec(const uint8_t *byteVecContent) {
   size = transformLeb128ToUnsignedInt32(byteVecContent);
   auto pos = sizeOfLeb128(byteVecContent);
-
-  bytes = new uint8_t[pos];
-  bytes = const_cast<uint8_t *>(byteVecContent) + pos;
+  BOOST_LOG_TRIVIAL(debug) << "[ByteVec] Creating a new ByteVec with size " << size;
+  nBytes = size + pos;
+  bytes = new uint8_t[size];
+  bytes = const_cast<uint8_t *>(byteVecContent + pos);
 }
 
 std::string ByteVec::getAsText() const {

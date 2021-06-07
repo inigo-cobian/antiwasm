@@ -5,6 +5,7 @@
 
 #include "contentBlock.hpp"
 #include "datasec.hpp"
+#include "displayer.hpp"
 #include "funcsec.hpp"
 #include "globalsec.hpp"
 #include "importsec.hpp"

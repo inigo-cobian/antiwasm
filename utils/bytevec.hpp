@@ -1,18 +1,19 @@
 #ifndef ANTIWASM_BYTEVEC_HPP
 #define ANTIWASM_BYTEVEC_HPP
 
+#include "contentBlock.hpp"
 #include "leb128.hpp"
-#include <sstream>
 #include <iomanip>
+#include <sstream>
 
 namespace antiwasm {
-struct ByteVec {
+struct ByteVec : public ContentBlock {
   uint32_t size{};
-  uint8_t *bytes{};
+  uint8_t *bytes;
 
   explicit ByteVec(const uint8_t *byteVecContent);
   ByteVec() = default;
-  [[nodiscard]] std::string getAsText() const;
+  std::string getAsText() const;
 };
 
 } // namespace antiwasm

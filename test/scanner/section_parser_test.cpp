@@ -1,6 +1,7 @@
 #define BOOST_TEST_DYN_LINK
 
 #include "contentBlock.cpp"
+#include "end.cpp"
 #include "expression.cpp"
 #include "global.cpp"
 #include "importsec.cpp"

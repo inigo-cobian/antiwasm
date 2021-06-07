@@ -54,7 +54,10 @@ enum ErrorTypes {
   unrecognizedValtypeAtSelectInstr,
 
   // Expression
-  invalidInstructionAtExpression
+  invalidInstructionAtExpression,
+
+  // Sections
+  invalidDataAtDatasec
 };
 
 enum ErrorSeverity { fatal, warning, noError };
