@@ -5,7 +5,7 @@ namespace antiwasm {
 
 Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionContent, int sectionPos) {
 
-  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << hex << (unsigned int)sectionId
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (unsigned int)sectionId
                            << "] with size " << hex << (unsigned int)sectionSize;
   switch (sectionId) {
   case (SectionId::CustomId):
@@ -36,10 +36,8 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
     parseCodeSection(sectionSize, sectionContent, sectionPos);
     return Section(SectionId::CodeId, sectionSize, sectionContent, sectionPos);
   case (SectionId::DataId):
-    parseDataSection(sectionSize, sectionContent, sectionPos);
-    return Section(SectionId::DataId, sectionSize, sectionContent, sectionPos);
+    return parseDataSection(sectionSize, sectionContent, sectionPos);
   default:
-    // TODO pretty error message
     BOOST_LOG_TRIVIAL(error) << "[module_parser] ErrorId at section " << hex << (unsigned int)sectionId << " with size "
                              << hex << sectionSize;
     Section section = Section(SectionId::ErrorId, sectionSize, sectionContent, 0);
@@ -56,7 +54,10 @@ int parseCustomSection(int sizeOfSection, uint8_t *sectionContent, int sectionPo
 TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
   auto typesInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at typesec [" << hex << (unsigned int)typesInVector << "]";
+
   TypeSection typeSection(sizeOfSection, sectionContent, sectionPos);
+
   for (uint32_t i = 0; i < typesInVector; i++) {
     Functype functype = parseFunctype(&sectionContent[pointer]);
     typeSection.addFunctype(functype);
@@ -86,7 +87,10 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent, int sec
 ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
   auto importsInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at importsec [" << hex << (unsigned int)importsInVector << "]";
+
   ImportSection importSection(sizeOfSection, sectionContent, sectionPos);
+
   for (uint32_t i = 0; i < importsInVector; i++) {
     Import import = parseImport(&sectionContent[pointer]);
     importSection.addImport(import);
@@ -124,6 +128,7 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent, int
 FuncSection parseFunctionSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
   auto typeidxInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at funcsec [" << hex << (unsigned int)typeidxInVector << "]";
 
   FuncSection funcSection(sizeOfSection, sectionContent, sectionPos);
   for (uint32_t i = 0; i < typeidxInVector; i++) {
@@ -138,6 +143,7 @@ FuncSection parseFunctionSection(int sizeOfSection, uint8_t *sectionContent, int
 TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
   auto tablesInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at tablesec [" << hex << (unsigned int)tablesInVector << "]";
 
   TableSection tableSection(sizeOfSection, sectionContent, sectionPos);
   for (uint32_t i = 0; i < tablesInVector; i++) {
@@ -159,6 +165,7 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent, int s
 MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
   auto memsInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at memsec [" << hex << (unsigned int)memsInVector << "]";
 
   MemorySection memorySection(sizeOfSection, sectionContent, sectionPos);
 
@@ -180,6 +187,7 @@ MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int
 GlobalSection parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
   auto globalsInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at globalsec [" << hex << (unsigned int)globalsInVector << "]";
 
   GlobalSection globalSection(sizeOfSection, sectionContent, sectionPos);
   for (uint32_t i = 0; i < globalsInVector; i++) {
@@ -190,7 +198,7 @@ GlobalSection parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int
 
   globalSection.displaySectionContentInfo(); // TODO move to another place in the future
 
-  return globalSection; // TODO
+  return globalSection;
 }
 
 int parseExportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
@@ -209,7 +217,21 @@ int parseCodeSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos)
   return 0; // TODO
 }
 
-int parseDataSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
-  return 0; // TODO
+DataSection parseDataSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
+  auto datasInVector = transformLeb128ToUnsignedInt32(sectionContent);
+  unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at datasec [" << hex << (unsigned int)datasInVector << "]";
+
+  DataSection dataSection(sizeOfSection, sectionContent, sectionPos);
+  /* TODO
+  for (uint32_t i = 0; i < datasInVector; i++) {
+    auto data = parseData(&sectionContent[pointer]);
+    pointer += data.getNBytes();
+    dataSection.addData(data);
+  }
+  */
+  //dataSection.displaySectionContentInfo(); // TODO move to another place in the future
+
+  return dataSection;
 }
 } // namespace antiwasm
