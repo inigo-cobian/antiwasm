@@ -30,7 +30,11 @@ Expression parseExpression(const uint8_t *expressionContent) {
     BOOST_LOG_TRIVIAL(debug) << "[expression] Size of instruction: " << instr->getNBytes();
     pointer += instr->getNBytes();
   }
+
+  expr.addInstruction(EndInstr());
+
   BOOST_LOG_TRIVIAL(debug) << "[expression] There are " << nInstr << " instructions at the expression";
+  BOOST_LOG_TRIVIAL(debug) << "[expression] Final nBytes of expression is " << expr.getNBytes();
 
   return expr;
 }
