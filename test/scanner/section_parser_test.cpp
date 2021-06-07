@@ -4,7 +4,7 @@
 #include "expression.cpp"
 #include "global.cpp"
 #include "importsec.cpp"
-#include "memsec.cpp" //TODO remove if possible
+#include "memsec.cpp"
 #include "reftype.cpp"
 #include "section_parser.cpp"
 #include "tablesec.cpp"
@@ -219,8 +219,24 @@ BOOST_AUTO_TEST_CASE(parseCodeSection_emptySectionReturnsOkey) {
 
 BOOST_AUTO_TEST_CASE(parseDataSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
+  auto *dataSectionContent = new uint8_t[1];
+  dataSectionContent[0] = 0; // Número de datas en la sección
 
-  auto result = antiwasm::parseNextSection(SectionId::DataId, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::DataId, sizeOfSection, dataSectionContent, 0);
+
+  BOOST_CHECK_EQUAL(SectionId::DataId, result.getSectionId());
+}
+
+BOOST_AUTO_TEST_CASE(parseDataSection_realisticSectionReturnsOkey) {
+  int sizeOfSection = 0;
+  auto *dataSectionContent = new uint8_t[10];
+  dataSectionContent[0] = 1; // Número de datas en la sección
+  dataSectionContent[1] = modeActive_mem0;
+  dataSectionContent[2] = InstructionSet::Nop, dataSectionContent[3] = End;
+  dataSectionContent[4] = 0x05; // Number of bytes at the vector
+  // Following bytes are not relevant
+
+  auto result = antiwasm::parseNextSection(SectionId::DataId, sizeOfSection, dataSectionContent, 0);
 
   BOOST_CHECK_EQUAL(SectionId::DataId, result.getSectionId());
 }
