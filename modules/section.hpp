@@ -22,6 +22,7 @@ enum SectionId : uint8_t {
   ElementId = 0x09,
   CodeId = 0x0A,
   DataId = 0x0B,
+  DataCountId = 0x0C,
   ErrorId = 0xFF
 };
 

@@ -41,7 +41,7 @@ int main(int argc, char **argv) {
                                 ("verbose","display relevant information about the decompiling process")
                                 ("pedantic",
                                 "display every single datum about the decompiling process")
-                                ("section", boost::program_options::value<int>(),
+                                ("section", boost::program_options::value<string>(),
                                     "selects a section for displaying");
 
 
@@ -97,11 +97,11 @@ int main(int argc, char **argv) {
   }
 
   if (variablesMap.count("section")) {
-    int sectionId = variablesMap["section"].as<int>();
-    if(Displayer::setSectionToDisplay(sectionId)) {
-      cout << "Parsing only section with id: " << hex << sectionId << endl;
+    string section = variablesMap["section"].as<string>();
+    if(Displayer::setSectionToDisplay(section)) {
+      cout << "Parsing section: " << hex << section << endl;
     } else {
-      cout << "Unrecognized section to parse " << sectionId << endl;
+      cout << "Unrecognized section to parse \"" << section << "\"\n";
       return 1;
     };
 

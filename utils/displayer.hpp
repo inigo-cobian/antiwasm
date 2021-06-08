@@ -3,6 +3,7 @@
 
 #include "logging_levels.hpp"
 #include "section.hpp" // for SectionId
+#include <boost/algorithm/string.hpp>
 #include <iostream>
 
 namespace antiwasm {
@@ -19,7 +20,7 @@ public:
 
   static LoggingLevel GetLoggingLevel();
 
-  static bool setSectionToDisplay(int sectionToDisplay_);
+  static bool setSectionToDisplay(std::string sectionToDisplay_);
 
   static SectionId getSectionToDisplay();
 };

@@ -16,9 +16,57 @@ void Displayer::SetLoggingLevel(LoggingLevel loggingLevel) { Displayer::loggingL
 
 LoggingLevel Displayer::GetLoggingLevel() { return Displayer::loggingLevel_; }
 
-bool Displayer::setSectionToDisplay(int sectionToDisplay_) {
-  if(sectionToDisplay_ >= 0 && sectionToDisplay_ <= 12) {
-    Displayer::sectionToDisplay = static_cast<SectionId>(sectionToDisplay_ - '0');
+bool Displayer::setSectionToDisplay(std::string sectionToDisplay_) {
+  if(boost::iequals(sectionToDisplay_, "custom")) {
+    Displayer::sectionToDisplay = SectionId::CustomId;
+    return true;
+  }
+  if(boost::iequals(sectionToDisplay_, "type")) {
+    Displayer::sectionToDisplay = SectionId::TypeId;
+    return true;
+  }
+  if(boost::iequals(sectionToDisplay_, "import")) {
+    Displayer::sectionToDisplay = SectionId::ImportId;
+    return true;
+  }
+  if(boost::iequals(sectionToDisplay_, "function")) {
+    Displayer::sectionToDisplay = SectionId::FunctionId;
+    return true;
+  }
+  if(boost::iequals(sectionToDisplay_, "table")) {
+    Displayer::sectionToDisplay = SectionId::TableId;
+    return true;
+  }
+  if(boost::iequals(sectionToDisplay_, "memory")) {
+    Displayer::sectionToDisplay = SectionId::MemoryId;
+    return true;
+  }
+  if(boost::iequals(sectionToDisplay_, "global")) {
+    Displayer::sectionToDisplay = SectionId::GlobalId;
+    return true;
+  }
+  if(boost::iequals(sectionToDisplay_, "export")) {
+    Displayer::sectionToDisplay = SectionId::ExportId;
+    return true;
+  }
+  if(boost::iequals(sectionToDisplay_, "start")) {
+    Displayer::sectionToDisplay = SectionId::StartId;
+    return true;
+  }
+  if(boost::iequals(sectionToDisplay_, "element")) {
+    Displayer::sectionToDisplay = SectionId::ElementId;
+    return true;
+  }
+  if(boost::iequals(sectionToDisplay_, "code")) {
+    Displayer::sectionToDisplay = SectionId::CodeId;
+    return true;
+  }
+  if(boost::iequals(sectionToDisplay_, "data")) {
+    Displayer::sectionToDisplay = SectionId::DataId;
+    return true;
+  }
+  if(boost::iequals(sectionToDisplay_, "datacount")) {
+    Displayer::sectionToDisplay = SectionId::DataCountId;
     return true;
   }
   return false;
