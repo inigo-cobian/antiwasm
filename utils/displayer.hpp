@@ -20,9 +20,9 @@ public:
 
   static LoggingLevel GetLoggingLevel();
 
-  static bool setSectionToDisplay(std::string sectionToDisplay_);
+  static bool setSectionToDisplay(const std::string& sectionToDisplay_);
 
-  static SectionId getSectionToDisplay();
+  static bool hasToDisplaySection(SectionId sectionToDisplay);
 };
 
 } // namespace antiwasm

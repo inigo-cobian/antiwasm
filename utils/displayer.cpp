@@ -4,7 +4,7 @@ using namespace std;
 namespace antiwasm {
 
 LoggingLevel Displayer::loggingLevel_;
-SectionId Displayer::sectionToDisplay{ErrorId};
+SectionId Displayer::sectionToDisplay{UndefinedSectionId};
 
 void Displayer::Log(LoggingLevel minLoggingLevel, const string &logMessage) {
   if (Displayer::loggingLevel_ >= minLoggingLevel) {
@@ -16,7 +16,7 @@ void Displayer::SetLoggingLevel(LoggingLevel loggingLevel) { Displayer::loggingL
 
 LoggingLevel Displayer::GetLoggingLevel() { return Displayer::loggingLevel_; }
 
-bool Displayer::setSectionToDisplay(std::string sectionToDisplay_) {
+bool Displayer::setSectionToDisplay(const std::string& sectionToDisplay_) {
   if(boost::iequals(sectionToDisplay_, "custom")) {
     Displayer::sectionToDisplay = SectionId::CustomId;
     return true;
@@ -69,9 +69,18 @@ bool Displayer::setSectionToDisplay(std::string sectionToDisplay_) {
     Displayer::sectionToDisplay = SectionId::DataCountId;
     return true;
   }
+  if(boost::iequals(sectionToDisplay_, "all")) {
+    Displayer::sectionToDisplay = SectionId::UndefinedSectionId;
+    return true;
+  }
   return false;
 }
 
-SectionId Displayer::getSectionToDisplay() { return Displayer::sectionToDisplay; }
+bool Displayer::hasToDisplaySection(SectionId sectionToDisplay_) {
+  if (Displayer::sectionToDisplay == sectionToDisplay_ || Displayer::sectionToDisplay == SectionId::UndefinedSectionId) {
+    return true;
+  }
+  return false;
+}
 
 } // namespace antiwasm

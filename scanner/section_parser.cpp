@@ -38,9 +38,9 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
   case (SectionId::DataId):
     return parseDataSection(sectionSize, sectionContent, sectionPos);
   default:
-    BOOST_LOG_TRIVIAL(error) << "[module_parser] ErrorId at section " << hex << (unsigned int)sectionId << " with size "
+    BOOST_LOG_TRIVIAL(error) << "[module_parser] UndefinedSectionId at section " << hex << (unsigned int)sectionId << " with size "
                              << hex << sectionSize;
-    Section section = Section(SectionId::ErrorId, sectionSize, sectionContent, 0);
+    Section section = Section(SectionId::UndefinedSectionId, sectionSize, sectionContent, 0);
     auto error = generateError(fatal, wrongSectionId, 0);
     section.addError(error);
     return section;
@@ -80,8 +80,8 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent, int sec
       return typeSection;
     }
   }
-  if(Displayer::getSectionToDisplay() == SectionId::TypeId
-      || Displayer::getSectionToDisplay() == SectionId::ErrorId) {
+
+  if(Displayer::hasToDisplaySection(SectionId::TypeId)) {
     typeSection.displaySectionContentInfo();
   }
   return typeSection;
@@ -124,8 +124,7 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent, int
       return importSection;
     }
   }
-  if(Displayer::getSectionToDisplay() == SectionId::ImportId
-     || Displayer::getSectionToDisplay() == SectionId::ErrorId) {
+  if(Displayer::hasToDisplaySection(SectionId::ImportId)) {
     importSection.displaySectionContentInfo();
   }
   return importSection;
@@ -142,8 +141,7 @@ FuncSection parseFunctionSection(int sizeOfSection, uint8_t *sectionContent, int
     pointer += sizeOfLeb128(&sectionContent[pointer]);
     funcSection.addTypeidx(typeidx);
   }
-  if(Displayer::getSectionToDisplay() == SectionId::FunctionId
-     || Displayer::getSectionToDisplay() == SectionId::ErrorId) {
+  if(Displayer::hasToDisplaySection(SectionId::FunctionId)) {
     funcSection.displaySectionContentInfo();
   }
   return funcSection;
@@ -163,13 +161,12 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent, int s
       pointer += REFTYPE_SIZE + tabletype.limit.getNBytes();
     } else {
       // TODO error case
-      cout << "ErrorId at parsing tabletype" << endl;
+      cout << "UndefinedSectionId at parsing tabletype" << endl;
     }
     tableSection.addTabletype(tabletype);
   }
-  if(Displayer::getSectionToDisplay() == SectionId::TableId
-     || Displayer::getSectionToDisplay() == SectionId::ErrorId) {
-    tableSection.displaySectionContentInfo();
+  if(Displayer::hasToDisplaySection(SectionId::TableId)) {
+      tableSection.displaySectionContentInfo();
   }
   return tableSection;
 }
@@ -192,7 +189,10 @@ MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int
     }
     memorySection.addMemtype(memtype);
   }
-  memorySection.displaySectionContentInfo(); // TODO move to another place in the future
+
+  if(Displayer::hasToDisplaySection(SectionId::MemoryId)) {
+    memorySection.displaySectionContentInfo(); // TODO move to another place in the future
+  }
   return memorySection;
 }
 
@@ -208,11 +208,9 @@ GlobalSection parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int
     globalSection.addGlobal(global); // TODO error
   }
 
-  if(Displayer::getSectionToDisplay() == SectionId::GlobalId
-     || Displayer::getSectionToDisplay() == SectionId::ErrorId) {
+  if(Displayer::hasToDisplaySection(SectionId::GlobalId)) {
     globalSection.displaySectionContentInfo();
   }
-
   return globalSection;
 }
 
@@ -250,11 +248,9 @@ DataSection parseDataSection(int sizeOfSection, uint8_t *sectionContent, int sec
     }
   }
 
-  if(Displayer::getSectionToDisplay() == SectionId::DataId
-     || Displayer::getSectionToDisplay() == SectionId::ErrorId) {
-    dataSection.displaySectionContentInfo();
+  if(Displayer::hasToDisplaySection(SectionId::DataId)) {
+      dataSection.displaySectionContentInfo();
   }
-  dataSection.displaySectionContentInfo();
   return dataSection;
 }
 } // namespace antiwasm

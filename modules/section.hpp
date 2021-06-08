@@ -23,7 +23,7 @@ enum SectionId : uint8_t {
   CodeId = 0x0A,
   DataId = 0x0B,
   DataCountId = 0x0C,
-  ErrorId = 0xFF
+  UndefinedSectionId = 0xFF
 };
 
 class Section : public ContentBlock, Displayable { // TODO make virtual

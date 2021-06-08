@@ -11,7 +11,7 @@ Tabletype parseTableType(const uint8_t *tableTypeContent) {
   Tabletype tabletype{reftypeAtTabletype, limitAtTabletype};
 
   if (reftypeAtTabletype == invalid_reftype) {
-    std::cout << "ErrorId at reftype" << std::endl;
+    std::cout << "UndefinedSectionId at reftype" << std::endl;
     BOOST_LOG_TRIVIAL(error) << "[Resulttype] Incorrect Reftype with value: " << tableTypeContent[0];
     auto error = generateError(fatal, unrecognizedReftypeAtTabletype, 0);
     tabletype.addError(error);
@@ -19,7 +19,7 @@ Tabletype parseTableType(const uint8_t *tableTypeContent) {
   }
 
   if (limitAtTabletype.hasError()) {
-    std::cout << "ErrorId at limit" << std::endl;
+    std::cout << "UndefinedSectionId at limit" << std::endl;
     BOOST_LOG_TRIVIAL(error) << "[Resulttype] Incorrect Limit";
     auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, 1);
     tabletype.addError(error);
