@@ -20,12 +20,9 @@ void DataSection::displaySectionHeaderInfo() {
 void DataSection::displaySectionContentInfo() {
   std::cout << "    Data | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << std::endl;
 
-  size_t index = 0;
   std::for_each(dataVector.begin(), dataVector.end(),
-                [](const Data &data){std::cout << data.getAsText() << std::endl;}
-  );
+                [](const Data &data) { std::cout << data.getAsText() << std::endl; });
 
   std::cout << std::endl;
-
 }
-}
+} // namespace antiwasm
