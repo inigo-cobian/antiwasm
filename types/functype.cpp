@@ -18,7 +18,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
   if (functype.parameterType.hasError()) {
     auto error = generateError(fatal, unrecognizedRT1Functype, 0);
     functype.addError(error);
-    std::cout << "ErrorId at functype.parameterType" << std::endl;
+    std::cout << "UndefinedSectionId at functype.parameterType" << std::endl;
     return functype;
   }
 
@@ -28,7 +28,7 @@ Functype parseFunctype(const uint8_t *funcTypeContent) {
   if (functype.returnType.hasError()) {
     auto error = generateError(fatal, unrecognizedRT2Functype, 0);
     functype.addError(error);
-    std::cout << "ErrorId at functype.returnType" << std::endl;
+    std::cout << "UndefinedSectionId at functype.returnType" << std::endl;
   }
   functype.setNBytes(BYTES_HEADER_FUNCTYPE + functype.parameterType.getNBytes() + functype.returnType.getNBytes());
   BOOST_LOG_TRIVIAL(debug) << "[Functype] nBytes: " << functype.getNBytes();

@@ -2,10 +2,23 @@
 
 namespace antiwasm {
 
-Import::Import(UTF8Name p_module, UTF8Name p_name) : module(std::move(p_module)), name(std::move(p_name)) {}
-
 Import::Import(UTF8Name p_module, UTF8Name p_name, ImportDescType p_importDescType, ImportDesc p_importDesc)
     : module(std::move(p_module)), name(std::move(p_name)), importDescType(p_importDescType), importDesc(p_importDesc) {
+  nBytes = module.getNBytes() + name.getNBytes();
+  switch (importDescType) {
+  case ImportFunc:
+    nBytes += 2; // TODO get size of index
+    break;
+  case ImportTable:
+    nBytes += importDesc.tabletype->getNBytes();
+    break;
+  case ImportMemtype:
+    nBytes += importDesc.memtype->getNBytes();
+    break;
+  case ImportGlobaltype:
+    nBytes += importDesc.globaltype->getNBytes();
+    break;
+  }
 }
 
 Import parseImport(const uint8_t *importContent) {
@@ -29,20 +42,26 @@ Import parseImport(const uint8_t *importContent) {
   pointer++;
   BOOST_LOG_TRIVIAL(debug) << "[Import] type: " << type;
 
-  Import import{mod, name};
+  ImportDesc desc = parseImportDesc(type, &importContent[pointer]);
 
-  import.setNBytes(pointer);
-
-  import.addImportDesc(type, &importContent[pointer]);
+  Import import(mod, name, type, desc);
 
   if (mod.hasError()) {
-    auto error = generateError(fatal, unrecognizedModAtImport, 0);
+    BOOST_LOG_TRIVIAL(error) << "[Import] Error: unrecognizedModAtImport";
+    auto error = generateError(warning, unrecognizedModAtImport, 0);
     import.addError(error);
   }
 
   if (name.hasError()) {
-    auto error = generateError(fatal, unrecognizedNameAtImport, indexName);
+    BOOST_LOG_TRIVIAL(error) << "[Import] Error: unrecognizedModAtImport";
+    auto error = generateError(warning, unrecognizedNameAtImport, indexName);
     import.addError(error);
+  }
+
+  if (type == invalidImportDescType) {
+    auto error = generateError(fatal, unrecognizedHeaderAtImportDesc, indexName);
+    import.addError(error);
+    return import;
   }
 
   switch (type) {
@@ -65,9 +84,6 @@ Import parseImport(const uint8_t *importContent) {
       import.addError(error);
     }
     break;
-  case invalidImportDescType:
-    auto error = generateError(fatal, unrecognizedLimitHeaderAtTabletype, indexImportDesc);
-    import.addError(error);
   }
 
   BOOST_LOG_TRIVIAL(debug) << "[Import] nBytes: " << import.getNBytes();
@@ -91,27 +107,33 @@ ImportDescType parseImportDescType(const uint8_t importDescTypeContent) {
   }
 }
 
-void Import::addImportDesc(ImportDescType type, const uint8_t *importDescContent) {
+ImportDesc parseImportDesc(ImportDescType type, const uint8_t *importDescContent) {
+  ImportDesc importDesc;
   switch (type) {
   case ImportFunc: {
     importDesc.typeIdx = transformLeb128ToUnsignedInt32(importDescContent);
-    setNBytes(getNBytes() + sizeOfLeb128(importDescContent));
-  } break;
-  case ImportTable: { // TODO explain that the braces are to avoid crosses initialization of
+    // TODO nBytes
+    return importDesc;
+  }
+  case ImportTable: { // TODO explain that the braces are to avoid crosses initialization of union
     auto tabletype = parseTableType(importDescContent);
     importDesc.tabletype = new Tabletype(tabletype);
-    setNBytes(getNBytes() + importDesc.tabletype->getNBytes());
-  } break;
+    return importDesc;
+  }
   case ImportMemtype: {
     auto memtype = parseMemType(importDescContent);
     importDesc.memtype = new Memtype(memtype);
-    setNBytes(getNBytes() + importDesc.memtype->getNBytes());
-  } break;
+    return importDesc;
+  }
   case ImportGlobaltype: {
     auto globaltype = parseGlobaltype(importDescContent);
     importDesc.globaltype = new Globaltype(globaltype);
-    setNBytes(getNBytes() + importDesc.globaltype->getNBytes());
-  } break;
+    return importDesc;
+  }
+  default:
+    BOOST_LOG_TRIVIAL(error) << "[Import] Failing to create an Import desc as there is no valid header";
+    return importDesc;
   }
 }
+
 } // namespace antiwasm

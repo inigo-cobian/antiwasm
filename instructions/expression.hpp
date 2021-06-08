@@ -2,6 +2,7 @@
 #define ANTIWASM_EXPRESSION_HPP
 
 #include "contentBlock.hpp"
+#include "end.hpp"
 #include "instruction.hpp"
 #include "instruction_parser.hpp"
 #include <vector>

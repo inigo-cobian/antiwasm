@@ -6,7 +6,7 @@
 
 namespace antiwasm {
 
-enum Numtype : int32_t { i32 = 0x7F, i64 = 0x7E, f32 = 0x7D, f64 = 0x7C, invalid_numtype = 0xFF };
+enum Numtype : uint8_t { i32 = 0x7F, i64 = 0x7E, f32 = 0x7D, f64 = 0x7C, invalid_numtype = 0xFF };
 
 /**
  * Gets a byte and returns the equivalent NumType

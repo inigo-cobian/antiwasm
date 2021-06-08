@@ -4,6 +4,8 @@
 #define BOOST_LOG_DYN_LINK 1
 
 #include "contentBlock.hpp"
+#include "datasec.hpp"
+#include "displayer.hpp"
 #include "funcsec.hpp"
 #include "globalsec.hpp"
 #include "importsec.hpp"
@@ -121,7 +123,7 @@ int parseCodeSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos)
  * @param sectionContent
  * @return The parsed Data section.
  */
-int parseDataSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
+DataSection parseDataSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 } // namespace antiwasm
 
 #endif // SECTION_PARSER_HPP

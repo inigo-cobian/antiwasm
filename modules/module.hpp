@@ -44,7 +44,7 @@ public:
   /**
    * Gets the section with the given Id.
    * @param sectionId
-   * @return The existing section. A section with ErrorId id if it does not exist.
+   * @return The existing section. A section with UndefinedSectionId id if it does not exist.
    */
   Section getSection(SectionId sectionId);
 

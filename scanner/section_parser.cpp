@@ -5,7 +5,7 @@ namespace antiwasm {
 
 Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionContent, int sectionPos) {
 
-  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << hex << (unsigned int)sectionId
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (unsigned int)sectionId
                            << "] with size " << hex << (unsigned int)sectionSize;
   switch (sectionId) {
   case (SectionId::CustomId):
@@ -17,7 +17,6 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
     return parseImportSection(sectionSize, sectionContent, sectionPos);
   case (SectionId::FunctionId):
     return parseFunctionSection(sectionSize, sectionContent, sectionPos);
-    ;
   case (SectionId::TableId):
     return parseTableSection(sectionSize, sectionContent, sectionPos);
   case (SectionId::MemoryId):
@@ -37,13 +36,11 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
     parseCodeSection(sectionSize, sectionContent, sectionPos);
     return Section(SectionId::CodeId, sectionSize, sectionContent, sectionPos);
   case (SectionId::DataId):
-    parseDataSection(sectionSize, sectionContent, sectionPos);
-    return Section(SectionId::DataId, sectionSize, sectionContent, sectionPos);
+    return parseDataSection(sectionSize, sectionContent, sectionPos);
   default:
-    // TODO pretty error message
-    BOOST_LOG_TRIVIAL(error) << "[module_parser] ErrorId at section " << hex << (unsigned int)sectionId << " with size "
+    BOOST_LOG_TRIVIAL(error) << "[module_parser] UndefinedSectionId at section " << hex << (unsigned int)sectionId << " with size "
                              << hex << sectionSize;
-    Section section = Section(SectionId::ErrorId, sectionSize, sectionContent, 0);
+    Section section = Section(SectionId::UndefinedSectionId, sectionSize, sectionContent, 0);
     auto error = generateError(fatal, wrongSectionId, 0);
     section.addError(error);
     return section;
@@ -57,7 +54,10 @@ int parseCustomSection(int sizeOfSection, uint8_t *sectionContent, int sectionPo
 TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
   auto typesInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at typesec [" << hex << (unsigned int)typesInVector << "]";
+
   TypeSection typeSection(sizeOfSection, sectionContent, sectionPos);
+
   for (uint32_t i = 0; i < typesInVector; i++) {
     Functype functype = parseFunctype(&sectionContent[pointer]);
     typeSection.addFunctype(functype);
@@ -80,14 +80,20 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent, int sec
       return typeSection;
     }
   }
-  typeSection.displaySectionContentInfo();
+
+  if(Displayer::hasToDisplaySection(SectionId::TypeId)) {
+    typeSection.displaySectionContentInfo();
+  }
   return typeSection;
 }
 
 ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
   auto importsInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at importsec [" << hex << (unsigned int)importsInVector << "]";
+
   ImportSection importSection(sizeOfSection, sectionContent, sectionPos);
+
   for (uint32_t i = 0; i < importsInVector; i++) {
     Import import = parseImport(&sectionContent[pointer]);
     importSection.addImport(import);
@@ -118,13 +124,16 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent, int
       return importSection;
     }
   }
-  importSection.displaySectionContentInfo();
+  if(Displayer::hasToDisplaySection(SectionId::ImportId)) {
+    importSection.displaySectionContentInfo();
+  }
   return importSection;
 }
 
 FuncSection parseFunctionSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
   auto typeidxInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at funcsec [" << hex << (unsigned int)typeidxInVector << "]";
 
   FuncSection funcSection(sizeOfSection, sectionContent, sectionPos);
   for (uint32_t i = 0; i < typeidxInVector; i++) {
@@ -132,13 +141,16 @@ FuncSection parseFunctionSection(int sizeOfSection, uint8_t *sectionContent, int
     pointer += sizeOfLeb128(&sectionContent[pointer]);
     funcSection.addTypeidx(typeidx);
   }
-  funcSection.displaySectionContentInfo();
+  if(Displayer::hasToDisplaySection(SectionId::FunctionId)) {
+    funcSection.displaySectionContentInfo();
+  }
   return funcSection;
 }
 
 TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
   auto tablesInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at tablesec [" << hex << (unsigned int)tablesInVector << "]";
 
   TableSection tableSection(sizeOfSection, sectionContent, sectionPos);
   for (uint32_t i = 0; i < tablesInVector; i++) {
@@ -149,17 +161,20 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent, int s
       pointer += REFTYPE_SIZE + tabletype.limit.getNBytes();
     } else {
       // TODO error case
-      cout << "ErrorId at parsing tabletype" << endl;
+      cout << "UndefinedSectionId at parsing tabletype" << endl;
     }
     tableSection.addTabletype(tabletype);
   }
-  tableSection.displaySectionContentInfo();
+  if(Displayer::hasToDisplaySection(SectionId::TableId)) {
+      tableSection.displaySectionContentInfo();
+  }
   return tableSection;
 }
 
 MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
   auto memsInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at memsec [" << hex << (unsigned int)memsInVector << "]";
 
   MemorySection memorySection(sizeOfSection, sectionContent, sectionPos);
 
@@ -174,24 +189,29 @@ MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int
     }
     memorySection.addMemtype(memtype);
   }
-  memorySection.displaySectionContentInfo(); // TODO move to another place in the future
+
+  if(Displayer::hasToDisplaySection(SectionId::MemoryId)) {
+    memorySection.displaySectionContentInfo(); // TODO move to another place in the future
+  }
   return memorySection;
 }
 
 GlobalSection parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
   auto globalsInVector = transformLeb128ToUnsignedInt32(sectionContent);
   unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at globalsec [" << hex << (unsigned int)globalsInVector << "]";
 
   GlobalSection globalSection(sizeOfSection, sectionContent, sectionPos);
   for (uint32_t i = 0; i < globalsInVector; i++) {
     auto global = parseGlobal(&sectionContent[pointer]);
     pointer += global.getNBytes();
-    globalSection.addGlobal(global);
+    globalSection.addGlobal(global); // TODO error
   }
 
-  globalSection.displaySectionContentInfo(); // TODO move to another place in the future
-
-  return globalSection; // TODO
+  if(Displayer::hasToDisplaySection(SectionId::GlobalId)) {
+    globalSection.displaySectionContentInfo();
+  }
+  return globalSection;
 }
 
 int parseExportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
@@ -210,7 +230,27 @@ int parseCodeSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos)
   return 0; // TODO
 }
 
-int parseDataSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
-  return 0; // TODO
+DataSection parseDataSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
+  auto datasInVector = transformLeb128ToUnsignedInt32(sectionContent);
+  unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at datasec [" << hex << (unsigned int)datasInVector << "]";
+
+  DataSection dataSection(sizeOfSection, sectionContent, sectionPos);
+  for (uint32_t i = 0; i < datasInVector; i++) {
+    BOOST_LOG_TRIVIAL(trace) << "[module_parser] Parsing data [" << i << "] at pos [" << pointer << "]";
+    auto data = parseData(&sectionContent[pointer]);
+    pointer += data.getNBytes();
+    dataSection.addData(data);
+    if(data.hasError()) {
+      auto error = generateError(fatal, invalidDataAtDatasec, i);
+      dataSection.addError(error);
+      break;
+    }
+  }
+
+  if(Displayer::hasToDisplaySection(SectionId::DataId)) {
+      dataSection.displaySectionContentInfo();
+  }
+  return dataSection;
 }
 } // namespace antiwasm

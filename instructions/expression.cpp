@@ -20,14 +20,21 @@ Expression parseExpression(const uint8_t *expressionContent) {
     auto instr = parseInstruction(&expressionContent[pointer]);
     expr.addInstruction(*instr);
     if (instr->hasError()) {
+      BOOST_LOG_TRIVIAL(error) << "[expression] Error: invalid Instruction At Expression with value "
+                               << std::hex << (int)expressionContent[pointer];
       auto error = generateError(fatal, invalidInstructionAtExpression, nInstr);
       expr.addError(error);
       break;
     }
     nInstr++;
-    pointer += expr.getNBytes();
+    BOOST_LOG_TRIVIAL(debug) << "[expression] Size of instruction: " << instr->getNBytes();
+    pointer += instr->getNBytes();
   }
+
+  expr.addInstruction(EndInstr());
+
   BOOST_LOG_TRIVIAL(debug) << "[expression] There are " << nInstr << " instructions at the expression";
+  BOOST_LOG_TRIVIAL(debug) << "[expression] Final nBytes of expression is " << expr.getNBytes();
 
   return expr;
 }

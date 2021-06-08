@@ -9,7 +9,7 @@
 
 namespace antiwasm {
 
-enum SectionId {
+enum SectionId : uint8_t {
   CustomId = 0x00,
   TypeId = 0x01,
   ImportId = 0x02,
@@ -22,7 +22,8 @@ enum SectionId {
   ElementId = 0x09,
   CodeId = 0x0A,
   DataId = 0x0B,
-  ErrorId = 0xFF
+  DataCountId = 0x0C,
+  UndefinedSectionId = 0xFF
 };
 
 class Section : public ContentBlock, Displayable { // TODO make virtual

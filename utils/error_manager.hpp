@@ -37,17 +37,27 @@ enum ErrorTypes {
   unrecognizedMemtypeAtImportDesc,
   unrecognizedGlobaltypeAtImportDesc,
 
+  // Data
+  unrecognizedDataHeader,
+  invalidExpressionAtData,
+  invalidMemidxAtData, // TODO
+
   // UTF8
   unrecognizedUTF8LeadingByte,
   unrecognizedUTF8ContByte,
 
   // Instructions
   unrecognizedInstruction,
-  unrecognizedInstructionAtBlock,
+  unrecognizedDoubleByteInstruction,
+  unlinkedElseAtInstruction,
+  invalidInstructionAtBlock,
   unrecognizedValtypeAtSelectInstr,
 
   // Expression
-  invalidInstructionAtExpression
+  invalidInstructionAtExpression,
+
+  // Sections
+  invalidDataAtDatasec
 };
 
 enum ErrorSeverity { fatal, warning, noError };

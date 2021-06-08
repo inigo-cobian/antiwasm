@@ -41,7 +41,7 @@ int parse(const char *classFile) {
     BOOST_LOG_TRIVIAL(trace) << "[scanner] Id: " << hex << (int)(nextSectionHeader.get()[0]);
     BOOST_LOG_TRIVIAL(trace) << "[scanner] Size: " << hex << sectionSize;
 
-    if (nextSection.getSectionId() != ErrorId) {
+    if (nextSection.getSectionId() != UndefinedSectionId) {
       nextSection.displaySectionHeaderInfo();
       module.addSection(nextSection);
     } else { // TODO manage error

@@ -29,7 +29,7 @@ void Valtype::displayContentInfo() {
 
 void Valtype::displayError() {
   // TODO
-  std::cout << "ErrorId at valtype" << std::endl;
+  std::cout << "UndefinedSectionId at valtype" << std::endl;
 }
 std::string Valtype::getAsText() const {
   if (type == valtype_numtype) {

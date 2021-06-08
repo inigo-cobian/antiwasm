@@ -1,6 +1,5 @@
 #include "section.hpp"
 
-using namespace std;
 namespace antiwasm {
 
 Section::Section(SectionId sectionId, int size, uint8_t *content, int initialPos) {
@@ -19,7 +18,7 @@ uint8_t *Section::getContent() { return content_; }
 int Section::getInitialPos() const { return initialPos_; }
 
 void Section::displaySectionHeaderInfo() {
-  cout << hex << "ID=" << sectionId_ << " | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
+  std::cout << std::hex << "ID=" << sectionId_ << " | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << std::endl;
 }
 void Section::displayError() {
   // TODO virtualize

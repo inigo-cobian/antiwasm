@@ -1,10 +1,11 @@
 #define BOOST_TEST_DYN_LINK
 
 #include "contentBlock.cpp"
+#include "end.cpp"
 #include "expression.cpp"
 #include "global.cpp"
 #include "importsec.cpp"
-#include "memsec.cpp" //TODO remove if possible
+#include "memsec.cpp"
 #include "reftype.cpp"
 #include "section_parser.cpp"
 #include "tablesec.cpp"
@@ -15,7 +16,12 @@ using namespace antiwasm;
 
 BOOST_AUTO_TEST_SUITE(module_parser_test)
 
+void initDisplayer() {
+  Displayer::setSectionToDisplay("all");
+}
+
 BOOST_AUTO_TEST_CASE(parseNextSection_canParseACorrectSection) {
+  initDisplayer();
   SectionId sectionId = SectionId::CustomId;
   int sizeOfSection = 1;
   auto *contentOfSection = new uint8_t[sizeOfSection]; // Does not matter
@@ -34,7 +40,7 @@ BOOST_AUTO_TEST_CASE(parseNextSection_createsABadSectionIfEncountersAnUnknownSec
 
   auto result = antiwasm::parseNextSection(nonExistingSectionId, sizeOfSection, contentOfSection, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::ErrorId, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::UndefinedSectionId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseCustomSection_emptySectionReturnsOkey) {
@@ -219,8 +225,24 @@ BOOST_AUTO_TEST_CASE(parseCodeSection_emptySectionReturnsOkey) {
 
 BOOST_AUTO_TEST_CASE(parseDataSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
+  auto *dataSectionContent = new uint8_t[1];
+  dataSectionContent[0] = 0; // Número de datas en la sección
 
-  auto result = antiwasm::parseNextSection(SectionId::DataId, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::DataId, sizeOfSection, dataSectionContent, 0);
+
+  BOOST_CHECK_EQUAL(SectionId::DataId, result.getSectionId());
+}
+
+BOOST_AUTO_TEST_CASE(parseDataSection_realisticSectionReturnsOkey) {
+  int sizeOfSection = 0;
+  auto *dataSectionContent = new uint8_t[10];
+  dataSectionContent[0] = 1; // Número de datas en la sección
+  dataSectionContent[1] = modeActive_mem0;
+  dataSectionContent[2] = InstructionSet::Nop, dataSectionContent[3] = End;
+  dataSectionContent[4] = 0x05; // Number of bytes at the vector
+  // Following bytes are not relevant
+
+  auto result = antiwasm::parseNextSection(SectionId::DataId, sizeOfSection, dataSectionContent, 0);
 
   BOOST_CHECK_EQUAL(SectionId::DataId, result.getSectionId());
 }

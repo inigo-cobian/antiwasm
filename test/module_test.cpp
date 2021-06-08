@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE(Module_returnsAnErrorSectionIfNotDefinedtCreated) {
 
   auto returnValue = module.getSection(SectionId::TypeId);
 
-  BOOST_CHECK_EQUAL(SectionId::ErrorId, returnValue.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::UndefinedSectionId, returnValue.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(containsSection_returnsTrueIfSectionExists) {

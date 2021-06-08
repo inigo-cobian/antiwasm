@@ -1,6 +1,5 @@
 #include "module.hpp"
 
-using namespace std;
 namespace antiwasm {
 
 Module::Module(int size) { size_ = size; }
@@ -11,7 +10,7 @@ Section Module::getSection(SectionId sectionId) {
   if (sections_.contains(sectionId)) {
     return sections_.at(sectionId);
   } else {
-    return Section(SectionId::ErrorId, 0, nullptr, 0);
+    return Section(SectionId::UndefinedSectionId, 0, nullptr, 0);
   }
 }
 

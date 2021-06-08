@@ -281,17 +281,16 @@ std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent)
       return std::make_unique<Instruction>(TableFill{instructionContent});
 
     default:
-        // TODO unknown or invalid value
-        ;
+      // Return error instr as it is an unknown or invalid value
+      return std::make_unique<Instruction>(ErrorInstr{instructionContent});
     }
 
   case Else:
-    // TODO unlinked else
+    // Return error instr due to an unlinked else
   default:
-      // TODO unknown or invalid value
-      ;
+    // Return error instr as it is an unknown or invalid value
+    return std::make_unique<Instruction>(ErrorInstr{instructionContent});
   }
-  return std::make_unique<Instruction>(Instruction{});
 }
 
 std::vector<std::unique_ptr<Instruction>> parseInstructionSet(const uint8_t *instructionsContent, uint32_t &nBytes) {
@@ -302,7 +301,7 @@ std::vector<std::unique_ptr<Instruction>> parseInstructionSet(const uint8_t *ins
     std::unique_ptr<Instruction> instr = parseInstruction(instructionsContent + pos);
 
     if (instr->hasError()) {
-      auto error = generateError(fatal, unrecognizedInstructionAtBlock, instrVec.size());
+      auto error = generateError(fatal, invalidInstructionAtBlock, instrVec.size());
       instrVec.push_back(std::move(instr));
       break;
     }
@@ -326,7 +325,7 @@ std::vector<std::unique_ptr<Instruction>> parseIfInstructionSet(const uint8_t *i
 
     if (instr->hasError()) {
       BOOST_LOG_TRIVIAL(debug) << "[instruction_parser] Unrecognized instruction";
-      auto error = generateError(fatal, unrecognizedInstructionAtBlock, instrVec.size());
+      auto error = generateError(fatal, invalidInstructionAtBlock, instrVec.size());
       instrVec.push_back(std::move(instr));
       break;
     }

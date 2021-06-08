@@ -37,10 +37,13 @@ int main(int argc, char **argv) {
   argDescription.add_options()("help", "produce this help message")(
       "filename", boost::program_options::value<string>(),
       "route of the .wasm file")("debug", boost::program_options::value<char>(),
-                                 "set the debugging tools on")("verbose",
-                                                               "display relevant information about the decompiling "
-                                                               "process")("pedantic", "display every single datum "
-                                                                                      "about the decompiling process");
+                                 "set the debugging tools on")
+                                ("verbose","display relevant information about the decompiling process")
+                                ("pedantic",
+                                "display every single datum about the decompiling process")
+                                ("section", boost::program_options::value<string>(),
+                                    "selects a section for displaying");
+
 
   boost::program_options::variables_map variablesMap;
   boost::program_options::store(boost::program_options::parse_command_line(argc, argv, argDescription), variablesMap);
@@ -79,7 +82,7 @@ int main(int argc, char **argv) {
       break;
     default:
       cout << "Unknown option at debug level\n";
-      return 0;
+      return 1;
     }
   } else {
     init_logging(boost::log::trivial::debug); // TODO if release set as INFO
@@ -93,12 +96,23 @@ int main(int argc, char **argv) {
     Displayer::SetLoggingLevel(PEDANTIC);
   }
 
+  if (variablesMap.count("section")) {
+    string section = variablesMap["section"].as<string>();
+    if(Displayer::setSectionToDisplay(section)) {
+      cout << "Parsing section: " << hex << section << endl;
+    } else {
+      cout << "Unrecognized section to parse \"" << section << "\"\n";
+      return 1;
+    };
+
+  }
+
   if (variablesMap.count("filename")) {
     cout << "Decoding \'" << variablesMap["filename"].as<string>() << "'\n";
     antiwasm::parse(variablesMap["filename"].as<string>().c_str());
   } else {
     cout << "No filename set\n";
-    return 0;
+    return 1;
   }
 
   // TODO exception if unknown option

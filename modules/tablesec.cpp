@@ -1,6 +1,5 @@
 #include "tablesec.hpp"
 
-using namespace std;
 namespace antiwasm {
 
 TableSection::TableSection(int size, uint8_t *content, int initialPos)
@@ -10,19 +9,19 @@ TableSection::~TableSection() = default;
 
 void TableSection::addTabletype(Tabletype tabletype) { tabletypeVector.push_back(tabletype); }
 
-vector<Tabletype> TableSection::getTabletypeVector() { return tabletypeVector; }
+std::vector<Tabletype> TableSection::getTabletypeVector() { return tabletypeVector; }
 
 void TableSection::displaySectionHeaderInfo() {
-  cout << "   Table | start=" << hex << initialPos_ << " size=" << hex << size_ << endl;
+  std::cout << "   Table | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << std::endl;
 }
 
 void TableSection::displaySectionContentInfo() {
-  cout << "   Table | start=" << hex << initialPos_ << " size=" << hex << size_ << " (" << tabletypeVector.size()
-       << ") tabletypes" << endl;
+  std::cout << "   Table | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " (" << tabletypeVector.size()
+       << ") tabletypes" << std::endl;
 
   size_t index = 0;
   for (const auto &tabletype : tabletypeVector) {
-    stringstream tabletypeAsText;
+    std::stringstream tabletypeAsText;
     tabletypeAsText << "( table $" << index++ << " ";
     if (tabletype.limit.type == limit_min) {
       tabletypeAsText << tabletype.limit.min;
@@ -30,7 +29,7 @@ void TableSection::displaySectionContentInfo() {
       tabletypeAsText << tabletype.limit.min << " " << tabletype.limit.max;
     }
     tabletypeAsText << " " << getReftypeAsText(tabletype.reftype) << " )\n";
-    cout << tabletypeAsText.str() << endl;
+    std::cout << tabletypeAsText.str() << std::endl;
   }
 }
 
