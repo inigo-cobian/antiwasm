@@ -3,7 +3,7 @@
 #include <utility>
 
 namespace antiwasm {
-std::string Global::getAsText() const{
+std::string Global::getAsText() const {
   // TODO global
   std::stringstream globalAsText;
 
