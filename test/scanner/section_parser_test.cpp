@@ -16,7 +16,12 @@ using namespace antiwasm;
 
 BOOST_AUTO_TEST_SUITE(module_parser_test)
 
+void initDisplayer() {
+  Displayer::setSectionToDisplay("all");
+}
+
 BOOST_AUTO_TEST_CASE(parseNextSection_canParseACorrectSection) {
+  initDisplayer();
   SectionId sectionId = SectionId::CustomId;
   int sizeOfSection = 1;
   auto *contentOfSection = new uint8_t[sizeOfSection]; // Does not matter
@@ -35,7 +40,7 @@ BOOST_AUTO_TEST_CASE(parseNextSection_createsABadSectionIfEncountersAnUnknownSec
 
   auto result = antiwasm::parseNextSection(nonExistingSectionId, sizeOfSection, contentOfSection, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::ErrorId, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::UndefinedSectionId, result.getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(parseCustomSection_emptySectionReturnsOkey) {

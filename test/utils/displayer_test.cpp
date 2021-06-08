@@ -111,6 +111,14 @@ BOOST_AUTO_TEST_CASE(setSectionToDisplay_datacount) {
   BOOST_ASSERT(result);
 }
 
+BOOST_AUTO_TEST_CASE(setSectionToDisplay_all) {
+  std::string sectionName = "all";
+
+  auto result = Displayer::setSectionToDisplay(sectionName);
+
+  BOOST_ASSERT(result);
+}
+
 BOOST_AUTO_TEST_CASE(setSectionToDisplay_invalid) {
   std::string sectionName = "invalid";
 
@@ -119,13 +127,22 @@ BOOST_AUTO_TEST_CASE(setSectionToDisplay_invalid) {
   BOOST_ASSERT(!result);
 }
 
-BOOST_AUTO_TEST_CASE(getSectionToDisplay_caseCustom) {
+BOOST_AUTO_TEST_CASE(hasToDisplaySection_true) {
   std::string sectionName = "Custom";
   Displayer::setSectionToDisplay(sectionName);
 
-  auto result = Displayer::getSectionToDisplay();
+  auto hasToDisplay = Displayer::hasToDisplaySection(SectionId::CustomId);
 
-  BOOST_CHECK_EQUAL(SectionId::CustomId, result);
+  BOOST_ASSERT(hasToDisplay);
+}
+
+BOOST_AUTO_TEST_CASE(hasToDisplaySection_false) {
+  std::string sectionName = "Custom";
+  Displayer::setSectionToDisplay(sectionName);
+
+  auto result = Displayer::hasToDisplaySection(SectionId::TableId);
+
+  BOOST_ASSERT(!result);
 }
 
 
