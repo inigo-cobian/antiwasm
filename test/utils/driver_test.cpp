@@ -79,4 +79,76 @@ BOOST_AUTO_TEST_CASE(GetNextSectionHeader_GetsMaxSizeOfSectionHeaderBytes) {
                                 expectedBytes + sizeOfSectionHeader);
 }
 
+BOOST_AUTO_TEST_CASE(GetNextBytes_WhenNotCurrentlyParsing) {
+  shared_ptr<Driver> driver = Driver::GetInstance();
+  driver->CloseFile();
+
+  auto result = driver->GetNextBytes(0);
+
+  BOOST_CHECK(result == nullptr);
+}
+
+BOOST_AUTO_TEST_CASE(GetNextSectionHeader_WhenNotCurrentlyParsing) {
+  shared_ptr<Driver> driver = Driver::GetInstance();
+  driver->CloseFile();
+
+  auto result = driver->GetNextSectionHeader();
+
+  BOOST_CHECK(result == nullptr);
+}
+
+BOOST_AUTO_TEST_CASE(GetFileSize_CaseCorrect) {
+  const char *filePath = "../../test/files/00-empty.wasm";
+  shared_ptr<Driver> driver = Driver::GetInstance();
+  driver->OpenFile(filePath);
+  size_t expectedSize = 8;
+
+  auto result = driver->GetFileSize();
+
+  BOOST_CHECK_EQUAL(expectedSize, result);
+}
+
+BOOST_AUTO_TEST_CASE(GetCurrentPos_StartsAtZero) {
+  const char *filePath = "../../test/files/00-empty.wasm";
+  shared_ptr<Driver> driver = Driver::GetInstance();
+  driver->OpenFile(filePath);
+  size_t expectedPos = 0;
+
+  auto result = driver->GetCurrentPos();
+
+  BOOST_CHECK_EQUAL(expectedPos, result);
+}
+
+BOOST_AUTO_TEST_CASE(GetCurrentPos_EvolvesAsItIsRead) {
+  const char *filePath = "../../test/files/00-empty.wasm";
+  shared_ptr<Driver> driver = Driver::GetInstance();
+  driver->OpenFile(filePath);
+  size_t bytesRead = 3;
+  driver->GetNextBytes(3);
+
+  auto result = driver->GetCurrentPos();
+
+  BOOST_CHECK_EQUAL(bytesRead, result);
+}
+
+BOOST_AUTO_TEST_CASE(GetNextSectionHeader_AtFileEnd) {
+  const char *filePath = "../../test/files/00-empty.wasm";
+  shared_ptr<Driver> driver = Driver::GetInstance();
+  driver->OpenFile(filePath);
+  driver->GetNextBytes(9);
+
+  auto result = driver->GetNextSectionHeader();
+
+}
+
+BOOST_AUTO_TEST_CASE(GetNextBytes_AtFileEnd) {
+  const char *filePath = "../../test/files/00-empty.wasm";
+  shared_ptr<Driver> driver = Driver::GetInstance();
+  driver->OpenFile(filePath);
+  driver->GetNextBytes(9);
+
+  auto result = driver->GetNextBytes(5);
+
+}
+
 BOOST_AUTO_TEST_SUITE_END() // driver_test
