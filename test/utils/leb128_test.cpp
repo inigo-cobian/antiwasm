@@ -50,19 +50,45 @@ BOOST_AUTO_TEST_CASE(transformLeb128ToUnsignedInt64_multipleBytes) {
 }
 
 BOOST_AUTO_TEST_CASE(transformLeb128ToSignedInt32_oneByte) {
-  // TODO
+  auto *leb128Val = new uint8_t[1]; // -6
+  leb128Val[0] = 0x7A;
+  int32_t expected = -6;
+
+  int32_t returnVal = antiwasm::transformLeb128ToSignedInt32(leb128Val);
+
+  BOOST_CHECK_EQUAL(expected, returnVal);
 }
 
 BOOST_AUTO_TEST_CASE(transformLeb128ToSignedInt32_multipleBytes) {
-  // TODO
+  auto *leb128Val = new uint8_t[3]; // -123456
+  leb128Val[0] = 0xC0, leb128Val[1] = 0xBB,
+  leb128Val[2] = 0x78;
+  int32_t expected = -123456;
+
+  int32_t returnVal = antiwasm::transformLeb128ToSignedInt32(leb128Val);
+
+  BOOST_CHECK_EQUAL(expected, returnVal);
 }
 
 BOOST_AUTO_TEST_CASE(transformLeb128ToSignedInt64_oneByte) {
-  // TODO
+  auto *leb128Val = new uint8_t[1]; // -6
+  leb128Val[0] = 0x7A;
+  int64_t expected = -6;
+
+  int64_t returnVal = antiwasm::transformLeb128ToSignedInt64(leb128Val);
+
+  BOOST_CHECK_EQUAL(expected, returnVal);
 }
 
 BOOST_AUTO_TEST_CASE(transformLeb128ToSignedInt64_multipleBytes) {
-  // TODO
+  auto *leb128Val = new uint8_t[3]; // -123456
+  leb128Val[0] = 0xC0, leb128Val[1] = 0xBB,
+  leb128Val[2] = 0x78;
+  int64_t expected = -123456;
+
+  int64_t returnVal = antiwasm::transformLeb128ToSignedInt64(leb128Val);
+
+  BOOST_CHECK_EQUAL(expected, returnVal);
 }
 
 BOOST_AUTO_TEST_CASE(sizeOfLeb128_threeBytes) {
