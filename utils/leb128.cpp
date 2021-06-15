@@ -1,11 +1,33 @@
 #include "leb128.hpp"
 
 int32_t antiwasm::transformLeb128ToSignedInt32(const uint8_t *leb128) {
-  return 0; // TODO
+  int32_t result = 0;
+  unsigned shift = 0;
+  uint8_t byte;
+  do {
+    byte = *leb128++;
+    result |= ((byte & 0x7f) << shift);
+    shift += 7;
+  } while (byte >= 128);
+  // Sign extend negative numbers.
+  if (byte & 0x40)
+    result |= (-1ULL) << shift;
+  return result;
 }
 
 int64_t antiwasm::transformLeb128ToSignedInt64(const uint8_t *leb128) {
-  return 0; // TODO
+  int64_t result = 0;
+  unsigned shift = 0;
+  uint8_t byte;
+  do {
+    byte = *leb128++;
+    result |= ((byte & 0x7f) << shift);
+    shift += 7;
+  } while (byte >= 128);
+  // Sign extend negative numbers.
+  if (byte & 0x40)
+    result |= (-1ULL) << shift;
+  return result;
 }
 
 uint32_t antiwasm::transformLeb128ToUnsignedInt32(const uint8_t *leb128) {
@@ -46,6 +68,6 @@ int antiwasm::sizeOfLeb128(const uint8_t *leb128) {
   int size = 0;
   while (leb128[size++] & 0b1000'0000)
     ;
-  BOOST_LOG_TRIVIAL(info) << "[leb128] Returning size of LEB128: " << size;
+  BOOST_LOG_TRIVIAL(debug) << "[leb128] Returning size of LEB128: " << size;
   return size;
 }
