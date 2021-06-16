@@ -1,6 +1,7 @@
 #ifndef ANTIWASM_LOCALS_HPP
 #define ANTIWASM_LOCALS_HPP
 
+#include "leb128.hpp"
 #include "valtype.hpp"
 #include <cstdint>
 

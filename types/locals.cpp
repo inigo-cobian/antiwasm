@@ -2,12 +2,22 @@
 
 namespace antiwasm {
 
-Locals::Locals(uint32_t n_, Valtype valtype_) {}
+Locals::Locals(uint32_t n_, Valtype valtype_) : n(n_), valtype(valtype_) {
+  if(valtype_.hasError()) {
+    auto error = generateError(fatal, unrecognizedValtypeAtLocals, 0);
+    errors_.push_back(error);
+  }
+}
 
 std::string Locals::getAsText() const { return std::string(); }
 
 Locals parseLocals(const uint8_t *localsContent) {
-  return Locals{0, parseValtype(Numtype::i32)};
+  uint32_t n_ = transformLeb128ToUnsignedInt32(localsContent);
+  auto pos = sizeOfLeb128(localsContent);
+
+  auto valtype_ = parseValtype(localsContent[pos]);
+
+  return Locals{n_, valtype_};
 }
 
 }

@@ -31,8 +31,8 @@ enum ErrorTypes {
   // Imports
   unrecognizedModAtImport,
   unrecognizedNameAtImport,
-  unrecognizedHeaderAtImportDesc, // TODO use
-  unrecognizedTypeIdxAtImportDesc,
+  unrecognizedHeaderAtImportDesc,
+  unrecognizedTypeIdxAtImportDesc, // TODO use
   unrecognizedTabletypeAtImportDesc,
   unrecognizedMemtypeAtImportDesc,
   unrecognizedGlobaltypeAtImportDesc,
@@ -41,6 +41,9 @@ enum ErrorTypes {
   unrecognizedDataHeader,
   invalidExpressionAtData,
   invalidMemidxAtData, // TODO
+
+  // Code
+  unrecognizedValtypeAtLocals,
 
   // UTF8
   unrecognizedUTF8LeadingByte,
