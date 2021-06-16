@@ -44,6 +44,8 @@ enum ErrorTypes {
 
   // Code
   unrecognizedValtypeAtLocals,
+  invalidLocalAtFunc,
+  invalidExprAtFunc,
 
   // UTF8
   unrecognizedUTF8LeadingByte,

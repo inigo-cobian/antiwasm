@@ -17,7 +17,10 @@ Locals parseLocals(const uint8_t *localsContent) {
 
   auto valtype_ = parseValtype(localsContent[pos]);
 
-  return Locals{n_, valtype_};
+  Locals locals{n_, valtype_};
+  locals.setNBytes(pos + 1);
+
+  return locals;
 }
 
 }
