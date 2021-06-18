@@ -34,13 +34,13 @@ BOOST_AUTO_TEST_CASE(parseFunc_caseInvalidLocals) {
 }
 
 BOOST_AUTO_TEST_CASE(parseFunc_caseInvalidExpr) {
-  auto *funcContent = new uint8_t[7];
+  auto *funcContent = new uint8_t[6];
   funcContent[0] = 0x02; // localsVec size
   funcContent[1] = 0x01;
   funcContent[2] = Numtype::i32;
-  funcContent[4] = 0x01;
-  funcContent[5] = Reftype::funref;
-  funcContent[6] = InstructionSet::Else; // Invalid instr at this pos
+  funcContent[3] = 0x01;
+  funcContent[4] = Reftype::funref;
+  funcContent[5] = InstructionSet::Else; // Invalid instr at this pos
 
   auto func = parseFunc(funcContent);
 

@@ -5,13 +5,15 @@ using namespace antiwasm;
 BOOST_AUTO_TEST_SUITE(code_test)
 
 BOOST_AUTO_TEST_CASE(parseCode_caseCorrect) {
-  auto *codeContent = new uint8_t[7];
-  codeContent[0] = 0x06; // func size
+  auto *codeContent = new uint8_t[9];
+  codeContent[0] = 0x08; // func size
   // first func
   codeContent[1] = 0x02; // localsVec size
-  codeContent[2] = Numtype::i32;
-  codeContent[3] = Numtype::f64;
-  codeContent[4] = i32_const, codeContent[5] = 0x05, codeContent[6] = End; // expr
+  codeContent[2] = 0x01;
+  codeContent[3] = Numtype::i32;
+  codeContent[4] = 0x01;
+  codeContent[5] = Numtype::f64;
+  codeContent[6] = i32_const, codeContent[7] = 0x05, codeContent[8] = End; // expr
 
   auto code = parseCode(codeContent);
 
@@ -34,13 +36,15 @@ BOOST_AUTO_TEST_CASE(parseCode_caseInvalidFunc) {
 }
 
 BOOST_AUTO_TEST_CASE(parseCode_caseSizeOfFuncDoesNotMatch) {
-  auto *codeContent = new uint8_t[7];
+  auto *codeContent = new uint8_t[9];
   codeContent[0] = 0x01; // incorrect func size
   // first func
   codeContent[1] = 0x02; // localsVec size
-  codeContent[2] = Numtype::i32;
-  codeContent[3] = Numtype::f64;
-  codeContent[4] = i32_const, codeContent[5] = 0x05, codeContent[6] = End; // expr
+  codeContent[2] = 0x02;
+  codeContent[3] = Numtype::i32;
+  codeContent[4] = 0x02;
+  codeContent[5] = Numtype::f64;
+  codeContent[6] = i32_const, codeContent[7] = 0x05, codeContent[8] = End; // expr
 
   auto code = parseCode(codeContent);
 
