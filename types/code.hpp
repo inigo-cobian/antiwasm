@@ -12,7 +12,7 @@ struct Code : public ContentBlock {
   Func func;
 
   Code(uint32_t size_, Func func_);
-  [[nodiscard]] std::string getAsText() const;
+  [[nodiscard]] std::string getAsText(const size_t index) const;
 };
 
 /**

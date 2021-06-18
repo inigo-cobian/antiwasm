@@ -9,7 +9,10 @@ CodeSection::CodeSection(int size, uint8_t *content, int initialPos)
 
 CodeSection::~CodeSection() = default;
 
-void CodeSection::addCode(const Code &code) { codeVector.push_back(code); }
+void CodeSection::addCode(const Code &code) {
+  BOOST_LOG_TRIVIAL(trace) << "[codesec] Adding a new code to the vector at pos [" << codeVector.size() << "]";
+  codeVector.push_back(code);
+}
 
 std::vector<Code> CodeSection::getCodeVector() { return codeVector; }
 
@@ -22,8 +25,11 @@ void CodeSection::displaySectionContentInfo() {
 
   /*
   size_t index = 0;
-  std::for_each(dataVector.begin(), dataVector.end(),
-                [](const Data &data) { std::cout << data.getAsText() << std::endl; });
+  std::for_each(codeVector.begin(), codeVector.end(),
+                [index](const Code &code) mutable {
+                  std::cout << code.getAsText(index) << std::endl;
+                      index++;
+                });
 
   std::cout << std::endl;
    */

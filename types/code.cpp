@@ -14,11 +14,14 @@ Code::Code(uint32_t size_, Func func_) : size(size_), func(std::move(func_)) {
   }
 }
 
-std::string Code::getAsText() const { return std::string{}; }
+std::string Code:: getAsText(size_t index) const {
+  return std::string{};
+}
 
 Code parseCode(const uint8_t *codeContent) {
   uint32_t n = transformLeb128ToUnsignedInt32(codeContent);
   size_t pos = sizeOfLeb128(codeContent);
+  BOOST_LOG_TRIVIAL(debug) << "[code] Has n [" << n << "] with size [" << pos << "]";
 
   Func func = parseFunc(codeContent + pos);
   pos += func.getNBytes();

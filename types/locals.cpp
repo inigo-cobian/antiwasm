@@ -4,6 +4,7 @@ namespace antiwasm {
 
 Locals::Locals(uint32_t n_, Valtype valtype_) : n(n_), valtype(valtype_) {
   if (valtype_.hasError()) {
+    BOOST_LOG_TRIVIAL(error) << "[func] Error unrecognizedValtypeAtLocals at valtype with value: " << valtype.getAsText();
     auto error = generateError(fatal, unrecognizedValtypeAtLocals, 0);
     errors_.push_back(error);
   }

@@ -235,8 +235,10 @@ CodeSection parseCodeSection(int sizeOfSection, uint8_t *sectionContent, int sec
     BOOST_LOG_TRIVIAL(trace) << "[module_parser] Parsing code [" << i << "] at pos [" << pointer << "]";
     auto code = parseCode(&sectionContent[pointer]);
     pointer += code.getNBytes();
+    BOOST_LOG_TRIVIAL(trace) << "[module_parser] New pos of pointer [" << pointer << "]";
     codeSection.addCode(code);
     if (code.hasError()) {
+      BOOST_LOG_TRIVIAL(trace) << "[module_parser] Error invalidCodeAtCodeSec at Code [" << i << "]";
       auto error = generateError(fatal, invalidCodeAtCodeSec, i);
       codeSection.addError(error);
       break;
