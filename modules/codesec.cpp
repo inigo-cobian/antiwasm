@@ -4,7 +4,7 @@ namespace antiwasm {
 
 CodeSection::CodeSection(int size, uint8_t *content, int initialPos)
     : Section(SectionId::CodeId, size, content, initialPos) {
-  BOOST_LOG_TRIVIAL(debug) << "[datasec] Creating a Data Section";
+  BOOST_LOG_TRIVIAL(debug) << "[codesec] Creating a Code Section";
 }
 
 CodeSection::~CodeSection() = default;

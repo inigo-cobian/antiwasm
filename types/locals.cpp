@@ -3,7 +3,7 @@
 namespace antiwasm {
 
 Locals::Locals(uint32_t n_, Valtype valtype_) : n(n_), valtype(valtype_) {
-  if(valtype_.hasError()) {
+  if (valtype_.hasError()) {
     auto error = generateError(fatal, unrecognizedValtypeAtLocals, 0);
     errors_.push_back(error);
   }
@@ -23,4 +23,4 @@ Locals parseLocals(const uint8_t *localsContent) {
   return locals;
 }
 
-}
+} // namespace antiwasm

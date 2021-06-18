@@ -1,12 +1,12 @@
 #ifndef ANTIWASM_FUNC_HPP
 #define ANTIWASM_FUNC_HPP
 
-#include "locals.hpp"
 #include "expression.hpp"
 #include "leb128.hpp"
-#include <vector>
+#include "locals.hpp"
 #include <cstdint>
 #include <string>
+#include <vector>
 
 namespace antiwasm {
 struct Func : public ContentBlock {

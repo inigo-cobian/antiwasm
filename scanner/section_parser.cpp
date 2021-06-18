@@ -5,8 +5,8 @@ namespace antiwasm {
 
 Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionContent, int sectionPos) {
 
-  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (unsigned int)sectionId
-                           << "] with size " << hex << (unsigned int)sectionSize;
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (unsigned int)sectionId << "] with size "
+                           << hex << (unsigned int)sectionSize;
   switch (sectionId) {
   case (SectionId::CustomId):
     parseCustomSection(sectionSize, sectionContent, sectionPos);
@@ -33,13 +33,12 @@ Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionCon
     parseElementSection(sectionSize, sectionContent, sectionPos);
     return Section(SectionId::ElementId, sectionSize, sectionContent, sectionPos);
   case (SectionId::CodeId):
-    parseCodeSection(sectionSize, sectionContent, sectionPos);
-    return Section(SectionId::CodeId, sectionSize, sectionContent, sectionPos);
+    return parseCodeSection(sectionSize, sectionContent, sectionPos);
   case (SectionId::DataId):
     return parseDataSection(sectionSize, sectionContent, sectionPos);
   default:
-    BOOST_LOG_TRIVIAL(error) << "[module_parser] UndefinedSectionId at section " << hex << (unsigned int)sectionId << " with size "
-                             << hex << sectionSize;
+    BOOST_LOG_TRIVIAL(error) << "[module_parser] UndefinedSectionId at section " << hex << (unsigned int)sectionId
+                             << " with size " << hex << sectionSize;
     Section section = Section(SectionId::UndefinedSectionId, sectionSize, sectionContent, 0);
     auto error = generateError(fatal, wrongSectionId, 0);
     section.addError(error);
@@ -81,7 +80,7 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent, int sec
     }
   }
 
-  if(Displayer::hasToDisplaySection(SectionId::TypeId)) {
+  if (Displayer::hasToDisplaySection(SectionId::TypeId)) {
     typeSection.displaySectionContentInfo();
   }
   return typeSection;
@@ -124,7 +123,7 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent, int
       return importSection;
     }
   }
-  if(Displayer::hasToDisplaySection(SectionId::ImportId)) {
+  if (Displayer::hasToDisplaySection(SectionId::ImportId)) {
     importSection.displaySectionContentInfo();
   }
   return importSection;
@@ -141,7 +140,7 @@ FuncSection parseFunctionSection(int sizeOfSection, uint8_t *sectionContent, int
     pointer += sizeOfLeb128(&sectionContent[pointer]);
     funcSection.addTypeidx(typeidx);
   }
-  if(Displayer::hasToDisplaySection(SectionId::FunctionId)) {
+  if (Displayer::hasToDisplaySection(SectionId::FunctionId)) {
     funcSection.displaySectionContentInfo();
   }
   return funcSection;
@@ -165,8 +164,8 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent, int s
     }
     tableSection.addTabletype(tabletype);
   }
-  if(Displayer::hasToDisplaySection(SectionId::TableId)) {
-      tableSection.displaySectionContentInfo();
+  if (Displayer::hasToDisplaySection(SectionId::TableId)) {
+    tableSection.displaySectionContentInfo();
   }
   return tableSection;
 }
@@ -190,7 +189,7 @@ MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int
     memorySection.addMemtype(memtype);
   }
 
-  if(Displayer::hasToDisplaySection(SectionId::MemoryId)) {
+  if (Displayer::hasToDisplaySection(SectionId::MemoryId)) {
     memorySection.displaySectionContentInfo(); // TODO move to another place in the future
   }
   return memorySection;
@@ -208,7 +207,7 @@ GlobalSection parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int
     globalSection.addGlobal(global); // TODO error
   }
 
-  if(Displayer::hasToDisplaySection(SectionId::GlobalId)) {
+  if (Displayer::hasToDisplaySection(SectionId::GlobalId)) {
     globalSection.displaySectionContentInfo();
   }
   return globalSection;
@@ -226,8 +225,28 @@ int parseElementSection(int sizeOfSection, uint8_t *sectionContent, int sectionP
   return 0; // TODO
 }
 
-int parseCodeSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
-  return 0; // TODO
+CodeSection parseCodeSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
+  auto codesInVector = transformLeb128ToUnsignedInt32(sectionContent);
+  unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at codesec [" << hex << (unsigned int)codesInVector << "]";
+
+  CodeSection codeSection(sizeOfSection, sectionContent, sectionPos);
+  for (uint32_t i = 0; i < codesInVector; i++) {
+    BOOST_LOG_TRIVIAL(trace) << "[module_parser] Parsing code [" << i << "] at pos [" << pointer << "]";
+    auto code = parseCode(&sectionContent[pointer]);
+    pointer += code.getNBytes();
+    codeSection.addCode(code);
+    if (code.hasError()) {
+      auto error = generateError(fatal, invalidCodeAtCodeSec, i);
+      codeSection.addError(error);
+      break;
+    }
+  }
+
+  if (Displayer::hasToDisplaySection(SectionId::CodeId)) {
+    codeSection.displaySectionContentInfo();
+  }
+  return codeSection;
 }
 
 DataSection parseDataSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
@@ -241,15 +260,15 @@ DataSection parseDataSection(int sizeOfSection, uint8_t *sectionContent, int sec
     auto data = parseData(&sectionContent[pointer]);
     pointer += data.getNBytes();
     dataSection.addData(data);
-    if(data.hasError()) {
+    if (data.hasError()) {
       auto error = generateError(fatal, invalidDataAtDatasec, i);
       dataSection.addError(error);
       break;
     }
   }
 
-  if(Displayer::hasToDisplaySection(SectionId::DataId)) {
-      dataSection.displaySectionContentInfo();
+  if (Displayer::hasToDisplaySection(SectionId::DataId)) {
+    dataSection.displaySectionContentInfo();
   }
   return dataSection;
 }

@@ -3,7 +3,7 @@
 namespace antiwasm {
 
 Code::Code(uint32_t size_, Func func_) : size(size_), func(std::move(func_)) {
-  if(func.hasError()) {
+  if (func.hasError()) {
     BOOST_LOG_TRIVIAL(debug) << "[code] Has error invalidFuncAtCode";
     auto error = generateError(fatal, invalidFuncAtCode, 0);
     addError(error);
@@ -14,7 +14,7 @@ Code::Code(uint32_t size_, Func func_) : size(size_), func(std::move(func_)) {
   }
 }
 
-std::string Code::getAsText() const { return nullptr; }
+std::string Code::getAsText() const { return std::string{}; }
 
 Code parseCode(const uint8_t *codeContent) {
   uint32_t n = transformLeb128ToUnsignedInt32(codeContent);
