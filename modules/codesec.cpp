@@ -23,7 +23,6 @@ void CodeSection::displaySectionHeaderInfo() {
 void CodeSection::displaySectionContentInfo() {
   std::cout << "    Code | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << std::endl;
 
-  /*
   size_t index = 0;
   std::for_each(codeVector.begin(), codeVector.end(),
                 [index](const Code &code) mutable {
@@ -32,6 +31,5 @@ void CodeSection::displaySectionContentInfo() {
                 });
 
   std::cout << std::endl;
-   */
 }
 } // namespace antiwasm

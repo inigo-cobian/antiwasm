@@ -15,7 +15,12 @@ Code::Code(uint32_t size_, Func func_) : size(size_), func(std::move(func_)) {
 }
 
 std::string Code:: getAsText(size_t index) const {
-  return std::string{};
+  std::stringstream codeAsText;
+
+  codeAsText << "( code $" << index << " size=" << size << "\n"
+             << func.getAsText() << "\n)\n";
+
+  return codeAsText.str();
 }
 
 Code parseCode(const uint8_t *codeContent) {

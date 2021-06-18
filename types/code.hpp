@@ -3,6 +3,7 @@
 
 #include "func.hpp"
 #include <cstdint>
+#include <sstream>
 #include <string>
 #include <utility>
 
@@ -12,7 +13,7 @@ struct Code : public ContentBlock {
   Func func;
 
   Code(uint32_t size_, Func func_);
-  [[nodiscard]] std::string getAsText(const size_t index) const;
+  [[nodiscard]] std::string getAsText(size_t index) const;
 };
 
 /**
