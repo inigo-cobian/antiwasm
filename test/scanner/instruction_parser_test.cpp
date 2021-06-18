@@ -462,4 +462,42 @@ BOOST_AUTO_TEST_CASE(parseSelectValtypeInstr_errorTest) {
   BOOST_CHECK_EQUAL(true, result->hasError());
 }
 
+BOOST_AUTO_TEST_CASE(parseUnknownInstr_testError) {
+  uint8_t instrContent[] = {0x08}; // Unknown Instr Code
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(error_instr, result->getInstructionCode());
+  BOOST_CHECK_EQUAL(true, result->hasError());
+}
+
+BOOST_AUTO_TEST_CASE(parseUnknownInstrDoubleByte_testError) {
+  uint8_t instrContent[] = {InstructionSet::double_byte_instr, 0xFF}; // Unknown Instr Code
+
+  auto result = parseInstruction(instrContent);
+
+  BOOST_CHECK_EQUAL(error_instr, result->getInstructionCode());
+  BOOST_CHECK_EQUAL(true, result->hasError());
+}
+
+BOOST_AUTO_TEST_CASE(parseInstrSet_errorAtInstr) {
+  uint8_t instrContent[] = {InstructionSet::Select_vecValtype, 0x03, Numtype::i32, Reftype::funref,
+                            0xAF, InstructionSet::End}; // Last one will fail
+  uint32_t sizeSet = 1;
+
+  auto result = parseInstructionSet(instrContent, sizeSet);
+
+  BOOST_CHECK_EQUAL(true, result[0]->hasError());
+}
+
+BOOST_AUTO_TEST_CASE(parseIfInstructionSet_errorAtInstr) {
+  uint8_t instrContent[] = {InstructionSet::Select_vecValtype, 0x03, Numtype::i32, Reftype::funref,
+                            0xAF, InstructionSet::End}; // Last one will fail
+  uint32_t sizeSet = 1;
+
+  auto result = parseIfInstructionSet(instrContent, sizeSet);
+
+  BOOST_CHECK_EQUAL(true, result[0]->hasError());
+}
+
 BOOST_AUTO_TEST_SUITE_END() // instruction_parser_test

@@ -68,7 +68,10 @@ std::unique_ptr<uint8_t> Driver::GetNextSectionHeader() {
   return std::move(buffer);
 }
 
-void Driver::CloseFile() { instance_->wasmFile_.close(); }
+void Driver::CloseFile() {
+  isParsing_ = false;
+  instance_->wasmFile_.close();
+}
 
 bool Driver::HasReachedFileSize(size_t nextBytesSize) {
   if (pointer_ + nextBytesSize <= fileSize_)

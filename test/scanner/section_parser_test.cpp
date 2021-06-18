@@ -1,5 +1,6 @@
 #define BOOST_TEST_DYN_LINK
 
+#include "codesec.cpp"
 #include "contentBlock.cpp"
 #include "end.cpp"
 #include "expression.cpp"
@@ -217,8 +218,27 @@ BOOST_AUTO_TEST_CASE(parseElementSection_emptySectionReturnsOkey) {
 
 BOOST_AUTO_TEST_CASE(parseCodeSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
+  auto *codeSectionContent = new uint8_t[1];
+  codeSectionContent[0] = 0; // Número de codes en la sección
 
-  auto result = antiwasm::parseNextSection(SectionId::CodeId, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::CodeId, sizeOfSection, codeSectionContent, 0);
+
+  BOOST_CHECK_EQUAL(SectionId::CodeId, result.getSectionId());
+}
+
+BOOST_AUTO_TEST_CASE(parseCodeSection_realisticSectionReturnsOkey) {
+  int sizeOfSection = 0;
+  auto *codeSectionContent = new uint8_t[8];
+  codeSectionContent[0] = 1; // Número de codes en la sección
+  codeSectionContent[1] = 0x05; // func size
+  codeSectionContent[2] = 0x02; // localsVec size
+  codeSectionContent[3] = Numtype::i64;
+  codeSectionContent[4] = Numtype::f64;
+  codeSectionContent[5] = i32_const, codeSectionContent[6] = 0x05, codeSectionContent[7] = End; // expr
+
+  auto *codeContent = new uint8_t[7];
+
+  auto result = antiwasm::parseNextSection(SectionId::CodeId, sizeOfSection, codeSectionContent, 0);
 
   BOOST_CHECK_EQUAL(SectionId::CodeId, result.getSectionId());
 }

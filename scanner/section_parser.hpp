@@ -3,6 +3,7 @@
 
 #define BOOST_LOG_DYN_LINK 1
 
+#include "codesec.hpp"
 #include "contentBlock.hpp"
 #include "datasec.hpp"
 #include "displayer.hpp"
@@ -30,7 +31,7 @@ namespace antiwasm {
 Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionContent, int sectionPos);
 
 /**
- * Parses a CustomId section and generates its instance.
+ * Parses a Custom section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
  * @return The parsed Custom section.
@@ -46,7 +47,7 @@ int parseCustomSection(int sizeOfSection, uint8_t *sectionContent, int sectionPo
 TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
- * Parses an ImportId section and generates its instance.
+ * Parses an Import section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
  * @return The parsed Import section.
@@ -54,7 +55,7 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent, int sec
 ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
- * Parses a FunctionId section and generates its instance.
+ * Parses a Function section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
  * @return The parsed Function section.
@@ -70,7 +71,7 @@ FuncSection parseFunctionSection(int sizeOfSection, uint8_t *sectionContent, int
 TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
- * Parses a MemoryId section and generates its instance.
+ * Parses a Memory section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
  * @return The parsed Memory section.
@@ -78,7 +79,7 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent, int s
 MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
- * Parses a GlobalId section and generates its instance.
+ * Parses a Global section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
  * @return The parsed Global section.
@@ -86,7 +87,7 @@ MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int
 GlobalSection parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
- * Parses an ExportId section and generates its instance.
+ * Parses an Export section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
  * @return The parsed Export section.
@@ -94,7 +95,7 @@ GlobalSection parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int
 int parseExportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
- * Parses a StartId section and generates its instance.
+ * Parses a Start section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
  * @return The parsed Start section.
@@ -102,7 +103,7 @@ int parseExportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPo
 int parseStartSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
- * Parses an ElementId section and generates its instance.
+ * Parses an Element section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
  * @return The parsed Element section.
@@ -110,15 +111,15 @@ int parseStartSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos
 int parseElementSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
- * Parses a CodeId section and generates its instance.
+ * Parses a Code section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
  * @return The parsed Code section.
  */
-int parseCodeSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
+CodeSection parseCodeSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
- * Parses a DataId section and generates its instance.
+ * Parses a Data section and generates its instance.
  * @param sizeOfSection
  * @param sectionContent
  * @return The parsed Data section.

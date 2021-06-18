@@ -1,8 +1,8 @@
 #ifndef ANTIWASM_DATASEC_HPP
 #define ANTIWASM_DATASEC_HPP
 
-#include "expression.hpp"
 #include "data.hpp"
+#include "expression.hpp"
 #include "section.hpp"
 #include <sstream>
 #include <vector>
@@ -16,7 +16,7 @@ private:
 public:
   /**
    * Contructor.
-   * SectionId = SectionId::MemoryId
+   * SectionId = SectionId::Data
    * @param size
    * @param content
    * @param initialPos
@@ -36,7 +36,7 @@ public:
 
   /**
    * Gets the data vector
-  * @return dataVector
+   * @return dataVector
    */
   std::vector<Data> getDataVector();
 

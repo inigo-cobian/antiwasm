@@ -1,7 +1,5 @@
 #include "data.hpp"
 
-#include <utility>
-
 namespace antiwasm {
 std::string Data::getAsText() const {
   std::stringstream dataAsText;
@@ -27,7 +25,8 @@ std::string Data::getAsText() const {
   return dataAsText.str();
 }
 
-Data::Data(Expression expr_, ByteVec bytes_) : dataType(modeActive_mem0), expr(std::move(expr_)), bytes(std::move(bytes_)) {
+Data::Data(Expression expr_, ByteVec bytes_)
+    : dataType(modeActive_mem0), expr(std::move(expr_)), bytes(std::move(bytes_)) {
   BOOST_LOG_TRIVIAL(trace) << "[data] Constructing Data(expr_, bytes_)";
 }
 
