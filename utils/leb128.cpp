@@ -68,6 +68,6 @@ int antiwasm::sizeOfLeb128(const uint8_t *leb128) {
   int size = 0;
   while (leb128[size++] & 0b1000'0000)
     ;
-  BOOST_LOG_TRIVIAL(debug) << "[leb128] Returning size of LEB128: " << size;
+  BOOST_LOG_TRIVIAL(trace) << "[leb128] Returning size of LEB128: " << size;
   return size;
 }
