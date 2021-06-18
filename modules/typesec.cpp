@@ -16,8 +16,8 @@ void TypeSection::displaySectionHeaderInfo() {
 }
 
 void TypeSection::displaySectionContentInfo() {
-  std::cout << "    Type | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " (" << functypeVector.size()
-       << ") functypes" << std::endl;
+  std::cout << "    Type | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " ("
+            << functypeVector.size() << ") functypes" << std::endl;
 
   size_t index = 0;
   for (const auto &functype : functypeVector) {

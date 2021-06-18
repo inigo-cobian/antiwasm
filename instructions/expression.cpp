@@ -20,8 +20,8 @@ Expression parseExpression(const uint8_t *expressionContent) {
     auto instr = parseInstruction(&expressionContent[pointer]);
     expr.addInstruction(*instr);
     if (instr->hasError()) {
-      BOOST_LOG_TRIVIAL(error) << "[expression] Error: invalid Instruction At Expression with value "
-                               << std::hex << (int)expressionContent[pointer];
+      BOOST_LOG_TRIVIAL(error) << "[expression] Error: invalid Instruction At Expression with value " << std::hex
+                               << (int)expressionContent[pointer];
       auto error = generateError(fatal, invalidInstructionAtExpression, nInstr);
       expr.addError(error);
       break;

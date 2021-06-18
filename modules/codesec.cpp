@@ -24,11 +24,10 @@ void CodeSection::displaySectionContentInfo() {
   std::cout << "    Code | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << std::endl;
 
   size_t index = 0;
-  std::for_each(codeVector.begin(), codeVector.end(),
-                [index](const Code &code) mutable {
-                  std::cout << code.getAsText(index) << std::endl;
-                      index++;
-                });
+  std::for_each(codeVector.begin(), codeVector.end(), [index](const Code &code) mutable {
+    std::cout << code.getAsText(index) << std::endl;
+    index++;
+  });
 
   std::cout << std::endl;
 }

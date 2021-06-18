@@ -14,7 +14,7 @@ struct Func : public ContentBlock {
   std::vector<Locals> localsVec;
   Expression expr;
 
-  Func(std::vector<Locals>  localsVec_, Expression expr_);
+  Func(std::vector<Locals> localsVec_, Expression expr_);
   [[nodiscard]] std::string getAsText() const;
 };
 

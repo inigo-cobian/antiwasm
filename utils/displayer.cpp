@@ -16,60 +16,60 @@ void Displayer::SetLoggingLevel(LoggingLevel loggingLevel) { Displayer::loggingL
 
 LoggingLevel Displayer::GetLoggingLevel() { return Displayer::loggingLevel_; }
 
-bool Displayer::setSectionToDisplay(const std::string& sectionToDisplay_) {
-  if(boost::iequals(sectionToDisplay_, "custom")) {
+bool Displayer::setSectionToDisplay(const std::string &sectionToDisplay_) {
+  if (boost::iequals(sectionToDisplay_, "custom")) {
     Displayer::sectionToDisplay = SectionId::CustomId;
     return true;
   }
-  if(boost::iequals(sectionToDisplay_, "type")) {
+  if (boost::iequals(sectionToDisplay_, "type")) {
     Displayer::sectionToDisplay = SectionId::TypeId;
     return true;
   }
-  if(boost::iequals(sectionToDisplay_, "import")) {
+  if (boost::iequals(sectionToDisplay_, "import")) {
     Displayer::sectionToDisplay = SectionId::ImportId;
     return true;
   }
-  if(boost::iequals(sectionToDisplay_, "function")) {
+  if (boost::iequals(sectionToDisplay_, "function")) {
     Displayer::sectionToDisplay = SectionId::FunctionId;
     return true;
   }
-  if(boost::iequals(sectionToDisplay_, "table")) {
+  if (boost::iequals(sectionToDisplay_, "table")) {
     Displayer::sectionToDisplay = SectionId::TableId;
     return true;
   }
-  if(boost::iequals(sectionToDisplay_, "memory")) {
+  if (boost::iequals(sectionToDisplay_, "memory")) {
     Displayer::sectionToDisplay = SectionId::MemoryId;
     return true;
   }
-  if(boost::iequals(sectionToDisplay_, "global")) {
+  if (boost::iequals(sectionToDisplay_, "global")) {
     Displayer::sectionToDisplay = SectionId::GlobalId;
     return true;
   }
-  if(boost::iequals(sectionToDisplay_, "export")) {
+  if (boost::iequals(sectionToDisplay_, "export")) {
     Displayer::sectionToDisplay = SectionId::ExportId;
     return true;
   }
-  if(boost::iequals(sectionToDisplay_, "start")) {
+  if (boost::iequals(sectionToDisplay_, "start")) {
     Displayer::sectionToDisplay = SectionId::StartId;
     return true;
   }
-  if(boost::iequals(sectionToDisplay_, "element")) {
+  if (boost::iequals(sectionToDisplay_, "element")) {
     Displayer::sectionToDisplay = SectionId::ElementId;
     return true;
   }
-  if(boost::iequals(sectionToDisplay_, "code")) {
+  if (boost::iequals(sectionToDisplay_, "code")) {
     Displayer::sectionToDisplay = SectionId::CodeId;
     return true;
   }
-  if(boost::iequals(sectionToDisplay_, "data")) {
+  if (boost::iequals(sectionToDisplay_, "data")) {
     Displayer::sectionToDisplay = SectionId::DataId;
     return true;
   }
-  if(boost::iequals(sectionToDisplay_, "datacount")) {
+  if (boost::iequals(sectionToDisplay_, "datacount")) {
     Displayer::sectionToDisplay = SectionId::DataCountId;
     return true;
   }
-  if(boost::iequals(sectionToDisplay_, "all")) {
+  if (boost::iequals(sectionToDisplay_, "all")) {
     Displayer::sectionToDisplay = SectionId::UndefinedSectionId;
     return true;
   }
@@ -77,7 +77,8 @@ bool Displayer::setSectionToDisplay(const std::string& sectionToDisplay_) {
 }
 
 bool Displayer::hasToDisplaySection(SectionId sectionToDisplay_) {
-  if (Displayer::sectionToDisplay == sectionToDisplay_ || Displayer::sectionToDisplay == SectionId::UndefinedSectionId) {
+  if (Displayer::sectionToDisplay == sectionToDisplay_ ||
+      Displayer::sectionToDisplay == SectionId::UndefinedSectionId) {
     return true;
   }
   return false;

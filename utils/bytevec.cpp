@@ -13,7 +13,7 @@ ByteVec::ByteVec(const uint8_t *byteVecContent) {
 std::string ByteVec::getAsText() const {
   std::stringstream byteVecAsText;
 
-  for(int i = 0; i < size; i++) {
+  for (int i = 0; i < size; i++) {
     byteVecAsText << std::hex << std::setw(2) << static_cast<unsigned int>(bytes[i]);
   }
   return byteVecAsText.str();

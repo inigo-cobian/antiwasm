@@ -18,14 +18,13 @@ void GlobalSection::displaySectionHeaderInfo() {
 }
 
 void GlobalSection::displaySectionContentInfo() {
-  std::cout << "  Global | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " (" << globalVector.size()
-       << ") globals" << std::endl;
+  std::cout << "  Global | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " ("
+            << globalVector.size() << ") globals" << std::endl;
 
   // (global (;0;) (mut i32) (i32.const 1998848))
   size_t index = 0;
   std::for_each(globalVector.begin(), globalVector.end(),
-                [](const Global &global){std::cout << global.getAsText() << std::endl;}
-                );
+                [](const Global &global) { std::cout << global.getAsText() << std::endl; });
 
   std::cout << std::endl;
 }

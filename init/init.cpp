@@ -98,13 +98,12 @@ int main(int argc, char **argv) {
 
   if (variablesMap.count("section")) {
     string section = variablesMap["section"].as<string>();
-    if(Displayer::setSectionToDisplay(section)) {
+    if (Displayer::setSectionToDisplay(section)) {
       cout << "Parsing section: " << hex << section << endl;
     } else {
       cout << "Unrecognized section to parse \"" << section << "\"\n";
       return 1;
-    };
-
+    }
   }
 
   if (variablesMap.count("filename")) {

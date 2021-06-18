@@ -16,8 +16,8 @@ void FuncSection::displaySectionHeaderInfo() {
 }
 
 void FuncSection::displaySectionContentInfo() {
-  std::cout << "    Func | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " (" << typeidxVector.size()
-       << ") typeidx" << std::endl;
+  std::cout << "    Func | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " ("
+            << typeidxVector.size() << ") typeidx" << std::endl;
 
   for (auto typeidx : typeidxVector) {
     std::cout << "( func $" << (int)typeidx << " )\n";

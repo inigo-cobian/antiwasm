@@ -1,7 +1,6 @@
 #ifndef ANTIWASM_INSTRUCTION_PARSER_HPP
 #define ANTIWASM_INSTRUCTION_PARSER_HPP
 
-#include "errorInstr.hpp"
 #include "control/block.hpp"
 #include "control/br.hpp"
 #include "control/br_if.hpp"
@@ -14,6 +13,7 @@
 #include "control/nop.hpp"
 #include "control/return.hpp"
 #include "control/unreachable.hpp"
+#include "errorInstr.hpp"
 #include "instruction.hpp"
 #include "lexems.hpp"
 #include "memory/data_drop.hpp"
@@ -33,7 +33,6 @@
 #include "numeric/saturating_truc.hpp"
 #include "numeric/type_conversion.hpp"
 #include "parametric/drop.hpp"
-#include "parametric/select.hpp"
 #include "parametric/select.hpp"
 #include "parametric/select_vecValtype.hpp"
 #include "reference/ref_func.hpp"

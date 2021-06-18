@@ -18,8 +18,8 @@ void MemorySection::displaySectionHeaderInfo() {
 }
 
 void MemorySection::displaySectionContentInfo() {
-  std::cout << "  Memory | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " (" << memtypeVector.size()
-       << ") memtypes" << std::endl;
+  std::cout << "  Memory | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " ("
+            << memtypeVector.size() << ") memtypes" << std::endl;
 
   size_t index = 0;
   for (const auto &memtype : memtypeVector) {

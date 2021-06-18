@@ -18,8 +18,8 @@ void ImportSection::displaySectionHeaderInfo() {
 }
 
 void ImportSection::displaySectionContentInfo() {
-  std::cout << "  Import | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " (" << importVector.size()
-       << ") imports" << std::endl;
+  std::cout << "  Import | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " ("
+            << importVector.size() << ") imports" << std::endl;
 
   size_t index = 0;
   for (const auto &import : importVector) {

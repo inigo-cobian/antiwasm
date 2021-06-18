@@ -37,7 +37,6 @@ struct Import : public ContentBlock {
   ImportDesc importDesc{};
 
   Import(UTF8Name p_module, UTF8Name p_name, ImportDescType p_importDescType, ImportDesc p_importDesc);
-
 };
 
 Import parseImport(const uint8_t *importContent);

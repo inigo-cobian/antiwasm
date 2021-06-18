@@ -20,7 +20,7 @@ public:
 
   static LoggingLevel GetLoggingLevel();
 
-  static bool setSectionToDisplay(const std::string& sectionToDisplay_);
+  static bool setSectionToDisplay(const std::string &sectionToDisplay_);
 
   static bool hasToDisplaySection(SectionId sectionToDisplay);
 };

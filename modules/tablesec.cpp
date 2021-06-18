@@ -16,8 +16,8 @@ void TableSection::displaySectionHeaderInfo() {
 }
 
 void TableSection::displaySectionContentInfo() {
-  std::cout << "   Table | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " (" << tabletypeVector.size()
-       << ") tabletypes" << std::endl;
+  std::cout << "   Table | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << " ("
+            << tabletypeVector.size() << ") tabletypes" << std::endl;
 
   size_t index = 0;
   for (const auto &tabletype : tabletypeVector) {

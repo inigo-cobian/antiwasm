@@ -4,8 +4,10 @@
 
 namespace antiwasm {
 
-Func::Func(std::vector<Locals>  localsVec_, Expression expr_) : localsVec(std::move(localsVec_)), expr(std::move(expr_)) {
-  BOOST_LOG_TRIVIAL(trace) << "[func] At Func constructor. Size of localsVec [" << localsVec.size() << "]. NBytes at expr [" << expr.getNBytes() << "]";
+Func::Func(std::vector<Locals> localsVec_, Expression expr_)
+    : localsVec(std::move(localsVec_)), expr(std::move(expr_)) {
+  BOOST_LOG_TRIVIAL(trace) << "[func] At Func constructor. Size of localsVec [" << localsVec.size()
+                           << "]. NBytes at expr [" << expr.getNBytes() << "]";
   if (!localsVec.empty() && localsVec.back().hasError()) {
     BOOST_LOG_TRIVIAL(debug) << "[func] Func has error invalidLocalAtFunc at pos [" << localsVec.size() << "]";
     auto error = generateError(fatal, invalidLocalAtFunc, localsVec.size());
@@ -21,9 +23,7 @@ std::string Func::getAsText() const {
   std::stringstream funcAsText;
 
   std::for_each(localsVec.begin(), localsVec.end(),
-                [&funcAsText](const Locals &locals) mutable {
-                  funcAsText << locals.getAsText() << "\n";
-                });
+                [&funcAsText](const Locals &locals) mutable { funcAsText << locals.getAsText() << "\n"; });
   funcAsText << " [expr] "; // TODO expr as text
 
   return funcAsText.str();
