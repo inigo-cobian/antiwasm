@@ -17,7 +17,17 @@ Func::Func(std::vector<Locals>  localsVec_, Expression expr_) : localsVec(std::m
   }
 }
 
-std::string Func::getAsText() const { return std::string(); }
+std::string Func::getAsText() const {
+  std::stringstream funcAsText;
+
+  std::for_each(localsVec.begin(), localsVec.end(),
+                [&funcAsText](const Locals &locals) mutable {
+                  funcAsText << locals.getAsText() << "\n";
+                });
+  funcAsText << " [expr] "; // TODO expr as text
+
+  return funcAsText.str();
+}
 
 Func parseFunc(const uint8_t *funcContent) {
   uint32_t sizeOfLocalsVec = transformLeb128ToUnsignedInt32(funcContent);
@@ -25,7 +35,6 @@ Func parseFunc(const uint8_t *funcContent) {
   std::vector<Locals> localsVec;
   BOOST_LOG_TRIVIAL(debug) << "[func] LocalsVec has size [" << sizeOfLocalsVec << "] at pos [" << pos << "]";
 
-  BOOST_LOG_TRIVIAL(trace) << "[func] POS0 [" << pos << "]";
   bool errorAtLocal = false;
   for (size_t i = 0; i < sizeOfLocalsVec; i++) {
     auto local = parseLocals(funcContent + pos);
@@ -37,7 +46,6 @@ Func parseFunc(const uint8_t *funcContent) {
       BOOST_LOG_TRIVIAL(error) << "[func] local has error at pos [" << pos << "]";
       break;
     }
-    BOOST_LOG_TRIVIAL(trace) << "[func] POS1 [" << pos << "]";
   }
 
   BOOST_LOG_TRIVIAL(trace) << "[func] Parsing expression for func at pos [" << pos << "]";

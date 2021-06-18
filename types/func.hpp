@@ -5,6 +5,7 @@
 #include "leb128.hpp"
 #include "locals.hpp"
 #include <cstdint>
+#include <sstream>
 #include <string>
 #include <vector>
 

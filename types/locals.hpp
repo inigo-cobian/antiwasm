@@ -4,6 +4,7 @@
 #include "leb128.hpp"
 #include "valtype.hpp"
 #include <cstdint>
+#include <sstream>
 
 namespace antiwasm {
 struct Locals : public ContentBlock {

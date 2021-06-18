@@ -10,7 +10,11 @@ Locals::Locals(uint32_t n_, Valtype valtype_) : n(n_), valtype(valtype_) {
   }
 }
 
-std::string Locals::getAsText() const { return std::string(); }
+std::string Locals::getAsText() const {
+  std::stringstream localsAsText;
+  localsAsText << "( local " << n << " " << valtype.getAsText() << " )";
+  return localsAsText.str();
+}
 
 Locals parseLocals(const uint8_t *localsContent) {
   uint32_t n_ = transformLeb128ToUnsignedInt32(localsContent);
