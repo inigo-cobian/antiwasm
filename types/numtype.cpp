@@ -52,5 +52,4 @@ string getNumtypeAsText(Numtype numtype) {
     return "error.numtype";
   }
 }
-
 } // namespace antiwasm

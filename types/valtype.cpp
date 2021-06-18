@@ -28,7 +28,6 @@ void Valtype::displayContentInfo() {
 }
 
 void Valtype::displayError() {
-  // TODO
   std::cout << "UndefinedSectionId at valtype" << std::endl;
 }
 std::string Valtype::getAsText() const {

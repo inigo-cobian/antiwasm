@@ -16,9 +16,7 @@ Code::Code(uint32_t size_, Func func_) : size(size_), func(std::move(func_)) {
 
 std::string Code::getAsText(size_t index) const {
   std::stringstream codeAsText;
-
-  codeAsText << "( code $" << index << " size=" << size << "\n" << func.getAsText() << "\n)\n";
-
+  codeAsText << "( code $" << index << " size=" << size << "\n" << func.getAsText() << "\n)";
   return codeAsText.str();
 }
 
@@ -34,5 +32,4 @@ Code parseCode(const uint8_t *codeContent) {
   code.setNBytes(pos);
   return code;
 }
-
 } // namespace antiwasm

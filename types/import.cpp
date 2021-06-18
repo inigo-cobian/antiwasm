@@ -135,5 +135,4 @@ ImportDesc parseImportDesc(ImportDescType type, const uint8_t *importDescContent
     return importDesc;
   }
 }
-
 } // namespace antiwasm

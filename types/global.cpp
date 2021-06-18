@@ -32,5 +32,4 @@ Global parseGlobal(const uint8_t *globalContent) {
 
   return Global{globaltype, expr};
 }
-
 } // namespace antiwasm

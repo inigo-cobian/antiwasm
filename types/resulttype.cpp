@@ -27,5 +27,4 @@ Resulttype parseResulttype(const uint8_t *resultTypeContent) {
 
   return resulttype;
 }
-
 } // namespace antiwasm

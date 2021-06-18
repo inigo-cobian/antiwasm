@@ -102,5 +102,4 @@ Data parseData(const uint8_t *dataContent) {
   data.addError(error);
   return data;
 }
-
 } // namespace antiwasm

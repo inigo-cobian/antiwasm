@@ -28,7 +28,5 @@ void CodeSection::displaySectionContentInfo() {
     std::cout << code.getAsText(index) << std::endl;
     index++;
   });
-
-  std::cout << std::endl;
 }
 } // namespace antiwasm

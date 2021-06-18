@@ -59,5 +59,4 @@ Func parseFunc(const uint8_t *funcContent) {
   BOOST_LOG_TRIVIAL(trace) << "[func] Created func with size [" << func.getNBytes() << "]";
   return func;
 }
-
 } // namespace antiwasm

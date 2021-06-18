@@ -113,6 +113,5 @@ int main(int argc, char **argv) {
     cout << "No filename set\n";
     return 1;
   }
-
   // TODO exception if unknown option
 }
