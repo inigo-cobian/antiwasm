@@ -1,7 +1,5 @@
 #include "element.hpp"
 
-#include <utility>
-
 namespace antiwasm {
 
 Element::Element() : elemHeader(invalid_elem) {
@@ -29,6 +27,79 @@ Element::Element(ElemHeader elemHeader_, Reftype reftype_, std::vector<Expressio
 
 Element::Element(uint32_t tableidx_, Expression expr_, Reftype reftype_, std::vector<Expression> expressionVec_)
     : elemHeader(elem6), tableidx(tableidx_), expr(std::move(expr_)), reftype(reftype_), expressionVec(std::move(expressionVec_)) {}
+
+std::string Element::getAsText(size_t index) const {
+  std::stringstream elementAsText;
+  elementAsText << "( element ";
+
+  if(hasError()) {
+    elementAsText << "ERROR ";
+    switch (getError()->errorType) {
+    case invalidHeaderAtElement:
+      elementAsText << "invalidHeaderAtElement )";
+      break;
+    case invalidElemkindAtElement:
+      elementAsText << "invalidElemkindAtElement )";
+      break;
+    default:
+      elementAsText << "unknownErrorAtElement )";
+    }
+  }
+  switch (elemHeader) {
+  case elem0:
+    elementAsText << "0x00 ";
+    elementAsText << "[expr] ";
+    std::for_each(funcidxVec.begin(), funcidxVec.end(), [&elementAsText](const uint32_t funcidx) mutable {
+      elementAsText << "funcidx[" << funcidx << "] )";
+    });
+    break;
+  case elem1:
+    elementAsText << "0x01 ";
+    std::for_each(funcidxVec.begin(), funcidxVec.end(), [&elementAsText](const uint32_t funcidx) mutable {
+      elementAsText << "funcidx[" << funcidx << "] )";
+    });
+    break;
+  case elem2:
+    elementAsText << "0x02 ";
+    elementAsText << "tableidx[" << tableidx << "] ";
+    elementAsText << "[expr] ";
+    std::for_each(funcidxVec.begin(), funcidxVec.end(), [&elementAsText](const uint32_t funcidx) mutable {
+      elementAsText << "funcidx[" << funcidx << "] ";
+    });
+    elementAsText << ")";
+    break;
+  case elem3:
+    elementAsText << "0x03 ";
+    std::for_each(funcidxVec.begin(), funcidxVec.end(), [&elementAsText](const uint32_t funcidx) mutable {
+      elementAsText << "funcidx[" << funcidx << "] ";
+    });
+    elementAsText << ")";
+    break;
+  case elem4:
+    elementAsText << "0x04 ";
+    elementAsText << "[expr] ";
+    elementAsText << "[exprVec] )";
+    break;
+  case elem5:
+    elementAsText << "0x05 ";
+    elementAsText << getAsText(reftype);
+    elementAsText << " [exprVec] )";
+    break;
+  case elem6:
+    elementAsText << "0x06 ";
+    elementAsText << "tableidx[" << tableidx << "] ";
+    elementAsText << "[expr] ";
+    elementAsText << getAsText(reftype);
+    elementAsText << " [exprVec] )";
+    break;
+  case elem7:
+    elementAsText << "0x07 ";
+    elementAsText << getAsText(reftype);
+    elementAsText << " [exprVec] )";
+    break;
+  }
+  return elementAsText.str();
+}
 
 Element parseElement(const uint8_t *elementContent) {
   ElemHeader elemHeader = parseElemHeader(elementContent[0]);

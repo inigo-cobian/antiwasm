@@ -23,12 +23,10 @@ void ElementSection::displaySectionHeaderInfo() {
 void ElementSection::displaySectionContentInfo() {
   std::cout << " Element | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << std::endl;
 
-  /*
   size_t index = 0;
-  std::for_each(codeVector.begin(), codeVector.end(), [index](const Code &code) mutable {
-    std::cout << code.getAsText(index) << std::endl;
+  std::for_each(elementVector.begin(), elementVector.end(), [index](const Element &element) mutable {
+    std::cout << element.getAsText(index) << std::endl;
     index++;
   });
-   */
 }
 }

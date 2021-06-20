@@ -3,6 +3,8 @@
 
 #include "contentBlock.hpp"
 #include "expression.hpp"
+#include <sstream>
+#include <utility>
 #include <vector>
 
 namespace antiwasm {
