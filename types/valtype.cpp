@@ -17,26 +17,13 @@ Valtype parseValtype(const uint8_t valtypeContent) {
   return valtype;
 }
 
-void Valtype::displayContentInfo() {
-  if (type == valtype_numtype) {
-    displayNumtype(numtype);
-  } else if (type == valtype_reftype) {
-    displayReftype(reftype);
-  } else {
-    displayError();
-  }
-}
-
-void Valtype::displayError() {
-  std::cout << "UndefinedSectionId at valtype" << std::endl;
-}
 std::string Valtype::getAsText() const {
   if (type == valtype_numtype) {
     return getNumtypeAsText(numtype);
   } else if (type == valtype_reftype) {
     return getReftypeAsText(reftype);
   } else {
-    return "error.valtype";
+    return "invalidValtype";
   }
 }
 } // namespace antiwasm
