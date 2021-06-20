@@ -30,18 +30,25 @@ BOOST_AUTO_TEST_CASE(parseValtype_caseErrorHasError) {
   BOOST_CHECK_EQUAL(true, returnValtype.hasError());
 }
 
-BOOST_AUTO_TEST_CASE(displayError) {
+BOOST_AUTO_TEST_CASE(getAsText_caseNumtype) {
+  uint8_t valtypeContent = Numtype::i32;
+  auto returnValtype = antiwasm::parseValtype(valtypeContent);
+
+  returnValtype.getAsText();
+}
+
+BOOST_AUTO_TEST_CASE(getAsText_caseReftype) {
   uint8_t valtypeContent = Reftype::externref;
   auto returnValtype = antiwasm::parseValtype(valtypeContent);
 
-  returnValtype.displayError();
+  returnValtype.getAsText();
 }
 
-BOOST_AUTO_TEST_CASE(displayValtype_whenError) {
+BOOST_AUTO_TEST_CASE(getAsText_caseError) {
   uint8_t valtypeContent = 0xFF; // Incorrect valtype
   auto returnValtype = antiwasm::parseValtype(valtypeContent);
 
-  returnValtype.displayContentInfo();
+  returnValtype.getAsText();
 }
 
 BOOST_AUTO_TEST_SUITE_END() // valttype_test
