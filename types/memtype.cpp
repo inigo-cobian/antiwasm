@@ -13,9 +13,6 @@ Memtype parseMemType(const uint8_t *memTypeContent) {
     } else if (memtypeLimit.getError()->errorType == unrecognizedMinGreaterThanMaxAtLimit) {
       auto error = generateError(fatal, unrecognizedMinGreaterThanMaxLimitAtTabletype, 0);
       memtype.addError(error);
-    } else {
-      auto error = generateError(fatal, unknown, 0);
-      memtype.addError(error);
     }
   }
   return memtype;
@@ -28,6 +25,8 @@ std::string Memtype::getAsText() const {
     memtypeAsText << limit.min << " )\n";
   } else if (limit.type == limit_min_max) {
     memtypeAsText << limit.min << " " << limit.max << " )\n";
+  } else {
+    memtypeAsText << "has invalid content )\n";
   }
   return memtypeAsText.str();
 }
