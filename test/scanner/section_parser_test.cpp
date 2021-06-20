@@ -2,6 +2,8 @@
 
 #include "codesec.cpp"
 #include "contentBlock.cpp"
+#include "element.cpp"
+#include "elemsec.cpp"
 #include "end.cpp"
 #include "expression.cpp"
 #include "global.cpp"
@@ -210,10 +212,21 @@ BOOST_AUTO_TEST_CASE(parseStartSection_emptySectionReturnsOkey) {
 
 BOOST_AUTO_TEST_CASE(parseElementSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
+  auto *codeSectionContent = new uint8_t[1];
+  codeSectionContent[0] = 0; // Número de codes en la sección
+
+  auto result = antiwasm::parseNextSection(SectionId::ElementId, sizeOfSection, codeSectionContent, 0);
+
+  BOOST_CHECK_EQUAL(SectionId::ElementId, result.getSectionId());
+}
+
+BOOST_AUTO_TEST_CASE(parseElementSection_realisticSectionReturnsOkey) {
+  /*
+  int sizeOfSection = 0;
 
   auto result = antiwasm::parseNextSection(SectionId::ElementId, sizeOfSection, nullptr, 0);
 
-  BOOST_CHECK_EQUAL(SectionId::ElementId, result.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::ElementId, result.getSectionId());*/
 }
 
 BOOST_AUTO_TEST_CASE(parseCodeSection_emptySectionReturnsOkey) {
