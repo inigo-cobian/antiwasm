@@ -66,16 +66,15 @@ Limit generateErrorLimit() {
 
 bool checkIfLimitIsNotValid(const uint32_t min_, const uint32_t max_) { return min_ > max_; }
 
-void Limit::displayContentInfo() {
+std::string Limit::getAsText() const {
+  std::stringstream limitAsText;
   if (type == limit_min) {
-    std::cout << "[" << std::hex << min << "-MAX]";
+    limitAsText << "limit[" << std::hex << min << "-MAX]";
   } else if (type == limit_min_max) {
-    std::cout << "[" << std::hex << min << "-" << max << "]";
+    limitAsText << "limit[" << std::hex << min << "-" << max << "]";
   } else {
-    displayError();
+    limitAsText << "unknown limit type";
   }
-}
-void Limit::displayError() {
-  // TODO
+  return limitAsText.str();
 }
 } // namespace antiwasm
