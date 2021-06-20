@@ -45,24 +45,33 @@ BOOST_AUTO_TEST_CASE(parseLimits_returnsAnErrorCodeWhenLimitsAreIncorrect) {
   BOOST_CHECK_EQUAL(true, returnLimit.hasError());
 }
 
-BOOST_AUTO_TEST_CASE(displayLimit_minMaxCase) {
+BOOST_AUTO_TEST_CASE(getAsText_minMaxCase) {
   auto *limitVec = new uint8_t[3];
   limitVec[0] = limit_min_max;
   limitVec[1] = 0x05;
   limitVec[2] = 0x08;
   Limit returnLimit = antiwasm::parseLimits(limitVec);
 
-  returnLimit.displayContentInfo();
+  returnLimit.getAsText();
 }
 
-BOOST_AUTO_TEST_CASE(displayLimit_errorCase) {
+BOOST_AUTO_TEST_CASE(getAsText_minCase) {
+  auto *limitVec = new uint8_t[2];
+  limitVec[0] = limit_min;
+  limitVec[1] = 0x05;
+  Limit returnLimit = antiwasm::parseLimits(limitVec);
+
+  returnLimit.getAsText();
+}
+
+BOOST_AUTO_TEST_CASE(getAsText_errorCase) {
   auto *limitVec = new uint8_t[3];
   limitVec[0] = 0xFF /*incorrect limit type*/;
   limitVec[1] = 0x05;
   limitVec[2] = 0x08;
   Limit returnLimit = antiwasm::parseLimits(limitVec);
 
-  returnLimit.displayContentInfo();
+  returnLimit.getAsText();
 }
 
 BOOST_AUTO_TEST_SUITE_END() // limits_test
