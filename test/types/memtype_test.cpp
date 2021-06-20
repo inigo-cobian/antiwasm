@@ -39,4 +39,33 @@ BOOST_AUTO_TEST_CASE(parseMemType_errorCaseMinGreaterThanMax) {
   BOOST_CHECK_EQUAL(true, returnMemtype.hasError());
 }
 
+BOOST_AUTO_TEST_CASE(getAsText_caseMin) {
+  auto *memtypeContent = new uint8_t[2];
+  memtypeContent[0] = limit_min;
+  memtypeContent[1] = 0x05;
+  Memtype returnMemtype = antiwasm::parseMemType(memtypeContent);
+
+  auto str = returnMemtype.getAsText();
+}
+
+BOOST_AUTO_TEST_CASE(getAsText_caseMinMax) {
+  auto *memtypeContent = new uint8_t[3];
+  memtypeContent[0] = limit_min_max;
+  memtypeContent[1] = 0x05;
+  memtypeContent[2] = 0x08;
+  Memtype returnMemtype = antiwasm::parseMemType(memtypeContent);
+
+  auto str = returnMemtype.getAsText();
+}
+
+BOOST_AUTO_TEST_CASE(getAsText_caseInvalidLimit) {
+  auto *memtypeContent = new uint8_t[3];
+  memtypeContent[0] = 0xAA; // Does not exist
+  memtypeContent[1] = 0x05;
+  memtypeContent[2] = 0x08;
+  Memtype returnMemtype = antiwasm::parseMemType(memtypeContent);
+
+  auto str = returnMemtype.getAsText();
+}
+
 BOOST_AUTO_TEST_SUITE_END() // memtype_test
