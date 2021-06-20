@@ -4,7 +4,7 @@ namespace antiwasm {
 
 void ContentBlock::addError(const std::shared_ptr<ErrorAtWasm> &errorAtWasm) { errors_.push_back(errorAtWasm); }
 
-bool ContentBlock::hasError() { return !errors_.empty(); }
+bool ContentBlock::hasError() const { return !errors_.empty(); }
 
 std::shared_ptr<ErrorAtWasm> ContentBlock::getError() {
   if (errors_.empty()) {

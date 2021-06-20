@@ -25,7 +25,7 @@ public:
    * Checks the vector of errors and returns true if there is at least one.
    * @return if the content block has any error.
    */
-  bool hasError();
+  bool hasError() const;
 
   /**
    * Displays the bytes of the content block in hexadecimal notation.
