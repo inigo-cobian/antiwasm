@@ -48,30 +48,32 @@ std::string Element::getAsText(size_t index) const {
   switch (elemHeader) {
   case elem0:
     elementAsText << "0x00 ";
-    elementAsText << "[expr] ";
+    elementAsText << "[expr]\n";
     std::for_each(funcidxVec.begin(), funcidxVec.end(), [&elementAsText](const uint32_t funcidx) mutable {
-      elementAsText << "funcidx[" << funcidx << "] )";
+      elementAsText << "  funcidx[" << funcidx << "]\n";
     });
+    elementAsText << ")";
     break;
   case elem1:
-    elementAsText << "0x01 ";
+    elementAsText << "0x01 \n";
     std::for_each(funcidxVec.begin(), funcidxVec.end(), [&elementAsText](const uint32_t funcidx) mutable {
-      elementAsText << "funcidx[" << funcidx << "] )";
+      elementAsText << "  funcidx[" << funcidx << "]\n";
     });
+    elementAsText << ")";
     break;
   case elem2:
     elementAsText << "0x02 ";
     elementAsText << "tableidx[" << tableidx << "] ";
-    elementAsText << "[expr] ";
+    elementAsText << "[expr]\n";
     std::for_each(funcidxVec.begin(), funcidxVec.end(), [&elementAsText](const uint32_t funcidx) mutable {
-      elementAsText << "funcidx[" << funcidx << "] ";
+      elementAsText << "  funcidx[" << funcidx << "]\n";
     });
     elementAsText << ")";
     break;
   case elem3:
-    elementAsText << "0x03 ";
+    elementAsText << "0x03\n";
     std::for_each(funcidxVec.begin(), funcidxVec.end(), [&elementAsText](const uint32_t funcidx) mutable {
-      elementAsText << "funcidx[" << funcidx << "] ";
+      elementAsText << "  funcidx[" << funcidx << "]\n";
     });
     elementAsText << ")";
     break;
@@ -228,6 +230,7 @@ Element parseElement(const uint8_t *elementContent) {
     return element;
   }
   }
+  return Element{};
 }
 
 ElemHeader parseElemHeader(const uint8_t elemHeaderValue) {
