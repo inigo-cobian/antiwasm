@@ -63,10 +63,4 @@ BOOST_AUTO_TEST_CASE(errorsCanBeAdded) {
   BOOST_CHECK_EQUAL(true, module.hasError());
 }
 
-BOOST_AUTO_TEST_CASE(displayError) {
-  Module module(20);
-
-  module.displayError();
-}
-
 BOOST_AUTO_TEST_SUITE_END() // module_test

@@ -99,16 +99,6 @@ BOOST_AUTO_TEST_CASE(errorsCanBeAdded) {
   BOOST_CHECK_EQUAL(true, section.hasError());
 }
 
-BOOST_AUTO_TEST_CASE(displayError) {
-  int sectionSize = 20;
-  int sectionIndex = 128;
-  SectionId sectionId = SectionId::TypeId;
-  auto *sectionContentMock = new uint8_t[20];
-  Section section(sectionId, sectionSize, sectionContentMock, sectionIndex);
-
-  section.displayError();
-}
-
 BOOST_AUTO_TEST_CASE(displaySectionHeaderInfo) {
   int sectionSize = 20;
   int sectionIndex = 128;
