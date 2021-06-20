@@ -6,7 +6,7 @@ void ContentBlock::addError(const std::shared_ptr<ErrorAtWasm> &errorAtWasm) { e
 
 bool ContentBlock::hasError() const { return !errors_.empty(); }
 
-std::shared_ptr<ErrorAtWasm> ContentBlock::getError() {
+std::shared_ptr<ErrorAtWasm> ContentBlock::getError() const {
   if (errors_.empty()) {
     return generateNoError();
   }

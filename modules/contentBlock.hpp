@@ -37,7 +37,7 @@ public:
    * If there is no error it returns a default error.
    * @return
    */
-  std::shared_ptr<ErrorAtWasm> getError();
+  std::shared_ptr<ErrorAtWasm> getError() const;
 
   /**
    * Gets the number of bytes of the content block
