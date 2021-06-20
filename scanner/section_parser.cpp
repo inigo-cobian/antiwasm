@@ -221,8 +221,30 @@ int parseStartSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos
   return 0; // TODO
 }
 
-int parseElementSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
-  return 0; // TODO
+ElementSection parseElementSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
+  auto elementsInVector = transformLeb128ToUnsignedInt32(sectionContent);
+  unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at elemsec [" << hex << (unsigned int)elementsInVector << "]";
+
+  ElementSection elementSection(sizeOfSection, sectionContent, sectionPos);
+  for (uint32_t i = 0; i < elementsInVector; i++) {
+    BOOST_LOG_TRIVIAL(trace) << "[module_parser] Parsing element [" << i << "] at pos [" << pointer << "]";
+    auto element = parseElement(&sectionContent[pointer]);
+    pointer += element.getNBytes();
+    BOOST_LOG_TRIVIAL(trace) << "[module_parser] New pos of pointer [" << pointer << "]";
+    elementSection.addElement(element);
+    if (element.hasError()) {
+      BOOST_LOG_TRIVIAL(trace) << "[module_parser] Error invalidElementAtElemSec at Element [" << i << "]";
+      auto error = generateError(fatal, invalidElementAtElemSec, i);
+      elementSection.addError(error);
+      break;
+    }
+  }
+
+  if (Displayer::hasToDisplaySection(SectionId::ElementId)) {
+    elementSection.displaySectionContentInfo();
+  }
+  return elementSection;
 }
 
 CodeSection parseCodeSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {

@@ -7,6 +7,7 @@
 #include "contentBlock.hpp"
 #include "datasec.hpp"
 #include "displayer.hpp"
+#include "elemsec.hpp"
 #include "funcsec.hpp"
 #include "globalsec.hpp"
 #include "importsec.hpp"
@@ -108,7 +109,7 @@ int parseStartSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos
  * @param sectionContent
  * @return The parsed Element section.
  */
-int parseElementSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
+ElementSection parseElementSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses a Code section and generates its instance.

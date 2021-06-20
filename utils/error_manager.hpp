@@ -69,7 +69,8 @@ enum ErrorTypes {
 
   // Sections
   invalidDataAtDatasec,
-  invalidCodeAtCodeSec
+  invalidCodeAtCodeSec,
+  invalidElementAtElemSec
 };
 
 enum ErrorSeverity { fatal, warning, noError };
