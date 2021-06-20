@@ -62,6 +62,10 @@ enum ErrorTypes {
 
   // Expression
   invalidInstructionAtExpression,
+  invalidElemkindAtElement,
+
+  // Element
+  invalidHeaderAtElement,
 
   // Sections
   invalidDataAtDatasec,
