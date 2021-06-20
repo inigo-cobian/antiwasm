@@ -17,26 +17,6 @@ Numtype parseNumType(const uint8_t numtypeContent) {
   }
 }
 
-void displayNumtype(Numtype numtype) {
-  switch (numtype) {
-  case i32:
-    cout << "i32";
-    break;
-  case i64:
-    cout << "i64";
-    break;
-  case f32:
-    cout << "f32";
-    break;
-  case f64:
-    cout << "f64";
-    break;
-  case invalid_numtype:
-    cout << "error.numtype";
-    break;
-  }
-}
-
 string getNumtypeAsText(Numtype numtype) {
   switch (numtype) {
   case i32:
