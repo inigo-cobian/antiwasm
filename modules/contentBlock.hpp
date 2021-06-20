@@ -25,7 +25,7 @@ public:
    * Checks the vector of errors and returns true if there is at least one.
    * @return if the content block has any error.
    */
-  bool hasError() const;
+  [[nodiscard]] bool hasError() const;
 
   /**
    * Displays the bytes of the content block in hexadecimal notation.
@@ -37,7 +37,7 @@ public:
    * If there is no error it returns a default error.
    * @return
    */
-  std::shared_ptr<ErrorAtWasm> getError() const;
+  [[nodiscard]] std::shared_ptr<ErrorAtWasm> getError() const;
 
   /**
    * Gets the number of bytes of the content block
