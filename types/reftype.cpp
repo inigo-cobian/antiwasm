@@ -14,20 +14,6 @@ Reftype parseReftype(const uint8_t reftype) {
   }
 }
 
-void displayReftype(Reftype reftype) {
-  switch (reftype) {
-  case funref:
-    cout << "funref";
-    break;
-  case externref:
-    cout << "externref";
-    break;
-  case invalid_reftype:
-    cout << "error.reftype";
-    break;
-  }
-}
-
 string getReftypeAsText(Reftype reftype) {
   switch (reftype) {
   case funref:
