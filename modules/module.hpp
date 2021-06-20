@@ -2,7 +2,6 @@
 #define ANTIWASM_MODULE_HPP
 
 #include "contentBlock.hpp"
-#include "displayable.hpp"
 #include "error_manager.hpp"
 #include "section.hpp"
 #include <map>
@@ -10,7 +9,7 @@
 #include <vector>
 
 namespace antiwasm {
-class Module : public ContentBlock, Displayable { // TODO check if we should use ContentBlock
+class Module : public ContentBlock {
 private:
   int size_;
   // TODO version
@@ -54,9 +53,6 @@ public:
    * @return true if the section exists, false if it does not.
    */
   bool containsSection(SectionId sectionId);
-
-  void displayError() override;
-  void displayContentInfo() override;
 };
 } // namespace antiwasm
 
