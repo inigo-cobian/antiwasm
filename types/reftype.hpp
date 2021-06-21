@@ -18,8 +18,6 @@ enum Reftype : uint8_t { funref = 0x70, externref = 0x6F, invalid_reftype = 0xFF
  */
 Reftype parseReftype(uint8_t reftype);
 
-void displayReftype(Reftype reftype);
-
 std::string getReftypeAsText(Reftype reftype);
 
 } // namespace antiwasm

@@ -84,19 +84,19 @@ std::string Element::getAsText(size_t index) const {
     break;
   case elem5:
     elementAsText << "0x05 ";
-    elementAsText << getAsText(reftype);
+    elementAsText << getReftypeAsText(reftype);
     elementAsText << " [exprVec] )";
     break;
   case elem6:
     elementAsText << "0x06 ";
     elementAsText << "tableidx[" << tableidx << "] ";
     elementAsText << "[expr] ";
-    elementAsText << getAsText(reftype);
+    elementAsText << getReftypeAsText(reftype);
     elementAsText << " [exprVec] )";
     break;
   case elem7:
     elementAsText << "0x07 ";
-    elementAsText << getAsText(reftype);
+    elementAsText << getReftypeAsText(reftype);
     elementAsText << " [exprVec] )";
     break;
   }
@@ -230,7 +230,7 @@ Element parseElement(const uint8_t *elementContent) {
     return element;
   }
   }
-  return Element{};
+  return Element{}; // unreachable, just to calm the compiler
 }
 
 ElemHeader parseElemHeader(const uint8_t elemHeaderValue) {
