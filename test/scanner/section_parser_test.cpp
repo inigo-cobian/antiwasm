@@ -4,6 +4,8 @@
 #include "contentBlock.cpp"
 #include "element.cpp"
 #include "elemsec.cpp"
+#include "export.cpp"
+#include "exportsec.cpp"
 #include "end.cpp"
 #include "expression.cpp"
 #include "global.cpp"
@@ -196,8 +198,10 @@ BOOST_AUTO_TEST_CASE(parseGlobalSection_realisticSectionReturnsOkey) {
 
 BOOST_AUTO_TEST_CASE(parseExportSection_emptySectionReturnsOkey) {
   int sizeOfSection = 0;
+  auto *exportSectionContent = new uint8_t[1];
+  exportSectionContent[0] = 0; // Número de exports en la sección
 
-  auto result = antiwasm::parseNextSection(SectionId::ExportId, sizeOfSection, nullptr, 0);
+  auto result = antiwasm::parseNextSection(SectionId::ExportId, sizeOfSection, exportSectionContent, 0);
 
   BOOST_CHECK_EQUAL(SectionId::ExportId, result.getSectionId());
 }
