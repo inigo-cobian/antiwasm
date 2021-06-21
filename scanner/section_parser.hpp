@@ -8,6 +8,7 @@
 #include "datasec.hpp"
 #include "displayer.hpp"
 #include "elemsec.hpp"
+#include "exportsec.hpp"
 #include "funcsec.hpp"
 #include "globalsec.hpp"
 #include "importsec.hpp"
@@ -93,7 +94,7 @@ GlobalSection parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int
  * @param sectionContent
  * @return The parsed Export section.
  */
-int parseExportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
+ExportSection parseExportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses a Start section and generates its instance.

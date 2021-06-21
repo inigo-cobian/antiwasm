@@ -213,8 +213,30 @@ GlobalSection parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int
   return globalSection;
 }
 
-int parseExportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
-  return 0; // TODO
+ExportSection parseExportSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
+  auto exportsInVector = transformLeb128ToUnsignedInt32(sectionContent);
+  unsigned int pointer = sizeOfLeb128(sectionContent);
+  BOOST_LOG_TRIVIAL(debug) << "[module_parser] Items at exportsec [" << hex << (unsigned int)exportsInVector << "]";
+
+  ExportSection exportSection(sizeOfSection, sectionContent, sectionPos);
+  for (uint32_t i = 0; i < exportsInVector; i++) {
+    BOOST_LOG_TRIVIAL(trace) << "[module_parser] Parsing export [" << i << "] at pos [" << pointer << "]";
+    auto export_ = parseExport(&sectionContent[pointer]);
+    pointer += export_.getNBytes();
+    BOOST_LOG_TRIVIAL(trace) << "[module_parser] New pos of pointer [" << pointer << "]";
+    exportSection.addExport(export_);
+    if (export_.hasError()) {
+      BOOST_LOG_TRIVIAL(trace) << "[module_parser] Error invalidExportAtExportSec at Element [" << i << "]";
+      auto error = generateError(fatal, invalidExportAtExportSec, i);
+      exportSection.addError(error);
+      break;
+    }
+  }
+
+  if (Displayer::hasToDisplaySection(SectionId::ExportId)) {
+    exportSection.displaySectionContentInfo();
+  }
+  return exportSection;
 }
 
 int parseStartSection(int sizeOfSection, uint8_t *sectionContent, int sectionPos) {
