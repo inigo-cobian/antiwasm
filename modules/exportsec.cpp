@@ -23,10 +23,8 @@ void ExportSection::displaySectionHeaderInfo() {
 void ExportSection::displaySectionContentInfo() {
   std::cout << "  Export | start=" << std::hex << initialPos_ << " size=" << std::hex << size_ << std::endl;
 
-  size_t index = 0;
-  std::for_each(exportVector.begin(), exportVector.end(), [index](const Export &export_) mutable {
+  std::for_each(exportVector.begin(), exportVector.end(), [](const Export &export_) mutable {
     std::cout << export_.getAsText() << std::endl;
-    index++;
   });
 }
 } // namespace antiwasm
