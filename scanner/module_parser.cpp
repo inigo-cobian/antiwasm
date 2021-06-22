@@ -18,24 +18,18 @@ int parse(const char *classFile) {
     return -1;
   }
 
-  // Sections
-  while (!driver->HasReachedFileSize(2)) {
-    auto sectionPosition = driver->GetCurrentPos();
-    auto nextSectionHeader = driver->GetNextSectionHeader();
-    auto sectionSize = transformLeb128ToUnsignedInt32(nextSectionHeader.get() + 1);
-    auto nextSectionContent = driver->GetNextBytes(sectionSize);
-    auto nextSection =
-        parseNextSection(nextSectionHeader.get()[0], sectionSize, nextSectionContent.get(), sectionPosition);
+  if(!parseSectionHeaderMap(module)) {
+    // TODO invalid section headers
+    return -1;
+  }
 
-    BOOST_LOG_TRIVIAL(trace) << "[scanner] Id: " << hex << (int)(nextSectionHeader.get()[0]);
-    BOOST_LOG_TRIVIAL(trace) << "[scanner] Size: " << hex << sectionSize;
-
-    if (nextSection.getSectionId() != UndefinedSectionId) {
-      nextSection.displaySectionHeaderInfo();
-      module.addSection(nextSection);
-    } else { // TODO manage error
-      break;
-    }
+  int nThreads;
+  MPI_Comm_size(MPI_COMM_WORLD, &nThreads);
+  bool valid;
+  if(nThreads == 4) {
+    valid = multithreadParsing(module);
+  } else {
+    valid = singlethreadParsing(module);
   }
   driver->CloseFile();
 
@@ -66,7 +60,6 @@ bool validateModuleHeader(Module &module) {
   return true;
 }
 
-
 bool parseSectionHeaderMap(Module &module) {
   shared_ptr<Driver> driver = Driver::GetInstance();
   if (!driver->IsCurrentlyParsing()) {
@@ -75,9 +68,89 @@ bool parseSectionHeaderMap(Module &module) {
     return false;
   }
 
+  while (!driver->HasReachedFileSize(2)) {
+    auto sectionPosition = driver->GetCurrentPos();
+    auto nextSectionHeader = driver->GetNextSectionHeader();
+    auto sectionSize = transformLeb128ToUnsignedInt32(nextSectionHeader.get() + 1);
+    auto nextSectionContent = driver->GetNextBytes(sectionSize);
+
+    auto sectionHeader = SectionHeader{
+        static_cast<SectionId>(nextSectionHeader.get()[0]),
+        static_cast<size_t>(sectionPosition),
+        sectionSize,
+        std::move(nextSectionContent)
+    };
+
+    module.addSectionHeader(sectionHeader);
+    BOOST_LOG_TRIVIAL(trace) << "[scanner] Id: " << hex << (int)(nextSectionHeader.get()[0]);
+    BOOST_LOG_TRIVIAL(trace) << "[scanner] Size: " << hex << sectionSize;
+
+    /*
+    if (nextSection.getSectionId() != UndefinedSectionId) {
+      nextSection.displaySectionHeaderInfo();
+      module.addSection(nextSection);
+    } else { // TODO manage error
+      break;
+    }
+     */
+  }
+
   // TODO
   return true;
 }
 
+bool multithreadParsing(Module &module) {
+  for (const auto & [sectionId, sectionHeader] : module.getSectionHeaderMap()) {
+    std::cout << "%%%" << sectionId << std::endl;
+    switch (sectionId) {
+    case CustomId: // ignore
+      break;
+    case TypeId:
+    case ImportId:
+    case FunctionId:
+    case CodeId:
+    case StartId:
+      addSectionHeaderToThread(0, sectionHeader);
+      break;
+    case TableId:
+    case ElementId:
+      addSectionHeaderToThread(1, sectionHeader);
+      break;
+    case MemoryId:
+    case DataId:
+    case DataCountId:
+      addSectionHeaderToThread(2, sectionHeader);
+      break;
+    case GlobalId:
+    case ExportId:
+      addSectionHeaderToThread(3, sectionHeader);
+      break;
+    case UndefinedSectionId:
+      return false;
+    }
+  }
 
+
+
+
+  return true;
+}
+
+bool singlethreadParsing(Module &module) {
+  for (const auto & [sectionId, sectionHeader] : module.getSectionHeaderMap()) {
+    // auto nextSection = parseNextSection(sectionHeader);
+    std::cout << "$$$" << sectionId << std::endl;
+  }
+  return true;
+}
+
+void addSectionHeaderToThread(int thread, const SectionHeader& sectionHeader) {
+  std::cout << "XXX" << thread << "-" << sectionHeader.id << std::endl;
+  if(!mapThreadSections.contains(thread)) {
+    std::vector<SectionHeader> secHeaderVec;
+    secHeaderVec.push_back(sectionHeader);
+  } else {
+    mapThreadSections.at(thread).push_back(sectionHeader);
+  }
+}
 } // namespace antiwasm

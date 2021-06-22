@@ -14,8 +14,11 @@
 #include <cstring>
 #include <fstream>
 #include <iostream>
+#include <mpi.h>
 
 namespace antiwasm {
+
+static std::map<int, std::vector<SectionHeader>> mapThreadSections;
 
 /**
  * Begins to parse the file given as an argument
@@ -37,6 +40,22 @@ bool validateModuleHeader(Module &module);
  * @return returns true if it can complete de parsing, false otherwise
  */
 bool parseSectionHeaderMap(Module &module);
+
+/**
+ * Shares the sections to four different threads and parses them in parallel
+ * @param module
+ * @return returns true if it can complete de parsing, false otherwise
+ */
+bool multithreadParsing(Module &module);
+
+/**
+ * Parses the module in sequence
+ * @param module
+ * @return returns true if it can complete de parsing, false otherwise
+ */
+bool singlethreadParsing(Module &module);
+
+void addSectionHeaderToThread(int thread, const SectionHeader& sectionHeader);
 
 } // namespace antiwasm
 

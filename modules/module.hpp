@@ -13,7 +13,7 @@ struct SectionHeader {
   SectionId id;
   size_t pos;
   size_t size;
-  std::unique_ptr<uint8_t> content;
+  std::shared_ptr<uint8_t> content;
 };
 
 class Module : public ContentBlock {
@@ -48,6 +48,12 @@ public:
   void addSection(Section section);
 
   /**
+   * Adds a sectionHeader to the module.
+   * @param sectionHeader that has been detected.
+   */
+  void addSectionHeader(const SectionHeader& sectionHeader);
+
+  /**
    * Gets the section with the given Id.
    * @param sectionId
    * @return The existing section. A section with UndefinedSectionId id if it does not exist.
@@ -55,11 +61,20 @@ public:
   Section getSection(SectionId sectionId);
 
   /**
-   * Checks if the section with the given Id exists.
+   * Checks if the section with the given Id exists as a full section.
    * @param sectionId
    * @return true if the section exists, false if it does not.
    */
   bool containsSection(SectionId sectionId);
+
+  /**
+   * Checks if the section with the given Id exists as a section header.
+   * @param sectionId
+   * @return true if the section exists, false if it does not.
+   */
+  bool containsSectionHeader(SectionId sectionId);
+
+  std::map<const SectionId, SectionHeader> getSectionHeaderMap();
 };
 } // namespace antiwasm
 
