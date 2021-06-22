@@ -9,24 +9,31 @@
 #include <vector>
 
 namespace antiwasm {
+struct SectionHeader {
+  SectionId id;
+  size_t pos;
+  size_t size;
+  std::unique_ptr<uint8_t> content;
+};
+
 class Module : public ContentBlock {
 private:
   int size_;
+  std::map<const SectionId, SectionHeader> sectionHeaderMap;
+  std::map<const SectionId, Section> sectionMap;
   // TODO version
-  std::map<const SectionId, Section> sections_;
 
 public:
   /**
    * Constructor
    * @param size
    */
-  Module(int size);
+  explicit Module(int size);
 
   /**
    * Destructor
    */
-  ~Module() { /*TODO*/
-  }
+  ~Module() = default;
 
   /**
    * Returns the size of the file
@@ -38,7 +45,7 @@ public:
    * Adds a section to the module.
    * @param section that has been parsed.
    */
-  void addSection(Section section); // TODO check if a return value is interesting
+  void addSection(Section section);
 
   /**
    * Gets the section with the given Id.

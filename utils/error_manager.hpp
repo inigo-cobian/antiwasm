@@ -7,6 +7,9 @@ namespace antiwasm {
 enum ErrorTypes {
   unknown,
 
+  // Driver
+  driverNotParsing,
+
   // Module
   unrecognizedHeader,
   unrecognizedVersion,

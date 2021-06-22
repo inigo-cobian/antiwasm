@@ -13,19 +13,8 @@ int parse(const char *classFile) {
   // Generate Module
   Module module(driver->GetFileSize());
 
-  // Magic header
-  auto uBuffer = driver->GetNextBytes(4);
-  if (!checkMagicNumber(std::move(uBuffer))) {
-    auto error = generateError(fatal, unrecognizedHeader, 0);
-    module.addError(error);
-    return -1;
-  }
-
-  // Version number
-  uBuffer = driver->GetNextBytes(4);
-  if (!checkVersion(std::move(uBuffer))) {
-    auto error = generateError(fatal, unrecognizedVersion, 4);
-    module.addError(error);
+  if(!validateModuleHeader(module)) {
+    // TODO invalid module
     return -1;
   }
 
@@ -52,4 +41,43 @@ int parse(const char *classFile) {
 
   return 0;
 }
+
+bool validateModuleHeader(Module &module) {
+  shared_ptr<Driver> driver = Driver::GetInstance();
+  if (!driver->IsCurrentlyParsing()) {
+    BOOST_LOG_TRIVIAL(error) << "[module_parser] Cannot parse section headers as there is no file being parsed.";
+    module.addError(generateError(fatal, driverNotParsing, 0));
+    return false;
+  }
+
+  // Magic header
+  auto uBuffer = driver->GetNextBytes(4);
+  if (!checkMagicNumber(std::move(uBuffer))) {
+    module.addError(generateError(fatal, unrecognizedHeader, 0));
+    return false;
+  }
+
+  // Version number
+  uBuffer = driver->GetNextBytes(4);
+  if (!checkVersion(std::move(uBuffer))) {
+    module.addError(generateError(fatal, unrecognizedVersion, 0));
+    return false;
+  }
+  return true;
+}
+
+
+bool parseSectionHeaderMap(Module &module) {
+  shared_ptr<Driver> driver = Driver::GetInstance();
+  if (!driver->IsCurrentlyParsing()) {
+    BOOST_LOG_TRIVIAL(error) << "[module_parser] Cannot parse section headers as there is no file being parsed.";
+    module.addError(generateError(fatal, driverNotParsing, 0));
+    return false;
+  }
+
+  // TODO
+  return true;
+}
+
+
 } // namespace antiwasm
