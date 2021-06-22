@@ -25,6 +25,11 @@ Export parseExport(const uint8_t *exportContent) {
 
   auto exportDesc = parseExportDesc(exportContent[pointer]);
   pointer++;
+  if(exportDesc == invalid_exportDesc) {
+    Export export_{name, exportDesc, 0};
+    export_.addError(generateError(fatal, invalidExportDescAtExport, 0));
+    return export_;
+  }
 
   auto index = transformLeb128ToUnsignedInt32(exportContent + pointer);
   pointer += sizeOfLeb128(exportContent + pointer);

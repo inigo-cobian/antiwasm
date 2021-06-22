@@ -42,6 +42,9 @@ enum ErrorTypes {
   invalidExpressionAtData,
   invalidMemidxAtData, // TODO
 
+  // Export
+  invalidExportDescAtExport,
+
   // Code
   unrecognizedValtypeAtLocals,
   invalidLocalAtFunc,
