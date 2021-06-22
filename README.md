@@ -8,7 +8,9 @@ Current args:
 
 `--help`: displays help.
 
-`--debug`: Debug mode.
+`--section [section name]`: Displays only the selected section.
+
+`--debug [level]`: Sets debug at the selected level.
 
 `--verbose`: Verbose mode.
 
