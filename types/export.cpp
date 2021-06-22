@@ -7,7 +7,27 @@ Export::Export(UTF8Name  name_, ExportDesc exportDesc_, uint32_t index_)
 }
 
 std::string Export::getAsText() const {
-  return std::string{""}; // TODO
+  std::stringstream exportAsText;
+  exportAsText << "( export ";
+  switch (exportDesc) {
+  case funcidxExport:
+    exportAsText << "funcidx $" << index;
+    break;
+  case tableidxExport:
+    exportAsText << "tableidx $" << index;
+    break;
+  case memidxExport:
+    exportAsText << "memidx $" << index;
+    break;
+  case globalidxExport:
+    exportAsText << "globalidx $" << index;
+    break;
+  case invalid_exportDesc:
+    exportAsText << "invalid_exportDesc";
+    break;
+  }
+  exportAsText << " )";
+  return exportAsText.str();
 }
 
 ExportDesc parseExportDesc(uint8_t exportDescContent) {
