@@ -4,21 +4,6 @@ namespace antiwasm {
 
 Import::Import(UTF8Name p_module, UTF8Name p_name, ImportDescType p_importDescType, ImportDesc p_importDesc)
     : module(std::move(p_module)), name(std::move(p_name)), importDescType(p_importDescType), importDesc(p_importDesc) {
-  nBytes = module.getNBytes() + name.getNBytes();
-  switch (importDescType) {
-  case ImportFunc:
-    nBytes += 2; // TODO get size of index
-    break;
-  case ImportTable:
-    nBytes += importDesc.tabletype->getNBytes();
-    break;
-  case ImportMemtype:
-    nBytes += importDesc.memtype->getNBytes();
-    break;
-  case ImportGlobaltype:
-    nBytes += importDesc.globaltype->getNBytes();
-    break;
-  }
 }
 
 Import parseImport(const uint8_t *importContent) {
@@ -42,9 +27,26 @@ Import parseImport(const uint8_t *importContent) {
   pointer++;
   BOOST_LOG_TRIVIAL(debug) << "[Import] type: " << type;
 
-  ImportDesc desc = parseImportDesc(type, &importContent[pointer]);
+  ImportDesc desc = parseImportDesc(type, importContent + pointer);
 
   Import import(mod, name, type, desc);
+
+  size_t nBytes = pointer;
+  switch (type) {
+  case ImportFunc:
+    nBytes += sizeOfLeb128(importContent + pointer);
+    break;
+  case ImportTable:
+    nBytes += desc.tabletype->getNBytes();
+    break;
+  case ImportMemtype:
+    nBytes += desc.memtype->getNBytes();
+    break;
+  case ImportGlobaltype:
+    nBytes += desc.globaltype->getNBytes();
+    break;
+  }
+  import.setNBytes(nBytes);
 
   if (mod.hasError()) {
     BOOST_LOG_TRIVIAL(error) << "[Import] Error: unrecognizedModAtImport";
@@ -85,7 +87,6 @@ Import parseImport(const uint8_t *importContent) {
     }
     break;
   }
-
   BOOST_LOG_TRIVIAL(debug) << "[Import] nBytes: " << import.getNBytes();
 
   return import;
