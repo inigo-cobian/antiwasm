@@ -7,7 +7,7 @@ Export::Export(UTF8Name  name_, ExportDesc exportDesc_, uint32_t index_)
 }
 
 std::string Export::getAsText() const {
-  return ""; // TODO
+  return std::string{""}; // TODO
 }
 
 ExportDesc parseExportDesc(uint8_t exportDescContent) {
@@ -35,6 +35,7 @@ Export parseExport(const uint8_t *exportContent) {
   pointer += sizeOfLeb128(exportContent + pointer);
 
   Export export_{name, exportDesc, index};
+  export_.setNBytes(pointer);
   return export_;
 }
 

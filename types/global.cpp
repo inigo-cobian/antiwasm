@@ -10,14 +10,12 @@ std::string Global::getAsText() const {
   globalAsText << "( global \n "
                << globaltype.getAsText()
                // TODO << " " << expr.getAsText();
-               << "\n foo_expr "
+               << "\n [expr] "
                << "\n)";
 
   return globalAsText.str();
 }
-Global::Global(Globaltype globaltype_, Expression expr_) : globaltype(std::move(globaltype_)), expr(std::move(expr_)) {
-  nBytes = globaltype_.getNBytes() + expr_.getNBytes();
-}
+Global::Global(Globaltype globaltype_, Expression expr_) : globaltype(std::move(globaltype_)), expr(std::move(expr_)) {}
 
 Global parseGlobal(const uint8_t *globalContent) {
   Globaltype globaltype = parseGlobaltype(globalContent);
@@ -30,6 +28,8 @@ Global parseGlobal(const uint8_t *globalContent) {
     // TODO error
   }
 
-  return Global{globaltype, expr};
+  Global global{globaltype, expr};
+  global.setNBytes(globaltype.getNBytes() + expr.getNBytes());
+  return global;
 }
 } // namespace antiwasm
