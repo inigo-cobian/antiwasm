@@ -14,6 +14,11 @@ message(STATUS "Boost version: ${Boost_VERSION}")
 add_definitions(${Boost_LIB_DIAGNOSTIC_DEFINITIONS})
 find_package(Boost COMPONENTS program_options REQUIRED)
 
+# MPI
+find_package(MPI REQUIRED)
+include_directories(${MPI_INCLUDE_PATH})
+add_definitions(-DOMPI_SKIP_MPICXX)
+
 #Testing subdirectory
 add_subdirectory(test)
 
@@ -35,4 +40,5 @@ file(GLOB PARAMETRIC "instructions/parametric/*.cpp")
 add_executable(antiwasm ${INIT} ${INSTRUCTIONS} ${SCANNER} ${MODULES} ${TYPES} ${UTILS}
         ${VARIABLE} ${MEMORY} ${NUMERIC} ${CONTROL} ${REFERENCE} ${TABLE} ${PARAMETRIC})
 
-target_link_libraries(antiwasm pthread boost_log boost_program_options boost_thread)
+#target_link_libraries(antiwasm pthread boost_log boost_program_options boost_thread)
+target_link_libraries(antiwasm pthread boost_log boost_program_options boost_thread ${MPI_LIBRARIES})
