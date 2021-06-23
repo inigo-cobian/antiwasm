@@ -7,7 +7,6 @@ Module::Module(int size) { size_ = size; }
 void Module::addSection(std::shared_ptr<Section> section) {
   if(true) {
     std::lock_guard<std::mutex> guard(addSection_mutex);
-    std::cout << "mutex" << std::endl;
     sectionMap.insert({section->getSectionId(), std::move(section)});
   }
 }

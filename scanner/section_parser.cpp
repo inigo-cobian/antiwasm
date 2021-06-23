@@ -101,10 +101,6 @@ TypeSection parseTypeSection(int sizeOfSection, uint8_t *sectionContent, int sec
       return typeSection;
     }
   }
-
-  if (Displayer::hasToDisplaySection(SectionId::TypeId)) {
-    typeSection.displaySectionContentInfo();
-  }
   return typeSection;
 }
 
@@ -145,9 +141,6 @@ ImportSection parseImportSection(int sizeOfSection, uint8_t *sectionContent, int
       return importSection;
     }
   }
-  if (Displayer::hasToDisplaySection(SectionId::ImportId)) {
-    importSection.displaySectionContentInfo();
-  }
   return importSection;
 }
 
@@ -186,9 +179,6 @@ TableSection parseTableSection(int sizeOfSection, uint8_t *sectionContent, int s
     }
     tableSection.addTabletype(tabletype);
   }
-  if (Displayer::hasToDisplaySection(SectionId::TableId)) {
-    tableSection.displaySectionContentInfo();
-  }
   return tableSection;
 }
 
@@ -210,10 +200,6 @@ MemorySection parseMemorySection(int sizeOfSection, uint8_t *sectionContent, int
     }
     memorySection.addMemtype(memtype);
   }
-
-  if (Displayer::hasToDisplaySection(SectionId::MemoryId)) {
-    memorySection.displaySectionContentInfo(); // TODO move to another place in the future
-  }
   return memorySection;
 }
 
@@ -227,10 +213,6 @@ GlobalSection parseGlobalSection(int sizeOfSection, uint8_t *sectionContent, int
     auto global = parseGlobal(&sectionContent[pointer]);
     pointer += global.getNBytes();
     globalSection.addGlobal(global); // TODO error
-  }
-
-  if (Displayer::hasToDisplaySection(SectionId::GlobalId)) {
-    globalSection.displaySectionContentInfo();
   }
   return globalSection;
 }
@@ -253,10 +235,6 @@ ExportSection parseExportSection(int sizeOfSection, uint8_t *sectionContent, int
       exportSection.addError(error);
       break;
     }
-  }
-
-  if (Displayer::hasToDisplaySection(SectionId::ExportId)) {
-    exportSection.displaySectionContentInfo();
   }
   return exportSection;
 }
@@ -284,10 +262,6 @@ ElementSection parseElementSection(int sizeOfSection, uint8_t *sectionContent, i
       break;
     }
   }
-
-  if (Displayer::hasToDisplaySection(SectionId::ElementId)) {
-    elementSection.displaySectionContentInfo();
-  }
   return elementSection;
 }
 
@@ -310,10 +284,6 @@ CodeSection parseCodeSection(int sizeOfSection, uint8_t *sectionContent, int sec
       break;
     }
   }
-
-  if (Displayer::hasToDisplaySection(SectionId::CodeId)) {
-    codeSection.displaySectionContentInfo();
-  }
   return codeSection;
 }
 
@@ -333,10 +303,6 @@ DataSection parseDataSection(int sizeOfSection, uint8_t *sectionContent, int sec
       dataSection.addError(error);
       break;
     }
-  }
-
-  if (Displayer::hasToDisplaySection(SectionId::DataId)) {
-    dataSection.displaySectionContentInfo();
   }
   return dataSection;
 }

@@ -34,8 +34,11 @@ int parse(const char *classFile) {
   driver->CloseFile();
 
   for (auto& [id, section] : module.getSectionMap()) {
-    section->displaySectionHeaderInfo();
-    // section->displaySectionContentInfo();
+    if (Displayer::hasToDisplaySection(id)) {
+      section->displaySectionContentInfo();
+    } else {
+      section->displaySectionHeaderInfo();
+    }
   }
 
   return 0;
@@ -135,9 +138,6 @@ bool multithreadParsing(Module &module) {
     }
   }
 
-
-
-
   return true;
 }
 
@@ -149,7 +149,6 @@ bool singlethreadParsing(Module &module) {
         sectionHeader.content.get(),
         sectionHeader.pos);
     module.addSection(nextSection);
-    std::cout << "$$$" << sectionId << std::endl;
   }
   return true;
 }
