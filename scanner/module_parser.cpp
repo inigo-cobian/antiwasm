@@ -33,6 +33,11 @@ int parse(const char *classFile) {
   }
   driver->CloseFile();
 
+  for (auto& [id, section] : module.getSectionMap()) {
+    section->displaySectionHeaderInfo();
+    // section->displaySectionContentInfo();
+  }
+
   return 0;
 }
 
@@ -76,8 +81,8 @@ bool parseSectionHeaderMap(Module &module) {
 
     auto sectionHeader = SectionHeader{
         static_cast<SectionId>(nextSectionHeader.get()[0]),
-        static_cast<size_t>(sectionPosition),
-        sectionSize,
+        sectionPosition,
+        static_cast<int>(sectionSize),
         std::move(nextSectionContent)
     };
 
@@ -138,7 +143,12 @@ bool multithreadParsing(Module &module) {
 
 bool singlethreadParsing(Module &module) {
   for (const auto & [sectionId, sectionHeader] : module.getSectionHeaderMap()) {
-    // auto nextSection = parseNextSection(sectionHeader);
+    auto nextSection = parseNextSection(
+        sectionHeader.id,
+        sectionHeader.size,
+        sectionHeader.content.get(),
+        sectionHeader.pos);
+    module.addSection(nextSection);
     std::cout << "$$$" << sectionId << std::endl;
   }
   return true;

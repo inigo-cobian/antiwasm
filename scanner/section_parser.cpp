@@ -3,46 +3,68 @@
 using namespace std;
 namespace antiwasm {
 
-Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionContent, int sectionPos) {
+std::shared_ptr<Section> parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionContent, int sectionPos) {
 
   BOOST_LOG_TRIVIAL(debug) << "[module_parser] Info of the next section [" << (unsigned int)sectionId << "] with size "
                            << hex << (unsigned int)sectionSize;
   switch (sectionId) {
-  case (SectionId::CustomId):
+  case (SectionId::CustomId): {
     parseCustomSection(sectionSize, sectionContent, sectionPos);
-    return Section(SectionId::CustomId, sectionSize, sectionContent, sectionPos);
-  case (SectionId::TypeId):
-    return parseTypeSection(sectionSize, sectionContent, sectionPos);
-  case (SectionId::ImportId):
-    return parseImportSection(sectionSize, sectionContent, sectionPos);
-  case (SectionId::FunctionId):
-    return parseFunctionSection(sectionSize, sectionContent, sectionPos);
-  case (SectionId::TableId):
-    return parseTableSection(sectionSize, sectionContent, sectionPos);
-  case (SectionId::MemoryId):
-    return parseMemorySection(sectionSize, sectionContent, sectionPos);
-  case (SectionId::GlobalId):
-    return parseGlobalSection(sectionSize, sectionContent, sectionPos);
-  case (SectionId::ExportId):
-    parseExportSection(sectionSize, sectionContent, sectionPos);
-    return Section(SectionId::ExportId, sectionSize, sectionContent, sectionPos);
-  case (SectionId::StartId):
+    Section customsec(SectionId::CustomId, sectionSize, sectionContent, sectionPos);
+    return std::make_shared<Section>(customsec);
+  }
+  case (SectionId::TypeId): {
+    auto typesec = parseTypeSection(sectionSize, sectionContent, sectionPos);
+    return std::make_shared<TypeSection>(typesec);
+  }
+  case (SectionId::ImportId): {
+    auto importsec = parseImportSection(sectionSize, sectionContent, sectionPos);
+    return std::make_shared<ImportSection>(importsec);
+  }
+  case (SectionId::FunctionId): {
+    auto functionsec = parseFunctionSection(sectionSize, sectionContent, sectionPos);
+    return std::make_shared<FuncSection>(functionsec);
+  }
+  case (SectionId::TableId): {
+    auto tablesec = parseTableSection(sectionSize, sectionContent, sectionPos);
+    return std::make_shared<TableSection>(tablesec);
+  }
+  case (SectionId::MemoryId): {
+    auto memsec = parseMemorySection(sectionSize, sectionContent, sectionPos);
+    return std::make_shared<MemorySection>(memsec);
+  }
+  case (SectionId::GlobalId): {
+    auto globalSec = parseGlobalSection(sectionSize, sectionContent, sectionPos);
+    return std::make_shared<GlobalSection>(globalSec);
+  }
+  case (SectionId::ExportId): {
+    auto exportSec = parseExportSection(sectionSize, sectionContent, sectionPos);
+    return std::make_shared<ExportSection>(exportSec);
+  }
+  case (SectionId::StartId): {
     parseStartSection(sectionSize, sectionContent, sectionPos);
-    return Section(SectionId::StartId, sectionSize, sectionContent, sectionPos);
-  case (SectionId::ElementId):
-    parseElementSection(sectionSize, sectionContent, sectionPos);
-    return Section(SectionId::ElementId, sectionSize, sectionContent, sectionPos);
-  case (SectionId::CodeId):
-    return parseCodeSection(sectionSize, sectionContent, sectionPos);
-  case (SectionId::DataId):
-    return parseDataSection(sectionSize, sectionContent, sectionPos);
+    auto startsec = Section(SectionId::StartId, sectionSize, sectionContent, sectionPos);
+    return std::make_shared<Section>(startsec);
+  }
+  case (SectionId::ElementId): {
+    auto elemsec = parseElementSection(sectionSize, sectionContent, sectionPos);
+    return std::make_shared<ElementSection>(elemsec);
+  }
+  case (SectionId::CodeId): {
+    auto codesec = parseCodeSection(sectionSize, sectionContent, sectionPos);
+    return std::make_shared<CodeSection>(codesec);
+  }
+  case (SectionId::DataId): {
+    auto datasec = parseDataSection(sectionSize, sectionContent, sectionPos);
+    return std::make_shared<DataSection>(datasec);
+  }
   default:
     BOOST_LOG_TRIVIAL(error) << "[module_parser] UndefinedSectionId at section " << hex << (unsigned int)sectionId
                              << " with size " << hex << sectionSize;
     Section section = Section(SectionId::UndefinedSectionId, sectionSize, sectionContent, 0);
     auto error = generateError(fatal, wrongSectionId, 0);
     section.addError(error);
-    return section;
+    return std::make_shared<Section>(section);
   }
 }
 

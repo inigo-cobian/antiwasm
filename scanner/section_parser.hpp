@@ -30,7 +30,7 @@ namespace antiwasm {
  * @param sectionPos
  * @return The parsed section.
  */
-Section parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionContent, int sectionPos);
+std::shared_ptr<Section> parseNextSection(uint8_t sectionId, int sectionSize, uint8_t *sectionContent, int sectionPos);
 
 /**
  * Parses a Custom section and generates its instance.
