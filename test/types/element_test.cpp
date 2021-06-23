@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(parseFunc_caseElem1) {
 }
 
 BOOST_AUTO_TEST_CASE(parseFunc_caseElem2) {
-  auto *elementContent = new uint8_t[4];
+  auto *elementContent = new uint8_t[8];
   elementContent[0] = elem2;
   elementContent[1] = 0x00; // tableidx
   elementContent[2] = i32_const, elementContent[3] = 0x05, elementContent[4] = End; // expr
@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE(parseFunc_caseElem5) {
 }
 
 BOOST_AUTO_TEST_CASE(parseFunc_caseElem6) {
-  auto *elementContent = new uint8_t[4];
+  auto *elementContent = new uint8_t[10];
   elementContent[0] = elem6;
   elementContent[1] = 0x00; // tableidx
   elementContent[2] = i32_const, elementContent[3] = 0x05, elementContent[4] = End; // expr
@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE(parseFunc_caseElem6) {
 }
 
 BOOST_AUTO_TEST_CASE(parseFunc_caseElem7) {
-  auto *elementContent = new uint8_t[4];
+  auto *elementContent = new uint8_t[6];
   elementContent[0] = elem7;
   elementContent[1] = Reftype::funref;
   elementContent[2] = 0x01, elementContent[3] = i32_const, elementContent[4] = 0x05, elementContent[5] = End; // exprVec
@@ -105,7 +105,7 @@ BOOST_AUTO_TEST_CASE(parseFunc_caseElem7) {
 }
 
 BOOST_AUTO_TEST_CASE(parseFunc_caseElemHeaderInvalid) {
-  auto *elementContent = new uint8_t[4];
+  auto *elementContent = new uint8_t[6];
   elementContent[0] = 0xAA; // invalid
   elementContent[1] = funcrefElemkind;
   elementContent[2] = 1, elementContent[3] = i32_const, elementContent[4] = 0x05, elementContent[5] = End; // exprVec
@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE(parseFunc_caseElemHeaderInvalid) {
 }
 
 BOOST_AUTO_TEST_CASE(parseFunc_caseElemKindInvalidAtElem2) {
-  auto *elementContent = new uint8_t[4];
+  auto *elementContent = new uint8_t[6];
   elementContent[0] = elem2;
   elementContent[1] = 0x00; // tableidx
   elementContent[2] = i32_const, elementContent[3] = 0x05, elementContent[4] = End; // expr

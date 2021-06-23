@@ -34,21 +34,21 @@ BOOST_AUTO_TEST_CASE(getAsText_caseNumtype) {
   uint8_t valtypeContent = Numtype::i32;
   auto returnValtype = antiwasm::parseValtype(valtypeContent);
 
-  returnValtype.getAsText();
+  auto str = returnValtype.getAsText();
 }
 
 BOOST_AUTO_TEST_CASE(getAsText_caseReftype) {
   uint8_t valtypeContent = Reftype::externref;
   auto returnValtype = antiwasm::parseValtype(valtypeContent);
 
-  returnValtype.getAsText();
+  auto str = returnValtype.getAsText();
 }
 
 BOOST_AUTO_TEST_CASE(getAsText_caseError) {
   uint8_t valtypeContent = 0xFF; // Incorrect valtype
   auto returnValtype = antiwasm::parseValtype(valtypeContent);
 
-  returnValtype.getAsText();
+  auto str = returnValtype.getAsText();
 }
 
 BOOST_AUTO_TEST_SUITE_END() // valttype_test

@@ -20,11 +20,11 @@ BOOST_AUTO_TEST_CASE(Module_returnsASectionWithTheRequestedId) {
   Module module(20);
   SectionId sectionId = SectionId::TypeId;
   Section section(sectionId, 10, nullptr, 0);
-  module.addSection(section);
+  module.addSection(std::make_shared<Section>(section));
 
   auto returnValue = module.getSection(sectionId);
 
-  BOOST_CHECK_EQUAL(sectionId, returnValue.getSectionId());
+  BOOST_CHECK_EQUAL(sectionId, returnValue->getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(Module_returnsAnErrorSectionIfNotDefinedtCreated) {
@@ -32,14 +32,14 @@ BOOST_AUTO_TEST_CASE(Module_returnsAnErrorSectionIfNotDefinedtCreated) {
 
   auto returnValue = module.getSection(SectionId::TypeId);
 
-  BOOST_CHECK_EQUAL(SectionId::UndefinedSectionId, returnValue.getSectionId());
+  BOOST_CHECK_EQUAL(SectionId::UndefinedSectionId, returnValue->getSectionId());
 }
 
 BOOST_AUTO_TEST_CASE(containsSection_returnsTrueIfSectionExists) {
   Module module(20);
   SectionId sectionId = SectionId::TypeId;
   Section section(sectionId, 10, nullptr, 0);
-  module.addSection(section);
+  module.addSection(std::make_shared<Section>(section));
 
   auto returnValue = module.containsSection(sectionId);
 
