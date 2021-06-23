@@ -4,23 +4,19 @@
 #include "contentBlock.hpp"
 #include "error_manager.hpp"
 #include "section.hpp"
+#include "sectionHeader.hpp"
 #include <map>
 #include <memory>
+#include <mutex>
 #include <vector>
 
 namespace antiwasm {
-struct SectionHeader {
-  SectionId id;
-  size_t pos;
-  size_t size;
-  std::shared_ptr<uint8_t> content;
-};
-
 class Module : public ContentBlock {
 private:
   int size_;
   std::map<const SectionId, SectionHeader> sectionHeaderMap;
-  std::map<const SectionId, Section> sectionMap;
+  std::map<const SectionId, std::shared_ptr<Section>> sectionMap;
+  std::mutex addSection_mutex;
   // TODO version
 
 public:
@@ -45,7 +41,7 @@ public:
    * Adds a section to the module.
    * @param section that has been parsed.
    */
-  void addSection(Section section);
+  void addSection(std::shared_ptr<Section> section);
 
   /**
    * Adds a sectionHeader to the module.
@@ -58,7 +54,7 @@ public:
    * @param sectionId
    * @return The existing section. A section with UndefinedSectionId id if it does not exist.
    */
-  Section getSection(SectionId sectionId);
+  std::shared_ptr<Section> getSection(SectionId sectionId);
 
   /**
    * Checks if the section with the given Id exists as a full section.
@@ -75,6 +71,8 @@ public:
   bool containsSectionHeader(SectionId sectionId);
 
   std::map<const SectionId, SectionHeader> getSectionHeaderMap();
+
+  std::map<const SectionId, std::shared_ptr<Section>> getSectionMap();
 };
 } // namespace antiwasm
 
