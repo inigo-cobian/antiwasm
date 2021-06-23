@@ -5,7 +5,7 @@ using namespace antiwasm;
 BOOST_AUTO_TEST_SUITE(export_test)
 
 BOOST_AUTO_TEST_CASE(parseExport_caseFuncidx) {
-  auto *exportContent = new uint8_t[8];
+  auto *exportContent = new uint8_t[7];
   exportContent[0] = 4; // size of Name
   exportContent[1] = 't', exportContent[2] = 'e', exportContent[3] = 's', exportContent[4] = 't';
   exportContent[5] = ExportDesc::funcidxExport;

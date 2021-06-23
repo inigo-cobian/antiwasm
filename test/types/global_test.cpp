@@ -12,9 +12,9 @@ BOOST_AUTO_TEST_CASE(parseGlobal_correctlyFormatted) {
   globalContent[1] = Numtype::i32;
   globalContent[2] = InstructionSet::Nop, globalContent[3] = InstructionSet::End;
 
-  // auto global = parseGlobal(globalContent); TODO
+  auto global = parseGlobal(globalContent);
 
-  // BOOST_CHECK_EQUAL(false, global.hasError());
+  BOOST_CHECK_EQUAL(false, global.hasError());
 }
 
 BOOST_AUTO_TEST_SUITE_END() // global_test
