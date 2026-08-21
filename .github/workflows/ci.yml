@@ -47,7 +47,7 @@ jobs:
         run: cmake --build --preset conan-release
 
       - name: Run tests
-        run: ./build/build/Release/Boost_Tests_run
+        run: ./build/Release/Boost_Tests_run
 
       - name: Generate coverage report
         run: |
