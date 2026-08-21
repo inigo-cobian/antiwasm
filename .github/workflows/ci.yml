@@ -46,17 +46,8 @@ jobs:
       - name: Build
         run: cmake --build --preset conan-release
 
-      - name: "Debug: locate build output"
-        run: |
-          echo "--- searching for Boost_Tests_run ---"
-          find . -name "Boost_Tests_run" 2>/dev/null
-          echo "--- searching for CMakeCache.txt ---"
-          find . -name "CMakeCache.txt" 2>/dev/null
-          echo "--- build directory tree (maxdepth 4) ---"
-          find build -maxdepth 4 2>/dev/null
-
       - name: Run tests
-        run: ./build/Release/Boost_Tests_run
+        run: ./build/Release/test/Boost_Tests_run
 
       - name: Generate coverage report
         run: |
