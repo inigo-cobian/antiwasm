@@ -38,10 +38,10 @@ jobs:
             conan-${{ runner.os }}-
 
       - name: Install Conan dependencies
-        run: conan install . --build=missing -s build_type=Release
+        run: conan install . --build=missing -s build_type=Release -s compiler.cppstd=23
 
       - name: Configure CMake
-        run: cmake --preset conan-release -DCMAKE_CXX_STANDARD=23 -DCMAKE_CXX_FLAGS="--coverage" -DCMAKE_C_FLAGS="--coverage"
+        run: cmake --preset conan-release -DCMAKE_CXX_FLAGS="--coverage" -DCMAKE_C_FLAGS="--coverage"
 
       - name: Build
         run: cmake --build --preset conan-release
