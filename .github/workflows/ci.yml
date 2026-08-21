@@ -19,7 +19,12 @@ jobs:
       - name: Install dependencies
         run: |
           pip install "conan>=2,<3"
-          sudo apt-get update && sudo apt-get install -y lcov
+          sudo apt-get update && sudo apt-get install -y lcov g++-13
+
+      - name: Set compiler
+        run: |
+          echo "CC=gcc-13" >> $GITHUB_ENV
+          echo "CXX=g++-13" >> $GITHUB_ENV
 
       - name: Detect Conan profile
         run: conan profile detect
@@ -36,7 +41,7 @@ jobs:
         run: conan install . --build=missing -s build_type=Release
 
       - name: Configure CMake
-        run: cmake --preset conan-release -DCMAKE_CXX_FLAGS="--coverage" -DCMAKE_C_FLAGS="--coverage"
+        run: cmake --preset conan-release -DCMAKE_CXX_STANDARD=23 -DCMAKE_CXX_FLAGS="--coverage" -DCMAKE_C_FLAGS="--coverage"
 
       - name: Build
         run: cmake --build --preset conan-release
