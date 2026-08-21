@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.19)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 project(antiwasm)
-
-# Code coverage
-set(--coverage)
 
 include_directories(init instructions modules scanner types utils)
 include_directories(instructions/const)
