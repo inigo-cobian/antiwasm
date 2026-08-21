@@ -1,8 +1,6 @@
 #ifndef SECTION_PARSER_HPP
 #define SECTION_PARSER_HPP
 
-#define BOOST_LOG_DYN_LINK 1
-
 #include "codesec.hpp"
 #include "contentBlock.hpp"
 #include "datasec.hpp"

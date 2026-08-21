@@ -1,5 +1,7 @@
 #include "leb128.hpp"
 
+#include <boost/log/trivial.hpp>
+
 int32_t antiwasm::transformLeb128ToSignedInt32(const uint8_t *leb128) {
   int32_t result = 0;
   unsigned shift = 0;

@@ -1,5 +1,7 @@
 #include "codesec.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 
 CodeSection::CodeSection(int size, uint8_t *content, int initialPos)

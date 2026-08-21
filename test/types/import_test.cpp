@@ -1,5 +1,3 @@
-#define BOOST_TEST_DYN_LINK
-
 #include "import_test.hpp"
 
 using namespace antiwasm;

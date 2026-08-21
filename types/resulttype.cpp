@@ -1,5 +1,7 @@
 #include "resulttype.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 Resulttype parseResulttype(const uint8_t *resultTypeContent) {
   Resulttype resulttype;

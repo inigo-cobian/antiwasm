@@ -1,5 +1,7 @@
 #include "driver.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 std::shared_ptr<Driver> Driver::instance_;
 std::mutex Driver::mutex_;

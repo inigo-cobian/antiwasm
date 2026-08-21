@@ -1,5 +1,3 @@
-#define BOOST_TEST_DYN_LINK
-
 #include "displayer.cpp"
 #include <boost/test/unit_test.hpp>
 

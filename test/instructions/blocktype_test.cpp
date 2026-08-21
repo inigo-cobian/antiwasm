@@ -1,5 +1,3 @@
-#define BOOST_TEST_DYN_LINK
-
 #include "blocktype.cpp"
 #include <boost/test/unit_test.hpp>
 

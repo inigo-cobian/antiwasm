@@ -1,5 +1,7 @@
 #include "module_parser.hpp"
 
+#include <boost/log/trivial.hpp>
+
 using namespace std;
 namespace antiwasm {
 

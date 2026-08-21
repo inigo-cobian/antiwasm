@@ -1,5 +1,7 @@
 #include "functype.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 
 Functype parseFunctype(const uint8_t *funcTypeContent) {

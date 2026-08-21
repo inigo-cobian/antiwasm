@@ -1,5 +1,7 @@
 #include "importsec.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 
 ImportSection::ImportSection(int size, uint8_t *content, int initialPos)

@@ -1,8 +1,6 @@
 #ifndef ANTIWASM_GLOBALSEC_HPP
 #define ANTIWASM_GLOBALSEC_HPP
 
-#define BOOST_LOG_DYN_LINK 1
-
 #include "global.hpp"
 #include "section.hpp"
 #include <boost/log/trivial.hpp>

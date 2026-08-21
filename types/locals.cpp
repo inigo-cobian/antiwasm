@@ -1,5 +1,7 @@
 #include "locals.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 
 Locals::Locals(uint32_t n_, Valtype valtype_) : n(n_), valtype(valtype_) {
