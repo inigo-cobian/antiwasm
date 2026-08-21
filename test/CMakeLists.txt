@@ -12,3 +12,5 @@ add_executable(Boost_Tests_run ${TESTS}
         ${INSTRUCTIONS_TESTS} ${MODULES_TESTS} ${SCANNER_TESTS} ${TYPES_TESTS} ${UTILS_TEST})
 
 target_link_libraries(Boost_Tests_run Boost::unit_test_framework Boost::log Boost::log_setup)
+
+target_compile_definitions(Boost_Tests_run PRIVATE TEST_DATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/files")

@@ -85,7 +85,17 @@ bool Driver::IsCurrentlyParsing() { return isParsing_; }
 
 bool Driver::OpenFile(const char *fileName) {
   instance_->pointer_ = 0;
+  if (instance_->wasmFile_.is_open()) {
+    instance_->wasmFile_.close();
+  }
+  instance_->wasmFile_.clear();
   instance_->wasmFile_.open(fileName, std::ifstream::in);
+
+  if (!instance_->wasmFile_.is_open()) {
+    // Open failed: leave isParsing_ as false, fileSize_ at sentinel -1
+    return false;
+  }
+
   instance_->wasmFile_.seekg(0, std::ios::end);
   instance_->fileSize_ = instance_->wasmFile_.tellg();
   instance_->isParsing_ = true;
