@@ -40,3 +40,6 @@ build/
 
 # Clion
 .idea/
+
+# Kiro
+.kiro/
