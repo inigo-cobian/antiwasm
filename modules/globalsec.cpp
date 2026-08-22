@@ -1,5 +1,7 @@
 #include "globalsec.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 
 GlobalSection::GlobalSection(int size, uint8_t *content, int initialPos)

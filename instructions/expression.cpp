@@ -1,5 +1,7 @@
 #include "expression.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 std::vector<Instruction> Expression::getInstructionVector() { return instructionVector; }
 

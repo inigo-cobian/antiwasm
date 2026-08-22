@@ -1,5 +1,7 @@
 #include "data.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 std::string Data::getAsText() const {
   std::stringstream dataAsText;

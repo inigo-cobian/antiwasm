@@ -1,5 +1,7 @@
 #include "datasec.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 
 DataSection::DataSection(int size, uint8_t *content, int initialPos)

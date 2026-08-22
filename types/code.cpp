@@ -1,5 +1,7 @@
 #include "code.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 
 Code::Code(uint32_t size_, Func func_) : size(size_), func(std::move(func_)) {

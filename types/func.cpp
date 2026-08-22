@@ -1,5 +1,6 @@
 #include "func.hpp"
 
+#include <boost/log/trivial.hpp>
 #include <utility>
 
 namespace antiwasm {

@@ -34,5 +34,9 @@
 # CMake
 cmake-*
 
+# Conan
+CMakeUserPresets.json
+build/
+
 # Clion
 .idea/

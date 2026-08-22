@@ -1,8 +1,6 @@
 #ifndef HEADER_HPP
 #define HEADER_HPP
 
-#define BOOST_LOG_DYN_LINK 1
-
 #include <boost/log/trivial.hpp>
 #include <cstddef>
 #include <cstring>

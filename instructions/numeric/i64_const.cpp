@@ -1,5 +1,7 @@
 #include "i64_const.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 I64Const::I64Const(const uint8_t *instrContent) {
   instructionCode = i64_const;

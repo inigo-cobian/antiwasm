@@ -1,5 +1,7 @@
 #include "instruction_parser.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 std::unique_ptr<Instruction> parseInstruction(const uint8_t *instructionContent) {
   switch (instructionContent[0]) {

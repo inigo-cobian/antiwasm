@@ -1,5 +1,7 @@
 #include "import.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 
 Import::Import(UTF8Name p_module, UTF8Name p_name, ImportDescType p_importDescType, ImportDesc p_importDesc)

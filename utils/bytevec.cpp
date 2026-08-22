@@ -1,5 +1,7 @@
 #include "bytevec.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 ByteVec::ByteVec(const uint8_t *byteVecContent) {
   size = transformLeb128ToUnsignedInt32(byteVecContent);

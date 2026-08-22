@@ -1,5 +1,7 @@
 #include "header.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 bool checkMagicNumber(const std::unique_ptr<uint8_t> header) {
   if (header.get()[0] == 0x00 && header.get()[1] == 0x61 && header.get()[2] == 0x73 && header.get()[3] == 0x6D) {

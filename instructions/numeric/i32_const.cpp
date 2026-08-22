@@ -1,5 +1,7 @@
 #include "i32_const.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 I32Const::I32Const(const uint8_t *instrContent) {
   instructionCode = i32_const;

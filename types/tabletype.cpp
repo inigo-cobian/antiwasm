@@ -1,5 +1,7 @@
 #include "tabletype.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 
 Tabletype parseTableType(const uint8_t *tableTypeContent) {

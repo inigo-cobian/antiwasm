@@ -1,5 +1,3 @@
-#define BOOST_TEST_DYN_LINK
-
 #include "codesec.cpp"
 #include "contentBlock.cpp"
 #include "end.cpp"

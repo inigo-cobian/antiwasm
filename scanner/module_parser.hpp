@@ -1,8 +1,6 @@
 #ifndef MODULE_PARSER_HPP
 #define MODULE_PARSER_HPP
 
-#define BOOST_LOG_DYN_LINK 1
-
 #include "contentBlock.hpp"
 #include "driver.hpp"
 #include "header.hpp"

@@ -1,5 +1,7 @@
 #include "limits.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 Limit::Limit(limit_types p_limitTypes, uint32_t p_min, uint32_t p_nBytes_) : type(p_limitTypes), min(p_min), max(0) {
   setNBytes(p_nBytes_);

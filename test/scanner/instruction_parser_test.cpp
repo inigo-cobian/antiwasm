@@ -1,5 +1,3 @@
-#define BOOST_TEST_DYN_LINK
-
 #include "control/block.cpp"
 #include "control/br.cpp"
 #include "control/br_if.cpp"

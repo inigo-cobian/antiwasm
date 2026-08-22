@@ -1,5 +1,3 @@
-#define BOOST_TEST_DYN_LINK
-
 #include "wasm_utils.cpp"
 #include <boost/test/unit_test.hpp>
 #include <cstdint>

@@ -1,5 +1,7 @@
 #include "memsec.hpp"
 
+#include <boost/log/trivial.hpp>
+
 namespace antiwasm {
 
 MemorySection::MemorySection(int size, uint8_t *content, int initialPos)
